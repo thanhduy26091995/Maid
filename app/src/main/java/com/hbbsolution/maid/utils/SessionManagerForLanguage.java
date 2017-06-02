@@ -3,7 +3,7 @@ package com.hbbsolution.maid.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.hbbsolution.owner.R;
+import com.hbbsolution.maid.R;
 
 
 /**
@@ -39,9 +39,9 @@ public class SessionManagerForLanguage {
         editor.commit();
     }
 
-    public String getLanguage() {
-        return pref.getString(KEY_LANGUAGE, _context.getResources().getString(R.string.default_language));
-    }
+//    public String getLanguage() {
+//        return pref.getString(KEY_LANGUAGE, _context.getResources().getString(R.string.default_language));
+//    }
     public void setIsClickedLanguage(boolean isFinished) {
         editor.putBoolean(KEY_IS_CLICK_LANGUAGE, isFinished);
         //commit

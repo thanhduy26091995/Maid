@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--sign in screen start-->
+
+    <string name="ion_chevron_right">&#xf125;</string>
+    <string name="ion_android_person">&#xf3a0;</string>
+    <string name="ion_android_lock">&#xf392;</string>
+    <string name="ic_mail">&#xf2eb;</string>
+    <string name="ic_fullname">&#xf3a0;</string>
+    <string name="ic_gender">&#xf4f5;</string>
+    <string name="ic_phone_portr">&#xf3a2;</string>
+    <string name="ic_home">&#xf144;</string>
+    <string name="ic_locked">&#xf200;</string>
+    <string name="ic_google">&#xf34f;</string>
+    <string name="ic_facebook">&#xf231;</string>
+    <string name="ic_more">&#xf396;</string>
+    <!--sign in screen end-->
+
+    <!--job screen start-->
+    <string name="manager_ic_clock">&#xf35a;</string>
+    <string name="manager_ic_home">&#xf38f;</string>
+    <string name="manager_ic_money">&#xf353;</string>
+    <string name="manager_ic_compose">&#xf417;</string>
+    <string name="manager_ic_login">&#xf29e;</string>
+    <string name="manager_ic_logout">&#xf29f;</string>
+    <string name="manager_ic_edit">&#xf2bf;</string>
+    <string name="manager_ic_check">&#xf383;</string>
+    <string name="manager_ic_trash">&#xf4c4;</string>
+    <!--job screen end-->
+
+    <!--history job screen start-->
+    <string name="histoty_ic_clock">&#xf35a;</string>
+    <string name="histoty_ic_compose">&#xf12c;</string>
+    <string name="history_ic_payment">&#xf119;</string>
+    <!--history job screen end-->
+
+    <!--profile maid-->
+    <string name="ic_back">&#xf2ca;</string>
+    <string name="ic_usd">&#xf353;</string>
+    <string name="ic_checkmark">&#xf122;</string>
+    <!--profile maid-->
+
+    <!--maid near by-->
+    <string name="ic_filter">&#xf4a6;</string>
+    <string name="ic_setting">&#xf2f7;</string>
+    <string name="ic_calendar">&#xf2d1;</string>
+    <!---->
+
+    <!--More activity-->
+    <string name="ic_share">&#xf3ac;</string>
+    <!--More activity-->
+</resources>

@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#33c6cd</color>
+
+    <color name="colorWhite">#FFF</color>
+    <color name="colorBlack">#000</color>
+    <color name="color_line_view">#C0C0C0</color>
+    <color name="edittext_hint">#808080</color>
+
+    <color name="home_background_maid_aound">#ffbf41</color>
+    <color name="home_background_your_tasks">#5fd81b</color>
+    <color name="home_background_history">#33c6cd</color>
+    <color name="job_number_person">#F44336</color>
+
+    <color name="collapsedappbar">#00ffffff</color>
+
+    <color name="more_background">#f0eff5</color>
+
+    <color name="more_background_lo">#80ffffff</color>
+    <color name="gray">#efeff4</color>
+
+    <color name="ratingbarnotactived">#ffde9d</color>
 </resources>
