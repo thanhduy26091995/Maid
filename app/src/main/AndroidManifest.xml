@@ -17,6 +17,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".workmanager.listworkmanager.WorkManagerActivity" />
+        <activity android:name=".more.contact.ContactActivity" />
+        <activity android:name=".more.about.AboutActivity" />
 
         <activity android:name=".workmanager.listworkmanager.WorkManagerActivity"/>
         <activity android:name=".home.job_near_by.view.JobNearByActivity"/>
