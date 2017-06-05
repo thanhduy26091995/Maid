@@ -11,21 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".home.HomeActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".workmanager.listworkmanager.WorkManagerActivity" />
-        <activity android:name=".more.contact.ContactActivity" />
-        <activity android:name=".more.about.AboutActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>®
+            </intent-filter>
         </activity>
+        <activity android:name=".workmanager.listworkmanager.WorkManagerActivity" />
+        <activity android:name=".more.contact.ContactActivity" />
+        <activity android:name=".more.about.AboutActivity" />
     </application>
 
 </manifest>
