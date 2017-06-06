@@ -18,11 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".workmanager.listworkmanager.WorkManagerActivity" />
-        <activity
-            android:name=".history.activity.HistoryActivity"
-            android:label="@string/title_activity_history"
-            android:theme="@style/AppTheme" />
+        <activity android:name=".history.activity.HistoryActivity" />
         <activity android:name=".history.activity.ReportActivity"></activity>
+        <activity android:name=".more.contact.ContactActivity" />
+        <activity android:name=".more.about.AboutActivity" />
     </application>
 
 </manifest>
