@@ -37,7 +37,7 @@ public class ContactActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        txtContact_title_toothbar.setText(getResources().getString(R.string.contact));
+//        txtContact_title_toothbar.setText(getResources().getString(R.string.contact));
 
         addEvents();
     }
@@ -85,7 +85,7 @@ public class ContactActivity extends AppCompatActivity {
             startActivity(i);
 
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(ContactActivity.this, R.string.no_email_client, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(ContactActivity.this, R.string.no_email_client, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -94,7 +94,7 @@ public class ContactActivity extends AppCompatActivity {
             String dial = "tel:" + phoneNo;
             startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
         } else {
-            Toast.makeText(ContactActivity.this, R.string.enter_phonenumber, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(ContactActivity.this, R.string.enter_phonenumber, Toast.LENGTH_SHORT).show();
         }
     }
 }
