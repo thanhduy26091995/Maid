@@ -31,7 +31,7 @@ public class AboutActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        txtTerms_title_toothbar.setText(getResources().getString(R.string.about));
+//        txtTerms_title_toothbar.setText(getResources().getString(R.string.about));
 
         addEvents();
     }

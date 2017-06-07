@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.squareup.picasso.Picasso;
 
@@ -47,6 +48,14 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
                 .error(R.drawable.no_image)
                 .into(holder.imgTypeJobPost);
 
+        String[] workTimeHistory = WorkTimeValidate.workTimeValidate(mDatum.getHistory().getUpdateAt());
+        if (!workTimeHistory[2].equals("0")) {
+            holder.txtTimePostHistory.setText(workTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(workTimeHistory[2]))));
+        } else if (!workTimeHistory[1].equals("0")) {
+            holder.txtTimePostHistory.setText(workTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(workTimeHistory[1]))));
+        } else if (!workTimeHistory[0].equals("0")) {
+            holder.txtTimePostHistory.setText(workTimeHistory[0] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(workTimeHistory[0]))));
+        }
     }
 
     @Override
