@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import butterknife.BindView;
