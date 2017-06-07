@@ -8,4 +8,16 @@
     <string name="home_copy_right">Niềm tin - Chất lượng</string>
     <string name="more_sign_in">Sign In</string>
 
+
+    <!--khác-->
+    <string name="default_language">Default</string>
+    <string name="more">More</string>
+
+    <string name="rate">Rating</string>
+    <string name="completed">Completed</string>
+    <string name="to">to</string>
+    <string name="send">Send</string>
+    <string name="soonupdated">Soon updated!</string>
+
+
 </resources>
