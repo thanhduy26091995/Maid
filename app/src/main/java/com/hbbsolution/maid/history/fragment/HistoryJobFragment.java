@@ -11,11 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.adapter.HistoryJobAdapter;
+import com.hbbsolution.maid.history.inteface.WorkHistoryView;
+import com.hbbsolution.maid.history.presenter.WorkHistoryPresenter;
+import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,22 +30,23 @@ import java.util.Date;
  * Created by Administrator on 15/05/2017.
  */
 
-public class HistoryJobFragment extends Fragment {
+public class HistoryJobFragment extends Fragment implements WorkHistoryView {
     private View v, view;
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private HistoryJobAdapter historyJobAdapter;
- //   private WorkHistoryPresenter workHistoryPresenter;
+    private WorkHistoryPresenter workHistoryPresenter;
     private TextView tvStartDate, tvEndDate;
     private Calendar cal;
     private Date startDate, endDate;
     private String strStartDate, strEndDate;
     private int currentPage, currentPageTime;
- //   private EndlessRecyclerViewScrollListener scrollListener;
- //   private List<WorkHistory> mDocList = new ArrayList<>();
+    private EndlessRecyclerViewScrollListener scrollListener;
+  //  private List<WorkHistory> mDocList = new ArrayList<>();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     private ProgressBar progressBar;
+    private LinearLayout lnNoData;
 
     public HistoryJobFragment() {
     }
@@ -62,6 +67,7 @@ public class HistoryJobFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleview_history_job);
+        lnNoData = (LinearLayout) v.findViewById(R.id.lnNoData);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -78,8 +84,8 @@ public class HistoryJobFragment extends Fragment {
         currentPage = 1;
 
 
-//        workHistoryPresenter = new WorkHistoryPresenter(this);
-//        workHistoryPresenter.getInfoWorkHistory(currentPage, simpleDateFormat.format(endDate));
+        workHistoryPresenter = new WorkHistoryPresenter(this);
+        workHistoryPresenter.getInfoWorkHistory(currentPage, simpleDateFormat.format(endDate));
         tvStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,12 +105,14 @@ public class HistoryJobFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
                         if (tvStartDate.getText().toString().equals("- - / - - / - - - -")) {
                             currentPage = 1;
- //                           workHistoryPresenter.getInfoWorkHistory(currentPage, simpleDateFormat.format(endDate));
+                            workHistoryPresenter.getInfoWorkHistory(currentPage, simpleDateFormat.format(endDate));
                         } else {
                             currentPageTime = 1;
- //                           workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPage);
+
+                            workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPage);
                         }
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
@@ -121,7 +129,12 @@ public class HistoryJobFragment extends Fragment {
 //        historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
 //        recyclerView.setAdapter(historyJobAdapter);
 //        progressBar.setVisibility(View.GONE);
-//        view.setVisibility(View.VISIBLE);
+//        if (listWorkHistory.size() > 0) {
+//            view.setVisibility(View.VISIBLE);
+//            lnNoData.setVisibility(View.GONE);
+//        } else {
+//            lnNoData.setVisibility(View.VISIBLE);
+//        }
 //        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
 //            @Override
 //            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
@@ -155,8 +168,12 @@ public class HistoryJobFragment extends Fragment {
 //        historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
 //        recyclerView.setAdapter(historyJobAdapter);
 //        progressBar.setVisibility(View.GONE);
-//        view.setVisibility(View.VISIBLE);
-//        mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+//        if (listWorkHistory.size() > 0) {
+//            view.setVisibility(View.VISIBLE);
+//            lnNoData.setVisibility(View.GONE);
+//        } else {
+//            lnNoData.setVisibility(View.VISIBLE);
+//        }
 //        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
 //            @Override
 //            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
@@ -182,11 +199,12 @@ public class HistoryJobFragment extends Fragment {
 //            }
 //        });
 //    }
-//
-//    @Override
-//    public void getError() {
-//
-//    }
+
+    @Override
+    public void getError() {
+        lnNoData.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
 
     public void showDatePickerDialog1() {
         DatePickerDialog.OnDateSetListener callback = new DatePickerDialog.OnDateSetListener() {
@@ -210,10 +228,9 @@ public class HistoryJobFragment extends Fragment {
                 if (endDate.getTime() - startDate.getTime() >= 0) {
                     view.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
-                    mSwipeRefreshLayout.setVisibility(View.INVISIBLE);
-    //                workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPageTime);
+                    workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPageTime);
                 } else {
-     //               ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+   //                 ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                 }
             }
         };
@@ -255,13 +272,14 @@ public class HistoryJobFragment extends Fragment {
                     if (endDate.getTime() - startDate.getTime() >= 0) {
                         view.setVisibility(View.INVISIBLE);
                         progressBar.setVisibility(View.VISIBLE);
-                        mSwipeRefreshLayout.setVisibility(View.INVISIBLE);
-      //                  workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPageTime);
+                        workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPageTime);
                     } else {
-      //                  ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+ //                       ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                     }
                 } else {
-      //              workHistoryPresenter.getInfoWorkHistoryTime("", simpleDateFormat.format(endDate), currentPageTime);
+                    view.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+                    workHistoryPresenter.getInfoWorkHistoryTime("", simpleDateFormat.format(endDate), currentPageTime);
                 }
             }
         };
