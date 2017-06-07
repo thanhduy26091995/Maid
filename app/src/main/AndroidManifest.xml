@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hbbsolution.maid">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:name=".base.MaidApplication"
         android:allowBackup="true"
@@ -19,6 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".history.activity.HistoryActivity" />
+        <activity android:name=".history.activity.ReportActivity"></activity>
+        <activity android:name=".more.contact.ContactActivity" />
+        <activity android:name=".more.about.AboutActivity" />
 
         <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity"/>
     </application>

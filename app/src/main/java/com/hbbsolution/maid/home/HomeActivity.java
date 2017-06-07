@@ -1,8 +1,8 @@
 package com.hbbsolution.maid.home;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import butterknife.BindView;
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 transActivity(WorkManagerActivity.class);
                 break;
             case R.id.lo_history:
-//                transActivity(HistoryActivity.class);
+                transActivity(HistoryActivity.class);
                 break;
         }
     }
