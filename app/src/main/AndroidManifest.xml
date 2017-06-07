@@ -17,11 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".workmanager.listworkmanager.WorkManagerActivity" />
         <activity android:name=".history.activity.HistoryActivity" />
         <activity android:name=".history.activity.ReportActivity"></activity>
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
+
+        <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity"/>
     </application>
 
 </manifest>

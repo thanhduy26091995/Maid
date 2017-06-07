@@ -1,4 +1,4 @@
-package com.hbbsolution.maid.workmanager.listworkmanager;
+package com.hbbsolution.maid.workmanager.listworkmanager.view;
 
 import android.support.v4.app.Fragment;
 

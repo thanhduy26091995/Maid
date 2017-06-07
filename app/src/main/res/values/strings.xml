@@ -50,16 +50,15 @@
     <string name="send">Send</string>
 
 
-    <!--contact and about screen start-->
-    <string name="contact">Liên hệ</string>
-    <string name="about">Về chúng tôi</string>
-    <string name="btnCall">Gọi điện</string>
-    <string name="btnEmail">Email</string>
-    <string name="no_email_client">There are no email clients installed."</string>
-    <string name="enter_phonenumber">Enter a phone number</string>
-    <string name="address_title">Address:</string>
-    <!--contact and about screen end-->
+    <!--khác-->
+    <string name="default_language">Default</string>
+    <string name="more">More</string>
 
+    <string name="rate">Rating</string>
+    <string name="completed">Completed</string>
+    <string name="to">to</string>
+    <string name="send">Send</string>
+    <string name="soonupdated">Soon updated!</string>
 
 
 </resources>
