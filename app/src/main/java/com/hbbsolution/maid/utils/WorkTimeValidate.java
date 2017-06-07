@@ -5,5 +5,4 @@ package com.hbbsolution.maid.utils;
  */
 
 public class WorkTimeValidate {
-
 }
