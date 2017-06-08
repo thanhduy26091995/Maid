@@ -22,7 +22,7 @@
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
 
-        <activity android:name=".workmanager.listworkmanager.WorkManagerActivity"/>
+        <activity android:name=".home.list_job.view.ListJobActivity"/>
         <activity android:name=".home.job_near_by.view.JobNearByActivity"/>
         <activity android:name=".home.job_detail.view.JobDetailActivity"/>
         <activity android:name=".home.owner_profile.view.OwnerProfileActivity"/>

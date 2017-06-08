@@ -128,5 +128,5 @@
         android:id="@+id/recycler_job"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_job_near_by"></android.support.v7.widget.RecyclerView>
+        tools:listitem="@layout/item_job_near_by"/>
 </LinearLayout>
