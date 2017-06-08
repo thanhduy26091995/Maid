@@ -5,4 +5,9 @@ package com.hbbsolution.maid.utils;
  */
 
 public class Constants {
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
+    public static final String MAX_DISTANCE = "maxDistance";
+    public static final String WORK_ID = "workId";
+    public static final String WORK_NAME = "workName";
 }

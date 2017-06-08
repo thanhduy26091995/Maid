@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".main.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,10 @@
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
 
-        <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity"/>
+        <activity android:name=".home.list_job.view.ListJobActivity"/>
+        <activity android:name=".home.job_near_by.view.JobNearByActivity"/>
+        <activity android:name=".home.job_detail.view.JobDetailActivity"/>
+        <activity android:name=".home.owner_profile.view.OwnerProfileActivity"/>
     </application>
 
 </manifest>
