@@ -25,19 +25,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/colorBlack"
+                android:text="Đang chờ"
                 android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <com.hbbsolution.maid.base.IconTextView
-                android:id="@+id/job_psot_edit_toothbar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:layout_marginRight="15dp"
-                android:gravity="center"
-                android:text="@string/manager_ic_edit"
-                android:textColor="@color/home_background_history"
-                android:textSize="24sp"
                 android:textStyle="bold" />
 
         </android.support.v7.widget.Toolbar>
@@ -54,6 +43,68 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/lo_infoOwner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_avatarQwner"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/avatar" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@+id/img_avatarQwner"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtNameOwner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nguyễn Văn A"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/txtAddressOwner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingRight="10dp"
+                        android:text="123 đường số 1, quận 1, Tp.HCM, Việt Nam"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                </LinearLayout>
+
+                <com.hbbsolution.maid.base.IconTextView
+                    android:id="@+id/txt_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/ion_chevron_right"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/icon_size_normal" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -300,43 +351,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/lo_list_recruitment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/colorWhite"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/job_post_txtTitle_job"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:text="Danh sách ứng tuyển"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/home_background_history" />
-
-                <TextView
-                    android:id="@+id/txtNumber_request_detail_post"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="15dp"
-                    android:visibility="gone"
-                    android:background="@drawable/circle"
-                    android:text="2"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/icon_size_normal" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/lo_clear_job"
@@ -356,7 +370,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
-                    android:text="Xóa công việc"
+                    android:text="Hủy công việc"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/home_background_maid_aound" />
 

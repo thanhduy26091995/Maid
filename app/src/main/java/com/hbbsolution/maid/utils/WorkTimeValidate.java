@@ -1,5 +1,10 @@
 package com.hbbsolution.maid.utils;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
+import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +20,6 @@ public class WorkTimeValidate {
     public static String[] workTimeValidate(String endDate)  {
         long currentTime = System.currentTimeMillis();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
 
         Date mEndDate = null;
         try {
@@ -50,5 +54,40 @@ public class WorkTimeValidate {
 
         }
         return currentTimeHistory;
+    }
+
+    public static String getDatePostHistory(String _CreateDatePostHistory) {
+        Date date = new DateTime(_CreateDatePostHistory).toDate();
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String mDateTimePostHistory = df.format(date);
+        return mDateTimePostHistory;
+    }
+
+    public static String getTimeWork(String _TimeWork) {
+        String mTimeWork = null;
+        Date date = new DateTime(_TimeWork).toDate();
+        SimpleDateFormat time = new SimpleDateFormat("H:mm a", Locale.US);
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
+        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
+        symbols.setAmPmStrings(new String[] { "am", "pm" });
+        time.setDateFormatSymbols(symbols);
+        try{
+            mTimeWork = time.format(date);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return mTimeWork;
+    }
+
+    public static boolean compareDays(String timeEndWork) {
+        long time = System.currentTimeMillis();
+        DateTimeFormatter parser = ISODateTimeFormat.dateTimeParser();
+        Date date = parser.parseDateTime(timeEndWork).toDate();
+        long millisecond = date.getTime();
+        long timer = (millisecond - time);
+        if(timer < 0) {
+            return false;
+        }
+        return true;
     }
 }

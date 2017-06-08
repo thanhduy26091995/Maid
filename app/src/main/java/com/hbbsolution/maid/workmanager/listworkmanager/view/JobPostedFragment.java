@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.workmanager.adapter.JobPostAdapter;
+import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPresenter;
@@ -95,37 +96,36 @@ public class JobPostedFragment extends Fragment implements WorkManagerView{
             mRecycler.setLayoutManager(linearLayoutManager);
             mRecycler.setAdapter(mJobPostAdapter);
 
-//            mJobPostAdapter.setCallback(new ManageJobAdapter.Callback() {
-//                @Override
-//                public void onItemClick(Datum mDatum) {
-//                    Intent itDetailJobPost = new Intent(getActivity(), DetailJobPostActivity.class);
-//                    itDetailJobPost.putExtra("mDatum", mDatum);
-//                    startActivity(itDetailJobPost);
-//                }
-//
-//                @Override
-//                public void onItemLongClick(final Datum mDatum) {
-//                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-//                    alertDialog.setCancelable(false);
-//                    alertDialog.setTitle("Thông báo");
-//                    alertDialog.setMessage("Bạn có muốn xóa công việc nay ? ");
-//                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            progressBar.setVisibility(View.GONE);
-//                            Log.d("datadel", mDatum.getId() + "\n" + mDatum.getStakeholders().getOwner());
+            mJobPostAdapter.setCallback(new JobPostAdapter.Callback() {
+                @Override
+                public void onItemClick(Datum mDatum) {
+                    Intent itDetailJobPost = new Intent(getActivity(), DetailJobPostActivity.class);
+                    itDetailJobPost.putExtra("mDatum", mDatum);
+                    startActivity(itDetailJobPost);
+                }
+
+                @Override
+                public void onItemLongClick(final Datum mDatum) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                    alertDialog.setCancelable(false);
+                    alertDialog.setTitle("Thông báo");
+                    alertDialog.setMessage("Bạn có muốn xóa công việc nay ? ");
+                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            progressBar.setVisibility(View.GONE);
 //                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner());
-//                        }
-//                    });
-//                    alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                        }
-//                    });
-//                    alertDialog.show();
-//                }
-//            });
+                        }
+                    });
+                    alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    alertDialog.show();
+                }
+            });
         }else {
             lnNoData.setVisibility(View.VISIBLE);
             mRecycler.setVisibility(View.GONE);

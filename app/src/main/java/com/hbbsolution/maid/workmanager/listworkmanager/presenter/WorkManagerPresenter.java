@@ -76,7 +76,7 @@ public class WorkManagerPresenter {
 //        Call<JobPostResponse> responseCall = apiService.delleteJob(idTask, ownerId);
 //        responseCall.enqueue(new Callback<JobPostResponse>() {
 //            @Override
-//            public void onResponse(Call<JobPostResponse> call, Response<JobPostResponse> response) {
+//            public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
 //                try{
 //                    if (response.isSuccessful()) {
 //
