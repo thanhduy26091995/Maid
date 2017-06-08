@@ -30,6 +30,7 @@ public class MaidApplication extends Application {
 
         instance = this;
 
+
         setLocale();
 //        sessionManagerUser = new SessionManagerUser(this);
 //        if (sessionManagerUser.isLoggedIn()) {
