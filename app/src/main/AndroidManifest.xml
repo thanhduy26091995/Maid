@@ -18,14 +18,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".history.activity.HistoryActivity" />
-        <activity android:name=".history.activity.ReportActivity"></activity>
+        <activity android:name=".history.activity.ReportActivity" />
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
-
-        <activity android:name=".home.list_job.view.ListJobActivity"/>
-        <activity android:name=".home.job_near_by.view.JobNearByActivity"/>
-        <activity android:name=".home.job_detail.view.JobDetailActivity"/>
-        <activity android:name=".home.owner_profile.view.OwnerProfileActivity"/>
+        <activity android:name=".home.list_job.view.ListJobActivity" />
+        <activity android:name=".home.job_near_by.view.JobNearByActivity" />
+        <activity android:name=".home.job_detail.view.JobDetailActivity" />
+        <activity android:name=".home.owner_profile.view.OwnerProfileActivity" />
+        <activity android:name=".more.statistic.view.StatisticActivity"></activity>
     </application>
 
 </manifest>

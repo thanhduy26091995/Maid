@@ -51,6 +51,16 @@
     <string name="address_title">Address:</string>
     <!--contact and about screen end-->
 
+    <!--statistic_screen start-->
+    <string name="more_job_statistic">Thống kê công việc</string>
+    <string name="total">Tổng chi phí</string>
+    <string name="history_work">Công việc hoàn thành</string>
+    <string name="waiting_work">Công việc đang xử lý</string>
+    <string name="post_work">Công việc đã đăng</string>
+    <string name="sodutaikhoan">Số dư tài khoản</string>
+    <string name="million">million</string>
+    <!--statistic_screen end-->
+
     <!--khác-->
     <string name="default_language">Default</string>
     <string name="more">More</string>
