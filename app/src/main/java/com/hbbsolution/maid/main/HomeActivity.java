@@ -1,16 +1,17 @@
-package com.hbbsolution.maid.main;
+package com.hbbsolution.maid.home;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.home.job_near_by.view.JobNearByActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.WorkManagerActivity;
 
 import butterknife.BindView;
@@ -63,7 +64,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 transActivity(WorkManagerActivity.class);
                 break;
             case R.id.lo_history:
-//                transActivity(HistoryActivity.class);
+                transActivity(HistoryActivity.class);
                 break;
         }
     }
