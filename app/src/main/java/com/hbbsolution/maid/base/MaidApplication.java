@@ -10,6 +10,8 @@ import android.os.Bundle;
 
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
+import com.joanzapata.iconify.Iconify;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 import java.util.Locale;
 
@@ -27,6 +29,7 @@ public class MaidApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Iconify.with(new FontAwesomeModule());
         instance = this;
         setLocale();
 //        sessionManagerUser = new SessionManagerUser(this);

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
-import com.hbbsolution.maid.home.job_near_by.view.JobNearByActivity;
+import com.hbbsolution.maid.home.job_near_by.view.JobNearByMapActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import butterknife.BindView;
@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         int id = view.getId();
         switch (id) {
             case R.id.lo_maid_around:
-                transActivity(JobNearByActivity.class);
+                transActivity(JobNearByMapActivity.class);
                 break;
             case R.id.lo_your_tasks:
                 transActivity(WorkManagerActivity.class);

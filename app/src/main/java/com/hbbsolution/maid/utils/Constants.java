@@ -10,4 +10,5 @@ public class Constants {
     public static final String MAX_DISTANCE = "maxDistance";
     public static final String WORK_ID = "workId";
     public static final String WORK_NAME = "workName";
+    public static final String IS_SEARCH = "isSearch";
 }

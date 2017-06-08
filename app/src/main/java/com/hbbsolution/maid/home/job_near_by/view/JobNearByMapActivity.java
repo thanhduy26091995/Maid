@@ -20,104 +20,102 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.home.job_near_by.JobNearByAdapter;
-import com.hbbsolution.maid.home.job_near_by.presenter.JobNearByPresenter;
-import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
-import com.hbbsolution.maid.model.task_around.TaskData;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.hbbsolution.maid.utils.Constants;
+import com.joanzapata.iconify.IconDrawable;
+import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.hbbsolution.maid.home.job_near_by.view.JobNearByActivity.REQUEST_ID_ACCESS_COARSE_FINE_LOCATION;
+
 /**
- * Created by buivu on 05/06/2017.
+ * Created by buivu on 08/06/2017.
  */
 
-public class JobNearByActivity extends AppCompatActivity implements JobNearByView, View.OnClickListener, LocationListener {
+public class JobNearByMapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.seekBar_distance)
-    SeekBar seekBarDistance;
-    @BindView(R.id.text_distance)
-    TextView txtDistance;
-    @BindView(R.id.recycler_job)
-    RecyclerView mRecycler;
-    @BindView(R.id.txt_search)
-    TextView txtSearch;
-
-    private Integer maxDistance;
-    private JobNearByPresenter presenter;
-    private JobNearByAdapter jobNearByAdapter;
-    private List<TaskData> taskArounds = new ArrayList<>();
-    private ProgressDialog progressDialog;
+    private GoogleMap googleMap;
     private LocationManager locationManager;
-    public static final int REQUEST_ID_ACCESS_COARSE_FINE_LOCATION = 101;
-    private static final String[] PERMISSIONS_LOCATION = {
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-    };
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
     // The minimum time between updates in milliseconds
     private static final long MIN_TIME_BW_UPDATES = 1; // 1 minute
     private Location location; // location
     private Double latitude, longitude;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_near_by);
+        setContentView(R.layout.activity_job_near_by_map);
         ButterKnife.bind(this);
-        presenter = new JobNearByPresenter(this);
         //setup toolbar
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        //event change seekbar
-        seekBarDistance.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                maxDistance = progress;
-                txtDistance.setText(String.format("%d km", progress));
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        setUpMapIfNeeded();
         //load data
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            showSettingLocationAlert();
-        } else {
-            //get data
-            loadData();
+
+    }
+
+    private void showSettingLocationAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //set title
+        builder.setTitle(getResources().getString(R.string.GPSTitle));
+        //set message
+        builder.setMessage(getResources().getString(R.string.GPSContent));
+        //on press
+        builder.setPositiveButton(getResources().getString(R.string.setting), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent settingIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(settingIntent);
+            }
+        });
+        //on cancel
+        builder.setNegativeButton(getResources().getString(R.string.huy), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void setUpMapIfNeeded() {
+        if (googleMap == null) {
+            SupportMapFragment mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map);
+            mapFrag.getMapAsync(this);
+            if (googleMap != null) {
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        marker.showInfoWindow();
+                        marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                        return true;
+                    }
+                });
+            }
         }
-        //event click
-        txtSearch.setOnClickListener(this);
-
-
     }
 
     private void loadData() {
@@ -201,11 +199,13 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
                     }
                 }
                 if (location != null) {
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 15));
                     Log.d("LATLNG", "" + location.getLatitude() + "/" + location.getLongitude());
-                    showProgress();
-                    presenter.getAllTask(location.getLatitude(), location.getLongitude(), maxDistance);
+                    MarkerOptions markerOptions = new MarkerOptions()
+                            .position(new LatLng(location.getLatitude(), location.getLongitude()));
+                    googleMap.addMarker(markerOptions);
                 } else {
-                    Toast.makeText(JobNearByActivity.this, "Location not found!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(JobNearByMapActivity.this, "Location not found!", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -249,94 +249,39 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     }
 
     @Override
-    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
-        switch (permsRequestCode) {
-            case REQUEST_ID_ACCESS_COARSE_FINE_LOCATION:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    loadData();
-                }
-                break;
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            showSettingLocationAlert();
+        } else {
+            //get data
+            loadData();
         }
-
     }
 
-    private void showSettingLocationAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //set title
-        builder.setTitle(getResources().getString(R.string.GPSTitle));
-        //set message
-        builder.setMessage(getResources().getString(R.string.GPSContent));
-        //on press
-        builder.setPositiveButton(getResources().getString(R.string.setting), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Intent settingIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(settingIntent);
-            }
-        });
-        //on cancel
-        builder.setNegativeButton(getResources().getString(R.string.huy), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-        builder.show();
-    }
-
-    private void showProgress() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Đang tải...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    private void hideProgress() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_job_near_by_map, menu);
+        menu.findItem(R.id.action_filter).setIcon(
+                new IconDrawable(this, FontAwesomeIcons.fa_sliders)
+                        .color(R.color.home_background_history)
+                        .colorRes(R.color.home_background_history)
+                        .sizeDp(24)
+                        .actionBarSize()
+        );
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+        } else if (item.getItemId() == R.id.action_filter) {
+            Intent intent = new Intent(JobNearByMapActivity.this, JobNearByActivity.class);
+            intent.putExtra(Constants.IS_SEARCH, false);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        unregisterReceiver(mGpsSwitchStateReceiver);
-        ButterKnife.bind(this).unbind();
-        super.onDestroy();
-    }
-
-
-    @Override
-    public void getAllTask(TaskAroundResponse taskAroundResponse) {
-        taskArounds.clear();
-        hideProgress();
-        taskArounds = taskAroundResponse.getTaskDatas();
-        //set up recyclerview
-        jobNearByAdapter = new JobNearByAdapter(JobNearByActivity.this, taskArounds, latitude, longitude, maxDistance);
-        mRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mRecycler.setAdapter(jobNearByAdapter);
-        //jobNearByAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void getError(String error) {
-        hideProgress();
-        Log.d("ERROR_NEAR_BY", error);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == txtSearch) {
-            showProgress();
-            presenter.getAllTask(latitude, longitude, maxDistance);
-        }
     }
 
     private BroadcastReceiver mGpsSwitchStateReceiver = new BroadcastReceiver() {
@@ -356,7 +301,6 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
                         @Override
                         public void run() {
                             // Do something after 5s = 5000ms
-                            loadData();
                             progressDialog.hide();
                         }
                     }, 6000);
@@ -371,6 +315,13 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     protected void onResume() {
         registerReceiver(mGpsSwitchStateReceiver, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mGpsSwitchStateReceiver);
+        ButterKnife.bind(this).unbind();
+        super.onDestroy();
     }
 
     @Override
