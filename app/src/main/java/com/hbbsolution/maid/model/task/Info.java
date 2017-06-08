@@ -4,7 +4,9 @@ package com.hbbsolution.maid.model.task;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Info {
+import java.io.Serializable;
+
+public class Info implements Serializable{
 
     @SerializedName("username")
     @Expose
@@ -24,32 +26,9 @@ public class Info {
     @SerializedName("address")
     @Expose
     private Address address;
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Info() {
-    }
-
-    /**
-     * 
-     * @param phone
-     * @param username
-     * @param address
-     * @param email
-     * @param gender
-     * @param image
-     */
-    public Info(String username, String email, String phone, String image, Integer gender, Address address) {
-        super();
-        this.username = username;
-        this.email = email;
-        this.phone = phone;
-        this.image = image;
-        this.gender = gender;
-        this.address = address;
-    }
+    @SerializedName("name")
+    @Expose
+    private String name;
 
     public String getUsername() {
         return username;
@@ -97,6 +76,14 @@ public class Info {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

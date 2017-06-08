@@ -35,7 +35,7 @@ public class WorkHistoryPresenter {
                         int codeResponse = response.code();
                         Log.e("codeResponse", codeResponse + "");
                         WorkHistoryResponse workManagerResponse = response.body();
-            //            workHistoryView.getInfoWorkHistory(workManagerResponse.getData().getDocs(), workManagerResponse.getData().getPages());
+            //            workHistoryView.getInfoWorkHistory(workManagerResponse.getData().getTaskDatas(), workManagerResponse.getData().getPages());
                     } catch (Exception e) {
                         Log.e("exception", e.toString());
                         workHistoryView.getError();
@@ -59,7 +59,7 @@ public class WorkHistoryPresenter {
                 if (response.isSuccessful()) {
                     try {
                         WorkHistoryResponse workManagerResponse = response.body();
- //                       workHistoryView.getMoreInfoWorkHistory(workManagerResponse.getData().getDocs());
+ //                       workHistoryView.getMoreInfoWorkHistory(workManagerResponse.getData().getTaskDatas());
                     } catch (Exception e) {
                         Log.e("exception", e.toString());
                     }
@@ -81,7 +81,7 @@ public class WorkHistoryPresenter {
                 if (response.isSuccessful()) {
                     try {
                         WorkHistoryResponse workManagerResponse = response.body();
-  //                      workHistoryView.getInfoWorkHistoryTime(workManagerResponse.getData().getDocs(), startAt, endAt, workManagerResponse.getData().getPages());
+  //                      workHistoryView.getInfoWorkHistoryTime(workManagerResponse.getData().getTaskDatas(), startAt, endAt, workManagerResponse.getData().getPages());
                     } catch (Exception e) {
                         Log.e("exception", e.toString());
                         workHistoryView.getError();
@@ -105,7 +105,7 @@ public class WorkHistoryPresenter {
                 if (response.isSuccessful()) {
                     try {
                         WorkHistoryResponse workManagerResponse = response.body();
- //                       workHistoryView.getMoreInfoWorkHistoryTime(workManagerResponse.getData().getDocs(), startAt, endAt);
+ //                       workHistoryView.getMoreInfoWorkHistoryTime(workManagerResponse.getData().getTaskDatas(), startAt, endAt);
                     } catch (Exception e) {
                         Log.e("exception", e.toString());
                     }

@@ -4,88 +4,75 @@ package com.hbbsolution.maid.model.task;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class TaskData {
+public class TaskData implements Serializable{
 
-    @SerializedName("docs")
+    @SerializedName("_id")
     @Expose
-    private List<Doc> docs = null;
-    @SerializedName("total")
+    private String id;
+    @SerializedName("process")
     @Expose
-    private Integer total;
-    @SerializedName("limit")
+    private Process process;
+    @SerializedName("history")
     @Expose
-    private Integer limit;
-    @SerializedName("page")
+    private History history;
+    @SerializedName("stakeholders")
     @Expose
-    private Integer page;
-    @SerializedName("pages")
+    private Stakeholders stakeholders;
+    @SerializedName("info")
     @Expose
-    private Integer pages;
+    private Info_ info;
+    @SerializedName("dist")
+    @Expose
+    private Dist dist;
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public TaskData() {
+    public String getId() {
+        return id;
     }
 
-    /**
-     * 
-     * @param limit
-     * @param total
-     * @param page
-     * @param docs
-     * @param pages
-     */
-    public TaskData(List<Doc> docs, Integer total, Integer limit, Integer page, Integer pages) {
-        super();
-        this.docs = docs;
-        this.total = total;
-        this.limit = limit;
-        this.page = page;
-        this.pages = pages;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public List<Doc> getDocs() {
-        return docs;
+    public Process getProcess() {
+        return process;
     }
 
-    public void setDocs(List<Doc> docs) {
-        this.docs = docs;
+    public void setProcess(Process process) {
+        this.process = process;
     }
 
-    public Integer getTotal() {
-        return total;
+    public History getHistory() {
+        return history;
     }
 
-    public void setTotal(Integer total) {
-        this.total = total;
+    public void setHistory(History history) {
+        this.history = history;
     }
 
-    public Integer getLimit() {
-        return limit;
+    public Stakeholders getStakeholders() {
+        return stakeholders;
     }
 
-    public void setLimit(Integer limit) {
-        this.limit = limit;
+    public void setStakeholders(Stakeholders stakeholders) {
+        this.stakeholders = stakeholders;
     }
 
-    public Integer getPage() {
-        return page;
+    public Info_ getInfo() {
+        return info;
     }
 
-    public void setPage(Integer page) {
-        this.page = page;
+    public void setInfo(Info_ info) {
+        this.info = info;
     }
 
-    public Integer getPages() {
-        return pages;
+    public Dist getDist() {
+        return dist;
     }
 
-    public void setPages(Integer pages) {
-        this.pages = pages;
+    public void setDist(Dist dist) {
+        this.dist = dist;
     }
 
 }

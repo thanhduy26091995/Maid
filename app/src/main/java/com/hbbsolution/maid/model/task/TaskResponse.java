@@ -12,29 +12,9 @@ public class TaskResponse {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("taskData")
+    @SerializedName("data")
     @Expose
-    private TaskData taskData;
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public TaskResponse() {
-    }
-
-    /**
-     * 
-     * @param message
-     * @param status
-     * @param taskData
-     */
-    public TaskResponse(Boolean status, String message, TaskData taskData) {
-        super();
-        this.status = status;
-        this.message = message;
-        this.taskData = taskData;
-    }
+    private Data data;
 
     public Boolean getStatus() {
         return status;
@@ -52,12 +32,12 @@ public class TaskResponse {
         this.message = message;
     }
 
-    public TaskData getTaskData() {
-        return taskData;
+    public Data getData() {
+        return data;
     }
 
-    public void setTaskData(TaskData taskData) {
-        this.taskData = taskData;
+    public void setData(Data data) {
+        this.data = data;
     }
 
 }

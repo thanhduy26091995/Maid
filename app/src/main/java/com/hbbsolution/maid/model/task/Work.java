@@ -4,7 +4,9 @@ package com.hbbsolution.maid.model.task;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Work {
+import java.io.Serializable;
+
+public class Work implements Serializable{
 
     @SerializedName("_id")
     @Expose
@@ -15,26 +17,6 @@ public class Work {
     @SerializedName("name")
     @Expose
     private String name;
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Work() {
-    }
-
-    /**
-     * 
-     * @param id
-     * @param name
-     * @param image
-     */
-    public Work(String id, String image, String name) {
-        super();
-        this.id = id;
-        this.image = image;
-        this.name = name;
-    }
 
     public String getId() {
         return id;

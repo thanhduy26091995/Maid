@@ -6,22 +6,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Process implements Serializable{
+public class Address_ implements Serializable{
 
-    @SerializedName("_id")
-    @Expose
-    private String id;
     @SerializedName("name")
     @Expose
     private String name;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    @SerializedName("coordinates")
+    @Expose
+    private Coordinates_ coordinates;
 
     public String getName() {
         return name;
@@ -29,6 +21,14 @@ public class Process implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Coordinates_ getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates_ coordinates) {
+        this.coordinates = coordinates;
     }
 
 }

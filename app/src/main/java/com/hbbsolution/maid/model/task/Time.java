@@ -4,7 +4,9 @@ package com.hbbsolution.maid.model.task;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Time {
+import java.io.Serializable;
+
+public class Time implements Serializable{
 
     @SerializedName("startAt")
     @Expose
@@ -15,26 +17,6 @@ public class Time {
     @SerializedName("hour")
     @Expose
     private Integer hour;
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public Time() {
-    }
-
-    /**
-     * 
-     * @param startAt
-     * @param hour
-     * @param endAt
-     */
-    public Time(String startAt, String endAt, Integer hour) {
-        super();
-        this.startAt = startAt;
-        this.endAt = endAt;
-        this.hour = hour;
-    }
 
     public String getStartAt() {
         return startAt;

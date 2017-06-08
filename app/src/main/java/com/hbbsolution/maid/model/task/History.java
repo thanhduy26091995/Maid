@@ -4,7 +4,9 @@ package com.hbbsolution.maid.model.task;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class History {
+import java.io.Serializable;
+
+public class History implements Serializable {
 
     @SerializedName("createAt")
     @Expose
@@ -12,24 +14,6 @@ public class History {
     @SerializedName("updateAt")
     @Expose
     private String updateAt;
-
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
-    public History() {
-    }
-
-    /**
-     * 
-     * @param updateAt
-     * @param createAt
-     */
-    public History(String createAt, String updateAt) {
-        super();
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-    }
 
     public String getCreateAt() {
         return createAt;
