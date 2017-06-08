@@ -11,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.adapter.HistoryOwnerAdapter;
+import com.hbbsolution.maid.history.inteface.OwnerHistoryView;
+import com.hbbsolution.maid.history.presenter.OwnerHistoryPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,21 +28,24 @@ import java.util.Date;
  * Created by Administrator on 15/05/2017.
  */
 
-public class HistoryHelperFragment extends Fragment{
-    private View v, view;
+public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
+    private View v;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private HistoryOwnerAdapter historyOwnerAdapter;
+    private HistoryOwnerAdapter mHistoryOwnerAdapter;
     private TextView tvStartDate, tvEndDate;
     private Calendar cal;
     private Date startDate, endDate;
     private String strStartDate, strEndDate;
+    private OwnerHistoryPresenter mOwnerHistoryPresenter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     private ProgressBar progressBar;
+    private LinearLayout lnNoData;
+    private String tempStartDate, tempEndDate;
 
-    public static HistoryHelperFragment newInstance() {
-        HistoryHelperFragment fragment = new HistoryHelperFragment();
+    public static HistoryOwnerFragment newInstance() {
+        HistoryOwnerFragment fragment = new HistoryOwnerFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -54,12 +60,11 @@ public class HistoryHelperFragment extends Fragment{
         progressBar = (ProgressBar) v.findViewById(R.id.progressPost);
         progressBar.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
+        lnNoData = (LinearLayout) v.findViewById(R.id.lnNoData);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycleview_history_owner);
         layoutManager = new LinearLayoutManager(getActivity());
+        mOwnerHistoryPresenter = new OwnerHistoryPresenter(this);
         recyclerView.setLayoutManager(layoutManager);
-
-        view = v.findViewById(R.id.view);
-        view.setVisibility(View.INVISIBLE);
 
         cal = Calendar.getInstance();
 
@@ -80,7 +85,7 @@ public class HistoryHelperFragment extends Fragment{
 
         getTime();
 
-  //      helperHistoryPresenter.getInfoHelperHistory(simpleDateFormat.format(endDate));
+    //    helperHistoryPresenter.getInfoHelperHistory(simpleDateFormat.format(endDate));
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -88,7 +93,13 @@ public class HistoryHelperFragment extends Fragment{
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-  //                      helperHistoryPresenter.getInfoHelperHistory(simpleDateFormat.format(endDate));
+                        if(startDate!=null)
+                        {
+    //                        helperHistoryPresenter.getInfoHelperHistoryTime(simpleDateFormat.format(startDate),simpleDateFormat.format(endDate));
+                        }
+                        else {
+   //                         helperHistoryPresenter.getInfoHelperHistory(simpleDateFormat.format(endDate));
+                        }
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
                 }, 1500);
@@ -110,18 +121,19 @@ public class HistoryHelperFragment extends Fragment{
                 if (monthOfYear + 1 < 10) {
                     month = "0" + (monthOfYear + 1);
                 }
+                tempStartDate = tvStartDate.getText().toString();
                 tvStartDate.setText(
                         day + "/" + month + "/" + year);
+
                 //Lưu vết lại biến ngày hoàn thành
                 cal.set(year, monthOfYear, dayOfMonth);
                 startDate = cal.getTime();
                 if (endDate.getTime() - startDate.getTime() >= 0) {
-                    view.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
-                    mSwipeRefreshLayout.setVisibility(View.INVISIBLE);
   //                  helperHistoryPresenter.getInfoHelperHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                 } else {
   //                  ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+                    tvStartDate.setText(tempStartDate);
                 }
             }
         };
@@ -153,22 +165,25 @@ public class HistoryHelperFragment extends Fragment{
                 if (monthOfYear + 1 < 10) {
                     month = "0" + (monthOfYear + 1);
                 }
+                tempEndDate = tvEndDate.getText().toString();
                 tvEndDate.setText(
                         day + "/" + month + "/" + year);
+
                 //Lưu vết lại biến ngày hoàn thành
                 cal.set(year, monthOfYear, dayOfMonth);
                 endDate = cal.getTime();
                 if (startDate != null) {
                     if (endDate.getTime() - startDate.getTime() >= 0) {
-                        view.setVisibility(View.INVISIBLE);
                         progressBar.setVisibility(View.VISIBLE);
-                        mSwipeRefreshLayout.setVisibility(View.INVISIBLE);
    //                     helperHistoryPresenter.getInfoHelperHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                     } else {
-   //                     ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+  //                      ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+                        tvEndDate.setText(tempEndDate);
                     }
                 } else {
-    //                helperHistoryPresenter.getInfoHelperHistoryTime("", simpleDateFormat.format(endDate));
+                    view.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+ //                   helperHistoryPresenter.getInfoHelperHistoryTime("", simpleDateFormat.format(endDate));
                 }
             }
         };
@@ -203,13 +218,19 @@ public class HistoryHelperFragment extends Fragment{
 //        historyHelperAdapter = new HistoryHelperAdapter(getActivity(), datumList);
 //        historyHelperAdapter.notifyDataSetChanged();
 //        recyclerView.setAdapter(historyHelperAdapter);
-//        view.setVisibility(View.VISIBLE);
+//        if(datumList.size()>0) {
+//            lnNoData.setVisibility(View.GONE);
+//        }
+//        else
+//        {
+//            lnNoData.setVisibility(View.VISIBLE);
+//        }
 //        progressBar.setVisibility(View.GONE);
-//        mSwipeRefreshLayout.setVisibility(View.VISIBLE);
 //    }
-//
-//    @Override
-//    public void getInfoHelperHistoryFail() {
-//
-//    }
+
+    @Override
+    public void getInfoOwnerHistoryFail() {
+        lnNoData.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+    }
 }

@@ -27,7 +27,7 @@ public class HistoryViewPagerFragment extends FragmentStatePagerAdapter {
             case 0:
                 return HistoryJobFragment.newInstance();
             case 1:
-                return HistoryHelperFragment.newInstance();
+                return HistoryOwnerFragment.newInstance();
             default:
                 return null;
         }

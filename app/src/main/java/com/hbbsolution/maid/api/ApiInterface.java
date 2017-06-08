@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.api;
 
 
+import com.hbbsolution.maid.history.model.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.WorkHistoryResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 
@@ -18,5 +19,8 @@ public interface ApiInterface {
 
     @GET("maid/getHistoryTasks")
     Call<WorkHistoryResponse> getInfoWorkHistory(@Query("startAt") String startAt, @Query("endAt") String endAt, @Query("page") int page);
+
+    @GET("maid/getAllWorkedOwner")
+    Call<OwnerHistoryResponse> getInfoOwnerHistory(@Query("startAt") String startAt, @Query("endAt") String endAt);
 
 }
