@@ -27,10 +27,7 @@ public class MaidApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         instance = this;
-
-
         setLocale();
 //        sessionManagerUser = new SessionManagerUser(this);
 //        if (sessionManagerUser.isLoggedIn()) {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context="com.hbbsolution.maid.history.activity.ReportActivity">
+    tools:context="com.hbbsolution.maid.more.duy_nguyen.view.ReportOwnerActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -24,7 +24,7 @@
             android:titleTextColor="@color/home_background_history">
             <TextView
                 android:id="@+id/tvSkip"
-                android:layout_width="70dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:gravity="start"
@@ -38,13 +38,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="Báo cáo người giúp việc"
+                android:text="Báo cáo"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/tvSend"
-                android:layout_width="70dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="end"
@@ -117,7 +117,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_maid_name"
+                        android:id="@+id/text_owner_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorBlack"
@@ -125,7 +125,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/text_maid_address"
+                        android:id="@+id/text_owner_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

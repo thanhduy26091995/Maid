@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hbbsolution.maid">
 
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -22,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".history.activity.HistoryActivity" />
-        <activity android:name=".history.activity.ReportActivity"></activity>
+        <activity android:name=".history.activity.ReportActivity" />
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
         <activity android:name=".home.list_job.view.ListJobActivity" />
@@ -30,8 +29,8 @@
         <activity android:name=".home.job_detail.view.JobDetailActivity" />
         <activity android:name=".home.owner_profile.view.OwnerProfileActivity" />
         <activity android:name=".more.statistic.view.StatisticActivity" />
-        <activity android:name=".more.duy_nguyen.view.LanguageActivity"></activity>
-
+        <activity android:name=".more.duy_nguyen.view.LanguageActivity" />
+        <activity android:name=".more.duy_nguyen.view.ReportMaidActivity"></activity>
     </application>
 
 </manifest>
