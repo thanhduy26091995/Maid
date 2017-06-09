@@ -58,6 +58,7 @@ public class OwnerProfileActivity extends AppCompatActivity {
 
     private void setData() {
         Bundle extras = getIntent().getExtras();
+
         if (extras != null) {
             mInfoOwner = (Info) extras.getSerializable("InfoOwner");
         }
