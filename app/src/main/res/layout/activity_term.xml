@@ -4,17 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context="com.hbbsolution.maid.more.about.AboutActivity">
-
-
+    tools:context="com.hbbsolution.maid.more.term.TermActivity">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/term_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -22,7 +19,7 @@
             app:theme="@style/toolbar_theme">
 
             <TextView
-                android:id="@+id/about_title_toolbar"
+                android:id="@+id/term_title_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -34,21 +31,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="130dp"
-        android:layout_below="@id/appbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/logo" />
 
     <WebView
-        android:id="@+id/wvAbout"
+        android:id="@+id/webview_content_term"
+        android:layout_below="@id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/logo"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorWhite" />
+        android:background="@color/colorWhite"
+        android:layout_height="match_parent">
 
+    </WebView>
 </RelativeLayout>
