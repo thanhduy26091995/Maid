@@ -16,7 +16,7 @@ public class Owner implements Serializable {
     private Double evaluationPoint;
     @SerializedName("info")
     @Expose
-    private Info info;
+    private InfoOwner info;
 
     public String getId() {
         return id;
@@ -34,11 +34,11 @@ public class Owner implements Serializable {
         this.evaluationPoint = evaluationPoint;
     }
 
-    public Info getInfo() {
+    public InfoOwner getInfo() {
         return info;
     }
 
-    public void setInfo(Info info) {
+    public void setInfo(InfoOwner info) {
         this.info = info;
     }
 

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Info_ implements Serializable {
+public class InfoWork implements Serializable {
 
     @SerializedName("title")
     @Expose

@@ -3,7 +3,7 @@ package com.hbbsolution.maid.history.model.owner;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.hbbsolution.maid.history.model.work.Info;
+import com.hbbsolution.maid.history.model.work.InfoOwner;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ public class Id implements Serializable {
     private String id;
     @SerializedName("info")
     @Expose
-    private Info info;
+    private InfoOwner info;
 
     public String getId() {
         return id;
@@ -24,11 +24,11 @@ public class Id implements Serializable {
         this.id = id;
     }
 
-    public Info getInfo() {
+    public InfoOwner getInfo() {
         return info;
     }
 
-    public void setInfo(Info info) {
+    public void setInfo(InfoOwner info) {
         this.info = info;
     }
 

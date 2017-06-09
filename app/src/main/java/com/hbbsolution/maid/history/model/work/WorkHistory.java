@@ -22,7 +22,7 @@ public class WorkHistory implements Serializable {
     private Stakeholders stakeholders;
     @SerializedName("info")
     @Expose
-    private Info_ info;
+    private InfoWork info;
 
     public String getId() {
         return id;
@@ -56,11 +56,11 @@ public class WorkHistory implements Serializable {
         this.stakeholders = stakeholders;
     }
 
-    public Info_ getInfo() {
+    public InfoWork getInfo() {
         return info;
     }
 
-    public void setInfo(Info_ info) {
+    public void setInfo(InfoWork info) {
         this.info = info;
     }
 

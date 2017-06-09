@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.history.model.work.Info;
+import com.hbbsolution.maid.history.model.work.InfoOwner;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -35,7 +35,7 @@ public class OwnerProfileActivity extends AppCompatActivity {
     TextView txtAddressInfoMaid;
     @BindView(R.id.img_avatar)
     ImageView img_avatar;
-    private Info mInfoOwner;
+    private InfoOwner mInfoOwner;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class OwnerProfileActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            mInfoOwner = (Info) extras.getSerializable("InfoOwner");
+            mInfoOwner = (InfoOwner) extras.getSerializable("InfoOwner");
         }
         if (mInfoOwner != null) {
             txtNameInfoMaid.setText(mInfoOwner.getUsername());
