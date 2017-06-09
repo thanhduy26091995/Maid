@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.model.work.Info;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -67,10 +68,23 @@ public class OwnerProfileActivity extends AppCompatActivity {
             txtGenderInfoMaid.setText(getGenderMaid(mInfoOwner.getGender()));
             txtPhoneInfoMaid.setText(mInfoOwner.getPhone());
             txtAddressInfoMaid.setText(mInfoOwner.getAddress().getName());
-            Picasso.with(this).load(mInfoOwner.getImage())
-                    .placeholder(R.drawable.avatar)
-                    .error(R.drawable.avatar)
-                    .into(img_avatar);
+            supportPostponeEnterTransition();
+            Picasso.with(this)
+                    .load(mInfoOwner.getImage())
+                    .fit()
+                    .noFade()
+                    .centerCrop()
+                    .into(img_avatar, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            supportStartPostponedEnterTransition();
+                        }
+
+                        @Override
+                        public void onError() {
+                            supportStartPostponedEnterTransition();
+                        }
+                    });
         }
     }
 
