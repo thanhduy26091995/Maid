@@ -105,4 +105,11 @@
     <string name="huy">Hủy</string>
     <!---->
 
+    <!--forgot password screen start-->
+    <string name="send_require">Gửi yêu cầu</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="term_title">Terms of use</string>
+    <!--forgot password screen end-->
+
+
 </resources>

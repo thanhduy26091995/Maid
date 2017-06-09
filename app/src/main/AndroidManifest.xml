@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hbbsolution.maid">
 
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".base.MaidApplication"
@@ -14,6 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value=" AIzaSyAzSFwRry4u2KYJYq3IT_oc-w9sww5yVpY" />
+
         <activity android:name=".main.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity"/>
-        <activity android:name=".workmanager.detailworkmanager.view.DetailJobPostActivity"/>
+        <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity" />
+        <activity android:name=".workmanager.detailworkmanager.view.DetailJobPostActivity" />
         <activity android:name=".history.activity.HistoryActivity" />
         <activity android:name=".history.activity.DetailWorkHistoryActivity"/>
         <activity android:name=".history.activity.ReportActivity"/>
+        <activity android:name=".history.activity.ReportActivity" />
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
         <activity android:name=".home.list_job.view.ListJobActivity" />
@@ -34,7 +38,10 @@
         <activity android:name=".home.job_detail.view.JobDetailActivity" />
         <activity android:name=".home.owner_profile.view.OwnerProfileActivity" />
         <activity android:name=".more.statistic.view.StatisticActivity" />
-        <activity android:name=".more.duy_nguyen.view.LanguageActivity"/>
+        <activity android:name=".more.duy_nguyen.view.LanguageActivity" />
+        <activity android:name=".more.duy_nguyen.view.ReportOwnerActivity" />
+        <activity android:name=".home.job_near_by.view.JobNearByMapActivity" />
+        <activity android:name=".more.term.TermActivity"/>
 
     </application>
 
