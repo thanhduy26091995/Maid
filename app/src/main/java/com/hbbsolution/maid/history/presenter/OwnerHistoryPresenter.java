@@ -5,7 +5,7 @@ import android.util.Log;
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.api.ApiInterface;
 import com.hbbsolution.maid.history.inteface.OwnerHistoryView;
-import com.hbbsolution.maid.history.model.OwnerHistoryResponse;
+import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +32,7 @@ public class OwnerHistoryPresenter {
                 if (response.isSuccessful()) {
                     try {
                         OwnerHistoryResponse historyOwnerResponse = response.body();
-//                        mOwnerHistoryView.get(historyOwnerResponse.getData());
+                        mOwnerHistoryView.getInfoOwnerHistory(historyOwnerResponse.getData());
                     } catch (Exception e) {
                         Log.e("exception", e.toString());
                         mOwnerHistoryView.getInfoOwnerHistoryFail();
@@ -48,7 +48,7 @@ public class OwnerHistoryPresenter {
         });
     }
 
-    public void getInfoHelperHistoryTime(String startTime, String endTime) {
+    public void getInfoOwnerHistoryTime(String startTime, String endTime) {
         Call<OwnerHistoryResponse> call = apiService.getInfoOwnerHistory(startTime, endTime);
         call.enqueue(new Callback<OwnerHistoryResponse>() {
             @Override
@@ -56,7 +56,7 @@ public class OwnerHistoryPresenter {
                 if (response.isSuccessful()) {
                     try {
                         OwnerHistoryResponse historyOwnerResponse = response.body();
- //                       helperHistoryView.getInfoHelperHistory(historyOwnerResponse.getData());
+                        mOwnerHistoryView.getInfoOwnerHistory(historyOwnerResponse.getData());
                     } catch (Exception e) {
                         Log.e("exception", e.toString());
                         mOwnerHistoryView.getInfoOwnerHistoryFail();

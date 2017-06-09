@@ -2,7 +2,9 @@ package com.hbbsolution.maid.history.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -12,10 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
-
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
+import com.hbbsolution.maid.history.model.work.WorkHistory;
+import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
+import com.hbbsolution.maid.utils.WorkTimeValidate;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,29 +42,19 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
     @BindView(R.id.detail_work_history_tvAddress)
     TextView tvAddress;
 
-    @BindView(R.id.detail_helper_history_avatar)
-    ImageView imgHelper;
-    @BindView(R.id.detail_helper_history_helper_name)
-    TextView tvNameHelper;
+    @BindView(R.id.detail_owner_history_avatar)
+    ImageView imgOwner;
+    @BindView(R.id.detail_owner_history_helper_name)
+    TextView tvNameOwner;
     @BindView(R.id.detail_work_history_helper_address)
-    TextView tvAddressHelper;
+    TextView tvAddressOwner;
 
-    @BindView(R.id.txt_history_comment)
-    TextView tvComment;
     @BindView(R.id.rela_info)
     RelativeLayout rlInfo;
-    @BindView(R.id.tvContentComment)
-    TextView tvContentComment;
-    @BindView(R.id.v_line)
-    View vLine;
 
- //   private WorkHistory doc;
-    private String date;
-    private String startTime, endTime;
- //   private CommentHistoryPresenter commentHistoryPresenter;
-    private int idTask;
+
+    private WorkHistory doc;
     public static Activity detailWorkHistory;
-    private static final int COMMENT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +68,6 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
     }
 
     public void setEventClick() {
-        tvComment.setOnClickListener(this);
         rlInfo.setOnClickListener(this);
     }
 
@@ -90,49 +81,27 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
     public void getData() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-  //          doc = (WorkHistory) extras.getSerializable("work");
+            doc = (WorkHistory) extras.getSerializable("work");
         }
-        tvContentComment.setVisibility(View.GONE);
-        tvComment.setVisibility(View.GONE);
-//        commentHistoryPresenter = new CommentHistoryPresenter(this);
-//        commentHistoryPresenter.checkComment(doc.getId());
-//        Picasso.with(this).load(doc.getInfo().getWork().getImage())
-//                .placeholder(R.drawable.no_image)
-//                .error(R.drawable.no_image)
-//                .into(imgJobType);
-//        tvJob.setText(doc.getInfo().getTitle());
-//        tvWork.setText(doc.getInfo().getWork().getName());
-//        tvContent.setText(doc.getInfo().getDescription());
-//        tvSalary.setText(String.valueOf(doc.getInfo().getPrice()));
-//
-//        tvAddress.setText(doc.getInfo().getAddress().getName());
+        Picasso.with(this).load(doc.getInfo().getWork().getImage())
+                .placeholder(R.drawable.no_image)
+                .error(R.drawable.no_image)
+                .into(imgJobType);
+        tvJob.setText(doc.getInfo().getTitle());
+        tvWork.setText(doc.getInfo().getWork().getName());
+        tvContent.setText(doc.getInfo().getDescription());
+        tvSalary.setText(String.valueOf(doc.getInfo().getPrice()));
+        tvAddress.setText(doc.getInfo().getAddress().getName());
+        tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
+        tvTime.setText(WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getEndAt()).replace(":", "h"));
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("H:mm a", Locale.US);
-        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
-        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
-        symbols.setAmPmStrings(new String[]{"am", "pm"});
-        time.setDateFormatSymbols(symbols);
-//        try {
-//    //        Date endDate = simpleDateFormat.parse(doc.getInfo().getTime().getEndAt());
-//            Date startDate = simpleDateFormat.parse(doc.getInfo().getTime().getStartAt());
-//            date = dates.format(endDate);
-//            startTime = time.format(startDate);
-//            endTime = time.format(endDate);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-        tvDate.setText(date);
-        tvTime.setText(startTime.replace(":", "h") + " - " + endTime.replace(":", "h"));
+        Picasso.with(this).load(doc.getStakeholders().getOwner().getInfo().getImage())
+                .placeholder(R.drawable.avatar)
+                .error(R.drawable.avatar)
+                .into(imgOwner);
+        tvNameOwner.setText(doc.getStakeholders().getOwner().getInfo().getName());
+        tvAddressOwner.setText(doc.getStakeholders().getOwner().getInfo().getAddress().getName());
 
-//        Picasso.with(this).load(doc.getStakeholders().getReceived().getInfo().getImage())
-//                .placeholder(R.drawable.avatar)
-//                .error(R.drawable.avatar)
-//                .into(imgHelper);
-//        tvNameHelper.setText(doc.getStakeholders().getReceived().getInfo().getName());
-//        tvAddressHelper.setText(doc.getStakeholders().getReceived().getInfo().getAddress().getName());
-//
 
     }
 
@@ -148,19 +117,19 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.txt_history_comment:
-                intent = new Intent(this, CommentActivity.class);
-//                intent.putExtra("idTask", doc.getId());
-//                intent.putExtra("idHelper", doc.getStakeholders().getReceived().getId());
-//                intent.putExtra("imgHelper", doc.getStakeholders().getReceived().getInfo().getImage());
-//                intent.putExtra("nameHelper", doc.getStakeholders().getReceived().getInfo().getName());
-//                intent.putExtra("addressHelper", doc.getStakeholders().getReceived().getInfo().getAddress());
-                startActivityForResult(intent,COMMENT);
-                break;
             case R.id.rela_info:
-//                intent = new Intent(this, MaidProfileActivity.class);
-//                intent.putExtra("work", doc);
-//                startActivity(intent);
+                intent = new Intent(this, OwnerProfileActivity.class);
+                intent.putExtra("InfoOwner", doc.getStakeholders().getOwner().getInfo());
+                ActivityOptionsCompat historyOption =
+                        ActivityOptionsCompat
+                                .makeSceneTransitionAnimation(this, (View)findViewById(R.id.detail_owner_history_avatar), "icAvatar");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    startActivity(intent, historyOption.toBundle());
+                }
+                else {
+                    startActivity(intent);
+                }
                 break;
         }
     }
@@ -171,31 +140,9 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
         ButterKnife.bind(this).unbind();
     }
 
-//    @Override
-//    public void checkCommentSuccess(String message) {
-//        tvContentComment.setVisibility(View.VISIBLE);
-//        tvContentComment.setText(message);
-//    }
-//
-//    @Override
-//    public void checkCommentFail() {
-//        tvComment.setVisibility(View.VISIBLE);
-//    }
-
     @Override
     protected void onResume() {
         super.onResume();
 
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==COMMENT)
-        {
-            if(resultCode== Activity.RESULT_OK)
-            {
-  //              ShowAlertDialog.showAlert(data.getStringExtra("message"),this);
-  //             commentHistoryPresenter.checkComment(doc.getId());
-            }
-        }
     }
 }

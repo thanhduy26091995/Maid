@@ -25,6 +25,7 @@
         <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity"/>
         <activity android:name=".workmanager.detailworkmanager.view.DetailJobPostActivity"/>
         <activity android:name=".history.activity.HistoryActivity" />
+        <activity android:name=".history.activity.DetailWorkHistoryActivity"/>
         <activity android:name=".history.activity.ReportActivity"/>
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />

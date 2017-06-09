@@ -20,7 +20,7 @@ public class ApiClient {
 
     public static final String BASE_URL = "https://yukotest123.herokuapp.com/";
     public static String language = "en";
-    public static String token = "c2f616c4fe0e1e3daeb7cce4931848fba5ec94b4bf91ada4d14a664aa51e1ae79c3e9b51d7410821b999ba31046e77209668158474c8038ccb56388625c96997";
+    public static String token = "f5dba14d3ee5badcee07034dca5d4f54fcf8fec3a54e3b42ea94ed52f0046a554b1cc62a8132819c841a0362b54292cf6d079dbed7f47b8f4829fac078a64e62";
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {

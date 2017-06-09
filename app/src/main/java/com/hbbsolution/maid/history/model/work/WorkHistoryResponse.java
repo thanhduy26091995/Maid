@@ -1,5 +1,5 @@
 
-package com.hbbsolution.maid.history.model;
+package com.hbbsolution.maid.history.model.work;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -41,6 +41,17 @@
     <string name="comment">Comment</string>
     <!--comment_screen end-->
 
+    <!--detail_work_history_screen start-->
+    <string name="payment">Payment</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="owner">CHỦ NHÀ</string>
+    <!--detail_work_history_screen end-->
+
+    <!--profile  start-->
+    <string name="pro_file_gender_male">Male</string>
+    <string name="pro_file_gender_female">Female</string>
+    <!--terms screen end-->
+
     <!--contact and about screen start-->
     <string name="contact">Liên hệ</string>
     <string name="about">Về chúng tôi</string>

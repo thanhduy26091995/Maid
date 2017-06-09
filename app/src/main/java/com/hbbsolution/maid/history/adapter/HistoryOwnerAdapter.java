@@ -1,6 +1,10 @@
 package com.hbbsolution.maid.history.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +14,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.model.owner.OwnerHistory;
+import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
+import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -22,43 +31,44 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapter.RecyclerViewHolder> {
     private Context context;
-  //  private List<Datum> datumList;
+    private List<OwnerHistory> ownerHistoryList;
     private boolean isHis;
     private String time;
     private Date date;
+    private int p;
     @Override
     public HistoryOwnerAdapter.RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_owner, parent, false);
         return new RecyclerViewHolder(view);
     }
 
-    public HistoryOwnerAdapter(Context context) {
+    public HistoryOwnerAdapter(Context context,List<OwnerHistory> ownerHistoryList) {
         this.context = context;
- //       this.datumList = datumList;
+        this.ownerHistoryList = ownerHistoryList;
     }
 
     @Override
     public void onBindViewHolder(HistoryOwnerAdapter.RecyclerViewHolder holder, int position) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-
-//        try {
-//            date = simpleDateFormat.parse(datumList.get(position).getTimes().get(0));
-//            time = dates.format(date);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        holder.tvName.setText(datumList.get(position).getId().getInfo().getName());
-//        holder.tvDate.setText(time);
-//        Picasso.with(context).load(datumList.get(position).getId().getInfo().getImage())
-//                .placeholder(R.drawable.avatar)
-//                .error(R.drawable.avatar)
-//                .into(holder.imgMaid);
+        p=position;
+        try {
+            date = simpleDateFormat.parse(ownerHistoryList.get(p).getTimes().get(0));
+            time = dates.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        holder.tvName.setText(ownerHistoryList.get(p).getId().getInfo().getName());
+        holder.tvDate.setText(time);
+        Picasso.with(context).load(ownerHistoryList.get(p).getId().getInfo().getImage())
+                .placeholder(R.drawable.avatar)
+                .error(R.drawable.avatar)
+                .into(holder.imgMaid);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return ownerHistoryList.size();
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder implements
@@ -70,23 +80,31 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-//            lo_info_user = (RelativeLayout)itemView.findViewById(R.id.rela_info) ;
-//            tvName = (TextView) itemView.findViewById(R.id.txt_history_name);
-//            tvDate = (TextView) itemView.findViewById(R.id.txt_history_date);
-//            tvListWork = (TextView) itemView.findViewById(R.id.txt_history_list_work);
-//            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
-//            imgMaid = (CircleImageView) itemView.findViewById(R.id.img_history_avatar);
+            lo_info_user = (RelativeLayout)itemView.findViewById(R.id.rela_info) ;
+            tvName = (TextView) itemView.findViewById(R.id.txt_history_name);
+            tvDate = (TextView) itemView.findViewById(R.id.txt_history_date);
+            tvListWork = (TextView) itemView.findViewById(R.id.txt_history_list_work);
+            imgMaid = (CircleImageView) itemView.findViewById(R.id.img_history_avatar);
             lo_info_user.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-//                case R.id.rela_info:
-//                    Intent intent = new Intent(context, MaidProfileActivity.class);
-//                    intent.putExtra("helper",datumList.get(getAdapterPosition()));
-//                    context.startActivity(intent);
-//                    break;
+                case R.id.rela_info:
+                    Intent intent = new Intent(context, OwnerProfileActivity.class);
+                    intent.putExtra("InfoOwner",ownerHistoryList.get(getAdapterPosition()).getId().getInfo());
+                    ActivityOptionsCompat historyOption =
+                            ActivityOptionsCompat
+                                    .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_history_avatar), "icAvatar");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        context.startActivity(intent, historyOption.toBundle());
+                    }
+                    else {
+                        context.startActivity(intent);
+                    }
+                    break;
             }
         }
 

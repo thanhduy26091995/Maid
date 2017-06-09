@@ -18,12 +18,15 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.adapter.HistoryJobAdapter;
 import com.hbbsolution.maid.history.inteface.WorkHistoryView;
+import com.hbbsolution.maid.history.model.work.WorkHistory;
 import com.hbbsolution.maid.history.presenter.WorkHistoryPresenter;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -42,7 +45,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
     private String strStartDate, strEndDate;
     private int currentPage, currentPageTime;
     private EndlessRecyclerViewScrollListener scrollListener;
-  //  private List<WorkHistory> mDocList = new ArrayList<>();
+    private List<WorkHistory> mDocList = new ArrayList<>();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     private ProgressBar progressBar;
@@ -123,83 +126,83 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
         return v;
     }
 
-//    @Override
-//    public void getInfoWorkHistory(List<WorkHistory> listWorkHistory, final int pages) {
-//        mDocList.clear();
-//        mDocList = listWorkHistory;
-//        historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
-//        recyclerView.setAdapter(historyJobAdapter);
-//        progressBar.setVisibility(View.GONE);
-//        if (listWorkHistory.size() > 0) {
-//            view.setVisibility(View.VISIBLE);
-//            lnNoData.setVisibility(View.GONE);
-//        } else {
-//            lnNoData.setVisibility(View.VISIBLE);
-//        }
-//        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
-//            @Override
-//            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-//                // presenter.getAllResort(response.getCurrentPage() + 1);
-//                //get variables for load more
-//                if (currentPage < pages) {
-//                    workHistoryPresenter.getMoreInfoWorkHistory(currentPage + 1, simpleDateFormat.format(endDate));
-//                }
-//            }
-//        };
-//        recyclerView.addOnScrollListener(scrollListener);
-//    }
-//
-//    @Override
-//    public void getMoreInfoWorkHistory(List<WorkHistory> listWorkHistory) {
-//        mDocList.addAll(listWorkHistory);
-//        currentPage++;
-//        historyJobAdapter.notifyDataSetChanged();
-//        recyclerView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                historyJobAdapter.notifyItemRangeInserted(historyJobAdapter.getItemCount(), mDocList.size() - 1);
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void getInfoWorkHistoryTime(List<WorkHistory> listWorkHistory, final String startAt, final String endAt, final int pages) {
-//        mDocList.clear();
-//        mDocList = listWorkHistory;
-//        historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
-//        recyclerView.setAdapter(historyJobAdapter);
-//        progressBar.setVisibility(View.GONE);
-//        if (listWorkHistory.size() > 0) {
-//            view.setVisibility(View.VISIBLE);
-//            lnNoData.setVisibility(View.GONE);
-//        } else {
-//            lnNoData.setVisibility(View.VISIBLE);
-//        }
-//        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
-//            @Override
-//            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-//                // presenter.getAllResort(response.getCurrentPage() + 1);
-//                //get variables for load more
-//                if (currentPageTime < pages) {
-//                    workHistoryPresenter.getMoreInfoWorkHistoryTime(startAt, endAt, currentPageTime + 1);
-//                }
-//            }
-//        };
-//        recyclerView.addOnScrollListener(scrollListener);
-//    }
-//
-//    @Override
-//    public void getMoreInfoWorkHistoryTime(List<WorkHistory> listWorkHistory, String startAt, String endAt) {
-//        mDocList.addAll(listWorkHistory);
-//        currentPageTime++;
-//        historyJobAdapter.notifyDataSetChanged();
-//        recyclerView.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                historyJobAdapter.notifyItemRangeInserted(historyJobAdapter.getItemCount(), mDocList.size() - 1);
-//            }
-//        });
-//    }
+    @Override
+    public void getInfoWorkHistory(List<WorkHistory> listWorkHistory, final int pages) {
+        mDocList.clear();
+        mDocList = listWorkHistory;
+        historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
+        recyclerView.setAdapter(historyJobAdapter);
+        progressBar.setVisibility(View.GONE);
+        if (listWorkHistory.size() > 0) {
+            view.setVisibility(View.VISIBLE);
+            lnNoData.setVisibility(View.GONE);
+        } else {
+            lnNoData.setVisibility(View.VISIBLE);
+        }
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // presenter.getAllResort(response.getCurrentPage() + 1);
+                //get variables for load more
+                if (currentPage < pages) {
+                    workHistoryPresenter.getMoreInfoWorkHistory(currentPage + 1, simpleDateFormat.format(endDate));
+                }
+            }
+        };
+        recyclerView.addOnScrollListener(scrollListener);
+    }
+
+    @Override
+    public void getMoreInfoWorkHistory(List<WorkHistory> listWorkHistory) {
+        mDocList.addAll(listWorkHistory);
+        currentPage++;
+        historyJobAdapter.notifyDataSetChanged();
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                historyJobAdapter.notifyItemRangeInserted(historyJobAdapter.getItemCount(), mDocList.size() - 1);
+            }
+        });
+    }
+
+    @Override
+    public void getInfoWorkHistoryTime(List<WorkHistory> listWorkHistory, final String startAt, final String endAt, final int pages) {
+        mDocList.clear();
+        mDocList = listWorkHistory;
+        historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
+        recyclerView.setAdapter(historyJobAdapter);
+        progressBar.setVisibility(View.GONE);
+        if (listWorkHistory.size() > 0) {
+            view.setVisibility(View.VISIBLE);
+            lnNoData.setVisibility(View.GONE);
+        } else {
+            lnNoData.setVisibility(View.VISIBLE);
+        }
+        scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // presenter.getAllResort(response.getCurrentPage() + 1);
+                //get variables for load more
+                if (currentPageTime < pages) {
+                    workHistoryPresenter.getMoreInfoWorkHistoryTime(startAt, endAt, currentPageTime + 1);
+                }
+            }
+        };
+        recyclerView.addOnScrollListener(scrollListener);
+    }
+
+    @Override
+    public void getMoreInfoWorkHistoryTime(List<WorkHistory> listWorkHistory, String startAt, String endAt) {
+        mDocList.addAll(listWorkHistory);
+        currentPageTime++;
+        historyJobAdapter.notifyDataSetChanged();
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                historyJobAdapter.notifyItemRangeInserted(historyJobAdapter.getItemCount(), mDocList.size() - 1);
+            }
+        });
+    }
 
     @Override
     public void getError() {

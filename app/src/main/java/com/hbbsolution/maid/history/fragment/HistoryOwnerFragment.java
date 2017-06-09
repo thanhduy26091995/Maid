@@ -18,11 +18,13 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.adapter.HistoryOwnerAdapter;
 import com.hbbsolution.maid.history.inteface.OwnerHistoryView;
+import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.history.presenter.OwnerHistoryPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 15/05/2017.
@@ -85,7 +87,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
 
         getTime();
 
-    //    helperHistoryPresenter.getInfoHelperHistory(simpleDateFormat.format(endDate));
+        mOwnerHistoryPresenter.getInfoOwnerHistory(simpleDateFormat.format(endDate));
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -95,10 +97,10 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                     public void run() {
                         if(startDate!=null)
                         {
-    //                        helperHistoryPresenter.getInfoHelperHistoryTime(simpleDateFormat.format(startDate),simpleDateFormat.format(endDate));
+                            mOwnerHistoryPresenter.getInfoOwnerHistoryTime(simpleDateFormat.format(startDate),simpleDateFormat.format(endDate));
                         }
                         else {
-   //                         helperHistoryPresenter.getInfoHelperHistory(simpleDateFormat.format(endDate));
+                            mOwnerHistoryPresenter.getInfoOwnerHistory(simpleDateFormat.format(endDate));
                         }
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
@@ -130,7 +132,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                 startDate = cal.getTime();
                 if (endDate.getTime() - startDate.getTime() >= 0) {
                     progressBar.setVisibility(View.VISIBLE);
-  //                  helperHistoryPresenter.getInfoHelperHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
+                    mOwnerHistoryPresenter.getInfoOwnerHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                 } else {
   //                  ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                     tvStartDate.setText(tempStartDate);
@@ -175,7 +177,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                 if (startDate != null) {
                     if (endDate.getTime() - startDate.getTime() >= 0) {
                         progressBar.setVisibility(View.VISIBLE);
-   //                     helperHistoryPresenter.getInfoHelperHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
+                        mOwnerHistoryPresenter.getInfoOwnerHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                     } else {
   //                      ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                         tvEndDate.setText(tempEndDate);
@@ -183,7 +185,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                 } else {
                     view.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
- //                   helperHistoryPresenter.getInfoHelperHistoryTime("", simpleDateFormat.format(endDate));
+                    mOwnerHistoryPresenter.getInfoOwnerHistory(simpleDateFormat.format(endDate));
                 }
             }
         };
@@ -213,20 +215,20 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
         tvEndDate.setText(strEndDate);
     }
 
-//    @Override
-//    public void getInfoHelperHistory(List<Datum> datumList) {
-//        historyHelperAdapter = new HistoryHelperAdapter(getActivity(), datumList);
-//        historyHelperAdapter.notifyDataSetChanged();
-//        recyclerView.setAdapter(historyHelperAdapter);
-//        if(datumList.size()>0) {
-//            lnNoData.setVisibility(View.GONE);
-//        }
-//        else
-//        {
-//            lnNoData.setVisibility(View.VISIBLE);
-//        }
-//        progressBar.setVisibility(View.GONE);
-//    }
+    @Override
+    public void getInfoOwnerHistory(List<OwnerHistory> datumList) {
+        mHistoryOwnerAdapter = new HistoryOwnerAdapter(getActivity(), datumList);
+        mHistoryOwnerAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(mHistoryOwnerAdapter);
+        if(datumList.size()>0) {
+            lnNoData.setVisibility(View.GONE);
+        }
+        else
+        {
+            lnNoData.setVisibility(View.VISIBLE);
+        }
+        progressBar.setVisibility(View.GONE);
+    }
 
     @Override
     public void getInfoOwnerHistoryFail() {

@@ -1,6 +1,10 @@
 package com.hbbsolution.maid.history.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +14,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.activity.DetailWorkHistoryActivity;
+import com.hbbsolution.maid.history.model.work.WorkHistory;
+import com.squareup.picasso.Picasso;
 
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -20,13 +32,13 @@ import java.util.Date;
 
 public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.RecyclerViewHolder> {
     private Context context;
-  //  private List<WorkHistory> listData;
+    private List<WorkHistory> listData;
     private long elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds;
     private String date;
     private String startTime, endTime;
     private String type,title,work,description,address,avatar,name,address_;
     private int price;
- //   private WorkHistory doc;
+    private WorkHistory doc;
     private Pair<View, String> pairJobType;
     @Override
     public HistoryJobAdapter.RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,52 +46,52 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
         return new RecyclerViewHolder(view);
     }
 
-    public HistoryJobAdapter(Context context) {
+    public HistoryJobAdapter(Context context,List<WorkHistory> listData) {
         this.context = context;
-  //      this.listData = listData;
+        this.listData = listData;
     }
 
     @Override
     public void onBindViewHolder(HistoryJobAdapter.RecyclerViewHolder holder, int position) {
-//        holder.tvJob.setText(listData.get(position).getInfo().getTitle());
-//        Picasso.with(context).load(listData.get(position).getInfo().getWork().getImage())
-//                .placeholder(R.drawable.no_image)
-//                .error(R.drawable.no_image)
-//                .into(holder.imgType);
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-//        SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-//        SimpleDateFormat time = new SimpleDateFormat("H:mm a", Locale.US);
-//        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
-//        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
-//        symbols.setAmPmStrings(new String[] { "am", "pm" });
-//        time.setDateFormatSymbols(symbols);
-//        try {
-//            Date endDate = simpleDateFormat.parse(listData.get(position).getInfo().getTime().getEndAt());
-//            Date nowDate = new Date();
-//            Date startDate = simpleDateFormat.parse(listData.get(position).getInfo().getTime().getStartAt());
-//            date = dates.format(endDate);
-//            startTime = time.format(startDate);
-//            endTime = time.format(endDate);
-//            printDifference(endDate, nowDate);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        if (elapsedDays != 0) {
-//            holder.tvTime.setText(String.valueOf(elapsedDays) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,(int)elapsedDays)));
-//        } else if (elapsedHours != 0) {
-//            holder.tvTime.setText(String.valueOf(elapsedHours) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,(int)elapsedHours)));
-//        } else if (elapsedMinutes != 0) {
-//            holder.tvTime.setText(String.valueOf(elapsedMinutes) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,(int)elapsedMinutes)));
-//        } else if (elapsedSeconds != 0) {
-//            holder.tvTime.setText(String.valueOf(elapsedSeconds) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.second,(int)elapsedSeconds)));
-//        }
-//        holder.tvDate.setText(date);
-//        holder.tvDeitalTime.setText(startTime.replace(":","h") + " - "+endTime.replace(":","h"));
+        holder.tvJob.setText(listData.get(position).getInfo().getTitle());
+        Picasso.with(context).load(listData.get(position).getInfo().getWork().getImage())
+                .placeholder(R.drawable.no_image)
+                .error(R.drawable.no_image)
+                .into(holder.imgType);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat time = new SimpleDateFormat("H:mm a", Locale.US);
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
+        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
+        symbols.setAmPmStrings(new String[] { "am", "pm" });
+        time.setDateFormatSymbols(symbols);
+        try {
+            Date endDate = simpleDateFormat.parse(listData.get(position).getInfo().getTime().getEndAt());
+            Date nowDate = new Date();
+            Date startDate = simpleDateFormat.parse(listData.get(position).getInfo().getTime().getStartAt());
+            date = dates.format(endDate);
+            startTime = time.format(startDate);
+            endTime = time.format(endDate);
+            printDifference(endDate, nowDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (elapsedDays != 0) {
+            holder.tvTime.setText(String.valueOf(elapsedDays) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,(int)elapsedDays)));
+        } else if (elapsedHours != 0) {
+            holder.tvTime.setText(String.valueOf(elapsedHours) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,(int)elapsedHours)));
+        } else if (elapsedMinutes != 0) {
+            holder.tvTime.setText(String.valueOf(elapsedMinutes) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,(int)elapsedMinutes)));
+        } else if (elapsedSeconds != 0) {
+            holder.tvTime.setText(String.valueOf(elapsedSeconds) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.second,(int)elapsedSeconds)));
+        }
+        holder.tvDate.setText(date);
+        holder.tvDeitalTime.setText(startTime.replace(":","h") + " - "+endTime.replace(":","h"));
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return listData.size();
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder implements
@@ -99,13 +111,18 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
 
         @Override
         public void onClick(View v) {
-//            Intent intent = new Intent(context, DetailWorkHistoryActivity.class);
-//            intent.putExtra("work",listData.get(getAdapterPosition()));
-//            ActivityOptionsCompat historyOption =
-//                    ActivityOptionsCompat
-//                            .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_job_type), "icJobType");
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intent, historyOption.toBundle());
+            Intent intent = new Intent(context, DetailWorkHistoryActivity.class);
+            intent.putExtra("work",listData.get(getAdapterPosition()));
+            ActivityOptionsCompat historyOption =
+                    ActivityOptionsCompat
+                            .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_job_type), "icJobType");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                context.startActivity(intent, historyOption.toBundle());
+            }
+            else {
+                context.startActivity(intent);
+            }
         }
 
         @Override

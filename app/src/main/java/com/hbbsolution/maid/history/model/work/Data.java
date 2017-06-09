@@ -1,15 +1,17 @@
 
-package com.hbbsolution.maid.history.model;
+package com.hbbsolution.maid.history.model.work;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Data {
+import java.io.Serializable;
+import java.util.List;
+
+public class Data implements Serializable {
 
     @SerializedName("docs")
     @Expose
-    private List<Object> docs = null;
+    private List<WorkHistory> docs = null;
     @SerializedName("total")
     @Expose
     private Integer total;
@@ -23,11 +25,11 @@ public class Data {
     @Expose
     private Integer pages;
 
-    public List<Object> getDocs() {
+    public List<WorkHistory> getDocs() {
         return docs;
     }
 
-    public void setDocs(List<Object> docs) {
+    public void setDocs(List<WorkHistory> docs) {
         this.docs = docs;
     }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context="com.hbbsolution.owner.history.view.DetailWorkHistoryActivity">
+    tools:context="com.hbbsolution.maid.history.activity.DetailWorkHistoryActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -53,7 +53,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MÔ TẢ" />
+                    android:text="@string/description" />
             </LinearLayout>
 
             <View
@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.hbbsolution.owner.base.IconTextView
+                        <com.hbbsolution.maid.base.IconTextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
@@ -185,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.hbbsolution.owner.base.IconTextView
+                        <com.hbbsolution.maid.base.IconTextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
@@ -235,7 +235,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <com.hbbsolution.owner.base.IconTextView
+                        <com.hbbsolution.maid.base.IconTextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
@@ -274,7 +274,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NGƯỜI THỰC HIỆN" />
+                    android:text="@string/owner" />
             </LinearLayout>
 
             <LinearLayout
@@ -298,18 +298,19 @@
                     android:layout_marginTop="10dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/detail_helper_history_avatar"
+                        android:id="@+id/detail_owner_history_avatar"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_alignParentLeft="true"
-                        android:src="@drawable/avatar" />
+                        android:src="@drawable/avatar"
+                        android:transitionName="icAvatar"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/detail_helper_history_avatar"
+                        android:layout_toRightOf="@+id/detail_owner_history_avatar"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -317,7 +318,7 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:id="@+id/detail_helper_history_helper_name"
+                                android:id="@+id/detail_owner_history_helper_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
@@ -342,7 +343,7 @@
                         </LinearLayout>
                     </LinearLayout>
 
-                    <com.hbbsolution.owner.base.IconTextView
+                    <com.hbbsolution.maid.base.IconTextView
                         android:id="@+id/txt_right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -376,29 +377,7 @@
                     android:layout_height="0.1dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/color_line_view" />
-
-                <TextView
-                    android:id="@+id/txt_history_comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="@string/yourcomment"
-                    android:textColor="@color/home_background_history"
-                    android:textSize="@dimen/text_size_large" />
-
-                <TextView
-                    android:id="@+id/tvContentComment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/colorBlack" />
             </LinearLayout>
-
-            <View
-                android:id="@+id/v_line"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@color/color_line_view" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
