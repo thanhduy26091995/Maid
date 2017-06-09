@@ -113,8 +113,8 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
             txtIsTools.setVisibility(View.GONE);
         }
 
-        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfoOwner().getUsername());
-        txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfoOwner().getAddress().getName()));
+        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getUsername());
+        txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfo().getAddress().getName()));
         txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
         txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());
         txtContent_job_detail_psot.setText(mDatum.getInfo().getDescription());
@@ -126,7 +126,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                 .error(R.drawable.no_image)
                 .placeholder(R.drawable.no_image)
                 .into(imgType_job_detail_post);
-        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfoOwner().getImage())
+        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
                 .error(R.drawable.avatar)
                 .placeholder(R.drawable.avatar)
                 .into(img_avatarQwner);
@@ -153,10 +153,10 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         switch (id){
             case R.id.lo_infoOwner:
                 Intent itInfoOwner = new Intent(DetailJobPostActivity.this, OwnerProfileActivity.class);
+                itInfoOwner.putExtra("InfoOwner",mDatum.getStakeholders().getOwner().getInfo());
                 startActivity(itInfoOwner);
                 break;
             case R.id.lo_clear_job:
-
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setCancelable(false);
                 alertDialog.setTitle("Thông báo");
@@ -203,7 +203,6 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                 public void onClick(DialogInterface dialogInterface, int i) {
                     EventBus.getDefault().postSticky(true);
                     finish();
-
                 }
             });
 
@@ -218,8 +217,4 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
     }
 
-    @Override
-    public void checkInFail(String error) {
-
-    }
 }

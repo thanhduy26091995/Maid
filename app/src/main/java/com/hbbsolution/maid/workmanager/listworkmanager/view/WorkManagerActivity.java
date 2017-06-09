@@ -35,7 +35,7 @@ public class WorkManagerActivity extends AppCompatActivity  {
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
-    private int tabMore, mQuantityJobPost;
+    private int tabMore;
     private boolean isPause = false, mTab = false;
     private int mPositionTab;
 
@@ -68,11 +68,6 @@ public class WorkManagerActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.bind(this).unbind();
-    }
 
     private void createFragment() {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -97,16 +92,23 @@ public class WorkManagerActivity extends AppCompatActivity  {
     }
 
     @Override
+    protected void onPause() {
+        isPause = true;
+        super.onPause();
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
 
     @Override
-    protected void onPause() {
-        isPause = true;
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.bind(this).unbind();
     }
+
 
     @Override
     protected void onResume() {
@@ -129,18 +131,13 @@ public class WorkManagerActivity extends AppCompatActivity  {
         super.onResume();
     }
 
-    public void onEventMainThread(Integer quantityJobPost) {
-        mQuantityJobPost = quantityJobPost;
-    }
 
     public void onEventMainThread(Boolean isTab) {
         mTab = isTab;
     }
 
-    public void onEvent(Integer positionTab) {
-
+    public void onEventMainThread(Integer positionTab) {
         mPositionTab = positionTab;
-        Log.d("mPosition", mPositionTab + "");
     }
 
 }

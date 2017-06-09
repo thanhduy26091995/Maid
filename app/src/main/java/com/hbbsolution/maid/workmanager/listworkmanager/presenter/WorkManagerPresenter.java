@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.api.ApiInterface;
+import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerView;
 
@@ -71,28 +72,28 @@ public class WorkManagerPresenter {
 //        });
 //    }
 //
-//    public void deleteJob(String idTask, String ownerId) {
-//
-//        Call<JobPostResponse> responseCall = apiService.delleteJob(idTask, ownerId);
-//        responseCall.enqueue(new Callback<JobPostResponse>() {
-//            @Override
-//            public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
-//                try{
-//                    if (response.isSuccessful()) {
-//
-//                        Boolean isJbPost = response.body().getStatus();
-//                        mWorkManagerView.displayNotifyJobPost(isJbPost);
-//                    }
-//                }catch (Exception e){
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<JobPostResponse> call, Throwable t) {
-//                Log.d("onFailure", t.toString());
-//            }
-//        });
-//    }
+    public void deleteJob(String idTask, String ownerId) {
+
+        Call<JobPendingResponse> responseCall = apiService.deleteJob(idTask, ownerId);
+        responseCall.enqueue(new Callback<JobPendingResponse>() {
+            @Override
+            public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
+                try{
+                    if (response.isSuccessful()) {
+
+                        Boolean isJbPost = response.body().getStatus();
+                        mWorkManagerView.displayNotifyJobPost(isJbPost);
+                    }
+                }catch (Exception e){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+                Log.d("onFailure", t.toString());
+            }
+        });
+    }
 
 }

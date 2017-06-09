@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.workmanager.adapter.JobPostAdapter;
 import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
@@ -25,6 +26,8 @@ import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPre
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by tantr on 6/1/2017.
@@ -111,7 +114,7 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             progressBar.setVisibility(View.GONE);
-//                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner());
+                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                         }
                     });
                     alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
@@ -130,7 +133,32 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
     }
 
     @Override
-    public void getError() {
+    public void displayNotifyJobPost(boolean isJobPost) {
+        progressBar.setVisibility(View.GONE);
+        if (isJobPost) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+            alertDialog.setCancelable(false);
+            alertDialog.setTitle("Thông báo");
+            alertDialog.setMessage("Bài đăng đã được xóa !");
+            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    EventBus.getDefault().postSticky(true);
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
+                    getActivity().startActivity(getActivity().getIntent());
+                    getActivity().overridePendingTransition(0, 0);
 
+                }
+            });
+            alertDialog.show();
+        } else {
+            ShowAlertDialog.showAlert("Thất bại", getContext());
+        }
+    }
+
+    @Override
+    public void getError() {
+        progressBar.setVisibility(View.GONE);
     }
 }

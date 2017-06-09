@@ -51,7 +51,6 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         int requestSize = mDatum.getStakeholders().getRequest().size();
         for(int i = 0; i < requestSize; i++) {
             String _idMaid = mDatum.getStakeholders().getRequest().get(i).getMaid();
-
             if(_idMaid.equals(idMaid)){
                 String  mTimeOfregister = mDatum.getStakeholders().getRequest().get(i).getTime();
                 setWorkTimeRegister(holder.txtTimePostHistory,mTimeOfregister );

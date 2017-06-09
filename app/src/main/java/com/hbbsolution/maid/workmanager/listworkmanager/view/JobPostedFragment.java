@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.workmanager.adapter.JobPostAdapter;
 import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
@@ -28,11 +29,13 @@ import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPre
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by tantr on 6/1/2017.
  */
 
-public class JobPostedFragment extends Fragment implements WorkManagerView{
+public class JobPostedFragment extends Fragment implements WorkManagerView {
 
     private String idProcess = "000000000000000000000001";
 
@@ -87,7 +90,7 @@ public class JobPostedFragment extends Fragment implements WorkManagerView{
         progressBar.setVisibility(View.GONE);
 //        EventBus.getDefault().postSticky(mExample.getData().size());
         mJobList = mExample.getData();
-        if (mJobList.size() > 0){
+        if (mJobList.size() > 0) {
             lnNoData.setVisibility(View.GONE);
             mRecycler.setVisibility(View.VISIBLE);
             mRecycler.setHasFixedSize(true);
@@ -114,7 +117,7 @@ public class JobPostedFragment extends Fragment implements WorkManagerView{
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             progressBar.setVisibility(View.GONE);
-//                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner());
+                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                         }
                     });
                     alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
@@ -126,9 +129,35 @@ public class JobPostedFragment extends Fragment implements WorkManagerView{
                     alertDialog.show();
                 }
             });
-        }else {
+        } else {
             lnNoData.setVisibility(View.VISIBLE);
             mRecycler.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void displayNotifyJobPost(boolean isJobPost) {
+        progressBar.setVisibility(View.GONE);
+        if (isJobPost) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+            alertDialog.setCancelable(false);
+            alertDialog.setTitle("Thông báo");
+            alertDialog.setMessage("Bài đăng đã được xóa !");
+            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    EventBus.getDefault().postSticky(true);
+                    getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
+                    getActivity().startActivity(getActivity().getIntent());
+                    getActivity().overridePendingTransition(0, 0);
+
+                }
+            });
+
+            alertDialog.show();
+        } else {
+            ShowAlertDialog.showAlert("Thất bại", getContext());
         }
     }
 

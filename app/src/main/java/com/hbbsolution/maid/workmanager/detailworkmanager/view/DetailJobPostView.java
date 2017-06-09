@@ -11,5 +11,5 @@ public interface DetailJobPostView {
 
 //    void checkIn(CheckInResponse checkInResponse);
 
-    void checkInFail(String error);
+//    void checkInFail(String error);
 }

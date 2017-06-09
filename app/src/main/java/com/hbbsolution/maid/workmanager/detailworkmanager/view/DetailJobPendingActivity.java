@@ -107,8 +107,8 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
             txtIsTools.setVisibility(View.GONE);
         }
 
-        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfoOwner().getUsername());
-        txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfoOwner().getAddress().getName()));
+        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getUsername());
+        txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfo().getAddress().getName()));
         txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
         txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());
         txtContent_job_detail_psot.setText(mDatum.getInfo().getDescription());
@@ -120,7 +120,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
                 .error(R.drawable.no_image)
                 .placeholder(R.drawable.no_image)
                 .into(imgType_job_detail_post);
-        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfoOwner().getImage())
+        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
                 .error(R.drawable.avatar)
                 .placeholder(R.drawable.avatar)
                 .into(img_avatarQwner);
@@ -167,7 +167,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
                 break;
             case R.id.lo_infoOwner:
                 Intent itInfoUser = new Intent(DetailJobPendingActivity.this, OwnerProfileActivity.class);
-//                itInfoUser.putExtra("maid", mDatum.getStakeholders().getMadi());
+                itInfoUser.putExtra("InfoOwner",mDatum.getStakeholders().getOwner().getInfo());
                 startActivity(itInfoUser);
                 break;
         }
@@ -199,7 +199,6 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
                 public void onClick(DialogInterface dialogInterface, int i) {
                     EventBus.getDefault().postSticky(true);
                     finish();
-
                 }
             });
 
@@ -214,8 +213,4 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
 
     }
 
-    @Override
-    public void checkInFail(String error) {
-
-    }
 }

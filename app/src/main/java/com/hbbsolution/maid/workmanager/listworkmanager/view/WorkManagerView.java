@@ -9,7 +9,7 @@ import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkMa
 public interface WorkManagerView {
     void getInfoJob(WorkManagerResponse mExample);
 //    void getInfoJobPending(JobPendingResponse mJobPendingResponse);
-//    void displayNotifyJobPost(boolean isJobPost);
+    void displayNotifyJobPost(boolean isJobPost);
 //    void authenticationFailed();
     void getError();
 }
