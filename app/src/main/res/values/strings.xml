@@ -105,6 +105,26 @@
     <string name="huy">Hủy</string>
     <!---->
 
+    <!--signin_screen start-->
+    <string name="sign_in_user_name">Tên đăng nhập</string>
+    <string name="sign_in_password">Mật khẩu</string>
+    <string name="sign_in_sign_in">Đăng nhập</string>
+    <string name="sign_in_forget_password">Quên mật khẩu</string>
+    <string name="sign_in_sign_now">Đăng ký ngay</string>
+    <string name="sign_in_by">Đăng nhập bằng</string>
+    <!--signin_screen end-->
+
+    <!--signup_screen start-->
+    <string name="sign_up_confirm_password">Confirm password</string>
+    <string name="sign_up_next">Next</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_full_name">Full name</string>
+    <string name="sign_up_gender">Sex</string>
+    <string name="sign_up_age">Tuổi</string>
+    <string name="sign_up_phone_number">Phone number</string>
+    <string name="sign_up_address">Address</string>
+    <!--signup_screen end-->
+
     <!--forgot password screen start-->
     <string name="send_require">Gửi yêu cầu</string>
     <string name="forgot_password">Forgot password?</string>
