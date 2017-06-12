@@ -42,6 +42,9 @@
         <activity android:name=".home.job_near_by.view.JobNearByMapActivity" />
         <activity android:name=".more.term.TermActivity" />
         <activity android:name=".more.forgot_password.ForgotPassActivity" />
+        <activity android:name=".more.viet_pham.MoreActivity"/>
+        <activity android:name=".more.viet_pham.view.signin.profile.ProfileActivity"/>
+        <activity android:name=".more.viet_pham.view.signin.SignInActivity"/>
 
     </application>
 

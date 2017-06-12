@@ -10,8 +10,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.home.job_near_by.view.JobNearByMapActivity;
+import com.hbbsolution.maid.more.viet_pham.MoreActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import butterknife.BindView;
@@ -29,6 +31,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     RelativeLayout mLayout_YourTasks;
     @BindView(R.id.lo_history)
     RelativeLayout mLayout_History;
+    @BindView(R.id.ic_text_view_more)
+    IconTextView iconTextViewMore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,25 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mLayout_MaidAround.setOnClickListener(this);
         mLayout_YourTasks.setOnClickListener(this);
         mLayout_History.setOnClickListener(this);
+
+        addInits();
+        addEvents();
+    }
+
+    public void addInits()
+    {
+        iconTextViewMore = (IconTextView) findViewById(R.id.ic_text_view_more);
+    }
+
+    public void addEvents()
+    {
+
+        iconTextViewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transActivity(MoreActivity.class);
+            }
+        });
     }
 
     @Override

@@ -1,17 +1,87 @@
 <resources>
-    <string name="app_name">Maid</string>
+    <string name="app_name">Owner</string>
 
+    <!--cần tiền tố và comment trước khi sử dụng-->
+
+    <!--home screen start-->
+    <!--<string name="home_home">Home</string>-->
+    <!--<string name="home_maid_around">Maid around</string>-->
+    <!--<string name="home_your_tasks">Your tasks</string>-->
+    <!--<string name="home_history">History</string>-->
+    <!--<string name="home_copy_right">Copyright(c).HBB Solution. All right reserved</string>-->
     <string name="home_home">Trang chủ</string>
-    <string name="home_maid_around">Công việc quanh đây</string>
+    <string name="home_maid_around">Giúp việc quanh đây</string>
     <string name="home_your_tasks">Quản lý công việc</string>
     <string name="home_history">Lịch sử công việc</string>
     <string name="home_copy_right">Niềm tin - Chất lượng</string>
     <string name="more_sign_in">Sign In</string>
-    <string name="title_activity_history">HistoryActivity</string>
+    <!--home screen end-->
+
+    <!--terms_screen start-->
+    <string name="terms">Điều khoản sử dụng</string>
+    <string name="terms_btn_ok">OK</string>
+
+    <!--terms screen end-->
+
+    <!--signin_screen start-->
+    <string name="sign_in_user_name">Tên đăng nhập</string>
+    <string name="sign_in_password">Mật khẩu</string>
+    <string name="sign_in_sign_in">Đăng nhập</string>
+    <string name="sign_in_forget_password">Quên mật khẩu</string>
+    <string name="sign_in_sign_now">Đăng ký ngay</string>
+    <string name="sign_in_by">Đăng nhập bằng</string>
+    <!--signin_screen end-->
+
+
+    <!--signup_screen start-->
+    <string name="sign_up_confirm_password">Xác nhận mật khẩu</string>
+    <string name="sign_up_next">Next</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_full_name">Tên đầy đủ</string>
+    <string name="sign_up_gender">Giới tính</string>
+    <string name="sign_up_age">Tuổi</string>
+    <string name="sign_up_phone_number">Số điện thoại</string>
+    <string name="sign_up_address">Địa chỉ</string>
+    <!--signup_screen end-->
+
+    <!--profile  start-->
+    <string name="pro_file_gender_male">Male</string>
+    <string name="pro_file_gender_female">Female</string>
+    <!--terms screen end-->
+
+    <!--Page more activity start-->
+    <string name="more_job_statistic">Thống kê công việc</string>
+    <string name="more_notification">Thông báo</string>
+    <string name="more_languge">Ngôn ngữ</string>
+    <string name="english">English</string>
+    <string name="vietnamese">Tiếng Việt</string>
+    <string name="more_share_app_Gv24">Chia sẻ ứng dụng Gv24</string>
+    <string name="more_follow_Gv24_on_facebook">Theo dõi Gv24 trên Facebook</string>
+    <string name="more_contact">Liên hệ</string>
+    <string name="gender_men">Nam</string>
+    <string name="gender_women">Nữ</string>
+    <string name="signout">Sign Out</string>
+    <string name="signoutContent">Bạn thực sự muốn log out?</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <!--Page more activity end-->
+
+
+    <!--khác-->
+    <string name="default_language">Default</string>
+    <string name="more">More</string>
+
+    <string name="rate">Evaluate</string>
+    <string name="completed">Completed</string>
+    <string name="to">to</string>
+    <string name="send">Send</string>
+    <string name="soonupdated">Soon updated!</string>
+
 
     <!--history_screen start-->
-    <string name="completedjob">Completed work</string>
-    <string name="completedhelpler">Completed helper</string>
+    <string name="completedjob">Work history</string>
+    <string name="completedhelpler">Your helpers</string>
+    <string name="liabilities">Unpaid work</string>
     <string name="before">%s before</string>
     <plurals name="day">
         <item quantity="one">day</item>
@@ -29,101 +99,54 @@
         <item quantity="one">second</item>
         <item quantity="other">seconds</item>
     </plurals>
-    <string name="liabilities">Liabilities</string>
-    <string name="unpayalbe">Chưa thanh toán</string>
-    <string name="payliabilities">Thanh toán tiền nợ</string>
-    <string name="rangetime">Vui lòng xem lại khoảng thời gian</string>
-    <string name="completed">Completed</string>
-    <!--history_screen end-->
 
-    <!--comment_screen start-->
-    <string name="yourcomment">Your comment</string>
-    <string name="comment">Comment</string>
-    <!--comment_screen end-->
+    <string name="unpayalbe">Chưa thanh toán</string>
+    <string name="rangetime">Vui lòng xem lại khoảng thời gian!</string>
+    <!--history_screen end-->
 
     <!--detail_work_history_screen start-->
     <string name="payment">Payment</string>
     <string name="description">DESCRIPTION</string>
-    <string name="owner">CHỦ NHÀ</string>
+    <string name="yourcomment">Add comments</string>
+    <string name="owner">NGƯỜI THỰC HIỆN</string>
     <!--detail_work_history_screen end-->
 
-    <!--profile  start-->
-    <string name="pro_file_gender_male">Male</string>
-    <string name="pro_file_gender_female">Female</string>
-    <!--terms screen end-->
-
-    <!--contact and about screen start-->
-    <string name="contact">Liên hệ</string>
-    <string name="about">Về chúng tôi</string>
-    <string name="btnCall">Gọi điện</string>
-    <string name="btnEmail">Email</string>
-    <string name="no_email_client">There are no email clients installed."</string>
-    <string name="enter_phonenumber">Enter a phone number</string>
-    <string name="address_title">Address:</string>
-    <string name="okAlert">Ok</string>
-    <!--contact and about screen end-->
+    <!--comment_screen start-->
+    <string name="comment">Comment</string>
+    <!--comment_screen end-->
 
     <!--statistic_screen start-->
     <string name="total">Tổng chi phí</string>
-    <string name="history_work">Công việc hoàn thành</string>
+    <string name="history_work">Work history</string>
     <string name="waiting_work">Công việc đang xử lý</string>
     <string name="post_work">Công việc đã đăng</string>
+    <string name="recharge">Nạp tiền vào tài khoản</string>
     <string name="sodutaikhoan">Số dư tài khoản</string>
-    <string name="million">million</string>
+    <plurals name="million">
+        <item quantity="one">million</item>
+        <item quantity="other">millions</item>
+    </plurals>
     <!--statistic_screen end-->
 
-    <!--Page more activity start-->
-    <string name="more_job_statistic">Thống kê công việc</string>
-    <string name="more_notification">Thông báo</string>
-    <string name="more_languge">Ngôn ngữ</string>
-    <string name="english">English</string>
-    <string name="vietnamese">Tiếng Việt</string>
-    <string name="more_share_app_Gv24">Chia sẻ ứng dụng Gv24</string>
-    <string name="more_follow_Gv24_on_facebook">Theo dõi Gv24 trên Facebook</string>
-    <string name="more_contact">Liên hệ</string>
-    <string name="gender_men">Nam</string>
-    <string name="gender_women">Nữ</string>
-    <string name="signout">Sign Out</string>
-    <string name="signoutContent">Do you really want to log out?</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <!--Page more activity end-->
+    <!--contact and about screen start-->
+    <string name="contact">Contact</string>
+    <string name="about">About us</string>
+    <string name="btnCall">Call</string>
+    <string name="btnEmail">Email</string>
+    <string name="no_email_client">There are no email clients installed."</string>
+    <string name="enter_phonenumber">Enter a phone number</string>
+    <string name="okAlert">Ok</string>
+    <string name="address_title">Address:</string>
+    <!--contact and about screen end-->
 
-    <!--khác-->
-    <string name="default_language">Default</string>
-    <string name="more">More</string>
-
-    <string name="rate">Rating</string>
-    <string name="to">to</string>
-    <string name="send">Send</string>
-    <string name="soonupdated">Soon updated!</string>
 
     <!--Maid near by-->
-    <string name="GPSTitle">Cà đặt GPS</string>
-    <string name="GPSContent">GPS đang tắt, bạn có muốn đi đến cài đặt GPS?</string>
-    <string name="setting">Cài Đặt</string>
-    <string name="huy">Hủy</string>
+    <string name="GPSTitle">GPS settings</string>
+    <string name="GPSContent">GPS is disabled. Do you want to enable GPS?</string>
+    <string name="setting">Setting</string>
+    <string name="huy">Cancel</string>
     <!---->
 
-    <!--signin_screen start-->
-    <string name="sign_in_user_name">Tên đăng nhập</string>
-    <string name="sign_in_password">Mật khẩu</string>
-    <string name="sign_in_sign_in">Đăng nhập</string>
-    <string name="sign_in_forget_password">Quên mật khẩu</string>
-    <string name="sign_in_sign_now">Đăng ký ngay</string>
-    <string name="sign_in_by">Đăng nhập bằng</string>
-    <!--signin_screen end-->
-
-    <!--signup_screen start-->
-    <string name="sign_up_confirm_password">Confirm password</string>
-    <string name="sign_up_next">Next</string>
-    <string name="sign_up_email">Email</string>
-    <string name="sign_up_full_name">Full name</string>
-    <string name="sign_up_gender">Sex</string>
-    <string name="sign_up_age">Tuổi</string>
-    <string name="sign_up_phone_number">Phone number</string>
-    <string name="sign_up_address">Address</string>
-    <!--signup_screen end-->
 
     <!--forgot password screen start-->
     <string name="send_require">Gửi yêu cầu</string>
@@ -132,4 +155,10 @@
     <!--forgot password screen end-->
 
 
+    <!--payment screen start-->
+    <string name="payment_date">Ngày thanh toán:</string>
+    <string name="timework">Time of working:</string>
+    <string name="totalprice">Thành tiền:</string>
+    <string name="accountbalance">Account balance</string>
+    <!--payment screen end-->
 </resources>

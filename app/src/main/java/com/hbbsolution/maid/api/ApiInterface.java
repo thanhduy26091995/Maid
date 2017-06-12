@@ -7,15 +7,19 @@ import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.ReportResponse;
+import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
@@ -49,5 +53,9 @@ public interface ApiInterface {
 
     @GET
     Call<GeoCodeMapResponse> getLocaltionAddress(@Url String url, @Query("address") String address);
-
+    @Multipart
+    @POST("auth/login")
+    Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
+                                     @Part("password") RequestBody password
+    );
 }
