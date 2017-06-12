@@ -55,7 +55,7 @@
                 android:background="@android:color/darker_gray" />
 
             <RelativeLayout
-                android:id="@+id/lo_infoMaidDoing"
+                android:id="@+id/rela_owner_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"

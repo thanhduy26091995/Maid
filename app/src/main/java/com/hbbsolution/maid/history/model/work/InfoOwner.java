@@ -30,6 +30,16 @@ public class InfoOwner implements Serializable {
     @Expose
     private Address address;
 
+    public InfoOwner(String username, String email, String phone, String image, Integer gender, String name, Address address) {
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.image = image;
+        this.gender = gender;
+        this.name = name;
+        this.address = address;
+    }
+
     public String getUsername() {
         return username;
     }

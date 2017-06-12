@@ -20,10 +20,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,7 +38,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.home.job_near_by.presenter.JobNearByMapPresenter;
+import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.utils.Constants;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 
@@ -48,7 +54,7 @@ import static com.hbbsolution.maid.home.job_near_by.view.JobNearByActivity.REQUE
  * Created by buivu on 08/06/2017.
  */
 
-public class JobNearByMapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
+public class JobNearByMapActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener, JobNearByMapView {
 
     private GoogleMap googleMap;
     private LocationManager locationManager;
@@ -57,9 +63,13 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
     private static final long MIN_TIME_BW_UPDATES = 1; // 1 minute
     private Location location; // location
     private Double latitude, longitude;
+    private ProgressDialog progressDialog;
+    private JobNearByMapPresenter presenter;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.search_view)
+    SearchView searchView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,9 +82,50 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
         setUpMapIfNeeded();
+        presenter = new JobNearByMapPresenter(this);
         //load data
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        //  searchView.setIconified(false);
+        searchView.setQueryHint("Tìm vị trí");
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
+            }
+        });
+        //implement searchview
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //hide keyboard
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+                showProgress();
+                //call apk to search
+                presenter.getLocationAddress(query);
 
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+    }
+
+    private void showProgress() {
+        progressDialog = new ProgressDialog(JobNearByMapActivity.this);
+        progressDialog.setMessage("Đang tải...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void hideProgress() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     private void showSettingLocationAlert() {
@@ -249,7 +300,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         this.googleMap = googleMap;
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             showSettingLocationAlert();
@@ -257,6 +308,32 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
             //get data
             loadData();
         }
+        //event click google map
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                googleMap.clear();
+                // googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(latLng);
+                googleMap.addMarker(markerOptions);
+                latitude = latLng.latitude;
+                longitude = latLng.longitude;
+                Log.d("CLICK", "" + latitude + "/" + longitude);
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
+        switch (permsRequestCode) {
+            case REQUEST_ID_ACCESS_COARSE_FINE_LOCATION:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getLocation();
+                }
+                break;
+        }
+
     }
 
     @Override
@@ -279,6 +356,8 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         } else if (item.getItemId() == R.id.action_filter) {
             Intent intent = new Intent(JobNearByMapActivity.this, JobNearByActivity.class);
             intent.putExtra(Constants.IS_SEARCH, false);
+            intent.putExtra(Constants.LAT, latitude);
+            intent.putExtra(Constants.LNG, longitude);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
@@ -342,5 +421,30 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    public void getLocationAddress(GeoCodeMapResponse geoCodeMapResponse) {
+        googleMap.clear();
+        //move camera
+        Double lat = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLat();
+        Double lng = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLng();
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 15));
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(new LatLng(lat, lng));
+        googleMap.addMarker(markerOptions);
+
+        hideProgress();
+        Intent intent = new Intent(JobNearByMapActivity.this, JobNearByActivity.class);
+        intent.putExtra(Constants.IS_SEARCH, true);
+        intent.putExtra(Constants.LAT, lat);
+        intent.putExtra(Constants.LNG, lng);
+        startActivity(intent);
+    }
+
+    @Override
+    public void displayNotFoundLocation(String error) {
+        hideProgress();
+        ShowAlertDialog.showAlert(error, JobNearByMapActivity.this);
     }
 }

@@ -3,6 +3,7 @@ package com.hbbsolution.maid.api;
 
 import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
+import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.ReportResponse;
@@ -16,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by buivu on 04/05/2017.
@@ -44,5 +46,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("maid/report")
     Call<ReportResponse> reportOwner(@Field("toId") String toId, @Field("content") String content);
+
+    @GET
+    Call<GeoCodeMapResponse> getLocaltionAddress(@Url String url, @Query("address") String address);
 
 }

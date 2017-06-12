@@ -22,10 +22,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +35,11 @@ import android.widget.Toast;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.job_near_by.JobNearByAdapter;
 import com.hbbsolution.maid.home.job_near_by.presenter.JobNearByPresenter;
+import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
 import com.hbbsolution.maid.model.task_around.TaskData;
+import com.hbbsolution.maid.utils.Constants;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +63,8 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     RecyclerView mRecycler;
     @BindView(R.id.txt_search)
     TextView txtSearch;
+    @BindView(R.id.search_view)
+    SearchView searchView;
 
     private Integer maxDistance;
     private JobNearByPresenter presenter;
@@ -75,6 +82,8 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     private static final long MIN_TIME_BW_UPDATES = 1; // 1 minute
     private Location location; // location
     private Double latitude, longitude;
+    private boolean isSearch = false;
+    private String searchText = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,6 +96,31 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+        //event searchview
+        searchView.setQueryHint("Tìm vị trí");
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
+            }
+        });
+        //implement searchview
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //hide keyboard
+                searchText = query;
+                //call apk to search
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchText = newText;
+                return false;
+            }
+        });
         //event change seekbar
         seekBarDistance.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -108,12 +142,24 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         });
         //load data
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            showSettingLocationAlert();
-        } else {
-            //get data
-            loadData();
-        }
+        //get intent
+        isSearch = getIntent().getBooleanExtra(Constants.IS_SEARCH, false);
+        // if (isSearch) {
+        latitude = getIntent().getDoubleExtra(Constants.LAT, 0);
+        longitude = getIntent().getDoubleExtra(Constants.LNG, 0);
+        Log.d("CLICK2", "" + latitude + "/" + longitude);
+        //call api
+        showProgress();
+        presenter.getAllTask(latitude, longitude, maxDistance);
+//        } else {
+//            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+//                showSettingLocationAlert();
+//            } else {
+//                //get data
+//                loadData();
+//            }
+//        }
+
         //event click
         txtSearch.setOnClickListener(this);
 
@@ -332,10 +378,34 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     }
 
     @Override
+    public void getLocationAddress(GeoCodeMapResponse geoCodeMapResponse) {
+        Double lat = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLat();
+        Double lng = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLng();
+        //search
+        presenter.getAllTask(lat, lng, maxDistance);
+    }
+
+    @Override
+    public void displayNotFoundLocation(String error) {
+        hideProgress();
+        ShowAlertDialog.showAlert(error, JobNearByActivity.this);
+    }
+
+    @Override
     public void onClick(View v) {
         if (v == txtSearch) {
+            //hide keyboard
+            searchView.clearFocus();
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
             showProgress();
-            presenter.getAllTask(latitude, longitude, maxDistance);
+            if (searchText.equals("")) {
+                Log.d("LOCATION_NEAR_BY", "" + latitude + "/" + longitude + "/" + maxDistance);
+                presenter.getAllTask(latitude, longitude, maxDistance);
+            } else {
+                presenter.getLocationAddress(searchText);
+            }
+
         }
     }
 

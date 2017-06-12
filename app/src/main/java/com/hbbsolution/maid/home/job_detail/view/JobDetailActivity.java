@@ -1,15 +1,19 @@
 package com.hbbsolution.maid.home.job_detail.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
+import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.model.task.TaskData;
 
 import java.text.DateFormatSymbols;
@@ -25,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by buivu on 05/06/2017.
  */
 
-public class JobDetailActivity extends AppCompatActivity {
+public class JobDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private TaskData taskData;
@@ -55,6 +59,8 @@ public class JobDetailActivity extends AppCompatActivity {
     TextView txtDetailTime;
     @BindView(R.id.txt_address)
     TextView txtAddress;
+    @BindView(R.id.rela_owner_profile)
+    RelativeLayout relaOwnerProfile;
 
     private String date;
     private String startTime, endTime;
@@ -73,6 +79,8 @@ public class JobDetailActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         //load data
         loadData();
+        //event click
+        relaOwnerProfile.setOnClickListener(this);
     }
 
     private void loadData() {
@@ -116,5 +124,15 @@ public class JobDetailActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == relaOwnerProfile) {
+            Intent intent = new Intent(JobDetailActivity.this, OwnerProfileActivity.class);
+            intent.putExtra("InfoOwner", taskData.getStakeholders().getOwner().getInfo());
+            intent.putExtra("IsInJobDetail", true);
+            startActivity(intent);
+        }
     }
 }

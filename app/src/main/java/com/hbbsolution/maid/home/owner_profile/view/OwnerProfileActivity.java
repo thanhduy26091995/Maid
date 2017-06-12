@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.history.model.work.InfoOwner;
+import com.hbbsolution.maid.model.task.Info;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +38,8 @@ public class OwnerProfileActivity extends AppCompatActivity {
     @BindView(R.id.img_avatar)
     ImageView img_avatar;
     private InfoOwner mInfoOwner;
+    private boolean isInJobDetail = false;
+    private Info info;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +50,19 @@ public class OwnerProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar_header);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setData();
+
+        isInJobDetail = getIntent().getBooleanExtra("IsInJobDetail", false);
+        if (isInJobDetail) {
+            info = (Info) getIntent().getSerializableExtra("InfoOwner");
+            txtNameInfoMaid.setText(info.getUsername());
+            txtGenderInfoMaid.setText(getGenderMaid(info.getGender()));
+            txtPhoneInfoMaid.setText(info.getPhone());
+            txtAddressInfoMaid.setText(info.getAddress().getName());
+            ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, info.getImage(),
+                    img_avatar);
+        } else {
+            setData();
+        }
     }
 
     @Override
