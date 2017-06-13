@@ -65,7 +65,7 @@ public class JobNearByPresenter {
 
             @Override
             public void onFailure(Call<GeoCodeMapResponse> call, Throwable t) {
-                view.displayNotFoundLocation(t.getMessage());
+                view.displayNotFoundLocation("Không tìm thấy vị trí");
             }
         });
     }

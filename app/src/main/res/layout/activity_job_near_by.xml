@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="0 km"
+                android:text="5 km"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -98,7 +98,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
-            android:max="10" />
+            android:max="10"
+            android:progress="5" />
 
         <RelativeLayout
             android:layout_width="match_parent"

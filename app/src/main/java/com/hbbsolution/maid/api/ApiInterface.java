@@ -3,6 +3,7 @@ package com.hbbsolution.maid.api;
 
 import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
+import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
@@ -58,4 +59,8 @@ public interface ApiInterface {
     Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
                                      @Part("password") RequestBody password
     );
+
+    @FormUrlEncoded
+    @POST("task/reserve")
+    Call<ChooseWorkResponse> chooseWork(@Field("id") String taskId);
 }

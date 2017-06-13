@@ -66,7 +66,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     @BindView(R.id.search_view)
     SearchView searchView;
 
-    private Integer maxDistance;
+    private Integer maxDistance= 5;
     private JobNearByPresenter presenter;
     private JobNearByAdapter jobNearByAdapter;
     private List<TaskData> taskArounds = new ArrayList<>();

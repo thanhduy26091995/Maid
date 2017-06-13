@@ -48,11 +48,13 @@ public class ListJobActivity extends AppCompatActivity implements ListJobView {
     private List<TaskData> mTaskDatas = new ArrayList<>();
     private int currentPage = 1;
     private LinearLayoutManager linearLayoutManager;
+    public static ListJobActivity listJobActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_job);
+        listJobActivity = this;
         ButterKnife.bind(this);
         //init
         linearLayoutManager = new LinearLayoutManager(this);
