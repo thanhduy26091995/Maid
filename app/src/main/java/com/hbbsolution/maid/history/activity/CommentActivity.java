@@ -78,6 +78,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         txtNext.setOnClickListener(this);
         lnCheck.setOnClickListener(this);
         edtComment.setOnClickListener(this);
+
     }
 
 
