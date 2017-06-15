@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
+import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.job_detail.presenter.JobDetailPresenter;
 import com.hbbsolution.maid.home.list_job.view.ListJobActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
@@ -93,6 +95,10 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         //event click
         relaOwnerProfile.setOnClickListener(this);
         relaChooseWork.setOnClickListener(this);
+        if (!InternetConnection.getInstance().isOnline(JobDetailActivity.this)) {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
     }
 
     private void loadData() {
@@ -146,8 +152,13 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
             intent.putExtra("IsInJobDetail", true);
             startActivity(intent);
         } else if (v == relaChooseWork) {
-            showProgress();
-            presenter.chooseWork(taskData.getId());
+            if (InternetConnection.getInstance().isOnline(JobDetailActivity.this)) {
+                showProgress();
+                presenter.chooseWork(taskData.getId());
+            } else {
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_LONG);
+                snackbar.show();
+            }
         }
     }
 

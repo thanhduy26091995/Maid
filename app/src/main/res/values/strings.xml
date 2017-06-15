@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Owner</string>
+    <string name="app_name">Maid</string>
 
     <!--cần tiền tố và comment trước khi sử dụng-->
 
@@ -10,7 +10,7 @@
     <!--<string name="home_history">History</string>-->
     <!--<string name="home_copy_right">Copyright(c).HBB Solution. All right reserved</string>-->
     <string name="home_home">Trang chủ</string>
-    <string name="home_maid_around">Giúp việc quanh đây</string>
+    <string name="home_maid_around">Công việc quanh đây</string>
     <string name="home_your_tasks">Quản lý công việc</string>
     <string name="home_history">Lịch sử công việc</string>
     <string name="home_copy_right">Niềm tin - Chất lượng</string>
@@ -161,4 +161,9 @@
     <string name="totalprice">Thành tiền:</string>
     <string name="accountbalance">Account balance</string>
     <!--payment screen end-->
+
+    <!--General-->
+    <string name="noInternet">Không có kết nối Internet</string>
+    <string name="retry">THỬ LẠI</string>
+    <!--General end-->
 </resources>

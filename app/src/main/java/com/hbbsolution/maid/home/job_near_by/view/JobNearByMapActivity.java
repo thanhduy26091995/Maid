@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.job_near_by.presenter.JobNearByMapPresenter;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.utils.Constants;
@@ -114,6 +116,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         });
 
     }
+
 
     private void showProgress() {
         progressDialog = new ProgressDialog(JobNearByMapActivity.this);
@@ -392,6 +395,11 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
 
     @Override
     protected void onResume() {
+        //check internet
+        if (!InternetConnection.getInstance().isOnline(JobNearByMapActivity.this)) {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
         registerReceiver(mGpsSwitchStateReceiver, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         super.onResume();
     }

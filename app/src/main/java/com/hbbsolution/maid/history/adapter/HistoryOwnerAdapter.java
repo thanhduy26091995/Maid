@@ -94,6 +94,7 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
                 case R.id.rela_info:
                     Intent intent = new Intent(context, OwnerProfileActivity.class);
                     intent.putExtra("InfoOwner",ownerHistoryList.get(getAdapterPosition()).getId().getInfo());
+                    intent.putExtra("IsInJobDetail", false);
                     ActivityOptionsCompat historyOption =
                             ActivityOptionsCompat
                                     .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_history_avatar), "icAvatar");
