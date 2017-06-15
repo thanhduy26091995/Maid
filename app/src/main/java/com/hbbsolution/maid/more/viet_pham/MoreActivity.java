@@ -16,11 +16,11 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.main.HomeActivity;
-import com.hbbsolution.maid.more.about.AboutActivity;
-import com.hbbsolution.maid.more.contact.ContactActivity;
+import com.hbbsolution.maid.more.phuc_tran.about.AboutActivity;
+import com.hbbsolution.maid.more.phuc_tran.contact.ContactActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.statistic.view.StatisticActivity;
-import com.hbbsolution.maid.more.term.TermActivity;
+import com.hbbsolution.maid.more.phuc_tran.term.TermActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 

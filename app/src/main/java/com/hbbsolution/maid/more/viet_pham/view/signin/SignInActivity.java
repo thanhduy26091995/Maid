@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.main.HomeActivity;
-import com.hbbsolution.maid.more.forgot_password.ForgotPassActivity;
+import com.hbbsolution.maid.more.phuc_tran.forgot_password.ForgotPassActivity;
 import com.hbbsolution.maid.more.viet_pham.MoreView;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.DataUpdateResponse;
