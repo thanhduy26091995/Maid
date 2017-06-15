@@ -3,15 +3,18 @@ package com.hbbsolution.maid.home.list_job.view;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.list_job.ListJobAdapter;
 import com.hbbsolution.maid.home.list_job.presenter.ListJobPresenter;
 import com.hbbsolution.maid.model.task.TaskData;
@@ -72,8 +75,29 @@ public class ListJobActivity extends AppCompatActivity implements ListJobView {
         txtTitle.setText(workName);
         presenter = new ListJobPresenter(this);
         Log.d("TEST", "" + lat + "-" + lng + "/" + workId + workName + "/" + maxDistance);
-        showProgress();
-        presenter.getTaskByWork(lat, lng, maxDistance, workId, 1);
+        showData();
+    }
+
+    private void showData() {
+        if (InternetConnection.getInstance().isOnline(ListJobActivity.this)) {
+            showProgress();
+            presenter.getTaskByWork(lat, lng, maxDistance, workId, 1);
+        } else {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showData();
+                        }
+                    });
+            snackbar.show();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        // showData();
+        super.onResume();
     }
 
     private void showProgress() {

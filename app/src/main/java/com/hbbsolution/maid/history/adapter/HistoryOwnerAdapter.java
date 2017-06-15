@@ -18,6 +18,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.ListWorkActivity;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
+import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

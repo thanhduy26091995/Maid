@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.job_near_by.JobNearByAdapter;
 import com.hbbsolution.maid.home.job_near_by.presenter.JobNearByPresenter;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
@@ -66,7 +68,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     @BindView(R.id.search_view)
     SearchView searchView;
 
-    private Integer maxDistance= 5;
+    private Integer maxDistance = 5;
     private JobNearByPresenter presenter;
     private JobNearByAdapter jobNearByAdapter;
     private List<TaskData> taskArounds = new ArrayList<>();
@@ -148,21 +150,11 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         latitude = getIntent().getDoubleExtra(Constants.LAT, 0);
         longitude = getIntent().getDoubleExtra(Constants.LNG, 0);
         Log.d("CLICK2", "" + latitude + "/" + longitude);
-        //call api
-        showProgress();
-        presenter.getAllTask(latitude, longitude, maxDistance);
-//        } else {
-//            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-//                showSettingLocationAlert();
-//            } else {
-//                //get data
-//                loadData();
-//            }
-//        }
 
         //event click
         txtSearch.setOnClickListener(this);
-
+//check internet
+        initData();
 
     }
 
@@ -381,6 +373,8 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     public void getLocationAddress(GeoCodeMapResponse geoCodeMapResponse) {
         Double lat = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLat();
         Double lng = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLng();
+        latitude = lat;
+        longitude = lng;
         //search
         presenter.getAllTask(lat, lng, maxDistance);
     }
@@ -398,12 +392,17 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
             searchView.clearFocus();
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
-            showProgress();
-            if (searchText.equals("")) {
-                Log.d("LOCATION_NEAR_BY", "" + latitude + "/" + longitude + "/" + maxDistance);
-                presenter.getAllTask(latitude, longitude, maxDistance);
+            if (InternetConnection.getInstance().isOnline(JobNearByActivity.this)) {
+                showProgress();
+                if (searchText.equals("")) {
+                    Log.d("LOCATION_NEAR_BY", "" + latitude + "/" + longitude + "/" + maxDistance);
+                    presenter.getAllTask(latitude, longitude, maxDistance);
+                } else {
+                    presenter.getLocationAddress(searchText);
+                }
             } else {
-                presenter.getLocationAddress(searchText);
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
 
         }
@@ -436,9 +435,26 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         }
     };
 
+    private void initData() {
+        //call api
+        if (!InternetConnection.getInstance().isOnline(JobNearByActivity.this)) {
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_INDEFINITE)
+                    .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            initData();
+                        }
+                    });
+            snackbar.show();
+        } else {
+            showProgress();
+            presenter.getAllTask(latitude, longitude, maxDistance);
+        }
+    }
 
     @Override
     protected void onResume() {
+
         registerReceiver(mGpsSwitchStateReceiver, new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION));
         super.onResume();
     }

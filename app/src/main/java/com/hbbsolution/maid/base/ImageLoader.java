@@ -33,6 +33,7 @@ public class ImageLoader {
             Glide.with(activity)
                     .load(url)
                     .error(R.drawable.avatar)
+                    .placeholder(R.drawable.avatar)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
                     .dontAnimate()
