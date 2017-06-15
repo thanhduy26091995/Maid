@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.activity.ListWorkActivity;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 
@@ -37,13 +38,14 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
     private String time;
     private Date date;
     private int p;
+
     @Override
     public HistoryOwnerAdapter.RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_owner, parent, false);
         return new RecyclerViewHolder(view);
     }
 
-    public HistoryOwnerAdapter(Context context,List<OwnerHistory> ownerHistoryList) {
+    public HistoryOwnerAdapter(Context context, List<OwnerHistory> ownerHistoryList) {
         this.context = context;
         this.ownerHistoryList = ownerHistoryList;
     }
@@ -81,31 +83,36 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            lo_info_user = (RelativeLayout)itemView.findViewById(R.id.rela_info) ;
+            lo_info_user = (RelativeLayout) itemView.findViewById(R.id.rela_info);
             tvName = (TextView) itemView.findViewById(R.id.txt_history_name);
             tvDate = (TextView) itemView.findViewById(R.id.txt_history_date);
             tvListWork = (TextView) itemView.findViewById(R.id.txt_history_list_work);
             imgMaid = (CircleImageView) itemView.findViewById(R.id.img_history_avatar);
             lo_info_user.setOnClickListener(this);
+            tvListWork.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.rela_info:
                     Intent intent = new Intent(context, OwnerProfileActivity.class);
-                    intent.putExtra("InfoOwner",ownerHistoryList.get(getAdapterPosition()).getId().getInfo());
+                    intent.putExtra("InfoOwner", ownerHistoryList.get(getAdapterPosition()).getId().getInfo());
                     intent.putExtra("IsInJobDetail", false);
                     ActivityOptionsCompat historyOption =
                             ActivityOptionsCompat
-                                    .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_history_avatar), "icAvatar");
+                                    .makeSceneTransitionAnimation((Activity) context, (View) v.findViewById(R.id.img_history_avatar), "icAvatar");
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         context.startActivity(intent, historyOption.toBundle());
-                    }
-                    else {
+                    } else {
                         context.startActivity(intent);
                     }
+                    break;
+                case R.id.txt_history_list_work:
+                    intent = new Intent(context, ListWorkActivity.class);
+                    intent.putExtra("idOwner",ownerHistory.getId().getId());
+                    context.startActivity(intent);
                     break;
             }
         }

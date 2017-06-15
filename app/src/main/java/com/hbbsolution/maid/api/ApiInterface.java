@@ -63,4 +63,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("task/reserve")
     Call<ChooseWorkResponse> chooseWork(@Field("id") String taskId);
+
+    @GET("maid/getTaskOfOwner")
+    Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner,@Query("page") int page);
 }

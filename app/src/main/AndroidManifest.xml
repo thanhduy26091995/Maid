@@ -30,6 +30,7 @@
         <activity android:name=".history.activity.HistoryActivity" />
         <activity android:name=".history.activity.DetailWorkHistoryActivity" />
         <activity android:name=".history.activity.ReportActivity" />
+        <activity android:name=".history.activity.ListWorkActivity" />
         <activity android:name=".more.contact.ContactActivity" />
         <activity android:name=".more.about.AboutActivity" />
         <activity android:name=".home.list_job.view.ListJobActivity" />
