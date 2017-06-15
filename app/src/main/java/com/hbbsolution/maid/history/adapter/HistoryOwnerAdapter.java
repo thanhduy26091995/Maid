@@ -18,7 +18,6 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.ListWorkActivity;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
-import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,8 +64,11 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
         holder.tvName.setText(ownerHistory.getId().getInfo().getName());
         holder.tvDate.setText(time);
         Glide.with(context).load(ownerHistory.getId().getInfo().getImage())
+                .thumbnail(0.5f)
+                .placeholder(R.drawable.avatar)
                 .error(R.drawable.avatar)
                 .centerCrop()
+                .dontAnimate()
                 .into(holder.imgMaid);
     }
 

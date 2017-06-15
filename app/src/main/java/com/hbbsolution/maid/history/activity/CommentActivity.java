@@ -18,9 +18,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.inteface.CommentView;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,9 +70,12 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         //       setBackgroundRatingBar();
         tvNameHelper.setText(nameHelper);
         tvAddress.setText(addressHelper);
-        Picasso.with(this).load(imgHelper)
+        Glide.with(this).load(imgHelper)
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.avatar)
                 .error(R.drawable.avatar)
+                .centerCrop()
+                .dontAnimate()
                 .into(imgAvatar);
 
         txtNext.setOnClickListener(this);

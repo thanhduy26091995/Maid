@@ -72,6 +72,8 @@ public class OwnerProfileActivity extends AppCompatActivity {
             supportPostponeEnterTransition();
             Glide.with(this)
                     .load(mInfoOwner.getImage())
+                    .thumbnail(0.5f)
+                    .error(R.drawable.no_image)
                     .centerCrop()
                     .dontAnimate()
                     .listener(new RequestListener<String, GlideDrawable>() {

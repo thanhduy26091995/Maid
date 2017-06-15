@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.DetailWorkHistoryActivity;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
-import com.squareup.picasso.Picasso;
 
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -54,9 +54,12 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
     @Override
     public void onBindViewHolder(HistoryJobAdapter.RecyclerViewHolder holder, int position) {
         holder.tvJob.setText(listData.get(position).getInfo().getTitle());
-        Picasso.with(context).load(listData.get(position).getInfo().getWork().getImage())
+        Glide.with(context).load(listData.get(position).getInfo().getWork().getImage())
+                .thumbnail(0.5f)
                 .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
+                .centerCrop()
+                .dontAnimate()
                 .into(holder.imgType);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
