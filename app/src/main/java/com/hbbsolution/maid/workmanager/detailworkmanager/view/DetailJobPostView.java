@@ -8,7 +8,10 @@ package com.hbbsolution.maid.workmanager.detailworkmanager.view;
 public interface DetailJobPostView {
     void displayNotifyJobPost(boolean isJobPost);
     void displayError(String error);
-
+    void displayNotifyAccceptJobRequested(boolean isJobPost);
+    void displayErrorAccceptJobRequested(String error);
+    void displayNotifyRefuseJobRequested(boolean isJobPost);
+    void displayErrorRefuseJobRequested(String error);
 //    void checkIn(CheckInResponse checkInResponse);
 
 //    void checkInFail(String error);

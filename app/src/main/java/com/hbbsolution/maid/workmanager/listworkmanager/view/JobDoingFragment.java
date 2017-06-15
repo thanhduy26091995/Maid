@@ -135,11 +135,18 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     private void loadInfoWorkDoning(Datum mDatum) {
         txtNameJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getUsername());
         txtAddressJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getAddress().getName());
+        txtTitleJobDoing.setText(mDatum.getInfo().getTitle());
+        txtTypeJobDoing.setText(mDatum.getInfo().getWork().getName());
+        txtContentJobDoing.setText(mDatum.getInfo().getDescription());
+        txtPriceJobDoing.setText(formatPrice(mDatum.getInfo().getPrice()));
+        txtDateJobDoing.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
+        txtAddressJobDoing.setText(mDatum.getInfo().getAddress().getName());
         Glide.with(getContext())
                 .load(mDatum.getStakeholders().getOwner().getInfo().getImage())
-                .error(R.drawable.no_image)
+                .thumbnail(0.5f)
+                .error(R.drawable.avatar)
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .placeholder(R.drawable.no_image)
+                .placeholder(R.drawable.avatar)
                 .dontAnimate()
                 .into(img_avatarJobDoingInfoMiad);
         Picasso.with(getContext())
@@ -147,12 +154,6 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
                 .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
                 .into(img_job_type);
-        txtTitleJobDoing.setText(mDatum.getInfo().getTitle());
-        txtTypeJobDoing.setText(mDatum.getInfo().getWork().getName());
-        txtContentJobDoing.setText(mDatum.getInfo().getDescription());
-        txtPriceJobDoing.setText(formatPrice(mDatum.getInfo().getPrice()));
-        txtDateJobDoing.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
-        txtAddressJobDoing.setText(mDatum.getInfo().getAddress().getName());
     }
 
     @Override

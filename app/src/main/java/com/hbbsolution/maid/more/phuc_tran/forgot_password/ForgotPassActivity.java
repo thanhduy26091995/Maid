@@ -1,4 +1,4 @@
-package com.hbbsolution.maid.more.forgot_password;
+package com.hbbsolution.maid.more.phuc_tran.forgot_password;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -213,4 +213,24 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
 
     }
 
+    @Override
+    public void displayNotifyAccceptJobRequested(boolean isJobPost) {
+
+    }
+
+    @Override
+    public void displayErrorAccceptJobRequested(String error) {
+
+    }
+
+    @Override
+    public void displayNotifyRefuseJobRequested(boolean isJobPost) {
+
+    }
+
+    @Override
+    public void displayErrorRefuseJobRequested(String error) {
+
+    }
+
 }

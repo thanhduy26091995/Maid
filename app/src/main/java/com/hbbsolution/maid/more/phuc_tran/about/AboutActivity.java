@@ -1,4 +1,4 @@
-package com.hbbsolution.maid.more.about;
+package com.hbbsolution.maid.more.phuc_tran.about;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

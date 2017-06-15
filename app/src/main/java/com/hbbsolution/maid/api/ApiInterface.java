@@ -64,6 +64,14 @@ public interface ApiInterface {
     @POST("task/reserve")
     Call<ChooseWorkResponse> chooseWork(@Field("id") String taskId);
 
+    @FormUrlEncoded
+    @POST("task/acceptRequest")
+    Call<JobPendingResponse> accceptJobRequested(@Field("id") String taskId, @Field("ownerId") String ownerId);
+
+    @FormUrlEncoded
+    @POST("task/denyRequest")
+    Call<JobPendingResponse> refuseJobRequested(@Field("id") String taskId, @Field("ownerId") String ownerId);
+
     @GET("maid/getTaskOfOwner")
     Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner,@Query("page") int page);
 }

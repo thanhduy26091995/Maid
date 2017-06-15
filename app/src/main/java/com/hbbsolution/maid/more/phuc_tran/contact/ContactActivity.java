@@ -1,4 +1,4 @@
-package com.hbbsolution.maid.more.contact;
+package com.hbbsolution.maid.more.phuc_tran.contact;
 
 import android.content.Intent;
 import android.net.Uri;

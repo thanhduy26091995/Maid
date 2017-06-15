@@ -25,6 +25,48 @@ public class DetailJobPendingPresenter {
         apiService = ApiClient.getClient().create(ApiInterface.class);
     }
 
+    public void accceptJobRequested(String idTask, String ownerId) {
+        Call<JobPendingResponse> responseCall = apiService.accceptJobRequested(idTask, ownerId);
+        responseCall.enqueue(new Callback<JobPendingResponse>() {
+            @Override
+            public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
+                try {
+                    if (response.isSuccessful()) {
+                        Boolean isJbPost = response.body().getStatus();
+                        mDetailJobPostView.displayNotifyAccceptJobRequested(isJbPost);
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+            }
+        });
+    }
+
+    public void refuseJobRequested(String idTask, String ownerId) {
+        Call<JobPendingResponse> responseCall = apiService.refuseJobRequested(idTask,ownerId);
+        responseCall.enqueue(new Callback<JobPendingResponse>() {
+            @Override
+            public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
+                try {
+                    if (response.isSuccessful()) {
+                        Boolean isJbPost = response.body().getStatus();
+                        mDetailJobPostView.displayNotifyRefuseJobRequested(isJbPost);
+                    }
+                } catch (Exception e) {
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+            }
+        });
+    }
+
     public void deleteJob(String idTask, String ownerId) {
 
         Call<JobPendingResponse> responseCall = apiService.deleteJob(idTask, ownerId);
@@ -33,19 +75,17 @@ public class DetailJobPendingPresenter {
             public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-                        Log.d("onResponse", response.body().getStatus() + "");
+
                         Boolean isJbPost = response.body().getStatus();
                         mDetailJobPostView.displayNotifyJobPost(isJbPost);
                     }
                 } catch (Exception e) {
-                    Log.d("Exception", e.toString());
                 }
 
             }
 
             @Override
             public void onFailure(Call<JobPendingResponse> call, Throwable t) {
-                Log.d("onFailure", t.toString());
             }
         });
     }

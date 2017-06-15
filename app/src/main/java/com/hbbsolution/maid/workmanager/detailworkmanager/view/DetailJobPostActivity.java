@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
@@ -72,6 +74,10 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     TextView txtIsTools;
     @BindView(R.id.txtExpired_request_detail_post)
     TextView txtExpired_request_detail_post;
+    @BindView(R.id.rela_confirm_maid)
+    RelativeLayout rela_confirm_maid;
+    @BindView(R.id.txtClearJob)
+    TextView txtClearJob;
 
     public static Activity mDetailJobPostActivity = null;
 
@@ -97,20 +103,29 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
         lo_clear_job.setOnClickListener(this);
         lo_infoOwner.setOnClickListener(this);
+        rela_confirm_maid.setOnClickListener(this);
 
         final Intent intent = getIntent();
         mDatum = (Datum) intent.getSerializableExtra("mDatum");
+
         if(!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())){
             txtExpired_request_detail_post.setVisibility(View.VISIBLE);
         }else {
             txtExpired_request_detail_post.setVisibility(View.GONE);
-
         }
 
         if(mDatum.getInfo().getTools()){
             txtIsTools.setVisibility(View.VISIBLE);
         }else {
             txtIsTools.setVisibility(View.GONE);
+        }
+
+        if(mDatum.getProcess().getId().equals("000000000000000000000006")) {
+            txtClearJob.setText("Từ chối công việc");
+            rela_confirm_maid.setVisibility(View.VISIBLE);
+        }else {
+            txtClearJob.setText("Hủy công việc");
+            rela_confirm_maid.setVisibility(View.GONE);
         }
 
         txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getUsername());
@@ -122,14 +137,23 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         txtAddress_detail_post.setText(mDatum.getInfo().getAddress().getName());
         txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getHistory().getUpdateAt()));
         txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt())+ " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));
+        Glide.with(this)
+                .load(mDatum.getStakeholders().getOwner().getInfo().getImage())
+                .error(R.drawable.avatar)
+                .thumbnail(0.5f)
+                .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .placeholder(R.drawable.avatar)
+                .dontAnimate()
+                .into(img_avatarQwner);
+
         Picasso.with(this).load(mDatum.getInfo().getWork().getImage())
                 .error(R.drawable.no_image)
                 .placeholder(R.drawable.no_image)
                 .into(imgType_job_detail_post);
-        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
-                .error(R.drawable.avatar)
-                .placeholder(R.drawable.avatar)
-                .into(img_avatarQwner);
+//        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
+//                .error(R.drawable.avatar)
+//                .placeholder(R.drawable.avatar)
+//                .into(img_avatarQwner);
     }
 
     @Override
@@ -157,24 +181,52 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                 startActivity(itInfoOwner);
                 break;
             case R.id.lo_clear_job:
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-                alertDialog.setCancelable(false);
-                alertDialog.setTitle("Thông báo");
-                alertDialog.setMessage("Bạn có chắc muốn xóa bài đăng này !");
-                alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        progressBar.setVisibility(View.VISIBLE);
-                        mDetailJobPostPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
-                    }
-                });
-                alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                if(mDatum.getProcess().getId().equals("000000000000000000000006")) {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                    alertDialog.setCancelable(false);
+                    alertDialog.setTitle("Thông báo");
+                    alertDialog.setMessage("Bạn có chắc muốn hủy công việc này !");
+                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            progressBar.setVisibility(View.VISIBLE);
+                            mDetailJobPostPresenter.refuseJobRequested(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
+                        }
+                    });
+                    alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                });
-                alertDialog.show();
+                        }
+                    });
+                    alertDialog.show();
+                }else {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                    alertDialog.setCancelable(false);
+                    alertDialog.setTitle("Thông báo");
+                    alertDialog.setMessage("Bạn có chắc muốn xóa công việc này !");
+                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            progressBar.setVisibility(View.VISIBLE);
+
+                            mDetailJobPostPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
+                        }
+                    });
+                    alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    alertDialog.show();
+                }
+                break;
+
+            case R.id.rela_confirm_maid:
+                progressBar.setVisibility(View.VISIBLE);
+
+                mDetailJobPostPresenter.accceptJobRequested(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                 break;
         }
     }
@@ -192,12 +244,41 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
     @Override
     public void displayNotifyJobPost(boolean isJobPost) {
+        displayNotifySuccess(isJobPost, "Hủy công việc thành công!");
+    }
+
+    @Override
+    public void displayError(String error) {
+
+    }
+
+    @Override
+    public void displayNotifyAccceptJobRequested(boolean isJobPost) {
+        displayNotifySuccess(isJobPost, "Chấp nhận công việc thành công!");
+    }
+
+    @Override
+    public void displayErrorAccceptJobRequested(String error) {
+
+    }
+
+    @Override
+    public void displayNotifyRefuseJobRequested(boolean isJobPost) {
+        displayNotifySuccess(isJobPost, "Từ chối công việc thành công!");
+    }
+
+    @Override
+    public void displayErrorRefuseJobRequested(String error) {
+
+    }
+
+    private void displayNotifySuccess(boolean isJobPost, String message) {
         progressBar.setVisibility(View.GONE);
         if (isJobPost) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setCancelable(false);
             alertDialog.setTitle("Thông báo");
-            alertDialog.setMessage("Bài đăng đã được xóa !");
+            alertDialog.setMessage(message);
             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -212,9 +293,5 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         }
     }
 
-    @Override
-    public void displayError(String error) {
-
-    }
 
 }
