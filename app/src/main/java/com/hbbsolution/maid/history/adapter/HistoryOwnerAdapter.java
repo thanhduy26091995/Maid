@@ -13,10 +13,10 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
-import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapter.RecyclerViewHolder> {
     private Context context;
     private List<OwnerHistory> ownerHistoryList;
+    private OwnerHistory ownerHistory;
     private boolean isHis;
     private String time;
     private Date date;
@@ -51,18 +52,18 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
     public void onBindViewHolder(HistoryOwnerAdapter.RecyclerViewHolder holder, int position) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-        p=position;
+        ownerHistory = ownerHistoryList.get(position);
         try {
-            date = simpleDateFormat.parse(ownerHistoryList.get(p).getTimes().get(0));
+            date = simpleDateFormat.parse(ownerHistory.getTimes().get(0));
             time = dates.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.tvName.setText(ownerHistoryList.get(p).getId().getInfo().getName());
+        holder.tvName.setText(ownerHistory.getId().getInfo().getName());
         holder.tvDate.setText(time);
-        Picasso.with(context).load(ownerHistoryList.get(p).getId().getInfo().getImage())
-                .placeholder(R.drawable.avatar)
+        Glide.with(context).load(ownerHistory.getId().getInfo().getImage())
                 .error(R.drawable.avatar)
+                .centerCrop()
                 .into(holder.imgMaid);
     }
 
@@ -94,6 +95,7 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
                 case R.id.rela_info:
                     Intent intent = new Intent(context, OwnerProfileActivity.class);
                     intent.putExtra("InfoOwner",ownerHistoryList.get(getAdapterPosition()).getId().getInfo());
+                    intent.putExtra("IsInJobDetail", false);
                     ActivityOptionsCompat historyOption =
                             ActivityOptionsCompat
                                     .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_history_avatar), "icAvatar");
