@@ -22,6 +22,7 @@ import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.statistic.view.StatisticActivity;
 import com.hbbsolution.maid.more.phuc_tran.term.TermActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
+import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 
 import java.util.HashMap;
@@ -61,6 +62,7 @@ public class MoreActivity extends AppCompatActivity {
     CardView cvSignIn;
     private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
+    private boolean isPause = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -160,5 +162,26 @@ public class MoreActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isPause = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isPause) {
+            SessionManagerForLanguage sessionManagerForLanguage = new SessionManagerForLanguage(MoreActivity.this);
+            boolean isChangeLanguage = sessionManagerForLanguage.changeLanguage();
+            if(isChangeLanguage) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(this.getIntent());
+                overridePendingTransition(0, 0);
+            }
+        }
     }
 }

@@ -27,6 +27,7 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
     private Callback callback;
     private int tabJob;
 
+
     public JobPostAdapter(Context context, List<Datum> datumList, int  tabJob) {
         this.context = context;
         this.datumList = datumList;
@@ -47,16 +48,18 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
     public void onBindViewHolder(JobPostViewHolder holder, int position) {
         final Datum mDatum = datumList.get(position);
 
-        String idMaid = "5923c12f7d7da13b240e7a77";
+        String idMaid = "5923c12f7d7da13b240e7321";
         int requestSize = mDatum.getStakeholders().getRequest().size();
         for(int i = 0; i < requestSize; i++) {
             String _idMaid = mDatum.getStakeholders().getRequest().get(i).getMaid();
             if(_idMaid.equals(idMaid)){
                 String  mTimeOfregister = mDatum.getStakeholders().getRequest().get(i).getTime();
-                setWorkTimeRegister(holder.txtTimePostHistory,mTimeOfregister );
+                WorkTimeValidate.setWorkTimeRegister(context, holder.txtTimePostHistory,mTimeOfregister);
+//                setWorkTimeRegister(holder.txtTimePostHistory,mTimeOfregister );
                 break;
             }
         }
+
         holder.txtTitleJobPost.setText(mDatum.getInfo().getTitle());
         Picasso.with(context).load(mDatum.getInfo().getWork().getImage())
                 .placeholder(R.drawable.no_image)
@@ -76,6 +79,11 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         } else {
             holder.txtExpired.setVisibility(View.GONE);
             holder.lo_background.setVisibility(View.GONE);
+            if(mDatum.getProcess().getId().equals("000000000000000000000006")) {
+                holder.txtRequestDirect.setVisibility(View.VISIBLE);
+            }else {
+                holder.txtRequestDirect.setVisibility(View.GONE);
+            }
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +113,7 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
 
     public class JobPostViewHolder extends RecyclerView.ViewHolder {
         private TextView txtTimePostHistory, txtDatePostHistory, txtTimeDoingPost,
-                txtTitleJobPost, txtExpired, txtType;
+                txtTitleJobPost, txtExpired, txtType, txtRequestDirect;
         private ImageView imgTypeJobPost;
         private LinearLayout lo_background;
 
@@ -118,20 +126,21 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
             imgTypeJobPost = (ImageView) itemView.findViewById(R.id.imgTypeJobPost);
             txtExpired = (TextView) itemView.findViewById(R.id.txtExpired_request_detail_post);
             lo_background = (LinearLayout) itemView.findViewById(R.id.lo_background);
-            txtType = (TextView) itemView.findViewById(R.id.txtType);
+//            txtType = (TextView) itemView.findViewById(R.id.txtType);
+            txtRequestDirect = (TextView) itemView.findViewById(R.id.txtExpired_request_direct_detail);
         }
     }
 
-    private void setWorkTimeRegister(TextView txtTimePostHistory, String _timePostHistory) {
-        String[] mWorkTimeHistory = WorkTimeValidate.workTimeValidate(_timePostHistory);
-        if (!mWorkTimeHistory[2].equals("0")) {
-            txtTimePostHistory.setText(mWorkTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(mWorkTimeHistory[2]))));
-        } else if (!mWorkTimeHistory[1].equals("0")) {
-           txtTimePostHistory.setText(mWorkTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(mWorkTimeHistory[1]))));
-        } else if (!mWorkTimeHistory[0].equals("0")) {
-            txtTimePostHistory.setText(mWorkTimeHistory[0] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(mWorkTimeHistory[0]))));
-        }
-    }
+//    private void setWorkTimeRegister(TextView txtTimePostHistory, String _timePostHistory) {
+//        String[] mWorkTimeHistory = WorkTimeValidate.workTimeValidate(_timePostHistory);
+//        if (!mWorkTimeHistory[2].equals("0")) {
+//            txtTimePostHistory.setText(mWorkTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(mWorkTimeHistory[2]))));
+//        } else if (!mWorkTimeHistory[1].equals("0")) {
+//           txtTimePostHistory.setText(mWorkTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(mWorkTimeHistory[1]))));
+//        } else if (!mWorkTimeHistory[0].equals("0")) {
+//            txtTimePostHistory.setText(mWorkTimeHistory[0] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(mWorkTimeHistory[0]))));
+//        }
+//    }
 
     public interface Callback {
         void onItemClick(Datum mDatum);
