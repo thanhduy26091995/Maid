@@ -1,4 +1,4 @@
-package com.hbbsolution.maid.more.statistic.view;
+package com.hbbsolution.maid.more.duy_nguyen.view;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
-import com.hbbsolution.maid.more.statistic.inteface.StatisticView;
-import com.hbbsolution.maid.more.statistic.presenter.StatisticPresenter;
+import com.hbbsolution.maid.more.duy_nguyen.inteface.StatisticView;
+import com.hbbsolution.maid.more.duy_nguyen.presenter.StatisticPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class StatisticActivity extends AppCompatActivity implements View.OnClickListener, StatisticView {
+public class StatisticActivity extends AppCompatActivity implements View.OnClickListener,StatisticView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tvStartDate)

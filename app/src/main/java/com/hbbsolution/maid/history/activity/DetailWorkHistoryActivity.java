@@ -2,9 +2,7 @@ package com.hbbsolution.maid.history.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -22,7 +20,7 @@ import com.hbbsolution.maid.utils.WorkTimeValidate;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailWorkHistoryActivity extends AppCompatActivity implements View.OnClickListener{
+public class DetailWorkHistoryActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.detail_work_history_type)
@@ -82,33 +80,31 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             doc = (WorkHistory) extras.getSerializable("work");
+            Glide.with(this).load(doc.getInfo().getWork().getImage())
+                    .thumbnail(0.5f)
+                    .placeholder(R.drawable.no_image)
+                    .error(R.drawable.no_image)
+                    .centerCrop()
+                    .dontAnimate()
+                    .into(imgJobType);
+            tvJob.setText(doc.getInfo().getTitle());
+            tvWork.setText(doc.getInfo().getWork().getName());
+            tvContent.setText(doc.getInfo().getDescription());
+            tvSalary.setText(String.valueOf(doc.getInfo().getPrice()));
+            tvAddress.setText(doc.getInfo().getAddress().getName());
+            tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
+            tvTime.setText(WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getEndAt()).replace(":", "h"));
+
+            Glide.with(this).load(doc.getStakeholders().getOwner().getInfo().getImage())
+                    .thumbnail(0.5f)
+                    .placeholder(R.drawable.avatar)
+                    .error(R.drawable.avatar)
+                    .centerCrop()
+                    .dontAnimate()
+                    .into(imgOwner);
+            tvNameOwner.setText(doc.getStakeholders().getOwner().getInfo().getName());
+            tvAddressOwner.setText(doc.getStakeholders().getOwner().getInfo().getAddress().getName());
         }
-        Glide.with(this).load(doc.getInfo().getWork().getImage())
-                .thumbnail(0.5f)
-                .placeholder(R.drawable.no_image)
-                .error(R.drawable.no_image)
-                .centerCrop()
-                .dontAnimate()
-                .into(imgJobType);
-        tvJob.setText(doc.getInfo().getTitle());
-        tvWork.setText(doc.getInfo().getWork().getName());
-        tvContent.setText(doc.getInfo().getDescription());
-        tvSalary.setText(String.valueOf(doc.getInfo().getPrice()));
-        tvAddress.setText(doc.getInfo().getAddress().getName());
-        tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
-        tvTime.setText(WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getEndAt()).replace(":", "h"));
-
-        Glide.with(this).load(doc.getStakeholders().getOwner().getInfo().getImage())
-                .thumbnail(0.5f)
-                .placeholder(R.drawable.avatar)
-                .error(R.drawable.avatar)
-                .centerCrop()
-                .dontAnimate()
-                .into(imgOwner);
-        tvNameOwner.setText(doc.getStakeholders().getOwner().getInfo().getName());
-        tvAddressOwner.setText(doc.getStakeholders().getOwner().getInfo().getAddress().getName());
-
-
     }
 
     @Override
@@ -126,16 +122,15 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             case R.id.rela_info:
                 intent = new Intent(this, OwnerProfileActivity.class);
                 intent.putExtra("InfoOwner", doc.getStakeholders().getOwner().getInfo());
-                ActivityOptionsCompat historyOption =
-                        ActivityOptionsCompat
-                                .makeSceneTransitionAnimation(this, (View)findViewById(R.id.detail_owner_history_avatar), "icAvatar");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    startActivity(intent, historyOption.toBundle());
-                }
-                else {
+//                ActivityOptionsCompat historyOption =
+//                        ActivityOptionsCompat
+//                                .makeSceneTransitionAnimation(this, (View) findViewById(R.id.detail_owner_history_avatar), "icAvatar");
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                    startActivity(intent, historyOption.toBundle());
+//                } else {
                     startActivity(intent);
-                }
+//                }
                 break;
         }
     }
