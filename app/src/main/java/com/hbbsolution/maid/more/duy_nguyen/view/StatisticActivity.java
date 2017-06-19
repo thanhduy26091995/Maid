@@ -13,15 +13,20 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.StatisticView;
+import com.hbbsolution.maid.more.duy_nguyen.model.Task;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.StatisticPresenter;
+import com.hbbsolution.maid.more.viet_pham.view.signin.profile.ProfileActivity;
+import com.hbbsolution.maid.utils.SessionManagerUser;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,12 +61,13 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     private Calendar cal;
     private Date startDate, endDate;
     private String strStartDate, strEndDate;
-  //  private SessionManagerUser sessionManagerUser;
+    private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
     private StatisticPresenter statisticPresenter;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     private ProgressBar progressBar;
-    private int onCreate, pending, reserved, onDoing, done,immediate;
+    private int onCreate, pending, reserved, onDoing, done, immediate;
+    private String tempStartDate, tempEndDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +77,18 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         lnStatistic.setVisibility(View.INVISIBLE);
         progressBar = (ProgressBar) findViewById(R.id.progressPost);
         progressBar.setVisibility(View.VISIBLE);
-//
-//        sessionManagerUser = new SessionManagerUser(this);
-//        hashDataUser = sessionManagerUser.getUserDetails();
-//        statisticPresenter = new StatisticPresenter(this);
+
+        sessionManagerUser = new SessionManagerUser(this);
+        hashDataUser = sessionManagerUser.getUserDetails();
+        statisticPresenter = new StatisticPresenter(this);
 
         setToolbar();
         cal = Calendar.getInstance();
         getTime();
         setNumber();
-        getData();
+        if (hashDataUser != null) {
+            getData();
+        }
         setEventClick();
     }
 
@@ -103,18 +111,19 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         reserved = 0;
         onDoing = 0;
         done = 0;
-        immediate=0;
+        immediate = 0;
     }
 
     public void getData() {
-//        if(!hashDataUser.get(SessionManagerUser.KEY_IMAGE).equals("")) {
-//            Picasso.with(this).load(hashDataUser.get(SessionManagerUser.KEY_IMAGE))
-//                    .placeholder(R.drawable.avatar)
-//                    .error(R.drawable.avatar)
-//                    .into(imgAvatar);
-//        }
-//        tvOwnerName.setText(hashDataUser.get(SessionManagerUser.KEY_NAME));
-//        statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
+        Glide.with(this).load(hashDataUser.get(SessionManagerUser.KEY_IMAGE))
+                .thumbnail(0.5f)
+                .placeholder(R.drawable.avatar)
+                .error(R.drawable.avatar)
+                .centerCrop()
+                .dontAnimate()
+                .into(imgAvatar);
+        tvOwnerName.setText(hashDataUser.get(SessionManagerUser.KEY_NAME));
+        statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
     }
 
     public void showDatePickerDialog1() {
@@ -130,6 +139,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 if (monthOfYear + 1 < 10) {
                     month = "0" + (monthOfYear + 1);
                 }
+                tempStartDate = tvStartDate.getText().toString();
                 tvStartDate.setText(
                         day + "/" + month + "/" + year);
                 //Lưu vết lại biến ngày hoàn thành
@@ -137,9 +147,10 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 startDate = cal.getTime();
                 if (endDate.getTime() - startDate.getTime() >= 0) {
                     setNumber();
-   //                 statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
+                    statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                 } else {
-   //                 ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), StatisticActivity.this);
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), StatisticActivity.this);
+                    tvStartDate.setText(tempStartDate);
                 }
             }
         };
@@ -171,6 +182,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 if (monthOfYear + 1 < 10) {
                     month = "0" + (monthOfYear + 1);
                 }
+                tempEndDate = tvEndDate.getText().toString();
                 tvEndDate.setText(
                         day + "/" + month + "/" + year);
                 //Lưu vết lại biến ngày hoàn thành
@@ -179,13 +191,14 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 if (startDate != null) {
                     if (endDate.getTime() - startDate.getTime() >= 0) {
                         setNumber();
-  //                      statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
+                        statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                     } else {
-  //                      ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), StatisticActivity.this);
+                        ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), StatisticActivity.this);
+                        tvEndDate.setText(tempEndDate);
                     }
                 } else {
                     setNumber();
-  //                  statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
+                    statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
                 }
             }
         };
@@ -223,7 +236,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 showDatePickerDialog2();
                 break;
             case R.id.rela_info:
-                intent = new Intent(StatisticActivity.this, OwnerProfileActivity.class);
+                intent = new Intent(StatisticActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -237,41 +250,47 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public void getStatisticSuccess(List<Task> listTask, int total) {
-//        int i = 0;
-//        while (i < listTask.size()) {
-//            if (listTask.get(i).getId().equals("000000000000000000000001")) {
-//                onCreate = listTask.get(i).getCount();
-//            }
-//            if (listTask.get(i).getId().equals("000000000000000000000002")) {
-//                pending = listTask.get(i).getCount();
-//            }
-//            if (listTask.get(i).getId().equals("000000000000000000000003")) {
-//                reserved = listTask.get(i).getCount();
-//            }
-//            if (listTask.get(i).getId().equals("000000000000000000000004")) {
-//                onDoing = listTask.get(i).getCount();
-//            }
-//            if (listTask.get(i).getId().equals("000000000000000000000005")) {
-//                done = listTask.get(i).getCount();
-//            }
-//            if (listTask.get(i).getId().equals("000000000000000000000006")) {
-//                immediate = listTask.get(i).getCount();
-//            }
-//            i++;
-//        }
-//        numberPostedTask.setText(String.valueOf(onCreate + pending));
-//        numberDoingTask.setText(String.valueOf(reserved + onDoing + immediate));
-//        numberDoneTask.setText(String.valueOf(done));
-//        totalPrice.setText(String.valueOf(total) + " " + getResources().getString(R.string.million));
-//        progressBar.setVisibility(View.GONE);
-//        lnStatistic.setVisibility(View.VISIBLE);
-//    }
-//
-//    @Override
-//    public void getStatisticFail() {
-//
-//    }
+    @Override
+    public void getStatisticSuccess(List<Task> listTask, int total) {
+        int i = 0;
+        while (i < listTask.size()) {
+            if (listTask.get(i).getId().equals("000000000000000000000001")) {
+                onCreate = listTask.get(i).getCount();
+            }
+            if (listTask.get(i).getId().equals("000000000000000000000002")) {
+                pending = listTask.get(i).getCount();
+            }
+            if (listTask.get(i).getId().equals("000000000000000000000003")) {
+                reserved = listTask.get(i).getCount();
+            }
+            if (listTask.get(i).getId().equals("000000000000000000000004")) {
+                onDoing = listTask.get(i).getCount();
+            }
+            if (listTask.get(i).getId().equals("000000000000000000000005")) {
+                done = listTask.get(i).getCount();
+            }
+            if (listTask.get(i).getId().equals("000000000000000000000006")) {
+                immediate = listTask.get(i).getCount();
+            }
+            i++;
+        }
+        numberPostedTask.setText(String.valueOf(onCreate));
+        numberDoingTask.setText(String.valueOf(reserved + onDoing + immediate));
+        numberDoneTask.setText(String.valueOf(done));
+        totalPrice.setText(String.valueOf(total) + " " + getResources().getQuantityString(R.plurals.million, total));
+        progressBar.setVisibility(View.GONE);
+        lnStatistic.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getStatisticFail() {
+        ShowAlertDialog.showAlert("ERROR",StatisticActivity.this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.bind(this).unbind();
+    }
 }
 
