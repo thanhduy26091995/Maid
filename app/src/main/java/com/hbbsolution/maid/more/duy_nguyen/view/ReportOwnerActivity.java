@@ -123,10 +123,11 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
                 if (edtReport.getText().toString().length() > 0) {
-                    reportPresenter.reportMaid(idHelper, edtReport.getText().toString().trim());
+                    reportPresenter.reportOwner(idHelper, edtReport.getText().toString().trim());
                 } else {
                     Toast.makeText(this, "Vui lòng nhập bình luận", Toast.LENGTH_LONG).show();
                 }
+                Toast.makeText(this, "asdasd", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvSkip:
                 finish();
@@ -140,6 +141,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
         intent.putExtra("message",message);
         setResult(Activity.RESULT_OK,intent);
         finish();
+        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
     }
 
     @Override

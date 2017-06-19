@@ -17,12 +17,16 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value=" AIzaSyAzSFwRry4u2KYJYq3IT_oc-w9sww5yVpY" />
-
-        <activity android:name=".main.HomeActivity">
-            <intent-filter>
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <activity android:name=".main.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity" />
@@ -31,8 +35,8 @@
         <activity android:name=".history.activity.DetailWorkHistoryActivity" />
         <activity android:name=".history.activity.ReportActivity" />
         <activity android:name=".history.activity.ListWorkActivity" />
-        <activity android:name=".more.phuc_tran.contact.ContactActivity" />
-        <activity android:name=".more.phuc_tran.about.AboutActivity" />
+        <activity android:name=".more.phuc_tran.ContactActivity" />
+        <activity android:name=".more.phuc_tran.AboutActivity" />
         <activity android:name=".home.list_job.view.ListJobActivity" />
         <activity android:name=".home.job_near_by.view.JobNearByActivity" />
         <activity android:name=".home.job_detail.view.JobDetailActivity" />
@@ -41,11 +45,22 @@
         <activity android:name=".more.duy_nguyen.view.LanguageActivity" />
         <activity android:name=".more.duy_nguyen.view.ReportOwnerActivity" />
         <activity android:name=".home.job_near_by.view.JobNearByMapActivity" />
-        <activity android:name=".more.phuc_tran.term.TermActivity" />
-        <activity android:name=".more.phuc_tran.forgot_password.ForgotPassActivity" />
-        <activity android:name=".more.viet_pham.MoreActivity"/>
-        <activity android:name=".more.viet_pham.view.signin.profile.ProfileActivity"/>
-        <activity android:name=".more.viet_pham.view.signin.SignInActivity"/>
+        <activity android:name=".more.phuc_tran.TermActivity" />
+        <activity android:name=".more.phuc_tran.ForgotPassActivity" />
+        <activity android:name=".more.viet_pham.MoreActivity" />
+        <activity android:name=".more.viet_pham.view.signin.profile.ProfileActivity" />
+        <activity android:name=".more.viet_pham.view.signin.SignInActivity" />
+
+        <service android:name=".service.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".service.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
     </application>
 

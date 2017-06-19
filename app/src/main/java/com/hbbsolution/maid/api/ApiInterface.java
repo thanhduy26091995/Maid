@@ -8,6 +8,7 @@ import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.ReportResponse;
+import com.hbbsolution.maid.more.phuc_tran.model.AboutResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.StatisticResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
@@ -56,9 +57,10 @@ public interface ApiInterface {
     @GET
     Call<GeoCodeMapResponse> getLocaltionAddress(@Url String url, @Query("address") String address);
     @Multipart
-    @POST("auth/login")
+    @POST("auth/maid/login")
     Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
-                                     @Part("password") RequestBody password
+                                     @Part("password") RequestBody password,
+                                     @Part("device_token") RequestBody deviceToken
     );
 
     @FormUrlEncoded
@@ -75,6 +77,9 @@ public interface ApiInterface {
 
     @GET("maid/getTaskOfOwner")
     Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner,@Query("page") int page);
+
+    @GET("more/getTerm")
+    Call<AboutResponse> getAbout (@Query("id") String idTask);
 
     @GET("maid/statistical")
     Call<StatisticResponse> getStatistic(@Query("startAt") String startAt, @Query("endAt") String endAt);

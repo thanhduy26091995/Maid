@@ -18,9 +18,9 @@ import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.main.HomeActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.StatisticActivity;
-import com.hbbsolution.maid.more.phuc_tran.about.AboutActivity;
-import com.hbbsolution.maid.more.phuc_tran.contact.ContactActivity;
-import com.hbbsolution.maid.more.phuc_tran.term.TermActivity;
+import com.hbbsolution.maid.more.phuc_tran.AboutActivity;
+import com.hbbsolution.maid.more.phuc_tran.ContactActivity;
+import com.hbbsolution.maid.more.phuc_tran.TermActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
@@ -69,6 +69,7 @@ public class MoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
         ButterKnife.bind(this);
+        sessionManagerUser = new SessionManagerUser(this);
         //config toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -76,6 +77,7 @@ public class MoreActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtMore_title_toothbar.setText(getResources().getString(R.string.more));
         addEvents();
+        loadData();
     }
 
 

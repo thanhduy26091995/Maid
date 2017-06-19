@@ -24,7 +24,7 @@ public class ReportPresenter {
         apiService = ApiClient.getClient().create(ApiInterface.class);
     }
 
-    public void reportMaid(String toId,String content) {
+    public void reportOwner(String toId,String content) {
         Call<ReportResponse> call = apiService.reportOwner(toId,content);
         call.enqueue(new Callback<ReportResponse>() {
             @Override
