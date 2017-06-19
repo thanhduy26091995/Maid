@@ -8,6 +8,7 @@ import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.ReportResponse;
+import com.hbbsolution.maid.more.phuc_tran.model.AboutResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
@@ -74,4 +75,7 @@ public interface ApiInterface {
 
     @GET("maid/getTaskOfOwner")
     Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner,@Query("page") int page);
+
+    @GET("more/getTerm")
+    Call<AboutResponse> getAbout (@Query("id") String idTask);
 }

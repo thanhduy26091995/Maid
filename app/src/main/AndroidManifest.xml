@@ -31,8 +31,8 @@
         <activity android:name=".history.activity.DetailWorkHistoryActivity" />
         <activity android:name=".history.activity.ReportActivity" />
         <activity android:name=".history.activity.ListWorkActivity" />
-        <activity android:name=".more.phuc_tran.contact.ContactActivity" />
-        <activity android:name=".more.phuc_tran.about.AboutActivity" />
+        <activity android:name=".more.phuc_tran.ContactActivity" />
+        <activity android:name=".more.phuc_tran.AboutActivity" />
         <activity android:name=".home.list_job.view.ListJobActivity" />
         <activity android:name=".home.job_near_by.view.JobNearByActivity" />
         <activity android:name=".home.job_detail.view.JobDetailActivity" />
@@ -41,8 +41,8 @@
         <activity android:name=".more.duy_nguyen.view.LanguageActivity" />
         <activity android:name=".more.duy_nguyen.view.ReportOwnerActivity" />
         <activity android:name=".home.job_near_by.view.JobNearByMapActivity" />
-        <activity android:name=".more.phuc_tran.term.TermActivity" />
-        <activity android:name=".more.phuc_tran.forgot_password.ForgotPassActivity" />
+        <activity android:name=".more.phuc_tran.TermActivity" />
+        <activity android:name=".more.phuc_tran.ForgotPassActivity" />
         <activity android:name=".more.viet_pham.MoreActivity"/>
         <activity android:name=".more.viet_pham.view.signin.profile.ProfileActivity"/>
         <activity android:name=".more.viet_pham.view.signin.SignInActivity"/>
