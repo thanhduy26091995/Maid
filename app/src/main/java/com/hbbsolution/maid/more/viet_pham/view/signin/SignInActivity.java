@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.main.HomeActivity;
@@ -78,7 +79,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
         addEvents();
 
         mSignInPresenter = new SignInPresenter(this);
-  //      loginGoogle();
+        //      loginGoogle();
 
     }
 
@@ -97,8 +98,8 @@ public class SignInActivity extends AppCompatActivity implements MoreView
             public void onClick(View view) {
                 String username = editUserName.getText().toString();
                 String password = editPassword.getText().toString();
-
-                mSignInPresenter.signIn(username, password);
+                String token = FirebaseInstanceId.getInstance().getToken();
+                mSignInPresenter.signIn(username, password, token);
             }
         });
         btnForgetPassword.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +113,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
         imbGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
- //               signIn();
+                //               signIn();
             }
         });
 
@@ -156,7 +157,6 @@ public class SignInActivity extends AppCompatActivity implements MoreView
     public void displayNotFoundLocaltion() {
 
     }
-
 
 
     //LogIn_google----Start---

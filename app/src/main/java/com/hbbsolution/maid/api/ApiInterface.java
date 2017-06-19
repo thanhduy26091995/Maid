@@ -58,7 +58,8 @@ public interface ApiInterface {
     @Multipart
     @POST("auth/login")
     Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
-                                     @Part("password") RequestBody password
+                                     @Part("password") RequestBody password,
+                                     @Part("device_token") RequestBody deviceToken
     );
 
     @FormUrlEncoded
