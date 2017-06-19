@@ -56,7 +56,7 @@ public interface ApiInterface {
     @GET
     Call<GeoCodeMapResponse> getLocaltionAddress(@Url String url, @Query("address") String address);
     @Multipart
-    @POST("auth/login")
+    @POST("auth/maid/login")
     Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
                                      @Part("password") RequestBody password,
                                      @Part("device_token") RequestBody deviceToken

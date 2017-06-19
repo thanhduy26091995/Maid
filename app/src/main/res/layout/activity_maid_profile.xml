@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="NHẬN XÉT" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@android:color/darker_gray" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="always"
+                tools:listitem="@layout/item_comment">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/lo_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/toolbar_theme">
+
+        <com.hbbsolution.owner.base.IconTextView
+            android:id="@+id/txtBackInfoMaid"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/ic_back"
+            android:textColor="@color/home_background_history"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/manager_doing_title_toothbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Đánh giá"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/info_user_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_collapseMode="none">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorWhite"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:theme="@style/toolbar_theme">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Thông tin"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </android.support.v7.widget.Toolbar>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_blur_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/bg" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="top|center"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/img_avatarMaid"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/avatar" />
+
+                        <TextView
+                            android:id="@+id/txtNameInfoMaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="Nguyển Văn A"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_large" />
+
+                        <RatingBar
+                            android:id="@+id/ratingInfoMaid"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:numStars="5"
+                            android:rating="4"
+                            android:stepSize="1"
+                            android:theme="@style/RatingBar" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:weightSum="4">
+
+                    <com.hbbsolution.maid.base.IconTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/ic_gender"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/icon_size" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_toRightOf="@+id/txt_icon_dollar"
+                        android:layout_weight="3.5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtGenderInfoMaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="Nữ"
+                            android:textColor="@color/colorBlack" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@android:color/darker_gray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
+                    android:weightSum="4">
+
+                    <com.hbbsolution.maid.base.IconTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/ic_phone_portr"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/icon_size" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtPhoneInfoMaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="01252"
+                            android:textColor="@color/colorBlack" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.1dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@android:color/darker_gray" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
+                    android:weightSum="4">
+
+                    <com.hbbsolution.maid.base.IconTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="top|center"
+                        android:text="@string/ic_home"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/icon_size" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtAddressInfoMaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="u can read it bit by bit and compare between it :)"
+                            android:textColor="@color/colorBlack" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Năng lực làm việc"
+                    android:background="@color/more_background"
+                    android:textColor="@color/colorBlack"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:weightSum="4">
+
+                    <com.hbbsolution.maid.base.IconTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/ic_usd"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/icon_size" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_toRightOf="@+id/txt_icon_dollar"
+                        android:layout_weight="3.5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtPriceInfoMaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="100k"
+                            android:textColor="@color/colorBlack" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recy_listTypeJob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+                </android.support.v7.widget.RecyclerView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:id="@+id/linear_report_maid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/txt_chk"
+                        android:text="Báo cáo người giúp việc"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/text_size_large" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/lo_ChosenMaidInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/txt_chk"
+                        android:text="Chọn người giúp việc"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/text_size_large" />
+
+                    <com.hbbsolution.owner.base.IconTextView
+                        android:id="@+id/txt_chk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="top|center"
+                        android:text="@string/ic_checkmark"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/icon_size" />
+                </RelativeLayout>
+
+                <View
+
+                    android:id="@+id/v_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

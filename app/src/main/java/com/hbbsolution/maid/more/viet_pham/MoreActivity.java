@@ -69,6 +69,7 @@ public class MoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more);
         ButterKnife.bind(this);
+        sessionManagerUser = new SessionManagerUser(this);
         //config toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -76,6 +77,7 @@ public class MoreActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         txtMore_title_toothbar.setText(getResources().getString(R.string.more));
         addEvents();
+        loadData();
     }
 
 
