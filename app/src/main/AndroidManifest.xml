@@ -41,7 +41,7 @@
         <activity android:name=".home.job_near_by.view.JobNearByActivity" />
         <activity android:name=".home.job_detail.view.JobDetailActivity" />
         <activity android:name=".home.owner_profile.view.OwnerProfileActivity" />
-        <activity android:name=".more.statistic.view.StatisticActivity" />
+        <activity android:name=".more.duy_nguyen.view.StatisticActivity" />
         <activity android:name=".more.duy_nguyen.view.LanguageActivity" />
         <activity android:name=".more.duy_nguyen.view.ReportOwnerActivity" />
         <activity android:name=".home.job_near_by.view.JobNearByMapActivity" />

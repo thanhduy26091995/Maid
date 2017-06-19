@@ -57,6 +57,8 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     RelativeLayout rela_info;
     @BindView(R.id.img_history_avatar)
     CircleImageView imgAvatar;
+    @BindView(R.id.txt_statistic_address)
+    TextView tvStatisticAddress;
 
     private Calendar cal;
     private Date startDate, endDate;
@@ -123,6 +125,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 .dontAnimate()
                 .into(imgAvatar);
         tvOwnerName.setText(hashDataUser.get(SessionManagerUser.KEY_NAME));
+        tvStatisticAddress.setText(hashDataUser.get(SessionManagerUser.KEY_ADDRESS));
         statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
     }
 
