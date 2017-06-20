@@ -1,8 +1,10 @@
 package com.hbbsolution.maid.more.viet_pham;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
+import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
 import com.hbbsolution.maid.main.HomeActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.StatisticActivity;
@@ -114,9 +117,13 @@ public class MoreActivity extends AppCompatActivity {
         cvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MoreActivity.this, SignInActivity.class);
-                startActivity(intent);
-
+                if (sessionManagerUser.isLoggedIn()) {
+                    Intent intent = new Intent(MoreActivity.this, MaidProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MoreActivity.this, SignInActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -126,6 +133,25 @@ public class MoreActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent iStatistic = new Intent(MoreActivity.this, StatisticActivity.class);
                 startActivity(iStatistic);
+            }
+        });
+        lnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MoreActivity.this);
+                builder.setTitle(getResources().getString(R.string.signout))
+                        .setMessage(getResources().getString(R.string.signoutContent)).setCancelable(true)
+                        .setNegativeButton(getResources().getString(R.string.cancel), null)
+                        .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // TODO Auto-generated method stub
+                                sessionManagerUser.logoutUser();
+                                Intent intent= new Intent(MoreActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).show();
             }
         });
         lnLanguage.setOnClickListener(new View.OnClickListener() {
