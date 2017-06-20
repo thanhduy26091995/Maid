@@ -23,6 +23,7 @@ import com.hbbsolution.maid.home.list_job.view.ListJobActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.task.TaskData;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -181,6 +182,8 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
             });
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+        } else {
+            ShowAlertDialog.showAlert("Chọn công việc không thành công", JobDetailActivity.this);
         }
     }
 

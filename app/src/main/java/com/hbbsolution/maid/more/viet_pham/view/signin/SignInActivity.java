@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,6 @@ import com.hbbsolution.maid.more.viet_pham.model.signin_signup.DataUpdateRespons
 import com.hbbsolution.maid.more.viet_pham.presenter.SignInPresenter;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
-
 
 import java.util.HashMap;
 
@@ -133,6 +133,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
             sessionManagerUser.createLoginSession(bodyResponse.getData());
             hashDataUser = sessionManagerUser.getUserDetails();
             ApiClient.setToken(hashDataUser.get(SessionManagerUser.KEY_TOKEN));
+            Log.d("TOKEN", hashDataUser.get(SessionManagerUser.KEY_TOKEN));
             Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
