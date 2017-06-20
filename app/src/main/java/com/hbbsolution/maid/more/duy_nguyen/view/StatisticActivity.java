@@ -207,6 +207,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
             }
         };
         //các lệnh dưới này xử lý ngày giờ trong DatePickerDialog
+
         //sẽ giống với trên TextView khi mở nó lên
         String s = tvEndDate.getText().toString();
         String strArrtmp[] = s.split("/");
