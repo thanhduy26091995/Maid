@@ -15,10 +15,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.StatisticView;
 import com.hbbsolution.maid.more.duy_nguyen.model.Task;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.StatisticPresenter;
-import com.hbbsolution.maid.more.viet_pham.view.signin.profile.ProfileActivity;
+
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 
@@ -239,7 +240,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 showDatePickerDialog2();
                 break;
             case R.id.rela_info:
-                intent = new Intent(StatisticActivity.this, ProfileActivity.class);
+                intent = new Intent(StatisticActivity.this, MaidProfileActivity.class);
                 startActivity(intent);
                 break;
         }
