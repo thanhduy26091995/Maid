@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -122,7 +121,6 @@ public class ContactActivity extends AppCompatActivity implements ContactView{
         phoneNo = dataContact.getPhone();
         txt_name.setText(dataContact.getName());
         txt_address.setText(dataContact.getAddress());
-        Log.e("mail",mail);
     }
 
     @Override
