@@ -76,18 +76,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (NotificationUtils.isAppIsInBackground(getApplicationContext())) {
             pushNotification(remoteMessage);
         } else {
-            if (!isAtActivity("WorkManagerActivity")) {
-                if (status.equals("6")) {
-                    pushNotification(remoteMessage);
-                }
-
-            }
-            if (!isAtActivity("HistoryActivity")) {
-                if (status.equals("5")) {
-                    pushNotification(remoteMessage);
-                }
-
-            }
+            pushNotification(remoteMessage);
         }
     }
 
@@ -103,27 +92,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }
-//        if (data.get("type").equals("chat")) {
-//            Intent intent = new Intent(this, ChatActivity.class);
-//            User user = new User(data.get("avatar"), data.get("title"), data.get("uid"), data.get("deviceToken"));
-//            intent.putExtra(Constants.USERS, user);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//        }
-//
-//        if (data.get("type").equals("comment")) {
-//            Intent intent = new Intent(this, CommentActivity.class);
-//            Homestay homestay = new Homestay(data.get("homestayId"), Integer.parseInt(data.get("districtId")), Integer.parseInt(data.get("provinceId")));
-//            intent.putExtra(Constants.HOMESTAY, homestay);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//        }
-//
-//        if (data.get("type").equals("other")) {
-//            Intent intent = new Intent(this, MainActivity.class);
-//            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//        }
-
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentTitle(data.get("title"))
