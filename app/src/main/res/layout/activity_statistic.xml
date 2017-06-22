@@ -159,7 +159,9 @@
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="@string/total"
-                                        android:textSize="20sp" />
+                                        android:textSize="18sp"
+                                        android:layout_marginLeft="30dp"
+                                        android:layout_marginRight="30dp"/>
 
                                     <TextView
                                         android:id="@+id/totalPrice"
@@ -167,10 +169,12 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="2"
                                         android:gravity="center"
-                                        android:text="1.5 triệu"
+                                        android:text="1.5 millions"
                                         android:textColor="@color/home_background_history"
-                                        android:textSize="40sp"
-                                        android:textStyle="bold" />
+                                        android:textSize="28sp"
+                                        android:textStyle="bold"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"/>
 
                                     <TextView
                                         android:layout_width="match_parent"
@@ -178,7 +182,9 @@
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="VND"
-                                        android:textSize="20sp" />
+                                        android:textSize="18sp"
+                                        android:layout_marginLeft="30dp"
+                                        android:layout_marginRight="30dp"/>
                                 </LinearLayout>
                             </RelativeLayout>
                         </LinearLayout>
@@ -218,8 +224,8 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/post_work"
-                            android:textSize="18sp" />
+                            android:text="Công việc đang chờ"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -247,7 +253,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/waiting_work"
-                            android:textSize="18sp" />
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -275,7 +281,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/history_work"
-                            android:textSize="18sp" />
+                            android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -304,14 +310,16 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_marginStart="15dp"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="5dp">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/img_history_avatar"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
+                                android:src="@drawable/avatar"
+                                android:layout_alignParentTop="true"
                                 android:layout_alignParentLeft="true"
-                                android:src="@drawable/avatar" />
+                                android:layout_alignParentStart="true" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
