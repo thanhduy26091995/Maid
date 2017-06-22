@@ -73,15 +73,15 @@ public class WorkManagerActivity extends AppCompatActivity {
             } else if (flag == 2) {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(WorkManagerActivity.this);
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("Thông báo");
-                alertDialog.setMessage("Hoàn tất công việc");
+                alertDialog.setTitle("Hoàn tất công việc");
+                alertDialog.setMessage("Vui lòng xác nhận tiền mặt bằng cách nhấn " + "Ok");
                 alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         alertDialog.show().dismiss();
                     }
                 });
-                alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         alertDialog.show().dismiss();

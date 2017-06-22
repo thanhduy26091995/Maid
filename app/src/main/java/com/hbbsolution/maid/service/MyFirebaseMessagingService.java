@@ -97,7 +97,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         else if (data.get("status").equals("9")) {
             Intent intent = new Intent(this, WorkManagerActivity.class);
             intent.putExtra("tabMore", 2);
-            intent.putExtra("flag", 1);
+            intent.putExtra("flag", 2);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }
