@@ -10,7 +10,6 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import java.util.List;
@@ -87,8 +86,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Intent intent = new Intent(this, WorkManagerActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        } else if (data.get("status").equals("5")) {
-            Intent intent = new Intent(this, HistoryActivity.class);
+        }
+        else if (data.get("status").equals("5")) {
+            Intent intent = new Intent(this, WorkManagerActivity.class);
+            intent.putExtra("tabMore", 2);
+            intent.putExtra("flag", 1);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        }
+        else if (data.get("status").equals("9")) {
+            Intent intent = new Intent(this, WorkManagerActivity.class);
+            intent.putExtra("tabMore", 2);
+            intent.putExtra("flag", 1);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }

@@ -1,19 +1,18 @@
 package com.hbbsolution.maid.workmanager.listworkmanager.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
@@ -24,7 +23,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/1/2017.
  */
 
-public class WorkManagerActivity extends AppCompatActivity  {
+public class WorkManagerActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -35,9 +34,10 @@ public class WorkManagerActivity extends AppCompatActivity  {
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
 
-    private int tabMore;
+    private Integer tabMore;
     private boolean isPause = false, mTab = false;
     private int mPositionTab;
+    private Integer flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +53,42 @@ public class WorkManagerActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         createFragment();
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            tabMore = extras.getInt("tabMore");
+        tabMore = getIntent().getIntExtra("tabMore", 0);
+        flag = getIntent().getIntExtra("flag", 0);
+        if (tabMore != null && flag != null) {
             mViewPager.setCurrentItem(tabMore);
+
+            if (flag == 1) {
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(WorkManagerActivity.this);
+                alertDialog.setCancelable(false);
+                alertDialog.setTitle("Thông báo");
+                alertDialog.setMessage("Hoàn tất công việc");
+                alertDialog.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        alertDialog.show().dismiss();
+                    }
+                });
+                alertDialog.show();
+            } else if (flag == 2) {
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(WorkManagerActivity.this);
+                alertDialog.setCancelable(false);
+                alertDialog.setTitle("Thông báo");
+                alertDialog.setMessage("Hoàn tất công việc");
+                alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        alertDialog.show().dismiss();
+                    }
+                });
+                alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        alertDialog.show().dismiss();
+                    }
+                });
+                alertDialog.show();
+            }
         }
     }
 
