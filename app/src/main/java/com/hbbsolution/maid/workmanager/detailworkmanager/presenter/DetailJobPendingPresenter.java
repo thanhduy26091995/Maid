@@ -34,7 +34,9 @@ public class DetailJobPendingPresenter {
                     if (response.isSuccessful()) {
                         Boolean isJbPost = response.body().getStatus();
                         mDetailJobPostView.displayNotifyAccceptJobRequested(isJbPost);
+                        Log.d("MESSAGE", response.body().getMessage());
                     }
+                    Log.d("ERROR", response.message());
                 } catch (Exception e) {
                 }
 
@@ -42,12 +44,13 @@ public class DetailJobPendingPresenter {
 
             @Override
             public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+                Log.d("ERROR", t.getMessage());
             }
         });
     }
 
     public void refuseJobRequested(String idTask, String ownerId) {
-        Call<JobPendingResponse> responseCall = apiService.refuseJobRequested(idTask,ownerId);
+        Call<JobPendingResponse> responseCall = apiService.refuseJobRequested(idTask, ownerId);
         responseCall.enqueue(new Callback<JobPendingResponse>() {
             @Override
             public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {

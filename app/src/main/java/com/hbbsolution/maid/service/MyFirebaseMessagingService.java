@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import java.util.List;
@@ -75,18 +76,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (NotificationUtils.isAppIsInBackground(getApplicationContext())) {
             pushNotification(remoteMessage);
         } else {
-            if (!isAtActivity("WorkManagerActivity")) {
-                if (status.equals("6")) {
-                    pushNotification(remoteMessage);
-                }
-
-            }
-//            if (!isAtActivity("CommentActivity")) {
-//                if (type.equals("comment")) {
-//                    pushNotification(remoteMessage);
-//                }
-//
-//            }
+            pushNotification(remoteMessage);
         }
     }
 
@@ -97,28 +87,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Intent intent = new Intent(this, WorkManagerActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        } else if (data.get("status").equals("5")) {
+            Intent intent = new Intent(this, HistoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }
-//        if (data.get("type").equals("chat")) {
-//            Intent intent = new Intent(this, ChatActivity.class);
-//            User user = new User(data.get("avatar"), data.get("title"), data.get("uid"), data.get("deviceToken"));
-//            intent.putExtra(Constants.USERS, user);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//        }
-//
-//        if (data.get("type").equals("comment")) {
-//            Intent intent = new Intent(this, CommentActivity.class);
-//            Homestay homestay = new Homestay(data.get("homestayId"), Integer.parseInt(data.get("districtId")), Integer.parseInt(data.get("provinceId")));
-//            intent.putExtra(Constants.HOMESTAY, homestay);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//        }
-//
-//        if (data.get("type").equals("other")) {
-//            Intent intent = new Intent(this, MainActivity.class);
-//            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-//        }
-
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentTitle(data.get("title"))
