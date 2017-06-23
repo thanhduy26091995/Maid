@@ -72,6 +72,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
         addEvents();
 
         mSignInPresenter = new SignInPresenter(this);
+        mProgressDialog = new ProgressDialog(this);
         //      loginGoogle();
 
     }
@@ -89,6 +90,8 @@ public class SignInActivity extends AppCompatActivity implements MoreView
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mProgressDialog.show();
+                mProgressDialog.setCanceledOnTouchOutside(false);
                 String username = editUserName.getText().toString();
                 String password = editPassword.getText().toString();
                 String token = FirebaseInstanceId.getInstance().getToken();
@@ -116,6 +119,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
 
     @Override
     public void displaySignUpAndSignIn(BodyResponse bodyResponse) {
+        mProgressDialog.dismiss();
         if (bodyResponse.getStatus() == true) {
             //save session
             sessionManagerUser.createLoginSession(bodyResponse.getData());
