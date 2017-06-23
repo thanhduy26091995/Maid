@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context="com.hbbsolution.maid.more.phuc_tran.AboutActivity">
+    tools:context="com.hbbsolution.maid.more.phuc_tran.view.AboutActivity">
 
 
     <android.support.design.widget.AppBarLayout

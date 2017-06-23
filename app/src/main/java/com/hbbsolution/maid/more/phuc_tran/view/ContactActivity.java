@@ -1,4 +1,4 @@
-package com.hbbsolution.maid.more.phuc_tran;
+package com.hbbsolution.maid.more.phuc_tran.view;
 
 import android.content.Intent;
 import android.net.Uri;
