@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.maid_profile.view;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -9,23 +10,30 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.IconTextView;
+import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
+import com.hbbsolution.maid.utils.SessionManagerUser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.blurry.Blurry;
 
 /**
  * Created by buivu on 15/05/2017.
@@ -53,14 +61,10 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
     TextView txtAddressInfoMaid;
     @BindView(R.id.ratingInfoMaid)
     RatingBar ratingInfoMaid;
-    @BindView(R.id.lo_ChosenMaidInfo)
-    RelativeLayout lo_ChosenMaidInfo;
     @BindView(R.id.toolbar_header)
     Toolbar toolbarHeader;
     @BindView(R.id.txtBackInfoMaid)
     IconTextView txtBackInfoMaid;
-    @BindView(R.id.linear_report_maid)
-    LinearLayout linearReportMaid;
     @BindView(R.id.v_line)
     View vLine;
     @BindView(R.id.img_avatarMaid)
@@ -86,7 +90,8 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
     private boolean isChosenMaidFromRecruitment = false;
 
     public static MaidProfileActivity maidProfileActivity;
-
+    private SessionManagerUser mSessionManagerUser;
+    private HashMap<String,String> dataHashMap = new HashMap<>();
     private List<String> list;
     public static Activity mMaidProfileActivity = null;
 
@@ -108,6 +113,9 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
+
+        mSessionManagerUser = new SessionManagerUser(this);
+        loadData();
 
         // mMaidProfilePresenter = new MaidProfilePresenter(this);
 
@@ -132,8 +140,48 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
 //        datum = (MaidHistory) getIntent().getSerializableExtra("helper");
         workHistory = (WorkHistory) getIntent().getSerializableExtra("work");
         isChosenMaidFromRecruitment = getIntent().getBooleanExtra("chosenMaidFromListRecruitment", false);
+    }
 
-//        if (mMaidInfo != null) {
+    public void loadData()
+    {
+        dataHashMap = mSessionManagerUser.getUserDetails();
+        txtNameInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_NAME));
+        txtAddressInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_ADDRESS));
+        if (Integer.parseInt(dataHashMap.get(SessionManagerUser.KEY_GENDER)) == 0) {
+            txtGenderInfoMaid.setText("Nam");
+        } else {
+            txtGenderInfoMaid.setText("Nữ");
+        }
+        txtPhoneInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_PHONE));
+        ImageLoader.getInstance().loadImageAvatar(MaidProfileActivity.this, dataHashMap.get(SessionManagerUser.KEY_IMAGE),
+                img_avatarMaid);
+
+        // from Bitmap
+        Glide.with(MaidProfileActivity.this)
+                .load(dataHashMap.get(SessionManagerUser.KEY_IMAGE))
+                .asBitmap()
+                .error(R.drawable.avatar)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        Blurry.with(MaidProfileActivity.this)
+                                .radius(10)
+                                .from(resource)
+                                .into(imgBlurImage);
+                    }
+                });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //        if (mMaidInfo != null) {
 //            lo_ChosenMaidInfo.setVisibility(View.GONE);
 //            idTaskProcess = getIntent().getStringExtra("idTaskProcess");
 //            txtNameInfoMaid.setText(mMaidInfo.getInfo().getUsername());
@@ -421,5 +469,5 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
 //            }
 //        }
 //    }
-    }
+
 }
