@@ -27,8 +27,6 @@ public class WorkManagerActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.management_title_toothbar)
-    TextView txtManagement_title_toothbar;
     @BindView(R.id.tabs)
     TabLayout tabLayout;
     @BindView(R.id.viewpager)
@@ -48,7 +46,7 @@ public class WorkManagerActivity extends AppCompatActivity {
         //setupView
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        txtManagement_title_toothbar.setText("Quản lý công việc");
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -111,9 +109,9 @@ public class WorkManagerActivity extends AppCompatActivity {
 
     private void setupViewPagerUser(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new JobPostedFragment(), "Đã chờ");
-        adapter.addFragment(new JobPendingFragment(), "Đã phân công");
-        adapter.addFragment(new JobDoingFragment(), "Đang làm");
+        adapter.addFragment(new JobPostedFragment(), getResources().getString(R.string.posted_work));
+        adapter.addFragment(new JobPendingFragment(), getResources().getString(R.string.assigned));
+        adapter.addFragment(new JobDoingFragment(), getResources().getString(R.string.running_work));
         viewPager.setAdapter(adapter);
     }
 

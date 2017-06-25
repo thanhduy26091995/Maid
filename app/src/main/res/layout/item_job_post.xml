@@ -48,7 +48,6 @@
                         android:layout_weight="3"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="Cần giúp nấu ăn lau dọn vệ sinh nhà"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold" />
@@ -65,7 +64,7 @@
                         android:background="@drawable/background_text_expired"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="Quá hạn"
+                        android:text="@string/exceeded"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/icon_size_normal"
                         android:visibility="gone" />
@@ -81,7 +80,7 @@
                         android:background="@drawable/background_txt_request_direct"
                         android:gravity="center"
                         android:padding="2dp"
-                        android:text="Gửi trực tiếp"
+                        android:text="@string/send_direct"
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/text_size_small"
                         android:visibility="gone" />
@@ -100,7 +99,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:text="Đang chờ phân công"
+                        android:text="@string/awaiting_assignment"
                         android:textSize="12sp" />
 
                     <View

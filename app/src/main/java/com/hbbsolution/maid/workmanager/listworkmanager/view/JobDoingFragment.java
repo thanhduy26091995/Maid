@@ -73,6 +73,8 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     LinearLayout lo_infoOwner;
     @BindView(R.id.progressPost)
     ProgressBar progressPost;
+    @BindView(R.id.swip_refresh_job_doing)
+    SwipeRefreshLayout swip_refresh_job_doing;
 
     private View rootView;
     private Datum mDatum;
@@ -90,6 +92,19 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
             mWorkManagerPresenter = new WorkManagerPresenter(this);
             mWorkManagerPresenter.getInfoWorkList(idProcess);
 
+            swip_refresh_job_doing.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mWorkManagerPresenter.getInfoWorkList(idProcess);
+                            swip_refresh_job_doing.setRefreshing(false);
+                        }
+                    }, 1500);
+                }
+            });
+
         } else {
             ViewGroup parent = (ViewGroup) container.getParent();
             parent.removeView(rootView);
@@ -100,6 +115,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     @Override
     public void getInfoJob(WorkManagerResponse mExample) {
         progressPost.setVisibility(View.GONE);
+
         if (mExample.getData().size() > 0) {
             lnNoData.setVisibility(View.GONE);
             lo_infoOwner.setVisibility(View.VISIBLE);

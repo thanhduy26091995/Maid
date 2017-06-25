@@ -36,11 +36,11 @@ public class MaidApplication extends Application {
         Iconify.with(new FontAwesomeModule());
         instance = this;
         setLocale();
-        sessionManagerUser = new SessionManagerUser(this);
-        if (sessionManagerUser.isLoggedIn()) {
-            hashDataUser = sessionManagerUser.getUserDetails();
-            setToken(hashDataUser.get(SessionManagerUser.KEY_TOKEN));
-        }
+//        sessionManagerUser = new SessionManagerUser(this);
+//        if (sessionManagerUser.isLoggedIn()) {
+//            hashDataUser = sessionManagerUser.getUserDetails();
+//            setToken(hashDataUser.get(SessionManagerUser.KEY_TOKEN));
+//        }
         // register to be informed of activities starting up
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override

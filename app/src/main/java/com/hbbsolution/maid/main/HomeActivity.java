@@ -14,6 +14,7 @@ import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.home.job_near_by.view.JobNearByMapActivity;
 import com.hbbsolution.maid.more.viet_pham.MoreActivity;
+import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import butterknife.BindView;
@@ -33,6 +34,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     RelativeLayout mLayout_History;
     @BindView(R.id.ic_text_view_more)
     IconTextView iconTextViewMore;
+
+    private boolean isPause = false;
 
 
     @Override
@@ -101,5 +104,26 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     private void ShowToast(String msg) {
         Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isPause = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isPause) {
+            SessionManagerForLanguage sessionManagerForLanguage = new SessionManagerForLanguage(HomeActivity.this);
+            boolean isChangeLanguage = sessionManagerForLanguage.changeLanguage();
+            if(isChangeLanguage) {
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(this.getIntent());
+                overridePendingTransition(0, 0);
+            }
+        }
     }
 }

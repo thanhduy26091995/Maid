@@ -10,10 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,12 +28,19 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
     private List<Datum> datumList;
     private Callback callback;
     private int tabJob;
+    private SessionManagerUser sessionManagerUser ;
+    private HashMap<String, String> userData;
+    private String idMaid;
 
 
     public JobPostAdapter(Context context, List<Datum> datumList, int  tabJob) {
         this.context = context;
         this.datumList = datumList;
         this.tabJob = tabJob;
+        sessionManagerUser = new SessionManagerUser(context);
+        userData = sessionManagerUser.getUserDetails();
+//        idMaid = userData.get(SessionManagerUser.KEY_ID);
+         idMaid = "5923c12f7d7da13b240e7321";
     }
 
     public void setCallback(Callback callback) {
@@ -46,9 +55,20 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
 
     @Override
     public void onBindViewHolder(JobPostViewHolder holder, int position) {
+
+        switch (tabJob) {
+            case 1:
+                holder.txtType.setText(context.getResources().getString(R.string.awaiting_assignment));
+                break;
+            case 2:
+                holder.txtType.setText(context.getResources().getString(R.string.pending_confirmation));
+                break;
+        }
         final Datum mDatum = datumList.get(position);
 
-        String idMaid = "5923c12f7d7da13b240e7321";
+//        String idMaid = "5923c12f7d7da13b240e7321";
+
+
         int requestSize = mDatum.getStakeholders().getRequest().size();
         for(int i = 0; i < requestSize; i++) {
             String _idMaid = mDatum.getStakeholders().getRequest().get(i).getMaid();
@@ -126,7 +146,7 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
             imgTypeJobPost = (ImageView) itemView.findViewById(R.id.imgTypeJobPost);
             txtExpired = (TextView) itemView.findViewById(R.id.txtExpired_request_detail_post);
             lo_background = (LinearLayout) itemView.findViewById(R.id.lo_background);
-//            txtType = (TextView) itemView.findViewById(R.id.txtType);
+            txtType = (TextView) itemView.findViewById(R.id.txtType);
             txtRequestDirect = (TextView) itemView.findViewById(R.id.txtExpired_request_direct_detail);
         }
     }

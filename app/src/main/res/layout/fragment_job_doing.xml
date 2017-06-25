@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swip_refresh_job_doing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +21,8 @@
             android:id="@+id/lo_infoOwner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <RelativeLayout
@@ -100,7 +107,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
                         android:paddingBottom="10dp"
-                        android:text="MÔ TẢ"
+                        android:text="@string/description"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -294,7 +301,7 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <LinearLayout
         android:id="@+id/lnNoData"
