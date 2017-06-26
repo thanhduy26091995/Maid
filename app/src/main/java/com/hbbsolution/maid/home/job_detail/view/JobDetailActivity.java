@@ -149,7 +149,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if (v == relaOwnerProfile) {
             Intent intent = new Intent(JobDetailActivity.this, OwnerProfileActivity.class);
-            intent.putExtra("InfoOwner", taskData.getStakeholders().getOwner().getInfo());
+            intent.putExtra("InfoOwner", taskData.getStakeholders().getOwner());
             intent.putExtra("IsInJobDetail", true);
             startActivity(intent);
         } else if (v == relaChooseWork) {
