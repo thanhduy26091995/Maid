@@ -39,7 +39,7 @@ public class HistoryViewPagerFragment extends FragmentStatePagerAdapter {
             case 0:
                 return context.getResources().getString(R.string.completedjob);
             case 1:
-                return context.getResources().getString(R.string.completedhelpler);
+                return context.getResources().getString(R.string.completedowner);
             default:
                 return null;
         }

@@ -121,7 +121,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
         switch (v.getId()) {
             case R.id.rela_info:
                 intent = new Intent(this, OwnerProfileActivity.class);
-                intent.putExtra("InfoOwner", doc.getStakeholders().getOwner().getInfo());
+                intent.putExtra("InfoOwner", doc.getStakeholders().getOwner());
 //                ActivityOptionsCompat historyOption =
 //                        ActivityOptionsCompat
 //                                .makeSceneTransitionAnimation(this, (View) findViewById(R.id.detail_owner_history_avatar), "icAvatar");

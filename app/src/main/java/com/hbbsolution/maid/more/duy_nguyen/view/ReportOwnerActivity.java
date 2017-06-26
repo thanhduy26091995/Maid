@@ -16,10 +16,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.model.work.Owner;
+import com.hbbsolution.maid.model.task.Info;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.ReportView;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.ReportPresenter;
-import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,11 +43,10 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     EditText edtReport;
     @BindView(R.id.img_avatar)
     CircleImageView imgAvatar;
-
-//    private Maid mMaidInfo;
-//    private WorkHistory workHistory;
-    private Datum datum;
+    private Info info;
+    private Owner mInfoOwner;
     private ReportPresenter reportPresenter;
+    private boolean isInJobDetail = false;
     private String idHelper;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,54 +57,39 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         reportPresenter = new ReportPresenter(this);
-        //get intent
-//        mMaidInfo = (Maid) getIntent().getSerializableExtra("maid");
-//        workHistory = (WorkHistory)getIntent().getSerializableExtra("work");
-        datum = (Datum) getIntent().getSerializableExtra("helper");
-        //load data
         loadData();
         tvSend.setOnClickListener(this);
         tvSkip.setOnClickListener(this);
     }
 
     private void loadData() {
-//        if (mMaidInfo != null) {
-//            mTextMaidName.setText(mMaidInfo.getInfo().getUsername());
-//            mTextMaidAddress.setText(mMaidInfo.getInfo().getAddress().getName());
-//            idHelper=mMaidInfo.getId();
-//            if(!mMaidInfo.getInfo().getImage().equals(""))
-//            {
-//                Picasso.with(this).load(mMaidInfo.getInfo().getImage())
-//                        .placeholder(R.drawable.avatar)
-//                        .error(R.drawable.avatar)
-//                        .into(imgAvatar);
-//            }
-//        }
-//        if(workHistory!=null)
-//        {
-//            mTextMaidName.setText(workHistory.getStakeholders().getReceived().getInfo().getUsername());
-//            mTextMaidAddress.setText(workHistory.getStakeholders().getReceived().getInfo().getAddress().getName());
-//            idHelper = workHistory.getStakeholders().getReceived().getId();
-//            if(!workHistory.getStakeholders().getReceived().getInfo().getImage().equals(""))
-//            {
-//                Picasso.with(this).load(workHistory.getStakeholders().getReceived().getInfo().getImage())
-//                        .placeholder(R.drawable.avatar)
-//                        .error(R.drawable.avatar)
-//                        .into(imgAvatar);
-//            }
-//        }
-//        if (datum != null) {
-//            mTextMaidName.setText(datum.getId().getInfo().getUsername());
-//            mTextMaidAddress.setText(datum.getId().getInfo().getAddress().getName());
-//            idHelper = datum.getId().getId();
-//            if(!datum.getId().getInfo().getImage().equals(""))
-//            {
-//                Picasso.with(this).load(datum.getId().getInfo().getImage())
-//                        .placeholder(R.drawable.avatar)
-//                        .error(R.drawable.avatar)
-//                        .into(imgAvatar);
-//            }
-//        }
+        isInJobDetail = getIntent().getBooleanExtra("IsInJobDetail", false);
+        if (isInJobDetail) {
+            info = (Info) getIntent().getSerializableExtra("InfoOwner");
+            mTextOwnerName.setText(info.getUsername());
+            mTextOwnerAddress.setText(info.getAddress().getName());
+//            idHelper=info.getId();
+            Glide.with(this).load(info.getImage())
+                        .thumbnail(0.5f)
+                        .placeholder(R.drawable.avatar)
+                        .error(R.drawable.avatar)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(imgAvatar);
+        }
+       else{
+            mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
+            mTextOwnerName.setText(mInfoOwner.getInfo().getUsername());
+            mTextOwnerAddress.setText(mInfoOwner.getInfo().getAddress().getName());
+            idHelper = mInfoOwner.getId();
+                Glide.with(this).load(mInfoOwner.getInfo().getImage())
+                        .thumbnail(0.5f)
+                        .placeholder(R.drawable.avatar)
+                        .error(R.drawable.avatar)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(imgAvatar);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -127,7 +113,6 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                 } else {
                     Toast.makeText(this, "Vui lòng nhập bình luận", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(this, "asdasd", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvSkip:
                 finish();
