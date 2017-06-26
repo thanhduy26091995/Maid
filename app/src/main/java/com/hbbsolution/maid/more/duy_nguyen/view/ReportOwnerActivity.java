@@ -14,20 +14,19 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.model.work.Owner;
-import com.hbbsolution.maid.model.task.Info;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.ReportView;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.ReportPresenter;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ReportOwnerActivity extends AppCompatActivity implements View.OnClickListener,ReportView {
+public class ReportOwnerActivity extends AppCompatActivity implements View.OnClickListener, ReportView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -43,11 +42,12 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     EditText edtReport;
     @BindView(R.id.img_avatar)
     CircleImageView imgAvatar;
-    private Info info;
+    private com.hbbsolution.maid.model.task.Owner info;
     private Owner mInfoOwner;
     private ReportPresenter reportPresenter;
     private boolean isInJobDetail = false;
     private String idOnwer;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,32 +65,32 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     private void loadData() {
         isInJobDetail = getIntent().getBooleanExtra("IsInJobDetail", false);
         if (isInJobDetail) {
-            info = (Info) getIntent().getSerializableExtra("InfoOwner");
-            mTextOwnerName.setText(info.getUsername());
-            mTextOwnerAddress.setText(info.getAddress().getName());
+            info = (com.hbbsolution.maid.model.task.Owner) getIntent().getSerializableExtra("InfoOwner");
+            mTextOwnerName.setText(info.getInfo().getUsername());
+            mTextOwnerAddress.setText(info.getInfo().getAddress().getName());
 //            idHelper=info.getId();
-            Glide.with(this).load(info.getImage())
-                        .thumbnail(0.5f)
-                        .placeholder(R.drawable.avatar)
-                        .error(R.drawable.avatar)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(imgAvatar);
-        }
-       else{
+            Glide.with(this).load(info.getInfo().getImage())
+                    .thumbnail(0.5f)
+                    .placeholder(R.drawable.avatar)
+                    .error(R.drawable.avatar)
+                    .centerCrop()
+                    .dontAnimate()
+                    .into(imgAvatar);
+        } else {
             mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
             mTextOwnerName.setText(mInfoOwner.getInfo().getUsername());
             mTextOwnerAddress.setText(mInfoOwner.getInfo().getAddress().getName());
             idOnwer = mInfoOwner.getId();
-                Glide.with(this).load(mInfoOwner.getInfo().getImage())
-                        .thumbnail(0.5f)
-                        .placeholder(R.drawable.avatar)
-                        .error(R.drawable.avatar)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(imgAvatar);
+            Glide.with(this).load(mInfoOwner.getInfo().getImage())
+                    .thumbnail(0.5f)
+                    .placeholder(R.drawable.avatar)
+                    .error(R.drawable.avatar)
+                    .centerCrop()
+                    .dontAnimate()
+                    .into(imgAvatar);
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -101,17 +101,17 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tvSend:
                 View view = this.getCurrentFocus();
                 if (view != null) {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
                 if (edtReport.getText().toString().length() > 0) {
                     reportPresenter.reportOwner(idOnwer, edtReport.getText().toString().trim());
                 } else {
-                    Toast.makeText(this, "Vui lòng nhập bình luận", Toast.LENGTH_LONG).show();
+                    ShowAlertDialog.showAlert("Vui lòng điền nội dung báo cáo", ReportOwnerActivity.this);
                 }
                 break;
             case R.id.tvSkip:
@@ -123,16 +123,16 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void reportSuccess(String message) {
         Intent intent = new Intent();
-        intent.putExtra("message",message);
-        setResult(Activity.RESULT_OK,intent);
+        intent.putExtra("message", message);
+        setResult(Activity.RESULT_OK, intent);
         finish();
-        Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void reportFail() {
 
     }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {

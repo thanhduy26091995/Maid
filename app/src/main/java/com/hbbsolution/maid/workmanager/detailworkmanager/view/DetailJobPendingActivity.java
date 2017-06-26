@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,8 +21,6 @@ import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.detailworkmanager.presenter.DetailJobPendingPresenter;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
-import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
-import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerView;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -167,7 +164,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
                 break;
             case R.id.lo_infoOwner:
                 Intent itInfoUser = new Intent(DetailJobPendingActivity.this, OwnerProfileActivity.class);
-                itInfoUser.putExtra("InfoOwner",mDatum.getStakeholders().getOwner().getInfo());
+                itInfoUser.putExtra("InfoOwner",mDatum.getStakeholders().getOwner());
                 startActivity(itInfoUser);
                 break;
         }

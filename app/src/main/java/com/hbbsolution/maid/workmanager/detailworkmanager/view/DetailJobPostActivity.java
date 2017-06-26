@@ -174,7 +174,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         switch (id){
             case R.id.lo_infoOwner:
                 Intent itInfoOwner = new Intent(DetailJobPostActivity.this, OwnerProfileActivity.class);
-                itInfoOwner.putExtra("InfoOwner",mDatum.getStakeholders().getOwner().getInfo());
+                itInfoOwner.putExtra("InfoOwner",mDatum.getStakeholders().getOwner());
                 startActivity(itInfoOwner);
                 break;
             case R.id.lo_clear_job:

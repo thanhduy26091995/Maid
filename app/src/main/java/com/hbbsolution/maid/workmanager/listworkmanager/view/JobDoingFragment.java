@@ -6,8 +6,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +13,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
-import com.hbbsolution.maid.workmanager.detailworkmanager.presenter.DetailJobPendingPresenter;
-import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
-import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostView;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPresenter;
-import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -183,7 +174,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
         switch (view.getId()) {
             case R.id.lo_infoOwner:
                 Intent itInfoOwner = new Intent(getActivity(), OwnerProfileActivity.class);
-                itInfoOwner.putExtra("InfoOwner", mDatum.getStakeholders().getOwner().getInfo());
+                itInfoOwner.putExtra("InfoOwner", mDatum.getStakeholders().getOwner());
                 startActivity(itInfoOwner);
                 break;
         }

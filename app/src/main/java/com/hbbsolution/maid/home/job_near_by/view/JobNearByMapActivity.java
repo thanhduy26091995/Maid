@@ -332,7 +332,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         switch (permsRequestCode) {
             case REQUEST_ID_ACCESS_COARSE_FINE_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getLocation();
+                    loadData();
                 }
                 break;
         }
