@@ -108,36 +108,47 @@
 
     <!--history_screen start-->
     <string name="completedjob">Công việc hoàn thành</string>
-    <string name="completedhelpler">Giúp việc đã làm</string>
-    <string name="liabilities">Công nợ</string>
+    <string name="completedowner">Chủ nhà đã làm</string>
     <string name="before">%s trước</string>
     <plurals name="day">
+        <item quantity="one">ngày</item>
         <item quantity="other">ngày</item>
     </plurals>
     <plurals name="hour">
+        <item quantity="one">giờ</item>
         <item quantity="other">giờ</item>
     </plurals>
     <plurals name="minute">
+        <item quantity="one">phút</item>
         <item quantity="other">phút</item>
     </plurals>
     <plurals name="second">
+        <item quantity="one">giây</item>
         <item quantity="other">giây</item>
     </plurals>
-    <string name="notpayment">Chưa thanh toán</string>
-    <string name="rangetime">Vui lòng xem lại khoản thời gian</string>
-    <string name="worklist">Danh sách công việc</string>
-    <string name="confirm_the_task_completed">Vui lòng xác nhận công việc đã hoàn thành bằng cách nhấn "OK"</string>
+
+    <string name="unpayalbe">Chưa thanh toán</string>
+    <string name="rangetime">Vui lòng xem lại khoảng thời gian!</string>
     <!--history_screen end-->
 
     <!--detail_work_history_screen start-->
     <string name="payment">Thanh toán</string>
     <string name="description">MÔ TẢ</string>
-    <string name="yourcomment">Nhận xét của bạn</string>
+    <string name="owner">CHỦ NHÀ</string>
     <!--detail_work_history_screen end-->
 
-    <!--comment_screen start-->
-    <string name="comment">Bình luận</string>
-    <!--comment_screen end-->
+    <!--statistic_screen start-->
+    <string name="total">Tổng chi phí</string>
+    <string name="history_work">Công việc hoàn thành</string>
+    <string name="waiting_work">Công việc đang xử lý</string>
+    <string name="post_work">Công việc đã đăng</string>
+    <string name="sodutaikhoan">Số dư tài khoản</string>
+    <plurals name="million">
+        <item quantity="one">triệu</item>
+        <item quantity="other">triệu</item>
+    </plurals>
+    <string name="million_zero">triệu</string>
+    <!--statistic_screen end-->
 
     <!--contact and about screen start-->
     <string name="contact">Liên hệ</string>
@@ -148,20 +159,6 @@
     <string name="enter_phonenumber">Nhập có số điện thoại</string>
     <string name="address_title">Địa chỉ:</string>
     <!--contact and about screen end-->
-
-    <!--statistic_screen start-->
-    <string name="total">Tổng chi phí</string>
-    <string name="history_work">Công việc hoàn thành</string>
-    <string name="waiting_work">Công việc đang xử lý</string>
-    <string name="post_work">Công việc đã đăng</string>
-    <string name="recharge">Nạp tiền vào tài khoản</string>
-    <string name="sodutaikhoan">Số dư tài khoản: </string>
-    <plurals name="million">
-        <item quantity="one">triệu</item>
-        <item quantity="other">triệu</item>
-    </plurals>
-    <string name="million_zero">triệu</string>
-    <!--statistic_screen end-->
 
     <!--Maid near by-->
     <string name="GPSTitle">Cài đặt GPS</string>
