@@ -97,6 +97,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Intent intent = new Intent(this, HistoryActivity.class);
             intent.putExtra("tabMore", 0);
             intent.putExtra("flag", 2);
+            intent.putExtra("bill", data.get("bill"));
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }

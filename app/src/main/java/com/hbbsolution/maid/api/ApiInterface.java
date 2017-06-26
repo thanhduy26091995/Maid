@@ -39,6 +39,7 @@ public interface ApiInterface {
     @GET("more/getTaskByWork")
     Call<TaskResponse> getTaskByWork(@Query("lat") Double lat, @Query("lng") Double lng, @Query("maxDistance") Integer maxDistance,
                                      @Query("work") String workId, @Query("page") int page);
+
     @GET("maid/getAllTasks")
     Call<WorkManagerResponse> getInfo(@Query("process") String idProcess, @Query("sortByTaskTime") boolean isSortByTaskTime);
 
@@ -58,6 +59,7 @@ public interface ApiInterface {
 
     @GET
     Call<GeoCodeMapResponse> getLocaltionAddress(@Url String url, @Query("address") String address);
+
     @Multipart
     @POST("auth/maid/login")
     Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
@@ -78,7 +80,7 @@ public interface ApiInterface {
     Call<JobPendingResponse> refuseJobRequested(@Field("id") String taskId, @Field("ownerId") String ownerId);
 
     @GET("maid/getTaskOfOwner")
-    Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner,@Query("page") int page);
+    Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner, @Query("page") int page);
 
     @GET("more/getGV24HInfo")
     Call<AboutResponse> getAbout(@Query("id") String idTask);
@@ -93,5 +95,9 @@ public interface ApiInterface {
     @POST("maid/forgotPassword")
     Call<ForgotPassResponse> forgotPassword(@Field("email") String email,
                                             @Field("username") String username);
+
+    @FormUrlEncoded
+    @POST("payment/payDirectConfirm")
+    Call<ChooseWorkResponse> directConfirm(@Field("billId") String billId);
 
 }
