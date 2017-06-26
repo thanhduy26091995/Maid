@@ -39,8 +39,8 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         this.tabJob = tabJob;
         sessionManagerUser = new SessionManagerUser(context);
         userData = sessionManagerUser.getUserDetails();
-//        idMaid = userData.get(SessionManagerUser.KEY_ID);
-         idMaid = "5923c12f7d7da13b240e7321";
+        idMaid = userData.get(SessionManagerUser.KEY_ID);
+//         idMaid = "5923c12f7d7da13b240e7321";
     }
 
     public void setCallback(Callback callback) {
@@ -151,16 +151,16 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         }
     }
 
-//    private void setWorkTimeRegister(TextView txtTimePostHistory, String _timePostHistory) {
-//        String[] mWorkTimeHistory = WorkTimeValidate.workTimeValidate(_timePostHistory);
-//        if (!mWorkTimeHistory[2].equals("0")) {
-//            txtTimePostHistory.setText(mWorkTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(mWorkTimeHistory[2]))));
-//        } else if (!mWorkTimeHistory[1].equals("0")) {
-//           txtTimePostHistory.setText(mWorkTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(mWorkTimeHistory[1]))));
-//        } else if (!mWorkTimeHistory[0].equals("0")) {
-//            txtTimePostHistory.setText(mWorkTimeHistory[0] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(mWorkTimeHistory[0]))));
-//        }
-//    }
+    private void setWorkTimeRegister(TextView txtTimePostHistory, String _timePostHistory) {
+        String[] mWorkTimeHistory = WorkTimeValidate.workTimeValidate(_timePostHistory);
+        if (!mWorkTimeHistory[2].equals("0")) {
+            txtTimePostHistory.setText(mWorkTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(mWorkTimeHistory[2]))));
+        } else if (!mWorkTimeHistory[1].equals("0")) {
+           txtTimePostHistory.setText(mWorkTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(mWorkTimeHistory[1]))));
+        } else if (!mWorkTimeHistory[0].equals("0")) {
+            txtTimePostHistory.setText(mWorkTimeHistory[0] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(mWorkTimeHistory[0]))));
+        }
+    }
 
     public interface Callback {
         void onItemClick(Datum mDatum);

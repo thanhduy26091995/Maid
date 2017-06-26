@@ -249,7 +249,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Về chúng tôi"
+                            android:text="@string/about"
                             android:textColor="@color/colorBlack" />
 
                         <com.hbbsolution.maid.base.IconTextView
@@ -283,7 +283,7 @@
                             android:id="@+id/textView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Điều khoản sử dụng"
+                            android:text="@string/term_title"
                             android:textColor="@color/colorBlack" />
 
                         <com.hbbsolution.maid.base.IconTextView

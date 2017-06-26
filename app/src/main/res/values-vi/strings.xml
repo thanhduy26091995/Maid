@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Owner</string>
+    <string name="app_name">Maid</string>
     <!--cần tiền tố và comment trước khi sử dụng-->
 
     <!--home screen start-->
@@ -14,58 +14,43 @@
 
     <!--work_manager start-->
     <string name="work_management">Quản lý công việc</string>
-    <string name="posted_work">Đang chờ</string>
+    <string name="posted_work">Đã đăng</string>
     <string name="assigned">Đã phân công</string>
     <string name="running_work">Đang làm</string>
-    <string name="awaiting_assignment">Đang chờ phân công</string>
-    <string name="pending_confirmation">Đang chờ xác nhận</string>
-    <string name="exceeded">Quá hạn</string>
-    <string name="send_direct">Gửi trực tiếp</string>
 
-    <string name="tool_work">Mang theo dụng cụ làm việc</string>
-    <string name="cancel_work">Hủy công việc</string>
-
-    <string name="ok">Ok</string>
-    <string name="cancel">Hủy</string>
+    <string name="post_your_work">Đăng công việc</string>
+    <string name="title_job_post">Tiêu đề</string>
+    <string name="types_of_work">Loại công việc</string>
+    <string name="address_job_post">Địa chỉ</string>
+    <string name="work_description">Mô tả công việc</string>
+    <string name="enter_the_salary">Nhập số tiền công</string>
+    <string name="hourly_pay">Tính tiền theo thời gian</string>
+    <string name="hour">/giờ</string>
+    <string name="the_start_date">Ngày bặt đầu</string>
+    <string name="time_of_working">Thời gian làm việc</string>
+    <string name="to_job_post">to</string>
+    <string name="jobs_for_applications">Đang chờ ứng tuyển</string>
+    <string name="qua_han_ung_tuyen">Quá hạn ứng tuyển</string>
+    <string name="dang_cho_xac_nhan">Đang chờ xác nhận</string>
+    <string name="qua_han_xac_nhan">Quá hạn xác nhận</string>
+    <string name="qua_han">Quá hạn</string>
+    <string name="đăng_bài">Đăng bài</string>
+    <string name="update_job_post">Cập nhật</string>
     <string name="notification">Thông báo</string>
-    <string name="note_cancel_work">Bạn được hủy  công việc đã nhận trước 24h, trong vòng 24h vui lòng gọi điện thông báo công ty hoặc chủ nhà để xác nhận hủy</string>
-    <string name="notification_del_job_post">Bạn có muốn xóa công việc này?</string>
-    <string name="notification__pass_del_job_post">Bạn đã xóa công việc này!</string>
-
-
-    <!--<string name="post_your_work">Đăng công việc</string>-->
-    <!--<string name="title_job_post">Tiêu đề</string>-->
-    <!--<string name="types_of_work">Loại công việc</string>-->
-    <!--<string name="address_job_post">Địa chỉ</string>-->
-    <!--<string name="work_description">Mô tả công việc</string>-->
-    <!--<string name="enter_the_salary">Nhập số tiền công</string>-->
-    <!--<string name="hourly_pay">Tính tiền theo thời gian</string>-->
-    <!--<string name="hour">/giờ</string>-->
-    <!--<string name="the_start_date">Ngày bặt đầu</string>-->
-    <!--<string name="time_of_working">Thời gian làm việc</string>-->
-    <!--<string name="to_job_post">to</string>-->
-    <!--<string name="jobs_for_applications">Đang chờ ứng tuyển</string>-->
-    <!--<string name="qua_han_ung_tuyen">Quá hạn ứng tuyển</string>-->
-    <!--<string name="dang_cho_xac_nhan">Đang chờ xác nhận</string>-->
-    <!--<string name="qua_han_xac_nhan">Quá hạn xác nhận</string>-->
-    <!--<string name="qua_han">Quá hạn</string>-->
-    <!--<string name="đăng_bài">Đăng bài</string>-->
-    <!--<string name="update_job_post">Cập nhật</string>-->
-    <!--<string name="notification">Thông báo</string>-->
-    <!--<string name="post_successfully">Bạn đã đăng bài thành công!</string>-->
-    <!--<string name="post_unsuccessfully">Đăng bài thất bại!</string>-->
-    <!--<string name="check_your_home_address">Vui lòng kiểm tra lại địa chỉ nhà.</string>-->
-    <!--<string name="check_complete_all_information">Vui lòng điền đầy đủ thông tin.</string>-->
-    <!--<string name="check_working_time">Thời gian làm việc không phù hợp.</string>-->
-    <!--<string name="detail_posted">Đã đăng</string>-->
-    <!--<string name="check_date_post">Ngày bạn chọn không phù hợp.</string>-->
-    <!--<string name="delete_work_post">Bạn có muốn xóa công việc này không?</string>-->
-    <!--<string name="ok">Chấp nhận</string>-->
-    <!--<string name="cancel">Hủy</string>-->
-    <!--<string name="list_recruitment">Danh sách ứng tuyển</string>-->
-    <!--<string name="work_complete">Hoàn tất công việc</string>-->
-    <!--<string name="vnd">VND</string>-->
-    <!--<string name="vnd_hour">VND/giờ</string>-->
+    <string name="post_successfully">Bạn đã đăng bài thành công!</string>
+    <string name="post_unsuccessfully">Đăng bài thất bại!</string>
+    <string name="check_your_home_address">Vui lòng kiểm tra lại địa chỉ nhà.</string>
+    <string name="check_complete_all_information">Vui lòng điền đầy đủ thông tin.</string>
+    <string name="check_working_time">Thời gian làm việc không phù hợp.</string>
+    <string name="detail_posted">Đã đăng</string>
+    <string name="check_date_post">Ngày bạn chọn không phù hợp.</string>
+    <string name="delete_work_post">Bạn có muốn xóa công việc này không?</string>
+    <string name="ok">Chấp nhận</string>
+    <string name="cancel">Hủy</string>
+    <string name="list_recruitment">Danh sách ứng tuyển</string>
+    <string name="work_complete">Hoàn tất công việc</string>
+    <string name="vnd">VND</string>
+    <string name="vnd_hour">VND/giờ</string>
 
 
     <!--work_manager end-->
@@ -108,24 +93,25 @@
 
     <!--history_screen start-->
     <string name="completedjob">Công việc hoàn thành</string>
-    <string name="completedowner">Chủ nhà đã làm</string>
+    <string name="completedhelpler">Giúp việc đã làm</string>
+    <string name="liabilities">Công nợ</string>
     <string name="before">%s trước</string>
     <plurals name="day">
-        <item quantity="one">ngày</item>
         <item quantity="other">ngày</item>
     </plurals>
     <plurals name="hour">
-        <item quantity="one">giờ</item>
         <item quantity="other">giờ</item>
     </plurals>
     <plurals name="minute">
-        <item quantity="one">phút</item>
         <item quantity="other">phút</item>
     </plurals>
     <plurals name="second">
-        <item quantity="one">giây</item>
         <item quantity="other">giây</item>
     </plurals>
+    <string name="notpayment">Chưa thanh toán</string>
+    <string name="rangetime">Vui lòng xem lại khoản thời gian</string>
+    <string name="worklist">Danh sách công việc</string>
+    <string name="confirm_the_task_completed">Vui lòng xác nhận công việc đã hoàn thành bằng cách nhấn "OK"</string>
     <string name="worklist">Danh sách công việc</string>
     <string name="rangetime">Vui lòng xem lại khoảng thời gian!</string>
     <!--history_screen end-->
@@ -133,20 +119,12 @@
     <!--detail_work_history_screen start-->
     <string name="payment">Thanh toán</string>
     <string name="description">MÔ TẢ</string>
-    <string name="owner">CHỦ NHÀ</string>
+    <string name="yourcomment">Nhận xét của bạn</string>
     <!--detail_work_history_screen end-->
 
-    <!--statistic_screen start-->
-    <string name="total">Tổng thu nhập</string>
-    <string name="history_work">Công việc hoàn thành</string>
-    <string name="waiting_work">Công việc đang xử lý</string>
-    <string name="post_work">Công việc đang chờ</string>
-    <plurals name="million">
-        <item quantity="one">triệu</item>
-        <item quantity="other">triệu</item>
-    </plurals>
-    <string name="million_zero">triệu</string>
-    <!--statistic_screen end-->
+    <!--comment_screen start-->
+    <string name="comment">Bình luận</string>
+    <!--comment_screen end-->
 
     <!--contact and about screen start-->
     <string name="contact">Liên hệ</string>
@@ -157,6 +135,22 @@
     <string name="enter_phonenumber">Nhập có số điện thoại</string>
     <string name="address_title">Địa chỉ:</string>
     <!--contact and about screen end-->
+
+
+    <!--statistic_screen start-->
+    <string name="total">Tổng thu nhập</string>
+    <string name="history_work">Công việc hoàn thành</string>
+    <string name="waiting_work">Công việc đang xử lý</string>
+    <string name="post_work">Công việc đang chờ</string>
+    <string name="post_work">Công việc đã đăng</string>
+    <string name="recharge">Nạp tiền vào tài khoản</string>
+    <string name="sodutaikhoan">Số dư tài khoản: </string>
+    <plurals name="million">
+        <item quantity="one">triệu</item>
+        <item quantity="other">triệu</item>
+    </plurals>
+    <string name="million_zero">triệu</string>
+    <!--statistic_screen end-->
 
     <!--Maid near by-->
     <string name="GPSTitle">Cài đặt GPS</string>
@@ -172,6 +166,11 @@
     <string name="send_require">Gửi yêu cầu</string>
     <string name="forgot_password">Quên mật khẩu</string>
     <string name="term_title">Điều khoản sử dụng</string>
+    <string name="usename_empty">Username không được để trống</string>
+    <string name="emai_empty">Email không được để trống</string>
+    <string name="email_wrong">Email nhập không đúng</string>
+    <string name="forgot_password_success">Đã gửi thành công link đặt lại mật khẩu về email của bạn.</string>
+    <string name="forgot_password_failed">Thất bại, hảy kiểm tra lại email và tài khoản của bạn.</string>
     <!--forgot password screen end-->
 
     <!--payment screen start-->

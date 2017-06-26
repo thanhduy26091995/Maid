@@ -18,7 +18,6 @@ import com.bumptech.glide.request.target.Target;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.history.model.work.Owner;
-import com.hbbsolution.maid.model.task.Info;
 import com.hbbsolution.maid.more.duy_nguyen.view.ReportOwnerActivity;
 
 import butterknife.BindView;
@@ -47,9 +46,10 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
     LinearLayout linearReportOwner;
     private Owner mInfoOwner;
     private boolean isInJobDetail = false;
-    private Info info;
+    private com.hbbsolution.maid.model.task.Owner info;
     private Bundle extras;
     private static final int REPORT = 0;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +63,12 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
         linearReportOwner.setOnClickListener(this);
         isInJobDetail = getIntent().getBooleanExtra("IsInJobDetail", false);
         if (isInJobDetail) {
-            info = (Info) getIntent().getSerializableExtra("InfoOwner");
-            txtNameInfoMaid.setText(info.getName());
-            txtGenderInfoMaid.setText(getGenderMaid(info.getGender()));
-            txtPhoneInfoMaid.setText(info.getPhone());
-            txtAddressInfoMaid.setText(info.getAddress().getName());
-            ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, info.getImage(),
+            info = (com.hbbsolution.maid.model.task.Owner) getIntent().getSerializableExtra("InfoOwner");
+            txtNameInfoMaid.setText(info.getInfo().getName());
+            txtGenderInfoMaid.setText(getGenderMaid(info.getInfo().getGender()));
+            txtPhoneInfoMaid.setText(info.getInfo().getPhone());
+            txtAddressInfoMaid.setText(info.getInfo().getAddress().getName());
+            ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, info.getInfo().getImage(),
                     img_avatar);
         } else {
             mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
@@ -126,7 +126,7 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
                 } else {
                     intent.putExtra("InfoOwner", mInfoOwner);
                 }
-                intent.putExtra("IsInJobDetail",isInJobDetail);
+                intent.putExtra("IsInJobDetail", isInJobDetail);
                 startActivityForResult(intent, REPORT);
                 break;
         }

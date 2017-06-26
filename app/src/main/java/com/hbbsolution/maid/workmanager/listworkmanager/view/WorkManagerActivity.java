@@ -1,16 +1,13 @@
 package com.hbbsolution.maid.workmanager.listworkmanager.view;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
@@ -51,43 +48,6 @@ public class WorkManagerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         createFragment();
-        tabMore = getIntent().getIntExtra("tabMore", 0);
-        flag = getIntent().getIntExtra("flag", 0);
-        if (tabMore != null && flag != null) {
-            mViewPager.setCurrentItem(tabMore);
-
-            if (flag == 1) {
-                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(WorkManagerActivity.this);
-                alertDialog.setCancelable(false);
-                alertDialog.setTitle("Thông báo");
-                alertDialog.setMessage("Hoàn tất công việc");
-                alertDialog.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alertDialog.show().dismiss();
-                    }
-                });
-                alertDialog.show();
-            } else if (flag == 2) {
-                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(WorkManagerActivity.this);
-                alertDialog.setCancelable(false);
-                alertDialog.setTitle("Hoàn tất công việc");
-                alertDialog.setMessage("Vui lòng xác nhận tiền mặt bằng cách nhấn " + "Ok");
-                alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alertDialog.show().dismiss();
-                    }
-                });
-                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        alertDialog.show().dismiss();
-                    }
-                });
-                alertDialog.show();
-            }
-        }
     }
 
     @Override
