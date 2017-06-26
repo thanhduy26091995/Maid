@@ -124,6 +124,7 @@
     </plurals>
     <string name="worklist">Worklist</string>
     <string name="rangetime">Please double check time chosen!</string>
+
     <!--history_screen end-->
 
     <!--detail_work_history_screen start-->
