@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.api.ApiInterface;
-import com.hbbsolution.maid.more.phuc_tran.ContactView;
+import com.hbbsolution.maid.more.phuc_tran.view.ContactView;
 import com.hbbsolution.maid.more.phuc_tran.model.ContactResponse;
 
 import retrofit2.Call;

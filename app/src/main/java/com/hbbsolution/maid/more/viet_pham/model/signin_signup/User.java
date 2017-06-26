@@ -14,39 +14,29 @@ public class User {
     @SerializedName("info")
     @Expose
     private Info info;
-    @SerializedName("evaluation_point")
+    @SerializedName("work_info")
     @Expose
-    private double evaluation_point;
-    @SerializedName("wallet")
-    @Expose
-    private double wallet;
+    private Work_info work_info;
+
 
     public User() {
 
     }
 
-    public User(String _id, Info info, double evaluation_point, double wallet) {
+    public User(String _id, Info info, Work_info work_info) {
         this._id = _id;
         this.info = info;
-        this.evaluation_point = evaluation_point;
-        this.wallet = wallet;
+        this.work_info = work_info;
     }
 
-    public double getEvaluation_point() {
-        return evaluation_point;
+    public Work_info getWork_info() {
+        return work_info;
     }
 
-    public void setEvaluation_point(double evaluation_point) {
-        this.evaluation_point = evaluation_point;
+    public void setWork_info(Work_info work_info) {
+        this.work_info = work_info;
     }
 
-    public double getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(double wallet) {
-        this.wallet = wallet;
-    }
 
     public String get_id() {
         return _id;

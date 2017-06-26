@@ -65,7 +65,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
     ImageView imgType_job_detail_post;
     @BindView(R.id.lo_clear_job_pending)
     LinearLayout lo_clear_job;
-    @BindView(R.id.progressDetailJobPost)
+    @BindView(R.id.progressDetailJobPending)
     ProgressBar progressBar;
     @BindView(R.id.txtIsTools)
     TextView txtIsTools;
@@ -148,16 +148,16 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
 
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("Thông báo");
-                alertDialog.setMessage("Bạn có chắc muốn xóa bài đăng này !");
-                alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                alertDialog.setTitle(getResources().getString(R.string.notification));
+                alertDialog.setMessage(getResources().getString(R.string.notification_del_job_post));
+                alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         progressBar.setVisibility(View.VISIBLE);
                         mDetailJobPostPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                     }
                 });
-                alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -192,9 +192,9 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
         if (isJobPost) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setCancelable(false);
-            alertDialog.setTitle("Thông báo");
-            alertDialog.setMessage("Bài đăng đã được xóa !");
-            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            alertDialog.setTitle(getResources().getString(R.string.notification));
+            alertDialog.setMessage(getResources().getString(R.string.notification__pass_del_job_post));
+            alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     EventBus.getDefault().postSticky(true);

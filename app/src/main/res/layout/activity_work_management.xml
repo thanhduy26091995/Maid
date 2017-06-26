@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/colorBlack"
+                android:text="@string/work_management"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

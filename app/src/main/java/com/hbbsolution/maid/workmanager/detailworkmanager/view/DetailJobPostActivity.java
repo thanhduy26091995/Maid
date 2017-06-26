@@ -65,7 +65,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     ImageView imgType_job_detail_post;
     @BindView(R.id.lo_clear_job)
     LinearLayout lo_clear_job;
-    @BindView(R.id.progressDetailJobPost)
+    @BindView(R.id.progressPostJob)
     ProgressBar progressBar;
     @BindView(R.id.txtIsTools)
     TextView txtIsTools;
@@ -181,16 +181,16 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                 if(mDatum.getProcess().getId().equals("000000000000000000000006")) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setCancelable(false);
-                    alertDialog.setTitle("Thông báo");
-                    alertDialog.setMessage("Bạn có chắc muốn hủy công việc này !");
-                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(getResources().getString(R.string.notification));
+                    alertDialog.setMessage(getResources().getString(R.string.notification_del_job_post));
+                    alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             progressBar.setVisibility(View.VISIBLE);
                             mDetailJobPostPresenter.refuseJobRequested(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                         }
                     });
-                    alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    alertDialog.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -200,9 +200,9 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                 }else {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setCancelable(false);
-                    alertDialog.setTitle("Thông báo");
-                    alertDialog.setMessage("Bạn có chắc muốn xóa công việc này !");
-                    alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(getResources().getString(R.string.notification));
+                    alertDialog.setMessage(getResources().getString(R.string.notification_del_job_post));
+                    alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             progressBar.setVisibility(View.VISIBLE);
@@ -210,7 +210,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                             mDetailJobPostPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                         }
                     });
-                    alertDialog.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    alertDialog.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -241,7 +241,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
     @Override
     public void displayNotifyJobPost(boolean isJobPost) {
-        displayNotifySuccess(isJobPost, "Hủy công việc thành công!");
+        displayNotifySuccess(isJobPost, getResources().getString(R.string.notification__pass_del_job_post));
     }
 
     @Override
@@ -273,9 +273,9 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         if (isJobPost) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setCancelable(false);
-            alertDialog.setTitle("Thông báo");
+            alertDialog.setTitle(getResources().getString(R.string.notification));
             alertDialog.setMessage(message);
-            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     EventBus.getDefault().postSticky(true);

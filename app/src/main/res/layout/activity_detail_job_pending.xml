@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Đã phân công"
+                android:text="@string/assigned"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -133,7 +133,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="10dp"
                             android:paddingBottom="10dp"
-                            android:text="MÔ TẢ"
+                            android:text="@string/description"
                             android:textStyle="bold" />
                     </RelativeLayout>
 
@@ -343,7 +343,7 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="10dp"
-                        android:text="Xóa công việc"
+                        android:text="@string/cancel_work"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/home_background_maid_aound" />
 
@@ -354,7 +354,7 @@
                         android:layout_marginRight="20dp"
                         android:gravity="center"
                         android:text="@string/manager_ic_trash"
-                        android:textColor="@color/home_background_history"
+                        android:textColor="@color/home_background_maid_aound"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
@@ -368,7 +368,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="10dp"
-                    android:text="Bạn được hủy  công việc đã nhận trước 24h, trong vòng 24h vui lòng gọi điện thông báo công ty hoặc chủ nhà để xác nhận hủy" />
+                    android:text="@string/note_cancel_work" />
 
 
             </LinearLayout>

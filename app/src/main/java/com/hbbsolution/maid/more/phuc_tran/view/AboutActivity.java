@@ -1,6 +1,7 @@
-package com.hbbsolution.maid.more.phuc_tran;
+package com.hbbsolution.maid.more.phuc_tran.view;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,20 +14,22 @@ import com.hbbsolution.maid.more.phuc_tran.presenter.AboutPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TermActivity extends AppCompatActivity implements AboutView{
+public class AboutActivity extends AppCompatActivity implements AboutView {
 
-    @BindView(R.id.term_toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.term_title_toolbar)
-    TextView txt_term_toolbar;
-    @BindView(R.id.webview_content_term)
-    WebView webview_content_term;
+    @BindView(R.id.about_title_toolbar)
+    TextView txt_about_title;
+    @BindView(R.id.wvAbout)
+    WebView wvAbout;
 
     private AboutPresenter mAboutPresenter;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_term);
+        setContentView(R.layout.activity_about);
+
         ButterKnife.bind(this);
 
         //config toolbar
@@ -34,14 +37,14 @@ public class TermActivity extends AppCompatActivity implements AboutView{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        txt_term_toolbar.setText(getResources().getString(R.string.term_title));
+        txt_about_title.setText(getResources().getString(R.string.about));
 
         mAboutPresenter = new AboutPresenter(this);
 
-        mAboutPresenter.getTerm();
-
+        mAboutPresenter.getAbout();
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -56,8 +59,8 @@ public class TermActivity extends AppCompatActivity implements AboutView{
         if (content.equals("")){
             content="Chưa có dữ liệu";
         }
-        webview_content_term.getSettings().setJavaScriptEnabled(true);
-        webview_content_term.loadDataWithBaseURL(null,
+        wvAbout.getSettings().setJavaScriptEnabled(true);
+        wvAbout.loadDataWithBaseURL(null,
                 content,
                 "text/html",
                 "utf-8",

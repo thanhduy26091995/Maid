@@ -24,45 +24,39 @@ import java.util.concurrent.TimeUnit;
 public class WorkTimeValidate {
     public static String[] workTimeValidate(String endDate)  {
         long currentTime = System.currentTimeMillis();
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-//
-//        Date mEndDate = null;
-//        try {
-//            mEndDate = simpleDateFormat.parse(endDate);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        long millisecond = mEndDate.getTime();
-//        long timer = (currentTime - millisecond);
-//        long timeHistory = (timer / 60000);
-
+        Date currentDate = new Date();
         DateTimeFormatter parser = ISODateTimeFormat.dateTimeParser();
         Date date = parser.parseDateTime(endDate).toDate();
         long millisecond = date.getTime();
         long timer = (currentTime - millisecond);
         long timeHistory = (timer / 60000);
-        String[] currentTimeHistory = {"0", "0", "0"};
-        if (timeHistory < 60) {
+        String[] currentTimeHistory = {"0","0", "0", "0","0","0"};
+        if(timeHistory < 1) {
             currentTimeHistory[0] = String.format("%d",
-                    TimeUnit.MILLISECONDS.toMinutes(timer),
-                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timer)));
-            currentTimeHistory[1] ="0";
-            currentTimeHistory[2] ="0";
+                    TimeUnit.MILLISECONDS.toMillis(timer));
+        }
+        else if (1 < timeHistory && timeHistory < 60) {
+            currentTimeHistory[1] = String.format("%d",
+                    TimeUnit.MILLISECONDS.toMinutes(timer));
 
         } else if (60 < timeHistory && timeHistory < 1440) {
-            currentTimeHistory[1] = String.format("%d",
-                    TimeUnit.MILLISECONDS.toHours(timer),
-                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timer)));
-            currentTimeHistory[0] ="0";
-            currentTimeHistory[2] ="0";
+            currentTimeHistory[2] = String.format("%d",
+                    TimeUnit.MILLISECONDS.toHours(timer));
 
         } else if (timeHistory > 1440) {
-            currentTimeHistory[2] = String.format("%d",
-                    TimeUnit.MILLISECONDS.toDays(timer),
-                    TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(timer)));
-            currentTimeHistory[0] ="0";
-            currentTimeHistory[1] ="0";
+            currentTimeHistory[3] = String.format("%d",
+                    TimeUnit.MILLISECONDS.toDays(timer));
 
+        } else if (timeHistory > 1440*30)
+        {
+            if(currentDate.getYear()-date.getYear()>0)
+            {
+                currentTimeHistory[5]=String.valueOf(currentDate.getYear()-date.getYear());
+            }
+            else
+            {
+                currentTimeHistory[4]=String.valueOf(currentDate.getMonth()-date.getMonth());
+            }
         }
         return currentTimeHistory;
     }
@@ -104,12 +98,14 @@ public class WorkTimeValidate {
 
     public static void setWorkTimeRegister(Context context, TextView txtTimePostHistory, String _timePostHistory) {
         String[] mWorkTimeHistory = workTimeValidate(_timePostHistory);
-        if (!mWorkTimeHistory[2].equals("0")) {
-            txtTimePostHistory.setText(mWorkTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(mWorkTimeHistory[2]))));
+        if (!mWorkTimeHistory[3].equals("0")) {
+            txtTimePostHistory.setText(mWorkTimeHistory[3] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,Integer.parseInt(mWorkTimeHistory[2]))));
+        } else if (!mWorkTimeHistory[2].equals("0")) {
+            txtTimePostHistory.setText(mWorkTimeHistory[2] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(mWorkTimeHistory[1]))));
         } else if (!mWorkTimeHistory[1].equals("0")) {
-            txtTimePostHistory.setText(mWorkTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,Integer.parseInt(mWorkTimeHistory[1]))));
+            txtTimePostHistory.setText(mWorkTimeHistory[1] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(mWorkTimeHistory[0]))));
         } else if (!mWorkTimeHistory[0].equals("0")) {
-            txtTimePostHistory.setText(mWorkTimeHistory[0] + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,Integer.parseInt(mWorkTimeHistory[0]))));
+            txtTimePostHistory.setText("Vừa xong");
         }
     }
 }
