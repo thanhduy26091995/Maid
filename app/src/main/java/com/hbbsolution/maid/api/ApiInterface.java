@@ -11,6 +11,7 @@ import com.hbbsolution.maid.more.duy_nguyen.model.ReportResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.StatisticResponse;
 import com.hbbsolution.maid.more.phuc_tran.model.AboutResponse;
 import com.hbbsolution.maid.more.phuc_tran.model.ContactResponse;
+import com.hbbsolution.maid.more.phuc_tran.model.ForgotPassResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
@@ -87,5 +88,10 @@ public interface ApiInterface {
 
     @GET("maid/statistical")
     Call<StatisticResponse> getStatistic(@Query("startAt") String startAt, @Query("endAt") String endAt);
+
+    @FormUrlEncoded
+    @POST("maid/forgotPassword")
+    Call<ForgotPassResponse> forgotPassword(@Field("email") String email,
+                                            @Field("username") String username);
 
 }
