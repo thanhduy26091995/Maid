@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -60,6 +61,8 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     CircleImageView imgAvatar;
     @BindView(R.id.txt_statistic_address)
     TextView tvStatisticAddress;
+    @BindView(R.id.ratingBar)
+    RatingBar ratingBar;
 
     private Calendar cal;
     private Date startDate, endDate;

@@ -343,7 +343,21 @@
                                         android:textColor="@android:color/black"
                                         android:textSize="@dimen/text_size_large"
                                         android:textStyle="bold" />
-
+                                    <RatingBar
+                                        android:id="@+id/ratingBar"
+                                        style="?android:attr/ratingBarStyleSmall"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignTop="@+id/txt_statistic_owner_name"
+                                        android:layout_toLeftOf="@id/txt_right"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_alignBottom="@id/txt_statistic_owner_name"
+                                        android:clickable="false"
+                                        android:isIndicator="false"
+                                        android:numStars="5"
+                                        android:rating="0"
+                                        android:stepSize="1.0"
+                                        android:theme="@style/RatingBar" />
                                     <com.hbbsolution.maid.base.IconTextView
                                         android:id="@+id/txt_right"
                                         android:layout_width="wrap_content"

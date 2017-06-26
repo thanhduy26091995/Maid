@@ -82,7 +82,7 @@
 
 
     <!--Page more activity start-->
-    <string name="more_job_statistic">Thống kê công việc</string>
+    <string name="more_job_statistic">Thống kê</string>
     <string name="more_notification">Thông báo</string>
     <string name="more_languge">Ngôn ngữ</string>
     <string name="more_share_app_Gv24">Chia sẻ ứng dụng Gv24</string>
@@ -126,8 +126,7 @@
         <item quantity="one">giây</item>
         <item quantity="other">giây</item>
     </plurals>
-
-    <string name="unpayalbe">Chưa thanh toán</string>
+    <string name="worklist">Danh sách công việc</string>
     <string name="rangetime">Vui lòng xem lại khoảng thời gian!</string>
     <!--history_screen end-->
 
@@ -138,11 +137,10 @@
     <!--detail_work_history_screen end-->
 
     <!--statistic_screen start-->
-    <string name="total">Tổng chi phí</string>
+    <string name="total">Tổng thu nhập</string>
     <string name="history_work">Công việc hoàn thành</string>
     <string name="waiting_work">Công việc đang xử lý</string>
-    <string name="post_work">Công việc đã đăng</string>
-    <string name="sodutaikhoan">Số dư tài khoản</string>
+    <string name="post_work">Công việc đang chờ</string>
     <plurals name="million">
         <item quantity="one">triệu</item>
         <item quantity="other">triệu</item>
