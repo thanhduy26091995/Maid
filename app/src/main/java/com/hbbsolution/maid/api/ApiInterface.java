@@ -92,7 +92,7 @@ public interface ApiInterface {
     Call<StatisticResponse> getStatistic(@Query("startAt") String startAt, @Query("endAt") String endAt);
 
     @FormUrlEncoded
-    @POST("maid/forgotPassword")
+    @POST("more/maidForgotPassword")
     Call<ForgotPassResponse> forgotPassword(@Field("email") String email,
                                             @Field("username") String username);
 
