@@ -50,7 +50,7 @@
         <activity android:name=".more.viet_pham.MoreActivity" />
         <activity android:name=".maid_profile.view.MaidProfileActivity"/>
         <activity android:name=".more.viet_pham.view.signin.SignInActivity" />
-
+        <activity android:name=".more.viet_pham.follow_fan_page.FollowFanPageFace"/>
         <service android:name=".service.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />

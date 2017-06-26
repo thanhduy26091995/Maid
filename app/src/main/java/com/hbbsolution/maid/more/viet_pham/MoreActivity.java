@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -53,6 +54,8 @@ public class MoreActivity extends AppCompatActivity {
     ImageView imgAvatar;
     @BindView(R.id.lnLanguage)
     LinearLayout lnLanguage;
+    @BindView(R.id.linearlayout_follow_facebook)
+    LinearLayout lnlFollowFacebook;
     @BindView(R.id.lnLogOut)
     LinearLayout lnLogOut;
     @BindView(R.id.lo_about)
@@ -181,6 +184,15 @@ public class MoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent iStatistic = new Intent(MoreActivity.this, ContactActivity.class);
                 startActivity(iStatistic);
+            }
+        });
+
+        lnlFollowFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WebView webview = new WebView(MoreActivity.this);
+                webview.getSettings().setJavaScriptEnabled(true);
+                webview.loadUrl("https://www.facebook.com/Ng%C6%B0%E1%BB%9Di-Gi%C3%BAp-Vi%E1%BB%87c-247-122998571630965/");
             }
         });
 
