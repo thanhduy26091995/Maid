@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -51,8 +50,6 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
     RecyclerView mRecycler;
     @BindView(R.id.txtNameInfoMaid)
     TextView txtNameInfoMaid;
-    @BindView(R.id.txtPriceInfoMaid)
-    TextView txtPriceInfoMaid;
     @BindView(R.id.txtGenderInfoMaid)
     TextView txtGenderInfoMaid;
     @BindView(R.id.txtPhoneInfoMaid)
@@ -65,8 +62,6 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
     Toolbar toolbarHeader;
     @BindView(R.id.txtBackInfoMaid)
     IconTextView txtBackInfoMaid;
-    @BindView(R.id.v_line)
-    View vLine;
     @BindView(R.id.img_avatarMaid)
     ImageView img_avatarMaid;
     @BindView(R.id.img_blur_image)

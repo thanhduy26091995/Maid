@@ -97,7 +97,7 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
             switch (v.getId()) {
                 case R.id.rela_info:
                     Intent intent = new Intent(context, OwnerProfileActivity.class);
-                    intent.putExtra("InfoOwner", ownerHistoryList.get(getAdapterPosition()).getId().getInfo());
+                    intent.putExtra("InfoOwner", ownerHistoryList.get(getAdapterPosition()).getId());
                     intent.putExtra("IsInJobDetail", false);
 //                    ActivityOptionsCompat historyOption =
 //                            ActivityOptionsCompat
