@@ -47,7 +47,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     private Owner mInfoOwner;
     private ReportPresenter reportPresenter;
     private boolean isInJobDetail = false;
-    private String idHelper;
+    private String idOnwer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +81,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
             mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
             mTextOwnerName.setText(mInfoOwner.getInfo().getUsername());
             mTextOwnerAddress.setText(mInfoOwner.getInfo().getAddress().getName());
-            idHelper = mInfoOwner.getId();
+            idOnwer = mInfoOwner.getId();
                 Glide.with(this).load(mInfoOwner.getInfo().getImage())
                         .thumbnail(0.5f)
                         .placeholder(R.drawable.avatar)
@@ -109,7 +109,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
                 if (edtReport.getText().toString().length() > 0) {
-                    reportPresenter.reportOwner(idHelper, edtReport.getText().toString().trim());
+                    reportPresenter.reportOwner(idOnwer, edtReport.getText().toString().trim());
                 } else {
                     Toast.makeText(this, "Vui lòng nhập bình luận", Toast.LENGTH_LONG).show();
                 }
