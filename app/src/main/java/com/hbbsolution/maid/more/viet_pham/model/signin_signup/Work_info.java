@@ -12,7 +12,7 @@ import java.util.List;
 public class Work_info {
     @SerializedName("ability")
     @Expose
-    private List<String> ability;
+    private List<Ability> ability;
     @SerializedName("evaluation_point")
     @Expose
     private int evaluation_point;
@@ -22,17 +22,17 @@ public class Work_info {
 
     public Work_info()
     {}
-    public Work_info(List<String> ability, int evaluation_point, int price) {
+    public Work_info(List<Ability> ability, int evaluation_point, int price) {
         this.ability = ability;
         this.evaluation_point = evaluation_point;
         this.price = price;
     }
 
-    public List<String> getAbility() {
+    public List<Ability> getAbility() {
         return ability;
     }
 
-    public void setAbility(List<String> ability) {
+    public void setAbility(List<Ability> ability) {
         this.ability = ability;
     }
 
