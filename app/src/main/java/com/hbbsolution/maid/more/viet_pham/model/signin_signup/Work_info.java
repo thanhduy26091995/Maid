@@ -13,6 +13,7 @@ public class Work_info {
     @SerializedName("ability")
     @Expose
     private List<Ability> ability;
+
     @SerializedName("evaluation_point")
     @Expose
     private int evaluation_point;
