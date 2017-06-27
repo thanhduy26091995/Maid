@@ -3,7 +3,6 @@ package com.hbbsolution.maid.api;
 
 import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
-import com.hbbsolution.maid.main.model.ResponseRequest;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
@@ -40,6 +39,7 @@ public interface ApiInterface {
     @GET("more/getTaskByWork")
     Call<TaskResponse> getTaskByWork(@Query("lat") Double lat, @Query("lng") Double lng, @Query("maxDistance") Integer maxDistance,
                                      @Query("work") String workId, @Query("page") int page);
+
     @GET("maid/getAllTasks")
     Call<WorkManagerResponse> getInfo(@Query("process") String idProcess, @Query("sortByTaskTime") boolean isSortByTaskTime);
 
@@ -59,6 +59,7 @@ public interface ApiInterface {
 
     @GET
     Call<GeoCodeMapResponse> getLocaltionAddress(@Url String url, @Query("address") String address);
+
     @Multipart
     @POST("auth/maid/login")
     Call<BodyResponse> signInAccount(@Part("username") RequestBody username,
@@ -79,7 +80,7 @@ public interface ApiInterface {
     Call<JobPendingResponse> refuseJobRequested(@Field("id") String taskId, @Field("ownerId") String ownerId);
 
     @GET("maid/getTaskOfOwner")
-    Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner,@Query("page") int page);
+    Call<WorkHistoryResponse> getListWorkByMaid(@Query("owner") String idOwner, @Query("page") int page);
 
     @GET("more/getGV24HInfo")
     Call<AboutResponse> getAbout(@Query("id") String idTask);
@@ -102,4 +103,10 @@ public interface ApiInterface {
     @GET("owner/checkToken")
     Call<ResponseRequest> checkToken();
 
+
+    @GET("maid/getComment")
+    Call<CommentMaidResponse> getListCommentMaid(@Query("id") String idTask, @Query("page") int page);
+
+    @GET("maid/getAbility")
+    Call<AbilitiResponse> getAbilities();
 }
