@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorWhite"
-            android:title="Sign In"
+            android:title="@string/more_sign_in"
             app:theme="@style/toolbar_theme">
 
             <TextView
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Sign In"
+                android:text="@string/sign_in_sign_in"
                 android:textAllCaps="false"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
@@ -147,7 +147,6 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@android:color/darker_gray" />
-
             <Button
                 android:id="@+id/bt_sign_in"
                 android:layout_width="match_parent"

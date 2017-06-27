@@ -49,12 +49,13 @@
 
 
     <!--signin_screen start-->
-    <string name="sign_in_user_name">Tên đăng nhập</string>
-    <string name="sign_in_password">Mật khẩu</string>
-    <string name="sign_in_sign_in">Đăng nhập</string>
-    <string name="sign_in_forget_password">Quên mật khẩu</string>
-    <string name="sign_in_sign_now">Đăng ký ngay</string>
-    <string name="sign_in_by">Đăng nhập bằng</string>
+    <string name="sign_in_user_name">Username</string>
+    <string name="sign_in_password">Password</string>
+    <string name="sign_in_sign_in">Sign in</string>
+    <string name="sign_in_forget_password">Forgot password?</string>
+    <string name="sign_in_sign_now">Sign up now</string>
+    <string name="sign_in_by">Login with</string>
+    <string name="sign_up">Sign up</string>
     <!--signin_screen end-->
 
 
@@ -176,6 +177,17 @@
     <string name="forgot_password_success">A password reset link is sent to your email.</string>
     <string name="forgot_password_failed">Failed! Please double check your email and account.</string>
     <!--forgot password screen end-->
+
+    <!--more-start-viet-->
+    <string name="nhan_xet">Comment</string>
+    <string name="khong_co_nhanxet">There are no comments</string>
+    <string name="thong_tin">Applicant profile</string>
+    <string name="vui_long_dien_day_du">Please fill out all information</string>
+    <string name="select_image">Select image</string>
+    <string name="vui_long_nhap_dia_chi">Please enter a valid address</string>
+    <string name="cap_nhat_thong_tin">Update unsuccessfully!</string>
+    <string name="dia_chi_khong_tim_thay">Address not found!</string>
+    <!--more-end-viet-->
 
 
     <!--payment screen start-->

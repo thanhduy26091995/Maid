@@ -178,5 +178,26 @@
     <string name="accountbalance">Số dư tài khoản: </string>
     <!--payment screen end-->
 
+    <!--signin_screen start-->
+    <string name="sign_in_user_name">Tên đăng nhập</string>
+    <string name="sign_in_password">Mật khẩu</string>
+    <string name="sign_in_sign_in">Đăng nhập</string>
+    <string name="sign_in_forget_password">Quên mật khẩu</string>
+    <string name="sign_in_sign_now">Đăng ký ngay</string>
+    <string name="sign_in_by">Đăng nhập bằng</string>
+    <string name="sign_up">Đăng ký</string>
+    <!--signin_screen end-->
+
+    <!--more-start-->
+    <string name="nhan_xet">Nhận xét</string>
+    <string name="khong_co_nhanxet">Không có nhận xét nào</string>
+    <string name="thong_tin">Thông tin</string>
+    <string name="vui_long_dien_day_du">Vui lòng nhập đầy đủ thông tin</string>
+    <string name="select_image">Chọn hình ảnh</string>
+    <string name="vui_long_nhap_dia_chi">Vui lòng nhập chính xác địa chỉ</string>
+    <string name="cap_nhat_thong_tin">Cập nhật thông tin không thành công</string>
+    <string name="dia_chi_khong_tim_thay">Địa chỉ không tìm thấy</string>
+    <!--more-end-->
+
     <string name="loading">Đang tải...</string>
 </resources>
