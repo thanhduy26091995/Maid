@@ -375,6 +375,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         Double lng = geoCodeMapResponse.getResults().get(0).getGeometry().getLocation().getLng();
         latitude = lat;
         longitude = lng;
+        Log.d("LATLNG", "" + lat + "/" + lng + "/" + maxDistance);
         //search
         presenter.getAllTask(lat, lng, maxDistance);
     }
