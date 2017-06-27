@@ -1,59 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Maid</string>
+
     <!--cần tiền tố và comment trước khi sử dụng-->
 
     <!--home screen start-->
+    <!--<string name="home_home">Home</string>-->
+    <!--<string name="home_maid_around">Maid around</string>-->
+    <!--<string name="home_your_tasks">Your tasks</string>-->
+    <!--<string name="home_history">History</string>-->
+    <!--<string name="home_copy_right">Copyright(c).HBB Solution. All right reserved</string>-->
     <string name="home_home">Trang chủ</string>
-    <string name="home_maid_around">Giúp việc quanh đây</string>
-    <string name="home_your_tasks">Quản lý công việc</string>
+    <string name="home_maid_around">Công việc quanh đây</string>
+    <string name="home_your_tasks">Quản lí công việc</string>
     <string name="home_history">Lịch sử công việc</string>
     <string name="home_copy_right">Niềm tin - Chất lượng</string>
-
+    <string name="more_sign_in">Đăng nhập</string>
     <!--home screen end-->
-
-    <!--work_manager start-->
-    <string name="work_management">Quản lý công việc</string>
-    <string name="posted_work">Đã đăng</string>
-    <string name="assigned">Đã phân công</string>
-    <string name="running_work">Đang làm</string>
-
-    <string name="post_your_work">Đăng công việc</string>
-    <string name="title_job_post">Tiêu đề</string>
-    <string name="types_of_work">Loại công việc</string>
-    <string name="address_job_post">Địa chỉ</string>
-    <string name="work_description">Mô tả công việc</string>
-    <string name="enter_the_salary">Nhập số tiền công</string>
-    <string name="hourly_pay">Tính tiền theo thời gian</string>
-    <string name="hour">/giờ</string>
-    <string name="the_start_date">Ngày bặt đầu</string>
-    <string name="time_of_working">Thời gian làm việc</string>
-    <string name="to_job_post">to</string>
-    <string name="jobs_for_applications">Đang chờ ứng tuyển</string>
-    <string name="qua_han_ung_tuyen">Quá hạn ứng tuyển</string>
-    <string name="dang_cho_xac_nhan">Đang chờ xác nhận</string>
-    <string name="qua_han_xac_nhan">Quá hạn xác nhận</string>
-    <string name="qua_han">Quá hạn</string>
-    <string name="đăng_bài">Đăng bài</string>
-    <string name="update_job_post">Cập nhật</string>
-    <string name="notification">Thông báo</string>
-    <string name="post_successfully">Bạn đã đăng bài thành công!</string>
-    <string name="post_unsuccessfully">Đăng bài thất bại!</string>
-    <string name="check_your_home_address">Vui lòng kiểm tra lại địa chỉ nhà.</string>
-    <string name="check_complete_all_information">Vui lòng điền đầy đủ thông tin.</string>
-    <string name="check_working_time">Thời gian làm việc không phù hợp.</string>
-    <string name="detail_posted">Đã đăng</string>
-    <string name="check_date_post">Ngày bạn chọn không phù hợp.</string>
-    <string name="delete_work_post">Bạn có muốn xóa công việc này không?</string>
-    <string name="ok">Chấp nhận</string>
-    <string name="cancel">Hủy</string>
-    <string name="list_recruitment">Danh sách ứng tuyển</string>
-    <string name="work_complete">Hoàn tất công việc</string>
-    <string name="vnd">VND</string>
-    <string name="vnd_hour">VND/giờ</string>
-
-
-    <!--work_manager end-->
 
     <!--terms_screen start-->
     <string name="terms">Điều khoản sử dụng</string>
@@ -61,122 +23,30 @@
     <string name="content_null">Chưa có nội dung</string>
     <!--terms screen end-->
 
-    <!--profile  start-->
-    <string name="pro_file_gender_male">Nam</string>
-    <string name="pro_file_gender_female">Nữ</string>
-    <!--profile end-->
 
+    <!--workmanager_screen start-->
+    <string name="work_management">Quản lí công việc</string>
+    <string name="posted_work">Chờ duyệt</string>
+    <string name="assigned">Đã phân công</string>
+    <string name="running_work">Đang làm</string>
+    <string name="awaiting_assignment">Đang chờ phân công</string>
+    <string name="pending_confirmation">Đang chờ xác nhận</string>
+    <string name="exceeded">Quá hạn</string>
+    <string name="send_direct">Gửi trực tiếp</string>
 
-    <!--Page more activity start-->
-    <string name="more_job_statistic">Thống kê</string>
-    <string name="more_notification">Thông báo</string>
-    <string name="more_languge">Ngôn ngữ</string>
-    <string name="more_share_app_Gv24">Chia sẻ ứng dụng Gv24</string>
-    <string name="more_follow_Gv24_on_facebook">Theo dõi Gv24 trên Facebook</string>
-    <string name="more_contact">Liên hệ</string>
-    <string name="gender_men">Nam</string>
-    <string name="gender_women">Nữ</string>
-    <string name="signout">Đăng xuất</string>
-    <string name="signoutContent">Bạn thực sự muốn Log out?</string>
-    <!--Page more activity end-->
+    <string name="tool_work">Mang theo dụng cụ làm việc</string>
+    <string name="cancel_work">Hủy công việc</string>
 
 
 
-    <!--khác-->
-    <string name="default_language">Mặc định</string>
-    <string name="more">Thêm</string>
-    <string name="rate">Đánh giá</string>
-    <string name="completed">Đã hoàn thành</string>
-    <string name="to">đến</string>
-    <string name="send">Gửi</string>
-    <string name="soonupdated">Thông tin sớm được cập nhật!</string>
+    <string name="notification">Thông báo</string>
+    <string name="checknumberjobpost">Số lượng bài đăng không được vượt quá 10 bài!</string>
+    <string name="notification_del_job_post">Bạn có muốn xóa công việc này không?</string>
+    <string name="notification__pass_del_job_post">Bài đăng đã được xóa</string>
+    <string name="note_cancel_work">Bạn được quyền hủy công việc đã nhận trong vòng 24 giờ trước khi bắt đầu làm việc. Vui lòng gọi điện thông báo công ty hoặc chủ nhà khi xác nhận thay đổi.</string>
 
+    <!--workmanager_screen screen end-->
 
-    <!--history_screen start-->
-    <string name="completedjob">Công việc hoàn thành</string>
-    <string name="completedhelpler">Giúp việc đã làm</string>
-    <string name="liabilities">Công nợ</string>
-    <string name="before">%s trước</string>
-    <plurals name="day">
-        <item quantity="other">ngày</item>
-    </plurals>
-    <plurals name="hour">
-        <item quantity="other">giờ</item>
-    </plurals>
-    <plurals name="minute">
-        <item quantity="other">phút</item>
-    </plurals>
-    <plurals name="second">
-        <item quantity="other">giây</item>
-    </plurals>
-    <string name="notpayment">Chưa thanh toán</string>
-    <string name="confirm_the_task_completed">Vui lòng xác nhận công việc đã hoàn thành bằng cách nhấn "OK"</string>
-    <string name="worklist">Danh sách công việc</string>
-    <string name="rangetime">Vui lòng xem lại khoảng thời gian!</string>
-    <!--history_screen end-->
-
-    <!--detail_work_history_screen start-->
-    <string name="payment">Thanh toán</string>
-    <string name="description">MÔ TẢ</string>
-    <string name="yourcomment">Nhận xét của bạn</string>
-    <!--detail_work_history_screen end-->
-
-    <!--comment_screen start-->
-    <string name="comment">Bình luận</string>
-    <!--comment_screen end-->
-
-    <!--contact and about screen start-->
-    <string name="contact">Liên hệ</string>
-    <string name="about">Về chúng tôi</string>
-    <string name="btnCall">Gọi điện</string>
-    <string name="btnEmail">Email</string>
-    <string name="no_email_client">Chưa thiết lập Email người dùng."</string>
-    <string name="enter_phonenumber">Nhập có số điện thoại</string>
-    <string name="address_title">Địa chỉ:</string>
-    <!--contact and about screen end-->
-
-
-    <!--statistic_screen start-->
-    <string name="total">Tổng thu nhập</string>
-    <string name="history_work">Công việc hoàn thành</string>
-    <string name="waiting_work">Công việc đang xử lý</string>
-    <string name="post_work">Công việc đã đăng</string>
-    <string name="recharge">Nạp tiền vào tài khoản</string>
-    <string name="sodutaikhoan">Số dư tài khoản: </string>
-    <plurals name="million">
-        <item quantity="one">triệu</item>
-        <item quantity="other">triệu</item>
-    </plurals>
-    <string name="million_zero">triệu</string>
-    <!--statistic_screen end-->
-
-    <!--Maid near by-->
-    <string name="GPSTitle">Cài đặt GPS</string>
-    <string name="GPSContent">GPS đang tắt, bạn có muốn đi đến cài đặt GPS?</string>
-    <string name="setting">Cài Đặt</string>
-    <string name="huy">Hủy</string>
-    <!---->
-
-    <string name="english">English</string>
-    <string name="vietnamese">Tiếng Việt</string>
-
-    <!--forgot password screen start-->
-    <string name="send_require">Gửi yêu cầu</string>
-    <string name="forgot_password">Quên mật khẩu</string>
-    <string name="term_title">Điều khoản sử dụng</string>
-    <string name="usename_empty">Vui lòng điền username</string>
-    <string name="emai_empty">Vui lòng điền email</string>
-    <string name="email_wrong">Email nhập không đúng</string>
-    <string name="forgot_password_success">Đã gửi thành công link đặt lại mật khẩu về email của bạn.</string>
-    <string name="forgot_password_failed">Thất bại, hảy kiểm tra lại email và tài khoản của bạn.</string>
-    <!--forgot password screen end-->
-
-    <!--payment screen start-->
-    <string name="payment_date">Ngày thanh toán:</string>
-    <string name="timework">Thời gian làm việc:</string>
-    <string name="totalprice">Thành tiền:</string>
-    <string name="accountbalance">Số dư tài khoản: </string>
-    <!--payment screen end-->
 
     <!--signin_screen start-->
     <string name="sign_in_user_name">Tên đăng nhập</string>
@@ -185,19 +55,138 @@
     <string name="sign_in_forget_password">Quên mật khẩu</string>
     <string name="sign_in_sign_now">Đăng ký ngay</string>
     <string name="sign_in_by">Đăng nhập bằng</string>
-    <string name="sign_up">Đăng ký</string>
     <!--signin_screen end-->
 
-    <!--more-start-->
-    <string name="nhan_xet">Nhận xét</string>
-    <string name="khong_co_nhanxet">Không có nhận xét nào</string>
-    <string name="thong_tin">Thông tin</string>
-    <string name="vui_long_dien_day_du">Vui lòng nhập đầy đủ thông tin</string>
-    <string name="select_image">Chọn hình ảnh</string>
-    <string name="vui_long_nhap_dia_chi">Vui lòng nhập chính xác địa chỉ</string>
-    <string name="cap_nhat_thong_tin">Cập nhật thông tin không thành công</string>
-    <string name="dia_chi_khong_tim_thay">Địa chỉ không tìm thấy</string>
-    <!--more-end-->
 
-    <string name="loading">Đang tải...</string>
+    <!--signup_screen start-->
+    <string name="sign_up_confirm_password">Xác nhận mật khẩu</string>
+    <string name="sign_up_next">Tiếp theo</string>
+    <string name="sign_up_email">Email</string>
+    <string name="sign_up_full_name">Tên đầy đủ</string>
+    <string name="sign_up_gender">Giới tính</string>
+    <string name="sign_up_age">Tuổi</string>
+    <string name="sign_up_phone_number">Số điện thoại</string>
+    <string name="sign_up_address">Địa chỉ</string>
+    <!--signup_screen end-->
+
+    <!--profile  start-->
+    <string name="pro_file_gender_male">Nam</string>
+    <string name="pro_file_gender_female">Nữ</string>
+    <!--terms screen end-->
+
+    <!--Page more activity start-->
+    <string name="more_job_statistic">Thống kê công việc</string>
+    <string name="more_notification">Thông báo</string>
+    <string name="more_languge">Ngôn ngữ</string>
+    <string name="english">English</string>
+    <string name="vietnamese">Tiếng Việt</string>
+    <string name="more_share_app_Gv24">Chia sẻ ứng dụng NGV247</string>
+    <string name="more_follow_Gv24_on_facebook">Theo dõi Gv24 trên Facebook</string>
+    <string name="more_contact">Liên hệ</string>
+    <string name="gender_men">Nam</string>
+    <string name="gender_women">Nữ</string>
+    <string name="signout">Đăng xuất</string>
+    <string name="signoutContent">Bạn thực sự muốn đăng xuất?</string>
+    <string name="cancel">Hủy</string>
+    <string name="ok">Ok</string>
+    <!--Page more activity end-->
+
+
+    <!--khác-->
+    <string name="default_language">Mặc định</string>
+    <string name="more">Thêm</string>
+
+    <string name="rate">Đánh giá</string>
+    <string name="completed">Completed</string>
+    <string name="to">đến</string>
+    <string name="send">Gửi</string>
+    <string name="soonupdated">Đang cập nhật!</string>
+
+
+    <!--history_screen start-->
+    <string name="completedjob">Công việc hoàn thành</string>
+    <string name="completedowner">Giúp việc đã làm</string>
+    <string name="before">%s trước</string>
+    <plurals name="day">
+        <item quantity="one">ngày</item>
+        <item quantity="other">ngày</item>
+    </plurals>
+    <plurals name="hour">
+        <item quantity="one">giờ</item>
+        <item quantity="other">giờ</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">phút</item>
+        <item quantity="other">phút</item>
+    </plurals>
+    <plurals name="second">
+        <item quantity="one">giây</item>
+        <item quantity="other">giây</item>
+    </plurals>
+    <string name="worklist">Danh sách công việc</string>
+    <string name="rangetime">Vui lòng xem lại khoảng thời gian!</string>
+
+    <!--history_screen end-->
+
+    <!--detail_work_history_screen start-->
+    <string name="payment">Thanh toán</string>
+    <string name="description">MÔ TẢ</string>
+    <string name="owner">CHỦ NHÀ</string>
+    <!--detail_work_history_screen end-->
+
+    <!--statistic_screen start-->
+    <string name="total">Tổng thu nhập</string>
+    <string name="history_work">Công việc đã làm</string>
+    <string name="waiting_work">Công việc đang xử lý</string>
+    <string name="congviecdangcho">Công việc đang chờ</string>
+    <plurals name="million">
+        <item quantity="one">triệu</item>
+        <item quantity="other">triệu</item>
+    </plurals>
+    <string name="million_zero">triệu</string>
+    <!--statistic_screen end-->
+
+    <!--contact and about screen start-->
+    <string name="contact">Liên hệ</string>
+    <string name="about">Về chúng tôi</string>
+    <string name="btnCall">Gọi</string>
+    <string name="btnEmail">Email</string>
+////////    <string name="no_email_client">There are no email clients installed."</string>
+    <string name="enter_phonenumber">Nhập số điện thoại</string>
+    <string name="okAlert">Ok</string>
+    <string name="address_title">Địa chỉ:</string>
+    <!--contact and about screen end-->
+
+
+    <!--Maid near by-->
+    <string name="GPSTitle">Cài đặt GPS</string>
+    <string name="GPSContent">Tính năng định vị GPS hiện đang tắt. Bạn muốn khôi phục lại không?</string>
+    <string name="setting">Cài đặt</string>
+    <string name="huy">Hủy</string>
+    <!---->
+
+
+    <!--forgot password screen start-->
+    <string name="send_require">Gửi yêu cầu</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="term_title">Điều khoản sử dụng</string>
+    <string name="usename_empty">Vui lòng điền tên đăng nhập</string>
+    <string name="emai_empty">Vui lòng điền email</string>
+    <string name="email_wrong">Email nhập không đúng</string>
+    <string name="forgot_password_success">Đã gửi thành công link đặt lại mật khẩu qua email của bạn</string>
+    <string name="forgot_password_failed">Thất bại, hãy kiểm tra lại email và tài khoản của bạn</string>
+    <!--forgot password screen end-->
+
+
+    <!--payment screen start-->
+    <string name="payment_date">Ngày thanh toán:</string>
+    <string name="timework">Thời gian làm việc:</string>
+    <string name="totalprice">Thành tiền:</string>
+    <string name="accountbalance">Số dư tài khoản</string>
+    <!--payment screen end-->
+
+    <!--General-->
+    <string name="noInternet">Không có kết nối Internet</string>
+    <string name="retry">THỬ LẠI</string>
+    <!--General end-->
 </resources>
