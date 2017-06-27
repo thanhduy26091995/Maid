@@ -102,7 +102,7 @@ public class ListJobActivity extends AppCompatActivity implements ListJobView {
 
     private void showProgress() {
         progressDialog = new ProgressDialog(ListJobActivity.this);
-        progressDialog.setMessage("Đang tải...");
+        progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.setCancelable(false);
         progressDialog.show();
     }

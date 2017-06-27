@@ -170,7 +170,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         if (status) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Chọn công việc thành công");
-            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(getResources().getString(R.string.okAlert), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     builder.create().dismiss();

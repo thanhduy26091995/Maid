@@ -191,4 +191,13 @@
     <string name="retry">RETRY</string>
     <!--General end-->
     <string name="loading">Loading...</string>
+
+    <string name="choose_this_work">Choose this work</string>
+    <string name="nearby_work">Nearby work</string>
+    <string name="search">Search</string>
+    <string name="distance">Distance</string>
+    <string name="applicant_profile">Applicant profile</string>
+    <string name="report">Report</string>
+    <string name="comment">COMMENT</string>
+    <string name="no_comments">There are no comments</string>
 </resources>
