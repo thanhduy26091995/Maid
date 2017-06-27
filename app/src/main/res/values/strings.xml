@@ -45,6 +45,7 @@
     <string name="notification_del_job_post">Are you sure you want to delete this work?</string>
     <string name="notification__pass_del_job_post">Your post deleted!</string>
     <string name="note_cancel_work">You can cancel your accepted work within 24 hours before starting. Please call your host or company to confirm your change.</string>
+    <string name="done">Just posted</string>
 
     <!--workmanager_screen screen end-->
 
