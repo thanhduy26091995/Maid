@@ -189,4 +189,5 @@
     <string name="noInternet">Không có kết nối Internet</string>
     <string name="retry">THỬ LẠI</string>
     <!--General end-->
+    <string name="loading">Loading...</string>
 </resources>
