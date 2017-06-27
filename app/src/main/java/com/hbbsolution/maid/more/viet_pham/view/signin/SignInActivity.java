@@ -145,6 +145,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
     public void displayError() {
         mProgressDialog.dismiss();
         ShowAlertDialog.showAlert("Error", SignInActivity.this);
+
     }
 
     @Override
