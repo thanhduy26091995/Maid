@@ -109,24 +109,24 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
 
                 @Override
                 public void onItemLongClick(final Datum mDatum) {
-                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                    alertDialog.setCancelable(false);
-                    alertDialog.setTitle(getResources().getString(R.string.notification));
-                    alertDialog.setMessage(getResources().getString(R.string.notification_del_job_post));
-                    alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            progressBar.setVisibility(View.GONE);
-                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
-                        }
-                    });
-                    alertDialog.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                        }
-                    });
-                    alertDialog.show();
+//                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+//                    alertDialog.setCancelable(false);
+//                    alertDialog.setTitle(getResources().getString(R.string.notification));
+//                    alertDialog.setMessage(getResources().getString(R.string.notification_del_job_post));
+//                    alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            progressBar.setVisibility(View.GONE);
+//                            mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
+//                        }
+//                    });
+//                    alertDialog.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                        }
+//                    });
+//                    alertDialog.show();
                 }
             });
         } else {

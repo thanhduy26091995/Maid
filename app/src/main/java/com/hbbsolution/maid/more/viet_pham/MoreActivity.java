@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
-import com.hbbsolution.maid.main.HomeActivity;
+import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.StatisticActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.AboutActivity;

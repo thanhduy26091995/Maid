@@ -16,7 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.api.ApiClient;
-import com.hbbsolution.maid.main.HomeActivity;
+import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.ForgotPassActivity;
 import com.hbbsolution.maid.more.viet_pham.MoreView;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;

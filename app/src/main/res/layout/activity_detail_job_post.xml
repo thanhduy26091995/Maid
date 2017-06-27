@@ -228,7 +228,7 @@
                                     android:layout_marginLeft="5dp"
                                     android:padding="2dp"
                                     android:background="@drawable/background_text_expired"
-                                    android:text="Quá hạn"
+                                    android:text="@string/exceeded"
                                     android:textColor="@color/colorWhite"
                                     android:textSize="@dimen/icon_size_normal" />
 

@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Maid</string>
-
     <!--cần tiền tố và comment trước khi sử dụng-->
 
     <!--home screen start-->
@@ -10,11 +10,13 @@
     <!--<string name="home_history">History</string>-->
     <!--<string name="home_copy_right">Copyright(c).HBB Solution. All right reserved</string>-->
     <string name="home_home">Trang chủ</string>
-    <string name="home_maid_around">Công việc quanh đây</string>
-    <string name="home_your_tasks">Quản lí công việc</string>
+    <string name="home_maid_around">Giúp việc quanh đây</string>
+    <string name="home_your_tasks">Quản lý công việc</string>
     <string name="home_history">Lịch sử công việc</string>
     <string name="home_copy_right">Niềm tin - Chất lượng</string>
     <string name="more_sign_in">Đăng nhập</string>
+    <string name="auth">Tài khoản của bạn bị đăng nhập bởi một thiết bị khác</string>
+
     <!--home screen end-->
 
     <!--terms_screen start-->
@@ -36,7 +38,6 @@
 
     <string name="tool_work">Mang theo dụng cụ làm việc</string>
     <string name="cancel_work">Hủy công việc</string>
-
 
 
     <string name="notification">Thông báo</string>
@@ -72,7 +73,8 @@
     <!--profile  start-->
     <string name="pro_file_gender_male">Nam</string>
     <string name="pro_file_gender_female">Nữ</string>
-    <!--terms screen end-->
+    <!--profile end-->
+
 
     <!--Page more activity start-->
     <string name="more_job_statistic">Thống kê công việc</string>
@@ -151,7 +153,8 @@
     <string name="about">Về chúng tôi</string>
     <string name="btnCall">Gọi</string>
     <string name="btnEmail">Email</string>
-////////    <string name="no_email_client">There are no email clients installed."</string>
+    ////////
+    <string name="no_email_client">There are no email clients installed."</string>
     <string name="enter_phonenumber">Nhập số điện thoại</string>
     <string name="okAlert">Ok</string>
     <string name="address_title">Địa chỉ:</string>
