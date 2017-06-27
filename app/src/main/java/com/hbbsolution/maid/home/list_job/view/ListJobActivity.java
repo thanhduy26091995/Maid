@@ -67,7 +67,7 @@ public class ListJobActivity extends AppCompatActivity implements ListJobView {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
         //get intent
-        lat = (Double) getIntent().getDoubleExtra(Constants.LAT, 0);
+        lat = getIntent().getDoubleExtra(Constants.LAT, 0);
         lng = getIntent().getDoubleExtra(Constants.LNG, 0);
         workId = getIntent().getStringExtra(Constants.WORK_ID);
         workName = getIntent().getStringExtra(Constants.WORK_NAME);
@@ -130,20 +130,23 @@ public class ListJobActivity extends AppCompatActivity implements ListJobView {
     @Override
     public void getTaskByWork(final TaskResponse taskResponse) {
         hideProgress();
-        mTaskDatas = taskResponse.getData().getTaskDatas();
-        listJobAdapter = new ListJobAdapter(ListJobActivity.this, mTaskDatas);
-        mRecycler.setLayoutManager(linearLayoutManager);
-        mRecycler.setAdapter(listJobAdapter);
-        //add scrool listener
-        endlessRecyclerViewScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                if (currentPage < taskResponse.getData().getPages()) {
-                    presenter.getMoreTaskByWork(lat, lng, maxDistance, workId, currentPage + 1);
+        if (taskResponse.getStatus()){
+            mTaskDatas = taskResponse.getData().getTaskDatas();
+            listJobAdapter = new ListJobAdapter(ListJobActivity.this, mTaskDatas);
+            mRecycler.setLayoutManager(linearLayoutManager);
+            mRecycler.setAdapter(listJobAdapter);
+            listJobAdapter.notifyDataSetChanged();
+            //add scrool listener
+            endlessRecyclerViewScrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+                @Override
+                public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                    if (currentPage < taskResponse.getData().getPages()) {
+                        presenter.getMoreTaskByWork(lat, lng, maxDistance, workId, currentPage + 1);
+                    }
                 }
-            }
-        };
-        mRecycler.addOnScrollListener(endlessRecyclerViewScrollListener);
+            };
+            mRecycler.addOnScrollListener(endlessRecyclerViewScrollListener);
+        }
     }
 
     @Override

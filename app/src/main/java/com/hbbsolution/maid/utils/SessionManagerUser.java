@@ -43,6 +43,7 @@ public class SessionManagerUser {
     public static final String KEY_LNG = "lng";
     public static final String KEY_PHONE = "phone";
     public static final String KEY_IMAGE = "image";
+    public static final String KEY_PRICE = "price";
 
     // Constructor
     public SessionManagerUser(Context context) {
@@ -71,13 +72,13 @@ public class SessionManagerUser {
         editor.putString(KEY_PHONE, data.getUser().getInfo().getPhone());
         editor.putString(KEY_EMAIL, data.getUser().getInfo().getEmail());
         editor.putString(KEY_IMAGE, data.getUser().getInfo().getImage());
+        editor.putString(KEY_PRICE, String.valueOf(data.getUser().getWork_info().getPrice()));
         // commit changes
         editor.commit();
     }
 
     // Remove value whose key
-    public void removeValue()
-    {
+    public void removeValue() {
         editor.remove(KEY_TOKEN);
         editor.remove(KEY_ID);
         editor.remove(KEY_USERNAME);
@@ -89,6 +90,7 @@ public class SessionManagerUser {
         editor.remove(KEY_PHONE);
         editor.remove(KEY_EMAIL);
         editor.remove(KEY_IMAGE);
+        editor.remove(KEY_PRICE);
         editor.commit();
     }
 

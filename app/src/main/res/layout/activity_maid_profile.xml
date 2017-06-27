@@ -297,6 +297,59 @@
                             android:background="@android:color/darker_gray" />
                     </LinearLayout>
                 </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/more_background"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="20dp"
+                    android:text="Năng lực làm việc"
+                    android:textColor="@color/colorBlack" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:weightSum="4">
+
+                    <com.hbbsolution.maid.base.IconTextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:text="@string/ic_usd"
+                        android:textColor="@color/home_background_history"
+                        android:textSize="@dimen/icon_size" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_toRightOf="@+id/txt_icon_dollar"
+                        android:layout_weight="3.5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtPriceInfoMaid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="100k"
+                            android:textColor="@color/colorBlack" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@android:color/darker_gray" />
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recy_listTypeJob"
                     android:layout_width="match_parent"

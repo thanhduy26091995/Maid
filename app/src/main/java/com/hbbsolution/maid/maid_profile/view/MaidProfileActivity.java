@@ -70,6 +70,8 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
     RecyclerView recy_listTypeJob;
     @BindView(R.id.nestedScrollView)
     NestedScrollView nestedScrollView;
+    @BindView(R.id.txtPriceInfoMaid)
+    TextView txtPrice;
 //    @BindView(R.id.txtNoComment)
 //    TextView txtNoComment;
 
@@ -86,7 +88,7 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
 
     public static MaidProfileActivity maidProfileActivity;
     private SessionManagerUser mSessionManagerUser;
-    private HashMap<String,String> dataHashMap = new HashMap<>();
+    private HashMap<String, String> dataHashMap = new HashMap<>();
     private List<String> list;
     public static Activity mMaidProfileActivity = null;
 
@@ -137,16 +139,16 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
         isChosenMaidFromRecruitment = getIntent().getBooleanExtra("chosenMaidFromListRecruitment", false);
     }
 
-    public void loadData()
-    {
+    public void loadData() {
         dataHashMap = mSessionManagerUser.getUserDetails();
         txtNameInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_NAME));
         txtAddressInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_ADDRESS));
         if (Integer.parseInt(dataHashMap.get(SessionManagerUser.KEY_GENDER)) == 0) {
-            txtGenderInfoMaid.setText("Nam");
+            txtGenderInfoMaid.setText(getResources().getString(R.string.pro_file_gender_male));
         } else {
-            txtGenderInfoMaid.setText("Nữ");
+            txtGenderInfoMaid.setText(getResources().getString(R.string.pro_file_gender_female));
         }
+        txtPrice.setText(String.format("%s VND", dataHashMap.get(SessionManagerUser.KEY_PRICE)));
         txtPhoneInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_PHONE));
         ImageLoader.getInstance().loadImageAvatar(MaidProfileActivity.this, dataHashMap.get(SessionManagerUser.KEY_IMAGE),
                 img_avatarMaid);
@@ -169,300 +171,10 @@ public class MaidProfileActivity extends AppCompatActivity /*implements MaidProf
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
-        {
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);
     }
-
-    //        if (mMaidInfo != null) {
-//            lo_ChosenMaidInfo.setVisibility(View.GONE);
-//            idTaskProcess = getIntent().getStringExtra("idTaskProcess");
-//            txtNameInfoMaid.setText(mMaidInfo.getInfo().getUsername());
-//            txtPriceInfoMaid.setText(String.valueOf(mMaidInfo.getWorkInfo().getPrice()));
-//            txtGenderInfoMaid.setText(getGenderMaid(mMaidInfo.getInfo().getGender()));
-//            txtPhoneInfoMaid.setText(mMaidInfo.getInfo().getPhone());
-//            txtAddressInfoMaid.setText(mMaidInfo.getInfo().getAddress().getName());
-//            ratingInfoMaid.setRating(mMaidInfo.getWorkInfo().getEvaluationPoint());
-//            Glide.with(this).load(mMaidInfo.getInfo().getImage())
-//                    .thumbnail(0.5f)
-//                    .placeholder(R.drawable.avatar)
-//                    .error(R.drawable.avatar)
-//                    .centerCrop()
-//                    .dontAnimate()
-//                    .into(img_avatarMaid);
-//            mMaidProfilePresenter.getInfoListMaid(mMaidInfo.getId(), currentPage);
-//
-//            // from Bitmap
-//            Glide.with(MaidProfileActivity.this)
-//                    .load(mMaidInfo.getInfo().getImage())
-//                    .asBitmap()
-//                    .error(R.drawable.avatar)
-//                    .into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                            Blurry.with(MaidProfileActivity.this)
-//                                    .radius(15)
-//                                    .from(resource)
-//                                    .into(imgBlurImage);
-//                        }
-//                    });
-//
-//
-//        }
-
-//        if (workHistory != null) {
-//            txtNameInfoMaid.setText(workHistory.getStakeholders().getReceived().getInfo().getName());
-//            txtPriceInfoMaid.setText(String.valueOf(workHistory.getStakeholders().getReceived().getWorkInfo().getPrice()));
-//            txtGenderInfoMaid.setText(getGenderMaid(workHistory.getStakeholders().getReceived().getInfo().getGender()));
-//            txtPhoneInfoMaid.setText(workHistory.getStakeholders().getReceived().getInfo().getPhone());
-//            txtAddressInfoMaid.setText(workHistory.getStakeholders().getReceived().getInfo().getAddress().getName());
-//            ratingInfoMaid.setRating(workHistory.getStakeholders().getReceived().getWorkInfo().getEvaluationPoint());
-//            mMaidProfilePresenter.getInfoListMaid(workHistory.getStakeholders().getReceived().getId(), 1);
-////            Picasso.with(this).load(workHistory.getStakeholders().getReceived().getInfo().getImage())
-////                    .placeholder(R.drawable.avatar)
-////                    .error(R.drawable.avatar)
-////                    .into(img_avatarMaid);
-//            Glide.with(this)
-//                    .load(workHistory.getStakeholders().getReceived().getInfo().getImage())
-//                    .centerCrop()
-//                    .dontAnimate()
-//                    .listener(new RequestListener<String, GlideDrawable>() {
-//                        @Override
-//                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-//                            supportStartPostponedEnterTransition();
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-//                            supportStartPostponedEnterTransition();
-//                            return false;
-//                        }
-//                    })
-//                    .into(img_avatarMaid);
-//            Glide.with(MaidProfileActivity.this)
-//                    .load(workHistory.getStakeholders().getReceived().getInfo().getImage())
-//                    .asBitmap()
-//                    .error(R.drawable.avatar)
-//                    .into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                            Blurry.with(MaidProfileActivity.this)
-//                                    .radius(15)
-//                                    .from(resource)
-//                                    .into(imgBlurImage);
-//                        }
-//                    });
-//            lo_ChosenMaidInfo.setVisibility(View.GONE);
-//            vLine.setVisibility(View.GONE);
-//        }
-//
-//        if (datum != null) {
-//            txtNameInfoMaid.setText(datum.getId().getInfo().getName());
-//            //       txtPriceInfoMaid.setText(String.valueOf(datum.getId().getWorkInfo().getPrice()));
-//            txtGenderInfoMaid.setText(getGenderMaid(datum.getId().getInfo().getGender()));
-//            txtPhoneInfoMaid.setText(datum.getId().getInfo().getPhone());
-//            txtAddressInfoMaid.setText(datum.getId().getInfo().getAddress().getName());
-//            //       ratingInfoMaid.setRating(workHistory.getStakeholders().getReceived().getWorkInfo().getEvaluationPoint());
-//            mMaidProfilePresenter.getInfoListMaid(datum.getId().getId(), 1);
-////            Picasso.with(this).load(datum.getId().getInfo().getImage())
-////                    .placeholder(R.drawable.avatar)
-////                    .error(R.drawable.avatar)
-////                    .into(img_avatarMaid);
-//            supportPostponeEnterTransition();
-//            Glide.with(this)
-//                    .load(datum.getId().getInfo().getImage())
-//                    .thumbnail(0.5f)
-//                    .error(R.drawable.avatar)
-//                    .centerCrop()
-//                    .dontAnimate()
-//                    .listener(new RequestListener<String, GlideDrawable>() {
-//                        @Override
-//                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-//                            supportStartPostponedEnterTransition();
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-//                            supportStartPostponedEnterTransition();
-//                            return false;
-//                        }
-//                    })
-//                    .into(img_avatarMaid);
-//            Glide.with(MaidProfileActivity.this)
-//                    .load(datum.getId().getInfo().getImage())
-//                    .asBitmap()
-//                    .error(R.drawable.avatar)
-//                    .into(new SimpleTarget<Bitmap>() {
-//                        @Override
-//                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-//                            Blurry.with(MaidProfileActivity.this)
-//                                    .radius(15)
-//                                    .from(resource)
-//                                    .into(imgBlurImage);
-//                        }
-//                    });
-//
-//            lo_ChosenMaidInfo.setVisibility(View.GONE);
-//            vLine.setVisibility(View.GONE);
-//        }
-//        TypeJobAdapter typeJobAdapter = new TypeJobAdapter(this,list);
-//        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
-//        recy_listTypeJob.setLayoutManager(layoutManager);
-//        recy_listTypeJob.setAdapter(typeJobAdapter);
-//        typeJobAdapter.notifyDataSetChanged();
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == android.R.id.home) {
-//            super.onBackPressed();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        ButterKnife.bind(this).unbind();
-//    }
-//
-//    @Override
-//    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-//        if (collapsingToolbarLayout.getHeight() + verticalOffset <= 1.5 * ViewCompat.getMinimumHeight(collapsingToolbarLayout)) {
-//            toolbar.setVisibility(View.VISIBLE);
-//            toolbar.animate().alpha(1).setDuration(200);
-//        } else {
-//
-//            toolbar.setVisibility(GONE);
-//            toolbar.animate().alpha(0).setDuration(200);
-//        }
-//    }
-//
-//    @Override
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.lo_ChosenMaidInfo:
-//                if (isChosenMaidFromRecruitment) {
-//                    mMaidProfilePresenter.sentRequestChosenMaid(idTaskProcess, mMaidInfo.getId());
-//                }else {
-//                    Intent intentChooseMaid = new Intent(MaidProfileActivity.this, ChooseMaidActivity.class);
-//                    intentChooseMaid.putExtra("maid", mMaidInfo);
-//                    startActivity(intentChooseMaid);
-//                }
-//                break;
-//            case R.id.txtBackInfoMaid:
-//                finish();
-//                break;
-//            case R.id.linear_report_maid:
-//                Intent intent = new Intent(MaidProfileActivity.this, ReportMaidActivity.class);
-//                intent.putExtra("maid", mMaidInfo);
-//                intent.putExtra("work", workHistory);
-//                intent.putExtra("helper", datum);
-//                startActivityForResult(intent,REPORT);
-//                break;
-//
-//        }
-//    }
-//
-//    private String getGenderMaid(int gender) {
-//        if (gender == 0) {
-//            return getResources().getString(R.string.pro_file_gender_male);
-//        }
-//        return getResources().getString(R.string.pro_file_gender_female);
-//    }
-//
-//    @Override
-//    public void getListCommentMaid(CommentMaidResponse mCommentMaidResponse) {
-//        final int pages = mCommentMaidResponse.getData().getPages();
-//        commentList = mCommentMaidResponse.getData().getDocs();
-//        if(commentList.size() > 0){
-//            mRecycler.setVisibility(View.VISIBLE);
-//            txtNoComment.setVisibility(View.GONE);
-//            listCommentAdapter = new ListCommentAdapter(this, commentList);
-//            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-//            mRecycler.setLayoutManager(layoutManager);
-//            mRecycler.setHasFixedSize(true);
-//            mRecycler.setAdapter(listCommentAdapter);
-//            listCommentAdapter.notifyDataSetChanged();
-//            scrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
-//                @Override
-//                public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-//                    if (currentPage < pages) {
-//                        mMaidProfilePresenter.getMoreInfoListMaid(mMaidInfo.getId(), currentPage);
-//                    }
-//                }
-//            };
-//        } else {
-//            mRecycler.setVisibility(GONE);
-//            txtNoComment.setVisibility(View.VISIBLE);
-//        }
-//
-//    }
-//
-//    @Override
-//    public void getMoreListCommentMaid(CommentMaidResponse mCommentMaidResponse) {
-//        commentList.addAll( mCommentMaidResponse.getData().getDocs());
-//        currentPage++;
-//        listCommentAdapter.notifyDataSetChanged();
-//        mRecycler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                listCommentAdapter.notifyItemRangeInserted(listCommentAdapter.getItemCount(), commentList.size() - 1);
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public void responseChosenMaid(boolean isResponseChosenMaid) {
-//        if (isResponseChosenMaid){
-//            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-//            alertDialog.setCancelable(false);
-//            alertDialog.setTitle("Thông báo");
-//            alertDialog.setMessage("Bạn đã chọn người giúp việc thành công !");
-//            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    EventBus.getDefault().postSticky(true);
-//                    if(mMaidProfileActivity != null){
-//                        MaidProfileActivity.mMaidProfileActivity.finish();
-//                        try{
-//                            if(DetailJobPostActivity.mDetailJobPostActivity != null){
-//                                DetailJobPostActivity.mDetailJobPostActivity.finish();
-//                            }
-//                            if(ListUserRecruitmentActivity.mListUserRecruitmentActivity != null){
-//                                ListUserRecruitmentActivity.mListUserRecruitmentActivity.finish();
-//                            }
-//                        }catch (Exception e){
-//
-//                        }
-//                    }
-//
-//                }
-//            });
-//
-//            alertDialog.show();
-//        }else {
-//            ShowAlertDialog.showAlert("Thất bại", MaidProfileActivity.this);
-//        }
-//    }
-//
-//    @Override
-//    public void getMessager() {
-//
-//    }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if(requestCode==REPORT)
-//        {
-//            if(resultCode== Activity.RESULT_OK)
-//            {
-//                ShowAlertDialog.showAlert(data.getStringExtra("message"),this);
-//            }
-//        }
-//    }
 
 }
