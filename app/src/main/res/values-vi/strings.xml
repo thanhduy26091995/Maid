@@ -45,7 +45,7 @@
     <string name="notification_del_job_post">Bạn có muốn xóa công việc này không?</string>
     <string name="notification__pass_del_job_post">Bài đăng đã được xóa</string>
     <string name="note_cancel_work">Bạn được quyền hủy công việc đã nhận trong vòng 24 giờ trước khi bắt đầu làm việc. Vui lòng gọi điện thông báo công ty hoặc chủ nhà khi xác nhận thay đổi.</string>
-
+    <string name="done">Vừa xong</string>
     <!--workmanager_screen screen end-->
 
 
@@ -192,4 +192,13 @@
     <string name="noInternet">Không có kết nối Internet</string>
     <string name="retry">THỬ LẠI</string>
     <!--General end-->
+    <string name="loading">Đang tải...</string>
+    <string name="choose_this_work">Chọn công việc này</string>
+    <string name="nearby_work">Công việc quanh đây</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="distance">Khoảng cách</string>
+    <string name="applicant_profile">Thông tin</string>
+    <string name="report">Báo cáo người giúp việc</string>
+    <string name="comment">NHẬN XÉT</string>
+    <string name="no_comments">Không có nhận xét</string>
 </resources>

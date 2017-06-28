@@ -120,7 +120,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
 
     private void showProgress() {
         progressDialog = new ProgressDialog(JobNearByMapActivity.this);
-        progressDialog.setMessage("Đang tải...");
+        progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
@@ -376,7 +376,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
                 if (statusOfGPS) {
                     final ProgressDialog progressDialog = new ProgressDialog(context);
                     progressDialog.setCancelable(false);
-                    progressDialog.setMessage("Đang tải...Vui lòng chờ");
+                    progressDialog.setMessage(getResources().getString(R.string.loading));
                     progressDialog.show();
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {

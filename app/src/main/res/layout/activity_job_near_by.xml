@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Công việc quanh đây"
+                android:text="@string/nearby_work"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginRight="10dp"
-                android:text="Tìm kiếm"
+                android:text="@string/search"
                 android:textColor="@color/home_background_history"
                 android:textSize="@dimen/icon_size_normal" />
         </android.support.v7.widget.Toolbar>
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Khoảng cách"
+                android:text="@string/distance"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_large"
                 android:textStyle="bold" />
