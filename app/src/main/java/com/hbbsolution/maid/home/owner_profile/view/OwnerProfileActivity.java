@@ -11,12 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
+import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.history.model.work.Owner;
 import com.hbbsolution.maid.more.duy_nguyen.view.ReportOwnerActivity;
 
@@ -45,11 +42,12 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
     @BindView(R.id.linear_report_owner)
     LinearLayout linearReportOwner;
     private Owner mInfoOwner;
+    private OwnerHistory mInfoOwnerHistory;
     private boolean isInJobDetail = false;
     private com.hbbsolution.maid.model.task.Owner info;
     private Bundle extras;
     private static final int REPORT = 0;
-
+    private int flat;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,32 +69,27 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
             ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, info.getInfo().getImage(),
                     img_avatar);
         } else {
-            mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
-            txtNameInfoMaid.setText(mInfoOwner.getInfo().getName());
-            txtGenderInfoMaid.setText(getGenderMaid(mInfoOwner.getInfo().getGender()));
-            txtPhoneInfoMaid.setText(mInfoOwner.getInfo().getPhone());
-            txtAddressInfoMaid.setText(mInfoOwner.getInfo().getAddress().getName());
-            supportPostponeEnterTransition();
-            Glide.with(this)
-                    .load(mInfoOwner.getInfo().getImage())
-                    .thumbnail(0.5f)
-                    .error(R.drawable.no_image)
-                    .centerCrop()
-                    .dontAnimate()
-                    .listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                            supportStartPostponedEnterTransition();
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            supportStartPostponedEnterTransition();
-                            return false;
-                        }
-                    })
-                    .into(img_avatar);
+            flat = getIntent().getIntExtra("flat",0);
+            if(flat ==1){
+                mInfoOwnerHistory = (OwnerHistory) getIntent().getSerializableExtra("InfoOwner");
+                txtNameInfoMaid.setText(mInfoOwnerHistory.getId().getInfo().getName());
+                txtGenderInfoMaid.setText(getGenderMaid(mInfoOwnerHistory.getId().getInfo().getGender()));
+                txtPhoneInfoMaid.setText(mInfoOwnerHistory.getId().getInfo().getPhone());
+                txtAddressInfoMaid.setText(mInfoOwnerHistory.getId().getInfo().getAddress().getName());
+                supportPostponeEnterTransition();
+                ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, mInfoOwnerHistory.getId().getInfo().getImage(),
+                        img_avatar);
+            }
+            else {
+                mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
+                txtNameInfoMaid.setText(mInfoOwner.getInfo().getName());
+                txtGenderInfoMaid.setText(getGenderMaid(mInfoOwner.getInfo().getGender()));
+                txtPhoneInfoMaid.setText(mInfoOwner.getInfo().getPhone());
+                txtAddressInfoMaid.setText(mInfoOwner.getInfo().getAddress().getName());
+                supportPostponeEnterTransition();
+                ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, mInfoOwner.getInfo().getImage(),
+                        img_avatar);
+            }
         }
     }
 
@@ -124,7 +117,15 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
                 if (isInJobDetail) {
                     intent.putExtra("InfoOwner", info);
                 } else {
-                    intent.putExtra("InfoOwner", mInfoOwner);
+                    if(flat==1)
+                    {
+                        intent.putExtra("InfoOwner", mInfoOwnerHistory);
+                    }
+                    else
+                    {
+                        intent.putExtra("InfoOwner", mInfoOwner);
+                    }
+                    intent.putExtra("flat",flat);
                 }
                 intent.putExtra("IsInJobDetail", isInJobDetail);
                 startActivityForResult(intent, REPORT);

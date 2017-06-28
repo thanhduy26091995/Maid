@@ -201,4 +201,6 @@
     <string name="report">Báo cáo người giúp việc</string>
     <string name="comment">NHẬN XÉT</string>
     <string name="no_comments">Không có nhận xét</string>
+
+    <string name="back">Trở lại</string>
 </resources>

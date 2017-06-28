@@ -50,12 +50,14 @@ public class ListJobAdapter extends RecyclerView.Adapter<ListJobAdapter.ListJobV
         final TaskData taskData = mTaskDatas.get(position);
         holder.txtJobName.setText(taskData.getInfo().getTitle());
         String[] workTimeHistory = WorkTimeValidate.workTimeValidate(taskData.getHistory().getUpdateAt());
-        if (!workTimeHistory[2].equals("0")) {
-            holder.txtTime.setText(workTimeHistory[2] + " " + mActivity.getResources().getString(R.string.before, mActivity.getResources().getQuantityString(R.plurals.day, Integer.parseInt(workTimeHistory[2]))));
+        if (!workTimeHistory[3].equals("0")) {
+            holder.txtTime.setText(workTimeHistory[3] + " " + mActivity.getResources().getString(R.string.before, mActivity.getResources().getQuantityString(R.plurals.day, Integer.parseInt(workTimeHistory[2]))));
+        } else if (!workTimeHistory[2].equals("0")) {
+            holder.txtTime.setText(workTimeHistory[2] + " " + mActivity.getResources().getString(R.string.before, mActivity.getResources().getQuantityString(R.plurals.hour, Integer.parseInt(workTimeHistory[1]))));
         } else if (!workTimeHistory[1].equals("0")) {
-            holder.txtTime.setText(workTimeHistory[1] + " " + mActivity.getResources().getString(R.string.before, mActivity.getResources().getQuantityString(R.plurals.hour, Integer.parseInt(workTimeHistory[1]))));
-        } else if (!workTimeHistory[0].equals("0")) {
-            holder.txtTime.setText(workTimeHistory[0] + " " + mActivity.getResources().getString(R.string.before, mActivity.getResources().getQuantityString(R.plurals.minute, Integer.parseInt(workTimeHistory[0]))));
+            holder.txtTime.setText(workTimeHistory[1] + " " + mActivity.getResources().getString(R.string.before, mActivity.getResources().getQuantityString(R.plurals.minute, Integer.parseInt(workTimeHistory[0]))));
+        }else if (!workTimeHistory[0].equals("0")) {
+            holder.txtTime.setText(mActivity.getResources().getString(R.string.done));
         }
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");

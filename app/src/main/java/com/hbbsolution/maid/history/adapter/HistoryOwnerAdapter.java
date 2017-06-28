@@ -97,8 +97,9 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
             switch (v.getId()) {
                 case R.id.rela_info:
                     Intent intent = new Intent(context, OwnerProfileActivity.class);
-                    intent.putExtra("InfoOwner", ownerHistoryList.get(getAdapterPosition()).getId());
+                    intent.putExtra("InfoOwner", ownerHistoryList.get(getAdapterPosition()));
                     intent.putExtra("IsInJobDetail", false);
+                    intent.putExtra("flat",1);
 //                    ActivityOptionsCompat historyOption =
 //                            ActivityOptionsCompat
 //                                    .makeSceneTransitionAnimation((Activity) context, (View) v.findViewById(R.id.img_history_avatar), "icAvatar");
@@ -111,7 +112,7 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
                     break;
                 case R.id.txt_history_list_work:
                     intent = new Intent(context, ListWorkActivity.class);
-                    intent.putExtra("idOwner",ownerHistory.getId().getId());
+                    intent.putExtra("idOwner",ownerHistoryList.get(getAdapterPosition()).getId().getId());
                     context.startActivity(intent);
                     break;
             }

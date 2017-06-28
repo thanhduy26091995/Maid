@@ -17,6 +17,9 @@ import com.hbbsolution.maid.history.model.work.WorkHistory;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -90,7 +93,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             tvJob.setText(doc.getInfo().getTitle());
             tvWork.setText(doc.getInfo().getWork().getName());
             tvContent.setText(doc.getInfo().getDescription());
-            tvSalary.setText(String.valueOf(doc.getInfo().getPrice()));
+            tvSalary.setText(NumberFormat.getNumberInstance(Locale.GERMANY).format(doc.getInfo().getPrice())+ " VND");
             tvAddress.setText(doc.getInfo().getAddress().getName());
             tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
             tvTime.setText(WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getEndAt()).replace(":", "h"));

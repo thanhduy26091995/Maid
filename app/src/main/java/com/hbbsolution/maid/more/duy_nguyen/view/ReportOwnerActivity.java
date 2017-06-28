@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.history.model.work.Owner;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.ReportView;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.ReportPresenter;
@@ -44,9 +45,11 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     CircleImageView imgAvatar;
     private com.hbbsolution.maid.model.task.Owner info;
     private Owner mInfoOwner;
+    private OwnerHistory mInfoOwnerHistory;
     private ReportPresenter reportPresenter;
     private boolean isInJobDetail = false;
     private String idOnwer;
+    private int flat;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
             info = (com.hbbsolution.maid.model.task.Owner) getIntent().getSerializableExtra("InfoOwner");
             mTextOwnerName.setText(info.getInfo().getUsername());
             mTextOwnerAddress.setText(info.getInfo().getAddress().getName());
-//            idHelper=info.getId();
+            idOnwer = info.getId();
             Glide.with(this).load(info.getInfo().getImage())
                     .thumbnail(0.5f)
                     .placeholder(R.drawable.avatar)
@@ -77,17 +80,32 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                     .dontAnimate()
                     .into(imgAvatar);
         } else {
-            mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
-            mTextOwnerName.setText(mInfoOwner.getInfo().getUsername());
-            mTextOwnerAddress.setText(mInfoOwner.getInfo().getAddress().getName());
-            idOnwer = mInfoOwner.getId();
-            Glide.with(this).load(mInfoOwner.getInfo().getImage())
-                    .thumbnail(0.5f)
-                    .placeholder(R.drawable.avatar)
-                    .error(R.drawable.avatar)
-                    .centerCrop()
-                    .dontAnimate()
-                    .into(imgAvatar);
+            flat = getIntent().getIntExtra("flat", 0);
+            if (flat == 1) {
+                mInfoOwnerHistory = (OwnerHistory) getIntent().getSerializableExtra("InfoOwner");
+                mTextOwnerName.setText(mInfoOwnerHistory.getId().getInfo().getUsername());
+                mTextOwnerAddress.setText(mInfoOwnerHistory.getId().getInfo().getAddress().getName());
+                idOnwer = mInfoOwnerHistory.getId().getId();
+                Glide.with(this).load(mInfoOwnerHistory.getId().getInfo().getImage())
+                        .thumbnail(0.5f)
+                        .placeholder(R.drawable.avatar)
+                        .error(R.drawable.avatar)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(imgAvatar);
+            } else {
+                mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
+                mTextOwnerName.setText(mInfoOwner.getInfo().getUsername());
+                mTextOwnerAddress.setText(mInfoOwner.getInfo().getAddress().getName());
+                idOnwer = mInfoOwner.getId();
+                Glide.with(this).load(mInfoOwner.getInfo().getImage())
+                        .thumbnail(0.5f)
+                        .placeholder(R.drawable.avatar)
+                        .error(R.drawable.avatar)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(imgAvatar);
+            }
         }
     }
 

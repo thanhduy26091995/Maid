@@ -201,4 +201,6 @@
     <string name="report">Report</string>
     <string name="comment">COMMENT</string>
     <string name="no_comments">There are no comments</string>
+
+    <string name="back">Back</string>
 </resources>
