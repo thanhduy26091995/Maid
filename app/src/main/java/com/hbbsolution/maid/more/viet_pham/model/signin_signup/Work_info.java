@@ -28,6 +28,7 @@ public class Work_info {
         this.price = price;
     }
 
+
 //    public List<String> getAbility() {
 //        return ability;
 //    }
