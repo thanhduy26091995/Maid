@@ -130,6 +130,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 .into(imgAvatar);
         tvOwnerName.setText(hashDataUser.get(SessionManagerUser.KEY_NAME));
         tvStatisticAddress.setText(hashDataUser.get(SessionManagerUser.KEY_ADDRESS));
+        ratingBar.setRating((float) Integer.parseInt(hashDataUser.get(SessionManagerUser.KEY_EVALUATION)));
         statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
     }
 
@@ -285,12 +286,13 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         numberPostedTask.setText(String.valueOf(onCreate));
         numberDoingTask.setText(String.valueOf(reserved + onDoing + immediate));
         numberDoneTask.setText(String.valueOf(done));
+        float ftotal= (float) (total /100000 *0.1);
         if(total!=0) {
-            totalPrice.setText(String.valueOf(total) + " " + getResources().getQuantityString(R.plurals.million, total));
+            totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getQuantityString(R.plurals.million, total));
         }
         else
         {
-            totalPrice.setText(String.valueOf(total) + " " + getResources().getString(R.string.million_zero));
+            totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getString(R.string.million_zero));
         }
         progressBar.setVisibility(View.GONE);
         lnStatistic.setVisibility(View.VISIBLE);

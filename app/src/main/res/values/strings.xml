@@ -136,10 +136,10 @@
     <!--detail_work_history_screen end-->
 
     <!--statistic_screen start-->
-/////////    <string name="total">Tổng thu nhập</string>
+    <string name="total">Total earnings</string>
     <string name="history_work">Work history</string>
     <string name="waiting_work">Work-in-process</string>
-//////////    <string name="congviecdangcho">Công việc đang chờ</string>
+    <string name="congviecdangcho">Awaiting</string>
     <plurals name="million">
         <item quantity="one">million</item>
         <item quantity="other">millions</item>

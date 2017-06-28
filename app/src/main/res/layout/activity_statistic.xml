@@ -225,7 +225,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="Công việc đang chờ"
+                            android:text="@string/congviecdangcho"
                             android:textSize="15sp" />
                     </LinearLayout>
 

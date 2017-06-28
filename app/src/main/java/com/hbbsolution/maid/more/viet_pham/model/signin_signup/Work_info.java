@@ -10,9 +10,9 @@ import java.util.List;
  */
 
 public class Work_info {
-    @SerializedName("ability")
-    @Expose
-    private List<String> ability;
+//    @SerializedName("ability")
+//    @Expose
+//    private List<String> ability;
     @SerializedName("evaluation_point")
     @Expose
     private int evaluation_point;
@@ -23,18 +23,18 @@ public class Work_info {
     public Work_info()
     {}
     public Work_info(List<String> ability, int evaluation_point, int price) {
-        this.ability = ability;
+//        this.ability = ability;
         this.evaluation_point = evaluation_point;
         this.price = price;
     }
 
-    public List<String> getAbility() {
-        return ability;
-    }
-
-    public void setAbility(List<String> ability) {
-        this.ability = ability;
-    }
+//    public List<String> getAbility() {
+//        return ability;
+//    }
+//
+//    public void setAbility(List<String> ability) {
+//        this.ability = ability;
+//    }
 
     public int getEvaluation_point() {
         return evaluation_point;

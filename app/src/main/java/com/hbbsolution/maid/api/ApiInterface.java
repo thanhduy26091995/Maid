@@ -3,6 +3,9 @@ package com.hbbsolution.maid.api;
 
 import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
+import com.hbbsolution.maid.maid_profile.model.abilities.AbilitiResponse;
+import com.hbbsolution.maid.maid_profile.model.comment_maid.CommentMaidResponse;
+import com.hbbsolution.maid.main.model.ResponseRequest;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;

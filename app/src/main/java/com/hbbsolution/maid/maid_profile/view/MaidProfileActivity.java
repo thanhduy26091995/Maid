@@ -157,7 +157,7 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
         txtPhoneInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_PHONE));
         ImageLoader.getInstance().loadImageAvatar(MaidProfileActivity.this, dataHashMap.get(SessionManagerUser.KEY_IMAGE),
                 img_avatarMaid);
-
+        ratingInfoMaid.setRating((float) Integer.parseInt(dataHashMap.get(SessionManagerUser.KEY_EVALUATION)));
         // from Bitmap
         Glide.with(MaidProfileActivity.this)
                 .load(dataHashMap.get(SessionManagerUser.KEY_IMAGE))

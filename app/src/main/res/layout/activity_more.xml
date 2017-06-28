@@ -48,12 +48,14 @@
                 android:layout_marginTop="30dp"
                 app:cardElevation="0dp"
                 card_view:cardUseCompatPadding="true"
-                card_view:contentPadding="5dp">
+                card_view:contentPadding="5dp"
+               >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/colorWhite">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -126,7 +128,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingTop="10dp">
+                    android:paddingTop="10dp"
+                    android:background="@color/colorWhite">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -152,7 +155,8 @@
                 android:layout_marginTop="30dp"
                 app:cardElevation="0dp"
                 card_view:cardUseCompatPadding="true"
-                card_view:contentPadding="5dp">
+                card_view:contentPadding="5dp"
+                android:background="@color/colorWhite">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -229,7 +233,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/colorWhite">
 
                     <View
                         android:layout_width="match_parent"
@@ -366,7 +371,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:paddingTop="10dp">
+                        android:paddingTop="10dp"
+                        android:background="@color/colorWhite">
 
                         <com.hbbsolution.maid.base.IconTextView
                             android:layout_width="wrap_content"
@@ -411,7 +417,8 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:paddingTop="10dp">
+                        android:paddingTop="10dp"
+                        android:background="@color/colorWhite">
 
                         <com.hbbsolution.maid.base.IconTextView
                             android:layout_width="wrap_content"
