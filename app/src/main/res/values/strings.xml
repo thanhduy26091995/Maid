@@ -233,10 +233,9 @@
     <string name="refuse_work">Refuse work</string>
     <string name="choose_work">Choose this work</string>
     <string name="delete_work">Delete work</string>
-    <string name="hourly_pay">Hourly pay</string>
-    <string name="accepted_successfully">Accepted successfully!</string>
     <string name="accepted_failed">Refused successfully!</string>
 
     <string name="choose_start_date">Choose the start date</string>
     <string name="choose_end_date">Choose the end date</string>
+    <string name="work_capability">Work capability</string>
 </resources>

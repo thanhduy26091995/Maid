@@ -34,7 +34,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NHẬN XÉT" />
+                    android:text="@string/comment" />
             </LinearLayout>
 
             <View
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="20dp"
-                android:text="Chưa có nhận xét"
+                android:text="@string/no_comments"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Đánh giá"
+            android:text="@string/rate"
             android:textColor="@color/colorBlack"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -129,7 +129,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Thông tin"
+                        android:text="@string/applicant_profile"
                         android:textColor="@color/colorBlack"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -314,7 +314,7 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="20dp"
-                    android:text="Năng lực làm việc"
+                    android:text="@string/work_capability"
                     android:textColor="@color/colorBlack" />
 
                 <LinearLayout
