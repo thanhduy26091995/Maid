@@ -37,8 +37,10 @@
 
     <string name="tool_work">Bring your cleaning supplies</string>
     <string name="cancel_work">Cancel</string>
-
-
+    <string name="denied">Denied</string>
+    <string name="hourly_pay">Hourly pay</string>
+    <string name="accepted_successfully">Accepted successfully!</string>
+    <string name="denied_successfully">Denied successfully!</string>
 
     <string name="notification">Announcement</string>
     <string name="checknumberjobpost">Your posts would be within ten!</string>

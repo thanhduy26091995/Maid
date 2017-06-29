@@ -19,6 +19,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
+import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.presenter.DetailJobPendingPresenter;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.squareup.picasso.Picasso;
@@ -177,16 +178,16 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
             DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
             mOutputPrice = myFormatter.format(_Price);
         } else if (_Price == 0) {
-            mOutputPrice = "Tính tiền theo thời gian";
+            mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;
     }
 
 
     @Override
-    public void displayNotifyJobPost(boolean isJobPost) {
+    public void displayNotifyJobPost(JobPendingResponse isJobPost) {
         progressBar.setVisibility(View.GONE);
-        if (isJobPost) {
+        if (isJobPost.getStatus()) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setCancelable(false);
             alertDialog.setTitle(getResources().getString(R.string.notification));
@@ -201,7 +202,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
 
             alertDialog.show();
         } else {
-            ShowAlertDialog.showAlert("Thất bại", DetailJobPendingActivity.this);
+            ShowAlertDialog.showAlert(isJobPost.getMessage(), DetailJobPendingActivity.this);
         }
     }
 
@@ -211,7 +212,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
     }
 
     @Override
-    public void displayNotifyAccceptJobRequested(boolean isJobPost) {
+    public void displayNotifyAccceptJobRequested(JobPendingResponse isJobPost) {
 
     }
 
@@ -221,7 +222,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
     }
 
     @Override
-    public void displayNotifyRefuseJobRequested(boolean isJobPost) {
+    public void displayNotifyRefuseJobRequested(JobPendingResponse isJobPost) {
 
     }
 

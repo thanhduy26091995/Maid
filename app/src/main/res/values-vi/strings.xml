@@ -38,6 +38,10 @@
 
     <string name="tool_work">Mang theo dụng cụ làm việc</string>
     <string name="cancel_work">Hủy công việc</string>
+    <string name="denied">Từ chối công việc</string>
+    <string name="hourly_pay">Tính tiền theo thời gian</string>
+    <string name="accepted_successfully">Chấp nhận công việc thành công!</string>
+    <string name="denied_successfully">Từ chối công việc thành công!</string>
 
 
     <string name="notification">Thông báo</string>
