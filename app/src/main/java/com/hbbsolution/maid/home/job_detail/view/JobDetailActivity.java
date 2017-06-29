@@ -169,7 +169,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         boolean status = chooseWorkResponse.isStatus();
         if (status) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Chọn công việc thành công");
+            builder.setMessage(getResources().getString(R.string.choose_work_success));
             builder.setPositiveButton(getResources().getString(R.string.okAlert), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -183,7 +183,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         } else {
-            ShowAlertDialog.showAlert("Chọn công việc không thành công", JobDetailActivity.this);
+            ShowAlertDialog.showAlert(getResources().getString(R.string.choose_work_failed), JobDetailActivity.this);
         }
     }
 
@@ -194,7 +194,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
 
     private void showProgress() {
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Đang xử lý...");
+        progressDialog.setMessage(getResources().getString(R.string.loading));
         progressDialog.setCancelable(false);
         progressDialog.show();
     }

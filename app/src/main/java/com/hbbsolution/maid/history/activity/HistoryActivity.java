@@ -64,7 +64,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
                 alertDialogConfirm = new AlertDialog.Builder(HistoryActivity.this);
                 alertDialogConfirm.setCancelable(false);
                 alertDialogConfirm.setTitle(getResources().getString(R.string.completed));
-                alertDialogConfirm.setMessage("Vui lòng xác nhận tiền mặt bằng cách nhấn " + "Ok");
+                alertDialogConfirm.setMessage(getResources().getString(R.string.confirm_cast));
                 alertDialogConfirm.setPositiveButton(getResources().getString(R.string.terms_btn_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

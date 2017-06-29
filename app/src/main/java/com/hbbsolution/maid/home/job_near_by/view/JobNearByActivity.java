@@ -31,7 +31,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.InternetConnection;
@@ -99,7 +98,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
         //event searchview
-        searchView.setQueryHint("Tìm vị trí");
+        searchView.setQueryHint(getResources().getString(R.string.search_location));
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,7 +242,9 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
                     showProgress();
                     presenter.getAllTask(location.getLatitude(), location.getLongitude(), maxDistance);
                 } else {
-                    Toast.makeText(JobNearByActivity.this, "Location not found!", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.location_not_found), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                    //Toast.makeText(JobNearByActivity.this, "Location not found!", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -383,7 +384,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     @Override
     public void displayNotFoundLocation(String error) {
         hideProgress();
-        ShowAlertDialog.showAlert(error, JobNearByActivity.this);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.address_not_found), JobNearByActivity.this);
     }
 
     @Override
@@ -402,7 +403,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
                     presenter.getLocationAddress(searchText);
                 }
             } else {
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.location_not_found), Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
 

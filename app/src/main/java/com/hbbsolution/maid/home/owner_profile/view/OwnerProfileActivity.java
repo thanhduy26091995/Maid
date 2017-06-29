@@ -50,6 +50,7 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
     private Bundle extras;
     private static final int REPORT = 0;
     private int flat;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +72,8 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
             ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, info.getInfo().getImage(),
                     img_avatar);
         } else {
-            flat = getIntent().getIntExtra("flat",0);
-            if(flat ==1){
+            flat = getIntent().getIntExtra("flat", 0);
+            if (flat == 1) {
                 mInfoOwnerHistory = (OwnerHistory) getIntent().getSerializableExtra("InfoOwner");
                 txtNameInfoMaid.setText(mInfoOwnerHistory.getId().getInfo().getName());
                 txtGenderInfoMaid.setText(getGenderMaid(mInfoOwnerHistory.getId().getInfo().getGender()));
@@ -81,8 +82,7 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
                 supportPostponeEnterTransition();
                 ImageLoader.getInstance().loadImageAvatar(OwnerProfileActivity.this, mInfoOwnerHistory.getId().getInfo().getImage(),
                         img_avatar);
-            }
-            else {
+            } else {
                 mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
                 txtNameInfoMaid.setText(mInfoOwner.getInfo().getName());
                 txtGenderInfoMaid.setText(getGenderMaid(mInfoOwner.getInfo().getGender()));
@@ -119,21 +119,19 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
                 if (isInJobDetail) {
                     intent.putExtra("InfoOwner", info);
                 } else {
-                    if(flat==1)
-                    {
+                    if (flat == 1) {
                         intent.putExtra("InfoOwner", mInfoOwnerHistory);
-                    }
-                    else
-                    {
+                    } else {
                         intent.putExtra("InfoOwner", mInfoOwner);
                     }
-                    intent.putExtra("flat",flat);
+                    intent.putExtra("flat", flat);
                 }
                 intent.putExtra("IsInJobDetail", isInJobDetail);
                 startActivityForResult(intent, REPORT);
                 break;
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REPORT) {

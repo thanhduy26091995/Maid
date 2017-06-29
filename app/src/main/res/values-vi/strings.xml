@@ -210,6 +210,12 @@
     <string name="confirm">Xác nhận</string>
     <string name="confirm_ok">Xác nhận thành công</string>
     <string name="confirm_failed">Xác nhận thất bại</string>
+    <string name="confirm_cast">Vui lòng xác nhận tiền mặt bằng cách nhấn OK</string>
+    <string name="choose_work_success">Chọn công việc thành công</string>
+    <string name="choose_work_failed">Chọn công việc thất bại</string>
+    <string name="address_not_found">Không tìm thấy vị trí</string>
+    <string name="location_not_found">Không lấy được vị trí hiện tại</string>
+    <string name="search_location">Tìm vị trí</string>
     <plurals name="work">
         <item quantity="one">công việc</item>
         <item quantity="other">công việc</item>

@@ -211,6 +211,12 @@
     <string name="confirm">Confirm</string>
     <string name="confirm_ok">Confirm successfully</string>
     <string name="confirm_failed">Failed to confirm</string>
+    <string name="confirm_cast">Click OK to confirm the right amount you receive</string>
+    <string name="choose_work_success">Work chosen successfully!</string>
+    <string name="choose_work_failed">Failed to choose your work!</string>
+    <string name="address_not_found">Address not found!</string>
+    <string name="location_not_found">Location not found</string>
+    <string name="search_location">Search location</string>
 
     <plurals name="work">
         <item quantity="one">work</item>
