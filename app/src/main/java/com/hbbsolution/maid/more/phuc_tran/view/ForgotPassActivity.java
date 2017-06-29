@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.more.phuc_tran.model.ForgotPassResponse;
 import com.hbbsolution.maid.more.phuc_tran.presenter.ForgotPasswordPresenter;
+import com.hbbsolution.maid.utils.EmailValidate;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import butterknife.BindView;
@@ -58,7 +59,7 @@ public class ForgotPassActivity extends AppCompatActivity implements ForgotPassV
         btn_send_require.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isValidMail(edt_email.getText().toString())) {
+                if (EmailValidate.IsOk(edt_email.getText().toString())) {
 
                     forgotPasswordPresenter.forgotPassword(edt_email.getText().toString(), edt_username.getText().toString());
                     showProgress();
@@ -81,11 +82,6 @@ public class ForgotPassActivity extends AppCompatActivity implements ForgotPassV
         return super.onOptionsItemSelected(item);
     }
 
-
-    //hàm check mail
-    private boolean isValidMail(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
 
     @Override
     public void getForgotPass(ForgotPassResponse forgotPassResponse) {
