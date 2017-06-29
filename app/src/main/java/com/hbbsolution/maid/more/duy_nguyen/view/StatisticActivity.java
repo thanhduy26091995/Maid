@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class StatisticActivity extends AppCompatActivity implements View.OnClickListener,StatisticView {
+public class StatisticActivity extends AppCompatActivity implements View.OnClickListener, StatisticView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tvStartDate)
@@ -63,7 +63,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     RatingBar ratingBar;
 
     private Calendar cal;
-    private Date startDate, endDate,startDateTemp,endDateTemp;
+    private Date startDate, endDate, startDateTemp, endDateTemp;
     private String strStartDate, strEndDate;
     private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
@@ -152,7 +152,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                 cal.set(year, monthOfYear, dayOfMonth);
                 startDateTemp = cal.getTime();
                 if (endDate.getTime() - startDateTemp.getTime() >= 0) {
-                    startDate=startDateTemp;
+                    startDate = startDateTemp;
                     setNumber();
                     statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                 } else {
@@ -287,12 +287,10 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         numberPostedTask.setText(String.valueOf(onCreate));
         numberDoingTask.setText(String.valueOf(reserved + onDoing + immediate));
         numberDoneTask.setText(String.valueOf(done));
-        float ftotal= (float) (total /100000 *0.1);
-        if(total!=0) {
-            totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getQuantityString(R.plurals.million, (int)ftotal));
-        }
-        else
-        {
+        float ftotal = (float) (total / 100000 * 0.1);
+        if (total != 0) {
+            totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getQuantityString(R.plurals.million, (int) ftotal));
+        } else {
             totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getString(R.string.million_zero));
         }
         progressBar.setVisibility(View.GONE);
@@ -301,7 +299,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void getStatisticFail() {
-        ShowAlertDialog.showAlert(getResources().getString(R.string.error),StatisticActivity.this);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.error), StatisticActivity.this);
     }
 
 
