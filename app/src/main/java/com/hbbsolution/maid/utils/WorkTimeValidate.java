@@ -24,6 +24,7 @@ public class WorkTimeValidate {
     public static String[] workTimeValidate(String endDate)  {
         long currentTime = System.currentTimeMillis();
         Date currentDate = new Date();
+
         DateTimeFormatter parser = ISODateTimeFormat.dateTimeParser();
         Date date = parser.parseDateTime(endDate).toDate();
         long millisecond = date.getTime();

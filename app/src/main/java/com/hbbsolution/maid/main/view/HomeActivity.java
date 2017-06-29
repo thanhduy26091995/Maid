@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,10 +23,12 @@ import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
+import org.joda.time.DateTime;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener, HomeView{
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener, HomeView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -50,6 +53,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
+        DateTime dateTime = new DateTime();
+
+        Log.d("datetime",  dateTime.toString());
         // setup toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -66,13 +72,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         addEvents();
     }
 
-    public void addInits()
-    {
+    public void addInits() {
         iconTextViewMore = (IconTextView) findViewById(R.id.ic_text_view_more);
     }
 
-    public void addEvents()
-    {
+    public void addEvents() {
 
         iconTextViewMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,10 +127,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        if(isPause) {
+        if (isPause) {
             SessionManagerForLanguage sessionManagerForLanguage = new SessionManagerForLanguage(HomeActivity.this);
             boolean isChangeLanguage = sessionManagerForLanguage.changeLanguage();
-            if(isChangeLanguage) {
+            if (isChangeLanguage) {
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(this.getIntent());

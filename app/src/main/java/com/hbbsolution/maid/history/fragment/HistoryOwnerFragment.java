@@ -186,6 +186,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                         tvEndDate.setText(tempEndDate);
                     }
                 } else {
+                    endDate = endDateTemp;
                     view.setVisibility(View.INVISIBLE);
                     progressBar.setVisibility(View.VISIBLE);
                     mOwnerHistoryPresenter.getInfoOwnerHistory(simpleDateFormat.format(endDate));

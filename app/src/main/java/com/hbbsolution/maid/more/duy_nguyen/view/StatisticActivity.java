@@ -205,6 +205,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                         tvEndDate.setText(tempEndDate);
                     }
                 } else {
+                    endDate = endDateTemp;
                     setNumber();
                     statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
                 }
