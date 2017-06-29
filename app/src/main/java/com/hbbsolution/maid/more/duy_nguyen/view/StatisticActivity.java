@@ -303,6 +303,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         ShowAlertDialog.showAlert(getResources().getString(R.string.error),StatisticActivity.this);
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
