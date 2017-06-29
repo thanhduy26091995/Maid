@@ -153,8 +153,7 @@
     <string name="about">Về chúng tôi</string>
     <string name="btnCall">Gọi</string>
     <string name="btnEmail">Email</string>
-    ////////
-    <string name="no_email_client">There are no email clients installed."</string>
+    <string name="no_email_client">Thiết bị chưa được cài đặt trình duyệt email."</string>
     <string name="enter_phonenumber">Nhập số điện thoại</string>
     <string name="okAlert">Ok</string>
     <string name="address_title">Địa chỉ:</string>
