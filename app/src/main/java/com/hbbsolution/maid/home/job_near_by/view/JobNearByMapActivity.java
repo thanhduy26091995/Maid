@@ -28,7 +28,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -88,7 +87,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         //load data
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         //  searchView.setIconified(false);
-        searchView.setQueryHint("Tìm vị trí");
+        searchView.setQueryHint(getResources().getString(R.string.search_location));
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -259,7 +258,8 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
                             .position(new LatLng(location.getLatitude(), location.getLongitude()));
                     googleMap.addMarker(markerOptions);
                 } else {
-                    Toast.makeText(JobNearByMapActivity.this, "Location not found!", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.location_not_found), Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             }
 
