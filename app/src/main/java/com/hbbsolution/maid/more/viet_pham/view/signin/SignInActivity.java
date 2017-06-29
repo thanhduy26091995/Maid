@@ -95,7 +95,9 @@ public class SignInActivity extends AppCompatActivity implements MoreView
                 String username = editUserName.getText().toString();
                 String password = editPassword.getText().toString();
                 String token = FirebaseInstanceId.getInstance().getToken();
-                mSignInPresenter.signIn(username, password, token);
+                String realToken = String.format("%s@//@android", token);
+                Log.d("DEVICE_TOKEN", realToken);
+                mSignInPresenter.signIn(username, password, realToken);
             }
         });
         btnForgetPassword.setOnClickListener(new View.OnClickListener() {
@@ -105,8 +107,6 @@ public class SignInActivity extends AppCompatActivity implements MoreView
                 startActivity(itForgot);
             }
         });
-
-
 
 
     }

@@ -51,9 +51,9 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
             if (flag == 1) {
                 final AlertDialog.Builder alertDialog = new AlertDialog.Builder(HistoryActivity.this);
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("Thông báo");
-                alertDialog.setMessage("Hoàn tất công việc");
-                alertDialog.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
+                alertDialog.setTitle(getResources().getString(R.string.notification));
+                alertDialog.setMessage(getResources().getString(R.string.completed));
+                alertDialog.setPositiveButton(getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         alertDialog.show().dismiss();
@@ -63,15 +63,15 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
             } else if (flag == 2) {
                 alertDialogConfirm = new AlertDialog.Builder(HistoryActivity.this);
                 alertDialogConfirm.setCancelable(false);
-                alertDialogConfirm.setTitle("Hoàn tất công việc");
+                alertDialogConfirm.setTitle(getResources().getString(R.string.completed));
                 alertDialogConfirm.setMessage("Vui lòng xác nhận tiền mặt bằng cách nhấn " + "Ok");
-                alertDialogConfirm.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                alertDialogConfirm.setPositiveButton(getResources().getString(R.string.terms_btn_ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         historyPresenter.directConfirm(bill);
                     }
                 });
-                alertDialogConfirm.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                alertDialogConfirm.setNegativeButton(getResources().getString(R.string.huy), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         alertDialogConfirm.show().dismiss();
@@ -107,7 +107,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
     public void directConfirm(ChooseWorkResponse chooseWorkResponse) {
         alertDialogConfirm.create().dismiss();
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HistoryActivity.this);
-        alertDialogBuilder.setMessage("Xác nhận thành công");
+        alertDialogBuilder.setMessage(getResources().getString(R.string.confirm_ok));
         alertDialogBuilder.setPositiveButton(getResources().getText(R.string.okAlert),
                 new DialogInterface.OnClickListener() {
 
@@ -127,7 +127,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
     public void getError(String error) {
         alertDialogConfirm.create().dismiss();
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(HistoryActivity.this);
-        alertDialogBuilder.setMessage("Xác nhận thất bại");
+        alertDialogBuilder.setMessage(getResources().getString(R.string.confirm_failed));
         alertDialogBuilder.setPositiveButton(getResources().getText(R.string.okAlert),
                 new DialogInterface.OnClickListener() {
 

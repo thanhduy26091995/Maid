@@ -208,6 +208,10 @@
     <string name="commentsuccess">Comment sent successfully!</string>
     <string name="commentfail">Failed to send comment!</string>
 
+    <string name="confirm">Confirm</string>
+    <string name="confirm_ok">Confirm successfully</string>
+    <string name="confirm_failed">Failed to confirm</string>
+
     <plurals name="work">
         <item quantity="one">work</item>
         <item quantity="other">works</item>

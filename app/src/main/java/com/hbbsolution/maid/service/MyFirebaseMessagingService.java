@@ -16,6 +16,8 @@ import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity
 import java.util.List;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by buivu on 28/10/2016.
  */
@@ -98,6 +100,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent.putExtra("tabMore", 0);
             intent.putExtra("flag", 2);
             intent.putExtra("bill", data.get("bill"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        }
+        else if (data.get("status").equals("1")){
+            Intent intent = new Intent(this, WorkManagerActivity.class);
+            EventBus.getDefault().postSticky("1");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }
