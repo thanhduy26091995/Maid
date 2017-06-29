@@ -6,6 +6,7 @@ import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
 import com.hbbsolution.maid.maid_profile.model.abilities.AbilitiResponse;
 import com.hbbsolution.maid.maid_profile.model.comment_maid.CommentMaidResponse;
 import com.hbbsolution.maid.main.model.ResponseRequest;
+import com.hbbsolution.maid.model.announcement.AnnouncementResponse;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
@@ -112,4 +113,11 @@ public interface ApiInterface {
 
     @GET("maid/getAbility")
     Call<AbilitiResponse> getAbilities();
+
+    @FormUrlEncoded
+    @POST("maid/onAnnouncement")
+    Call<AnnouncementResponse> onAnnouncement(@Field("device_token") String deviceToken);
+
+    @POST("maid/offAnnouncement")
+    Call<AnnouncementResponse> offAnnouncement();
 }
