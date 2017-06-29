@@ -260,7 +260,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
-    public void getStatisticSuccess(List<Task> listTask, int total) {
+    public void getStatisticSuccess(List<Task> listTask, long total) {
         int i = 0;
         while (i < listTask.size()) {
             if (listTask.get(i).getId().equals("000000000000000000000001")) {
@@ -288,7 +288,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         numberDoneTask.setText(String.valueOf(done));
         float ftotal= (float) (total /100000 *0.1);
         if(total!=0) {
-            totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getQuantityString(R.plurals.million, total));
+            totalPrice.setText(String.valueOf(ftotal) + " " + getResources().getQuantityString(R.plurals.million, (int)ftotal));
         }
         else
         {
