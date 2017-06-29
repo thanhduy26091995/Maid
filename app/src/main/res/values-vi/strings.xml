@@ -211,4 +211,6 @@
         <item quantity="one">công việc</item>
         <item quantity="other">công việc</item>
     </plurals>
+
+    <string name="error">Có lỗi xảy ra! Vui lòng thử lại sau!</string>
 </resources>

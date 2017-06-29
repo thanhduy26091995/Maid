@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/gray"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     android:orientation="vertical"
     tools:context="com.hbbsolution.maid.more.duy_nguyen.view.StatisticActivity">
 
@@ -53,13 +53,13 @@
                 android:visibility="gone" />
 
             <LinearLayout
+                android:id="@+id/lnTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:weightSum="5"
-                android:id="@+id/lnTime">
+                android:weightSum="5">
 
                 <TextView
                     android:id="@+id/tvStartDate"
@@ -89,20 +89,20 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/view_line"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
-                android:background="@color/color_line_view"
                 android:layout_below="@id/lnTime"
-                android:id="@+id/view_line"/>
+                android:background="@color/color_line_view" />
 
 
             <LinearLayout
                 android:id="@+id/lnStatistic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/view_line"
                 android:orientation="vertical"
-                android:weightSum="13"
-                android:layout_below="@id/view_line">
+                android:weightSum="13">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -157,35 +157,35 @@
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="0dp"
+                                        android:layout_marginLeft="30dp"
+                                        android:layout_marginRight="30dp"
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="@string/total"
-                                        android:textSize="18sp"
-                                        android:layout_marginLeft="30dp"
-                                        android:layout_marginRight="30dp"/>
+                                        android:textSize="18sp" />
 
                                     <TextView
                                         android:id="@+id/totalPrice"
                                         android:layout_width="match_parent"
                                         android:layout_height="0dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="0.0 millions"
                                         android:textColor="@color/home_background_history"
                                         android:textSize="28sp"
-                                        android:textStyle="bold"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginRight="10dp"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="0dp"
+                                        android:layout_marginLeft="30dp"
+                                        android:layout_marginRight="30dp"
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="VND"
-                                        android:textSize="18sp"
-                                        android:layout_marginLeft="30dp"
-                                        android:layout_marginRight="30dp"/>
+                                        android:textSize="18sp" />
                                 </LinearLayout>
                             </RelativeLayout>
                         </LinearLayout>
@@ -317,10 +317,10 @@
                                 android:id="@+id/img_history_avatar"
                                 android:layout_width="64dp"
                                 android:layout_height="64dp"
-                                android:src="@drawable/avatar"
-                                android:layout_alignParentTop="true"
                                 android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true" />
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:src="@drawable/avatar" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -344,21 +344,28 @@
                                         android:textColor="@android:color/black"
                                         android:textSize="@dimen/text_size_large"
                                         android:textStyle="bold" />
-                                    <RatingBar
-                                        android:id="@+id/ratingBar"
-                                        style="?android:attr/ratingBarStyleSmall"
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_toLeftOf="@id/txt_right"
-                                        android:layout_marginRight="10dp"
                                         android:layout_alignBottom="@id/txt_statistic_owner_name"
-                                        android:clickable="false"
-                                        android:isIndicator="false"
-                                        android:numStars="5"
-                                        android:rating="0"
-                                        android:stepSize="1.0"
-                                        android:theme="@style/RatingBar"
-                                        android:layout_marginBottom="3dp"/>
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignTop="@+id/txt_statistic_owner_name"
+                                        android:layout_marginRight="20dp"
+                                        android:gravity="center_vertical">
+
+                                        <RatingBar
+                                            android:id="@+id/ratingBar"
+                                            style="?android:attr/ratingBarStyleSmall"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:clickable="false"
+                                            android:isIndicator="false"
+                                            android:numStars="5"
+                                            android:rating="0"
+                                            android:stepSize="1.0"
+                                            android:theme="@style/RatingBar" />
+                                    </LinearLayout>
                                 </RelativeLayout>
 
                                 <LinearLayout

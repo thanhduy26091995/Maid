@@ -16,11 +16,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.StatisticView;
 import com.hbbsolution.maid.more.duy_nguyen.model.Task;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.StatisticPresenter;
-
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 
@@ -65,7 +63,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     RatingBar ratingBar;
 
     private Calendar cal;
-    private Date startDate, endDate;
+    private Date startDate, endDate,startDateTemp,endDateTemp;
     private String strStartDate, strEndDate;
     private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
@@ -152,8 +150,9 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                         day + "/" + month + "/" + year);
                 //Lưu vết lại biến ngày hoàn thành
                 cal.set(year, monthOfYear, dayOfMonth);
-                startDate = cal.getTime();
-                if (endDate.getTime() - startDate.getTime() >= 0) {
+                startDateTemp = cal.getTime();
+                if (endDate.getTime() - startDateTemp.getTime() >= 0) {
+                    startDate=startDateTemp;
                     setNumber();
                     statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                 } else {
@@ -195,9 +194,10 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
                         day + "/" + month + "/" + year);
                 //Lưu vết lại biến ngày hoàn thành
                 cal.set(year, monthOfYear, dayOfMonth);
-                endDate = cal.getTime();
+                endDateTemp = cal.getTime();
                 if (startDate != null) {
-                    if (endDate.getTime() - startDate.getTime() >= 0) {
+                    if (endDateTemp.getTime() - startDate.getTime() >= 0) {
+                        endDate = endDateTemp;
                         setNumber();
                         statisticPresenter.getStatistic(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                     } else {
@@ -244,10 +244,10 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
             case R.id.tvEndDate:
                 showDatePickerDialog2();
                 break;
-            case R.id.rela_info:
-                intent = new Intent(StatisticActivity.this, MaidProfileActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.rela_info:
+//                intent = new Intent(StatisticActivity.this, MaidProfileActivity.class);
+//                startActivity(intent);
+//                break;
         }
     }
 
@@ -300,7 +300,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void getStatisticFail() {
-        ShowAlertDialog.showAlert("ERROR",StatisticActivity.this);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.error),StatisticActivity.this);
     }
 
     @Override

@@ -212,4 +212,6 @@
         <item quantity="one">work</item>
         <item quantity="other">works</item>
     </plurals>
+
+    <string name="error">Error! Please try again!</string>
 </resources>
