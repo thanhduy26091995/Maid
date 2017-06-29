@@ -224,4 +224,7 @@
     </plurals>
 
     <string name="error">Error! Please try again!</string>
+
+    <string name="choose_start_date">Choose the start date</string>
+    <string name="choose_end_date">Choose the end date</string>
 </resources>

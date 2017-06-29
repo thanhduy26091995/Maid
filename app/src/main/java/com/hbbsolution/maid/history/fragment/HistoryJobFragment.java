@@ -254,7 +254,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
         int thang = Integer.parseInt(strArrtmp[1]) - 1;
         int nam = Integer.parseInt(strArrtmp[2]);
         DatePickerDialog pic = new DatePickerDialog(getActivity(), callback, nam, thang, ngay);
-        pic.setTitle("Chọn ngày bắt đầu");
+        pic.setTitle(getResources().getString(R.string.choose_start_date));
         pic.show();
     }
 
@@ -305,7 +305,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
         int thang = Integer.parseInt(strArrtmp[1]) - 1;
         int nam = Integer.parseInt(strArrtmp[2]);
         DatePickerDialog pic = new DatePickerDialog(getActivity(), callback, nam, thang, ngay);
-        pic.setTitle("Chọn ngày kết thúc");
+        pic.setTitle(getResources().getString(R.string.choose_end_date));
         pic.show();
     }
 
