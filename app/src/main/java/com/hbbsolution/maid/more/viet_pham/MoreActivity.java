@@ -7,25 +7,31 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
+import com.hbbsolution.maid.model.announcement.AnnouncementResponse;
 import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.StatisticActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.AboutActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.ContactActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.TermActivity;
+import com.hbbsolution.maid.more.viet_pham.presenter.MorePresenter;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
+import com.hbbsolution.maid.utils.SessionManagerForAnnouncement;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 
@@ -34,11 +40,13 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.hbbsolution.maid.R.id.switch_announcement;
+
 /**
  * Created by buivu on 04/05/2017.
  */
 
-public class MoreActivity extends AppCompatActivity {
+public class MoreActivity extends AppCompatActivity implements MoreForAnnouncementView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -66,9 +74,14 @@ public class MoreActivity extends AppCompatActivity {
     RelativeLayout lo_terms;
     @BindView(R.id.cv_sign_in)
     CardView cvSignIn;
+    @BindView(switch_announcement)
+    SwitchCompat switchAnnouncement;
+
+    private SessionManagerForAnnouncement sessionManagerForAnnouncement;
     private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
     private boolean isPause = false;
+    private MorePresenter morePresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +89,8 @@ public class MoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_more);
         ButterKnife.bind(this);
         sessionManagerUser = new SessionManagerUser(this);
+        sessionManagerForAnnouncement = new SessionManagerForAnnouncement(this);
+        morePresenter = new MorePresenter(this);
         //config toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -84,6 +99,25 @@ public class MoreActivity extends AppCompatActivity {
         txtMore_title_toothbar.setText(getResources().getString(R.string.more));
         addEvents();
         loadData();
+        //event for switch
+        switchAnnouncement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (sessionManagerUser.isLoggedIn()) {
+                        sessionManagerForAnnouncement.createStateAnnouncement(true);
+                        //call api to save deviceToken
+                        String deviceToken = String.format("%s@//@android", FirebaseInstanceId.getInstance().getToken());
+                        morePresenter.onAnnouncement(deviceToken);
+                    }
+                } else {
+                    if (sessionManagerUser.isLoggedIn()) {
+                        sessionManagerForAnnouncement.createStateAnnouncement(false);
+                        morePresenter.offAnnouncement();
+                    }
+                }
+            }
+        });
     }
 
 
@@ -104,6 +138,12 @@ public class MoreActivity extends AppCompatActivity {
         txtAddress.setText(hashDataUser.get(SessionManagerUser.KEY_ADDRESS));
         ImageLoader.getInstance().loadImageAvatar(MoreActivity.this, hashDataUser.get(SessionManagerUser.KEY_IMAGE),
                 imgAvatar);
+        //check state of announcement
+        if (sessionManagerForAnnouncement.getStateAnnouncement()) {
+            switchAnnouncement.setChecked(true);
+        } else {
+            switchAnnouncement.setChecked(false);
+        }
     }
 
     public void addEvents() {
@@ -150,7 +190,7 @@ public class MoreActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 // TODO Auto-generated method stub
                                 sessionManagerUser.logoutUser();
-                                Intent intent= new Intent(MoreActivity.this, SignInActivity.class);
+                                Intent intent = new Intent(MoreActivity.this, SignInActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -213,10 +253,10 @@ public class MoreActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(isPause) {
+        if (isPause) {
             SessionManagerForLanguage sessionManagerForLanguage = new SessionManagerForLanguage(MoreActivity.this);
             boolean isChangeLanguage = sessionManagerForLanguage.changeLanguage();
-            if(isChangeLanguage) {
+            if (isChangeLanguage) {
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(this.getIntent());
@@ -224,5 +264,20 @@ public class MoreActivity extends AppCompatActivity {
                 sessionManagerForLanguage.setChangeLanguage();
             }
         }
+    }
+
+    @Override
+    public void onAnnouncement(AnnouncementResponse announcementResponse) {
+
+    }
+
+    @Override
+    public void offAnnouncement(AnnouncementResponse announcementResponse) {
+
+    }
+
+    @Override
+    public void getError(String error) {
+
     }
 }
