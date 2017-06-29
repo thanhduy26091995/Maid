@@ -170,7 +170,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="2"
                                         android:gravity="center"
-                                        android:text="1.5 millions"
+                                        android:text="0.0 millions"
                                         android:textColor="@color/home_background_history"
                                         android:textSize="28sp"
                                         android:textStyle="bold"
@@ -215,7 +215,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:text="6"
+                            android:text="0"
                             android:textColor="@color/home_background_maid_aound"
                             android:textSize="40sp"
                             android:textStyle="bold" />
@@ -243,7 +243,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:text="5"
+                            android:text="0"
                             android:textColor="@color/home_background_your_tasks"
                             android:textSize="40sp"
                             android:textStyle="bold" />
@@ -271,7 +271,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
-                            android:text="8"
+                            android:text="0"
                             android:textColor="@color/home_background_history"
                             android:textSize="40sp"
                             android:textStyle="bold" />
@@ -349,7 +349,6 @@
                                         style="?android:attr/ratingBarStyleSmall"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/txt_statistic_owner_name"
                                         android:layout_toLeftOf="@id/txt_right"
                                         android:layout_marginRight="10dp"
                                         android:layout_alignBottom="@id/txt_statistic_owner_name"
@@ -358,19 +357,8 @@
                                         android:numStars="5"
                                         android:rating="0"
                                         android:stepSize="1.0"
-                                        android:theme="@style/RatingBar" />
-                                    <com.hbbsolution.maid.base.IconTextView
-                                        android:id="@+id/txt_right"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_alignParentRight="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginEnd="10dp"
-                                        android:layout_marginRight="10dp"
-                                        android:text="@string/ion_chevron_right"
-                                        android:textColor="@android:color/darker_gray"
-                                        android:textSize="@dimen/icon_size_normal" />
+                                        android:theme="@style/RatingBar"
+                                        android:layout_marginBottom="3dp"/>
                                 </RelativeLayout>
 
                                 <LinearLayout

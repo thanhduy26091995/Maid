@@ -108,7 +108,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     public void setEventClick() {
         tvStartDate.setOnClickListener(this);
         tvEndDate.setOnClickListener(this);
-        rela_info.setOnClickListener(this);
+//        rela_info.setOnClickListener(this);
     }
 
     public void setNumber() {

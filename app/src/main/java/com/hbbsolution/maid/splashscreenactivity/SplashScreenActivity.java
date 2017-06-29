@@ -6,11 +6,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.main.HomeActivity;
+import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 
 import static java.lang.Thread.sleep;
+
 
 /**
  * Created by tantr on 6/1/2017.

@@ -17,18 +17,15 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCD5w90Aa8k4ISQoPIcHQ-HsABUj2aAzns" />
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        <activity android:name=".main.view.HomeActivity">
+        <activity android:name=".splashscreenactivity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".main.view.HomeActivity"/>
         <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity" />
         <activity android:name=".workmanager.detailworkmanager.view.DetailJobPostActivity" />
         <activity android:name=".history.activity.HistoryActivity" />

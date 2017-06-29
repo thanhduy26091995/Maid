@@ -20,6 +20,7 @@ import com.hbbsolution.maid.history.adapter.HistoryOwnerAdapter;
 import com.hbbsolution.maid.history.inteface.OwnerHistoryView;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.history.presenter.OwnerHistoryPresenter;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -134,7 +135,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                     progressBar.setVisibility(View.VISIBLE);
                     mOwnerHistoryPresenter.getInfoOwnerHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                 } else {
-  //                  ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                     tvStartDate.setText(tempStartDate);
                 }
             }
@@ -179,7 +180,7 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
                         progressBar.setVisibility(View.VISIBLE);
                         mOwnerHistoryPresenter.getInfoOwnerHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate));
                     } else {
-  //                      ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+                        ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                         tvEndDate.setText(tempEndDate);
                     }
                 } else {

@@ -203,4 +203,13 @@
     <string name="no_comments">Không có nhận xét</string>
 
     <string name="back">Trở lại</string>
+    <string name="reportsuccess">Báo cáo thành công!</string>
+    <string name="reportfail">Báo cáo thất bại!</string>
+    <string name="commentsuccess">Nhận xét thành công!</string>
+    <string name="commentfail">Nhận xét thất bại!</string>
+
+    <plurals name="work">
+        <item quantity="one">công việc</item>
+        <item quantity="other">công việc</item>
+    </plurals>
 </resources>

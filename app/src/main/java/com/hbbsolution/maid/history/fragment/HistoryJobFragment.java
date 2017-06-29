@@ -21,6 +21,7 @@ import com.hbbsolution.maid.history.inteface.WorkHistoryView;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
 import com.hbbsolution.maid.history.presenter.WorkHistoryPresenter;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -236,7 +237,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
                     progressBar.setVisibility(View.VISIBLE);
                     workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPageTime);
                 } else {
-   //                 ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                     tvStartDate.setText(tempStartDate);
                 }
             }
@@ -283,7 +284,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
                         progressBar.setVisibility(View.VISIBLE);
                         workHistoryPresenter.getInfoWorkHistoryTime(simpleDateFormat.format(startDate), simpleDateFormat.format(endDate), currentPageTime);
                     } else {
- //                       ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
+                        ShowAlertDialog.showAlert(getResources().getString(R.string.rangetime), getActivity());
                         tvEndDate.setText(tempEndDate);
                     }
                 } else {

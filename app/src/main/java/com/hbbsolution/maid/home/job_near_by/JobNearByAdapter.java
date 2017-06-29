@@ -50,7 +50,7 @@ public class JobNearByAdapter extends RecyclerView.Adapter<JobNearByAdapter.JobN
     public void onBindViewHolder(JobNearByViewHolder holder, int position) {
         final TaskData taskAround = taskArounds.get(position);
         //load data
-        holder.txtNumber.setText(String.format("%d công việc", taskAround.getCount()));
+        holder.txtNumber.setText(String.format("%d " + activity.getResources().getQuantityString(R.plurals.work,(int)taskAround.getCount()), taskAround.getCount()));
         holder.txtName.setText(taskAround.getJobTypeInfo().getName());
         ImageLoader.getInstance().loadImageOther(activity, taskAround.getJobTypeInfo().getImage(), holder.imgIcon);
         //event click item

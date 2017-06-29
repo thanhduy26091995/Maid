@@ -1,5 +1,6 @@
 package com.hbbsolution.maid.home.owner_profile.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.history.model.work.Owner;
 import com.hbbsolution.maid.more.duy_nguyen.view.ReportOwnerActivity;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,6 +132,14 @@ public class OwnerProfileActivity extends AppCompatActivity implements View.OnCl
                 intent.putExtra("IsInJobDetail", isInJobDetail);
                 startActivityForResult(intent, REPORT);
                 break;
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REPORT) {
+            if (resultCode == Activity.RESULT_OK) {
+                ShowAlertDialog.showAlert(getResources().getString(R.string.reportsuccess), this);
+            }
         }
     }
 }

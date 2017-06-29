@@ -203,4 +203,13 @@
     <string name="no_comments">There are no comments</string>
 
     <string name="back">Back</string>
+    <string name="reportsuccess">Report sent successfully!</string>
+    <string name="reportfail">Failed to send report!</string>
+    <string name="commentsuccess">Comment sent successfully!</string>
+    <string name="commentfail">Failed to send comment!</string>
+
+    <plurals name="work">
+        <item quantity="one">work</item>
+        <item quantity="other">works</item>
+    </plurals>
 </resources>

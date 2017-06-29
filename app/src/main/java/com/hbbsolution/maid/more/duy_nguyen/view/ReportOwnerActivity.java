@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.more.duy_nguyen.view;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -50,7 +51,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
     private boolean isInJobDetail = false;
     private String idOnwer;
     private int flat;
-
+    private ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
         //init toolbar
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+        mProgressDialog = new ProgressDialog(this);
         reportPresenter = new ReportPresenter(this);
         loadData();
         tvSend.setOnClickListener(this);
@@ -127,6 +129,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
                 if (edtReport.getText().toString().length() > 0) {
+                    showProgress();
                     reportPresenter.reportOwner(idOnwer, edtReport.getText().toString().trim());
                 } else {
                     ShowAlertDialog.showAlert("Vui lòng điền nội dung báo cáo", ReportOwnerActivity.this);
@@ -140,6 +143,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void reportSuccess(String message) {
+        hideProgress();
         Intent intent = new Intent();
         intent.putExtra("message", message);
         setResult(Activity.RESULT_OK, intent);
@@ -148,7 +152,9 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void reportFail() {
-
+        ShowAlertDialog.showAlert(getResources().getString(R.string.reportfail), this);
+        edtReport.getText().clear();
+        hideProgress();
     }
 
     @Override
@@ -166,5 +172,18 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    private void showProgress() {
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(getResources().getString(R.string.loading));
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+    }
+
+    private void hideProgress() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 }
