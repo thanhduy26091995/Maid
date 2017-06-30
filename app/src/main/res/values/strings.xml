@@ -239,4 +239,6 @@
     <string name="choose_end_date">Choose the end date</string>
     <string name="my_profile">My Profile</string>
     <string name="work_capability">WORK CAPABILITY</string>
+
+    <string name="reportempty">Please fill in the report</string>
 </resources>

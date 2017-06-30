@@ -132,7 +132,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                     showProgress();
                     reportPresenter.reportOwner(idOnwer, edtReport.getText().toString().trim());
                 } else {
-                    ShowAlertDialog.showAlert("Vui lòng điền nội dung báo cáo", ReportOwnerActivity.this);
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.reportempty), ReportOwnerActivity.this);
                 }
                 break;
             case R.id.tvSkip:

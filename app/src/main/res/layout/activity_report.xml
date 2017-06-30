@@ -132,7 +132,6 @@
                         android:layout_marginTop="5dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text="123 đường 1, Quận 1, Thành phố Hồ Chí Minh"
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
             </LinearLayout>

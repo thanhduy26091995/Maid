@@ -240,4 +240,5 @@
     <string name="my_profile">Thông tin cá nhân</string>
     <string name="work_capability">NĂNG LỰC LÀM VIỆC</string>
 
+    <string name="reportempty">Vui lòng điền nội dung báo cáo</string>
 </resources>

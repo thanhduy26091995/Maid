@@ -2,7 +2,6 @@ package com.hbbsolution.maid.maid_profile.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -21,9 +20,6 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.base.ImageLoader;
@@ -37,13 +33,14 @@ import com.hbbsolution.maid.maid_profile.presenter.MaidProfilePresenter;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.blurry.Blurry;
 
 /**
  * Created by buivu on 15/05/2017.
@@ -153,7 +150,7 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
         } else {
             txtGenderInfoMaid.setText(getResources().getString(R.string.pro_file_gender_female));
         }
-        txtPrice.setText(String.format("%s VND", dataHashMap.get(SessionManagerUser.KEY_PRICE)));
+        txtPrice.setText(String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(Integer.parseInt(dataHashMap.get(SessionManagerUser.KEY_PRICE)))));
         txtPhoneInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_PHONE));
         ImageLoader.getInstance().loadImageAvatar(MaidProfileActivity.this, dataHashMap.get(SessionManagerUser.KEY_IMAGE),
                 img_avatarMaid);
