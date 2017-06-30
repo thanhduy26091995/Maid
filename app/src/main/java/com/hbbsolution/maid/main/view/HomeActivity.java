@@ -42,10 +42,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     RelativeLayout mLayout_History;
     @BindView(R.id.ic_text_view_more)
     IconTextView iconTextViewMore;
-
+    @BindView(R.id.txt_work_management)
+    TextView txt_work_management;
+    @BindView(R.id.txt_work_management_history)
+    TextView txt_work_management_history;
+    @BindView(R.id.nearbyJob)
+    TextView txt_nearbyJob;
     private boolean isPause = false;
     private HomePresenter mHomePresenter;
-
+    private SessionManagerForLanguage sessionManagerForLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         txtHome_title_toothbar.setText(getResources().getString(R.string.home_home));
+        sessionManagerForLanguage = new SessionManagerForLanguage(this);
+        String lang = sessionManagerForLanguage.getLanguage();
+        if (lang.equals("Tiếng Việt")) {
+            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(),2),'\n',txt_nearbyJob.getText().toString()));
+            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(),2),'\n',txt_work_management.getText().toString()));
+            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(),2),'\n',txt_work_management_history.getText().toString()));
+        } else{
+            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(),1),'\n',txt_nearbyJob.getText().toString()));
+            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(),1),'\n',txt_work_management.getText().toString()));
+            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(),1),'\n',txt_work_management_history.getText().toString()));
+        }
 
         // on click
         mLayout_MaidAround.setOnClickListener(this);
@@ -163,5 +179,23 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void errorConnectService() {
 
+    }
+
+    private int setTitle(String title,int positionSpace)
+    {
+        int i = 0,spaceCount = 0;
+        while( i < title.length() && spaceCount <positionSpace ){
+            if( title.charAt(i) == ' ' ) {
+                spaceCount++;
+            }
+            i++;
+        }
+        return i-1;
+    }
+
+    public String changeCharInPosition(int position, char ch, String str){
+        char[] charArray = str.toCharArray();
+        charArray[position] = ch;
+        return new String(charArray);
     }
 }

@@ -19,6 +19,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.more.duy_nguyen.inteface.StatisticView;
 import com.hbbsolution.maid.more.duy_nguyen.model.Task;
 import com.hbbsolution.maid.more.duy_nguyen.presenter.StatisticPresenter;
+import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 
@@ -62,6 +63,12 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     @BindView(R.id.ratingBar)
     RatingBar ratingBar;
 
+    @BindView(R.id.awaiting)
+    TextView tvAwaiting;
+    @BindView(R.id.workInProcess)
+    TextView tvWorkInProcess;
+    @BindView(R.id.workHistory)
+    TextView tvWorkHistory;
     private Calendar cal;
     private Date startDate, endDate,startDateTemp,endDateTemp;
     private String strStartDate, strEndDate;
@@ -72,6 +79,7 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     private ProgressBar progressBar;
     private int onCreate, pending, reserved, onDoing, done, immediate;
     private String tempStartDate, tempEndDate;
+    private SessionManagerForLanguage sessionManagerForLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +138,19 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         tvStatisticAddress.setText(hashDataUser.get(SessionManagerUser.KEY_ADDRESS));
         ratingBar.setRating((float) Integer.parseInt(hashDataUser.get(SessionManagerUser.KEY_EVALUATION)));
         statisticPresenter.getStatistic("", simpleDateFormat.format(endDate));
+
+        sessionManagerForLanguage = new SessionManagerForLanguage(this);
+        String lang = sessionManagerForLanguage.getLanguage();
+        if (lang.equals("Tiếng Việt")) {
+            tvAwaiting.setText(changeCharInPosition(setTitle(tvAwaiting.getText().toString(), 2), '\n', tvAwaiting.getText().toString()));
+            tvWorkInProcess.setText(changeCharInPosition(setTitle(tvWorkInProcess.getText().toString(), 2), '\n', tvWorkInProcess.getText().toString()));
+            tvWorkHistory.setText(changeCharInPosition(setTitle(tvWorkHistory.getText().toString(), 2), '\n', tvWorkHistory.getText().toString()));
+//        } else if (lang.equals("English")) {
+//            tvPostedWork.setText(changeCharInPosition(setTitle(tvPostedWork.getText().toString(),1),'\n',tvPostedWork.getText().toString()));
+//            tvWorkInProcess.setText(changeCharInPosition(setTitle(tvWorkInProcess.getText().toString(),1),'\n',tvWorkInProcess.getText().toString()));
+//            tvWorkHistory.setText(changeCharInPosition(setTitle(tvWorkHistory.getText().toString(),1),'\n',tvWorkHistory.getText().toString()));
+//        }
+        }
     }
 
     public void showDatePickerDialog1() {
@@ -309,6 +330,24 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
+    }
+
+    private int setTitle(String title,int positionSpace)
+    {
+        int i = 0,spaceCount = 0;
+        while( i < title.length() && spaceCount <positionSpace ){
+            if( title.charAt(i) == ' ' ) {
+                spaceCount++;
+            }
+            i++;
+        }
+        return i-1;
+    }
+
+    public String changeCharInPosition(int position, char ch, String str){
+        char[] charArray = str.toCharArray();
+        charArray[position] = ch;
+        return new String(charArray);
     }
 }
 
