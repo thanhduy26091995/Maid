@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,14 +92,20 @@ public class SignInActivity extends AppCompatActivity implements MoreView
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mProgressDialog.show();
-                mProgressDialog.setCanceledOnTouchOutside(false);
                 String username = editUserName.getText().toString();
                 String password = editPassword.getText().toString();
-                String token = FirebaseInstanceId.getInstance().getToken();
-                String realToken = String.format("%s@//@android", token);
-                Log.d("DEVICE_TOKEN", realToken);
-                mSignInPresenter.signIn(username, password, realToken);
+                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.fill_all_data), SignInActivity.this);
+                } else {
+                    mProgressDialog.setMessage(getResources().getString(R.string.loading));
+                    mProgressDialog.show();
+                    mProgressDialog.setCanceledOnTouchOutside(false);
+
+                    String token = FirebaseInstanceId.getInstance().getToken();
+                    String realToken = String.format("%s@//@android", token);
+                    Log.d("DEVICE_TOKEN", realToken);
+                    mSignInPresenter.signIn(username, password, realToken);
+                }
             }
         });
         btnForgetPassword.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +123,6 @@ public class SignInActivity extends AppCompatActivity implements MoreView
                 startActivity(intentMaidNearBy);
             }
         });
-
 
 
     }
@@ -152,9 +158,9 @@ public class SignInActivity extends AppCompatActivity implements MoreView
 
 
     @Override
-    public void displayError() {
+    public void displayError(String error) {
         mProgressDialog.dismiss();
-        ShowAlertDialog.showAlert("Error", SignInActivity.this);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.error), SignInActivity.this);
 
     }
 

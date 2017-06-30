@@ -96,6 +96,7 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         if (!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())) {
             holder.txtExpired.setVisibility(View.VISIBLE);
             holder.lo_background.setVisibility(View.VISIBLE);
+            holder.txtRequestDirect.setVisibility(View.GONE);
         } else {
             holder.txtExpired.setVisibility(View.GONE);
             holder.lo_background.setVisibility(View.GONE);

@@ -22,6 +22,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
+import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.presenter.DetailJobPendingPresenter;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.squareup.picasso.Picasso;
@@ -118,10 +119,10 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         }
 
         if(mDatum.getProcess().getId().equals("000000000000000000000006")) {
-            txtClearJob.setText("Từ chối công việc");
+            txtClearJob.setText(getResources().getString(R.string.denied));
             rela_confirm_maid.setVisibility(View.VISIBLE);
         }else {
-            txtClearJob.setText("Hủy công việc");
+            txtClearJob.setText(getResources().getString(R.string.cancel_work));
             rela_confirm_maid.setVisibility(View.GONE);
         }
 
@@ -234,14 +235,14 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
             DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
             mOutputPrice  = myFormatter.format(_Price);
         } else if(_Price == 0){
-            mOutputPrice = "Tính tiền theo thời gian";
+            mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;
     }
 
     @Override
-    public void displayNotifyJobPost(boolean isJobPost) {
-        displayNotifySuccess(isJobPost, getResources().getString(R.string.notification__pass_del_job_post));
+    public void displayNotifyJobPost(JobPendingResponse isJobPost) {
+        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.notification__pass_del_job_post),isJobPost.getMessage());
     }
 
     @Override
@@ -249,8 +250,8 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     }
 
     @Override
-    public void displayNotifyAccceptJobRequested(boolean isJobPost) {
-        displayNotifySuccess(isJobPost, "Chấp nhận công việc thành công!");
+    public void displayNotifyAccceptJobRequested(JobPendingResponse isJobPost) {
+        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.accepted_successfully), isJobPost.getMessage());
     }
 
     @Override
@@ -259,8 +260,8 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     }
 
     @Override
-    public void displayNotifyRefuseJobRequested(boolean isJobPost) {
-        displayNotifySuccess(isJobPost, "Từ chối công việc thành công!");
+    public void displayNotifyRefuseJobRequested(JobPendingResponse isJobPost) {
+        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.denied_successfully), isJobPost.getMessage());
     }
 
     @Override
@@ -268,7 +269,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
     }
 
-    private void displayNotifySuccess(boolean isJobPost, String message) {
+    private void displayNotifySuccess(boolean isJobPost, String message, String error) {
         progressBar.setVisibility(View.GONE);
         if (isJobPost) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
@@ -285,7 +286,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
             alertDialog.show();
         } else {
-            ShowAlertDialog.showAlert("Thất bại", DetailJobPostActivity.this);
+            ShowAlertDialog.showAlert(error, DetailJobPostActivity.this);
         }
     }
 

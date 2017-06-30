@@ -81,8 +81,8 @@ public class WorkManagerPresenter {
                 try{
                     if (response.isSuccessful()) {
 
-                        Boolean isJbPost = response.body().getStatus();
-                        mWorkManagerView.displayNotifyJobPost(isJbPost);
+//                        Boolean isJbPost = response.body().getStatus();
+                        mWorkManagerView.displayNotifyJobPost(response.body());
                     }
                 }catch (Exception e){
 

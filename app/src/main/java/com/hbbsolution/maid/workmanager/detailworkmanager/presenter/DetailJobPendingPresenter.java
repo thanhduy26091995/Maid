@@ -32,8 +32,8 @@ public class DetailJobPendingPresenter {
             public void onResponse(Call<JobPendingResponse> call, Response<JobPendingResponse> response) {
                 try {
                     if (response.isSuccessful()) {
-                        Boolean isJbPost = response.body().getStatus();
-                        mDetailJobPostView.displayNotifyAccceptJobRequested(isJbPost);
+//                        Boolean isJbPost = response.body().getStatus();
+                        mDetailJobPostView.displayNotifyAccceptJobRequested(response.body());
                         Log.d("MESSAGE", response.body().getMessage());
                     }
                     Log.d("ERROR", response.message());
@@ -57,7 +57,7 @@ public class DetailJobPendingPresenter {
                 try {
                     if (response.isSuccessful()) {
                         Boolean isJbPost = response.body().getStatus();
-                        mDetailJobPostView.displayNotifyRefuseJobRequested(isJbPost);
+                        mDetailJobPostView.displayNotifyRefuseJobRequested(response.body());
                     }
                 } catch (Exception e) {
                 }
@@ -80,7 +80,7 @@ public class DetailJobPendingPresenter {
                     if (response.isSuccessful()) {
 
                         Boolean isJbPost = response.body().getStatus();
-                        mDetailJobPostView.displayNotifyJobPost(isJbPost);
+                        mDetailJobPostView.displayNotifyJobPost(response.body());
                     }
                 } catch (Exception e) {
                 }

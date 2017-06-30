@@ -52,38 +52,43 @@
                         android:textColor="@color/colorBlack"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/txtExpired_request_detail_post"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/background_text_expired"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="@string/exceeded"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/icon_size_normal"
-                        android:visibility="gone" />
+                        android:layout_weight="2">
 
-                    <TextView
-                        android:id="@+id/txtExpired_request_direct_detail"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="15dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/background_txt_request_direct"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="@string/send_direct"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/text_size_small"
-                        android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/txtExpired_request_detail_post"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:visibility="gone"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="12dp"
+                            android:padding="2dp"
+                            android:background="@drawable/background_text_expired"
+                            android:text="@string/exceeded"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/icon_size_normal" />
+
+                        <TextView
+                            android:id="@+id/txtExpired_request_direct_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/background_txt_request_direct"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="@string/send_direct"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_size_small"
+                            android:visibility="gone" />
+
+                    </RelativeLayout>
 
 
                 </LinearLayout>
@@ -116,7 +121,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="10dp"
-                        android:text="23 phút trước"
+
                         android:textSize="12sp" />
 
                 </LinearLayout>

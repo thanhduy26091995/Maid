@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
+import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPresenter;
@@ -119,7 +120,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     }
 
     @Override
-    public void displayNotifyJobPost(boolean isJobPost) {
+    public void displayNotifyJobPost(JobPendingResponse isJobPost) {
 
     }
 
@@ -134,7 +135,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
             DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
             mOutputPrice = myFormatter.format(_Price);
         } else if (_Price == 0) {
-            mOutputPrice = "Tính tiền theo thời gian";
+            mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;
     }

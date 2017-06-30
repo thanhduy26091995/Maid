@@ -12,7 +12,7 @@ import com.hbbsolution.maid.more.viet_pham.model.signin_signup.DataUpdateRespons
 public interface MoreView {
     void displaySignUpAndSignIn(BodyResponse bodyResponse);
     void displayUpdate(DataUpdateResponse dataUpdateResponse);
-    void displayError();
+    void displayError(String error);
     void displayNotFoundLocaltion();
 
 }

@@ -145,7 +145,7 @@
                         android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="10dp"
-                        android:text="Chọn công việc này"
+                        android:text="@string/choose_this_work"
                         android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/home_background_history" />
@@ -375,7 +375,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
-                            android:layout_marginTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
                             android:gravity="top"
                             android:text="@string/manager_ic_home"
                             android:textColor="@color/home_background_history"
@@ -390,7 +391,7 @@
                             android:gravity="left|center"
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
-                            android:text="123 đường số 1, quận 1, Tp.HCM, Việt Nam"
+                            android:text="123 đường số 1,dsakndsandkalndklasndkalndkalsndlkandlkasndnalk quận 1, Tp.HCM, Việt Nam"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/colorBlack" />
 

@@ -34,20 +34,25 @@ public class SignInPresenter {
         mApiService.signInAccount(requestBodyUserName, requestBodyPassword, requestBodyDeviceToken).enqueue(new Callback<BodyResponse>() {
             @Override
             public void onResponse(Call<BodyResponse> call, Response<BodyResponse> response) {
-                try {
-                    BodyResponse bodyResponse = response.body();
-                    Log.e("Check", String.valueOf(bodyResponse.getStatus()));
-                    mMoreView.displaySignUpAndSignIn(bodyResponse);
+                if (response.isSuccessful()) {
+                    try {
+                        BodyResponse bodyResponse = response.body();
+                        Log.e("Check", String.valueOf(bodyResponse.getStatus()));
+                        mMoreView.displaySignUpAndSignIn(bodyResponse);
 
-                } catch (Exception e) {
-                    Log.e("Check","error");
-                    mMoreView.displayError();
+                    } catch (Exception e) {
+                        Log.e("Check", "error");
+                        mMoreView.displayError(e.getMessage());
+                    }
+                } else {
+                    mMoreView.displayError(response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<BodyResponse> call, Throwable t) {
-                Log.e("Check","failed");
+                Log.e("Check", "failed");
+                mMoreView.displayError(t.getMessage());
             }
         });
     }
