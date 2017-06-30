@@ -20,7 +20,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 /**
@@ -60,8 +59,8 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
                 .into(holder.imgType);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("H:mm a", Locale.US);
-        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
+        SimpleDateFormat time = new SimpleDateFormat("H:mm a");
+        DateFormatSymbols symbols = new DateFormatSymbols();
         // OVERRIDE SOME symbols WHILE RETAINING OTHERS
         symbols.setAmPmStrings(new String[] { "am", "pm" });
         time.setDateFormatSymbols(symbols);

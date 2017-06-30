@@ -10,7 +10,7 @@
     <!--<string name="home_history">History</string>-->
     <!--<string name="home_copy_right">Copyright(c).HBB Solution. All right reserved</string>-->
     <string name="home_home">Trang chủ</string>
-    <string name="home_maid_around">Giúp việc quanh đây</string>
+    <string name="home_maid_around">Công việc quanh đây</string>
     <string name="home_your_tasks">Quản lý công việc</string>
     <string name="home_history">Lịch sử công việc</string>
     <string name="home_copy_right">Niềm tin - Chất lượng</string>
@@ -201,7 +201,7 @@
     <string name="search">Tìm kiếm</string>
     <string name="distance">Khoảng cách</string>
     <string name="applicant_profile">Thông tin</string>
-    <string name="report">Báo cáo người giúp việc</string>
+    <string name="report">Báo cáo</string>
     <string name="comment">NHẬN XÉT</string>
     <string name="no_comments">Không có nhận xét</string>
 
