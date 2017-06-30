@@ -32,7 +32,7 @@
     <string name="running_work">Running</string>
     <string name="awaiting_assignment">Awaiting</string>
     <string name="pending_confirmation">Pending confirmation</string>
-    <string name="exceeded">Exceeded</string>
+    <string name="exceeded">Expired</string>
     <string name="send_direct">Sent directly</string>
 
     <string name="tool_work">Bring your cleaning supplies</string>

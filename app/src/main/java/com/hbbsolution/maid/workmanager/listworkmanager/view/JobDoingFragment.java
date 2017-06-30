@@ -149,6 +149,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
         txtPriceJobDoing.setText(formatPrice(mDatum.getInfo().getPrice()));
         txtDateJobDoing.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
         txtAddressJobDoing.setText(mDatum.getInfo().getAddress().getName());
+        txtTimeDoWrokJobDoing.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt())+ " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));
         Glide.with(getContext())
                 .load(mDatum.getStakeholders().getOwner().getInfo().getImage())
                 .thumbnail(0.5f)

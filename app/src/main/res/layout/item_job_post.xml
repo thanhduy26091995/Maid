@@ -45,7 +45,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-                        android:layout_weight="3"
+                        android:layout_weight="2.8"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -55,7 +55,7 @@
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2">
+                        android:layout_weight="2.2">
 
                         <TextView
                             android:id="@+id/txtExpired_request_detail_post"
