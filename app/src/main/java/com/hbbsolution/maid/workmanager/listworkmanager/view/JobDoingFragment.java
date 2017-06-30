@@ -26,6 +26,8 @@ import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPre
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -146,7 +148,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
         txtTitleJobDoing.setText(mDatum.getInfo().getTitle());
         txtTypeJobDoing.setText(mDatum.getInfo().getWork().getName());
         txtContentJobDoing.setText(mDatum.getInfo().getDescription());
-        txtPriceJobDoing.setText(formatPrice(mDatum.getInfo().getPrice()));
+        txtPriceJobDoing.setText(String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(mDatum.getInfo().getPrice())));
         txtDateJobDoing.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
         txtAddressJobDoing.setText(mDatum.getInfo().getAddress().getName());
         txtTimeDoWrokJobDoing.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt())+ " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));

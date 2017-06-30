@@ -50,6 +50,7 @@
     <string name="notification__pass_del_job_post">Bài đăng đã được xóa</string>
     <string name="note_cancel_work">Bạn được quyền hủy công việc đã nhận trong vòng 24 giờ trước khi bắt đầu làm việc. Vui lòng gọi điện thông báo công ty hoặc chủ nhà khi xác nhận thay đổi.</string>
     <string name="done">Vừa xong</string>
+    <string name="vnd">VND</string>
     <!--workmanager_screen screen end-->
 
 

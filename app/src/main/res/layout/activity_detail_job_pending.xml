@@ -230,13 +230,21 @@
 
                         <TextView
                             android:id="@+id/txtPriceJobPending"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:paddingBottom="10dp"
                             android:paddingTop="10dp"
-                            android:text="500.000  VND"
+                            android:textColor="@color/colorBlack" />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center_vertical|right"
+                            android:text="@string/vnd"
+                            android:visibility="gone"
                             android:textColor="@color/colorBlack" />
 
                     </LinearLayout>
