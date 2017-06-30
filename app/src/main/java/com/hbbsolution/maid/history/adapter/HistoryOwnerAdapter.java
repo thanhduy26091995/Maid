@@ -15,8 +15,8 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.ListWorkActivity;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
+import com.hbbsolution.maid.utils.WorkTimeValidate;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -52,14 +52,8 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
         ownerHistory = ownerHistoryList.get(position);
-        try {
-            date = simpleDateFormat.parse(ownerHistory.getTimes().get(0));
-            time = dates.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         holder.tvName.setText(ownerHistory.getId().getInfo().getName());
-        holder.tvDate.setText(time);
+        holder.tvDate.setText(WorkTimeValidate.getDatePostHistory(ownerHistory.getTimes().get(0)));
         Glide.with(context).load(ownerHistory.getId().getInfo().getImage())
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.avatar)
@@ -99,7 +93,7 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
                     Intent intent = new Intent(context, OwnerProfileActivity.class);
                     intent.putExtra("InfoOwner", ownerHistoryList.get(getAdapterPosition()));
                     intent.putExtra("IsInJobDetail", false);
-                    intent.putExtra("flat",1);
+                    intent.putExtra("flat", 1);
 //                    ActivityOptionsCompat historyOption =
 //                            ActivityOptionsCompat
 //                                    .makeSceneTransitionAnimation((Activity) context, (View) v.findViewById(R.id.img_history_avatar), "icAvatar");
@@ -107,12 +101,12 @@ public class HistoryOwnerAdapter extends RecyclerView.Adapter<HistoryOwnerAdapte
 //                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //                        context.startActivity(intent, historyOption.toBundle());
 //                    } else {
-                        context.startActivity(intent);
+                    context.startActivity(intent);
 //                    }
                     break;
                 case R.id.txt_history_list_work:
                     intent = new Intent(context, ListWorkActivity.class);
-                    intent.putExtra("idOwner",ownerHistoryList.get(getAdapterPosition()).getId().getId());
+                    intent.putExtra("idOwner", ownerHistoryList.get(getAdapterPosition()).getId().getId());
                     context.startActivity(intent);
                     break;
             }
