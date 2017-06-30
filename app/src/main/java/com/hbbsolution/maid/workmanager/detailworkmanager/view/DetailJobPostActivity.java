@@ -126,7 +126,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
             rela_confirm_maid.setVisibility(View.GONE);
         }
 
-        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getUsername());
+        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getName());
         txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfo().getAddress().getName()));
         txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
         txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());

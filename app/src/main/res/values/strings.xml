@@ -237,5 +237,6 @@
 
     <string name="choose_start_date">Choose the start date</string>
     <string name="choose_end_date">Choose the end date</string>
-    <string name="work_capability">Work capability</string>
+    <string name="my_profile">My Profile</string>
+    <string name="work_capability">WORK CAPABILITY</string>
 </resources>

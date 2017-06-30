@@ -237,5 +237,7 @@
 
     <string name="choose_start_date">Chọn ngày bắt đầu</string>
     <string name="choose_end_date">Chọn ngày kết thúc</string>
-    <string name="work_capability">Năng lực làm việc</string>
+    <string name="my_profile">Thông tin cá nhân</string>
+    <string name="work_capability">NĂNG LỰC LÀM VIỆC</string>
+
 </resources>

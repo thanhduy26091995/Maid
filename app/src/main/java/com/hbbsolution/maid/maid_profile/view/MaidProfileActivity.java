@@ -159,19 +159,19 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
                 img_avatarMaid);
         ratingInfoMaid.setRating((float) Integer.parseInt(dataHashMap.get(SessionManagerUser.KEY_EVALUATION)));
         // from Bitmap
-        Glide.with(MaidProfileActivity.this)
-                .load(dataHashMap.get(SessionManagerUser.KEY_IMAGE))
-                .asBitmap()
-                .error(R.drawable.avatar)
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        Blurry.with(MaidProfileActivity.this)
-                                .radius(10)
-                                .from(resource)
-                                .into(imgBlurImage);
-                    }
-                });
+//        Glide.with(MaidProfileActivity.this)
+//                .load(dataHashMap.get(SessionManagerUser.KEY_IMAGE))
+//                .asBitmap()
+//                .error(R.drawable.avatar)
+//                .into(new SimpleTarget<Bitmap>() {
+//                    @Override
+//                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//                        Blurry.with(MaidProfileActivity.this)
+//                                .radius(10)
+//                                .from(resource)
+//                                .into(imgBlurImage);
+//                    }
+//                });
         showProgress();
         //load comment
         maidProfilePresenter.getListComment(dataHashMap.get(SessionManagerUser.KEY_ID), currentPage);

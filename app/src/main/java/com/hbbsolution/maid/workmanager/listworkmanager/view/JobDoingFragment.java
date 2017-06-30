@@ -141,7 +141,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     }
 
     private void loadInfoWorkDoning(Datum mDatum) {
-        txtNameJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getUsername());
+        txtNameJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getName());
         txtAddressJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getAddress().getName());
         txtTitleJobDoing.setText(mDatum.getInfo().getTitle());
         txtTypeJobDoing.setText(mDatum.getInfo().getWork().getName());
