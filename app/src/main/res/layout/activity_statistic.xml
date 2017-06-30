@@ -162,7 +162,7 @@
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="@string/total"
-                                        android:textSize="18sp" />
+                                        android:textSize="17sp" />
 
                                     <TextView
                                         android:id="@+id/totalPrice"
@@ -185,7 +185,7 @@
                                         android:layout_weight="2"
                                         android:gravity="center"
                                         android:text="VND"
-                                        android:textSize="18sp" />
+                                        android:textSize="17sp" />
                                 </LinearLayout>
                             </RelativeLayout>
                         </LinearLayout>
@@ -227,7 +227,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/congviecdangcho"
-                            android:textSize="15sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -256,7 +256,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/waiting_work"
-                            android:textSize="15sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -285,7 +285,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/history_work"
-                            android:textSize="15sp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
 

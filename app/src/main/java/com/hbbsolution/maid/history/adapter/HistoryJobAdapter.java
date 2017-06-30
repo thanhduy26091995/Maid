@@ -14,10 +14,8 @@ import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.DetailWorkHistoryActivity;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
+import com.hbbsolution.maid.utils.WorkTimeValidate;
 
-import java.text.DateFormatSymbols;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -29,63 +27,40 @@ import java.util.List;
 public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.RecyclerViewHolder> {
     private Context context;
     private List<WorkHistory> listData;
+    private WorkHistory workHistory;
     private long elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds;
     private String date;
     private String startTime, endTime;
-    private String type,title,work,description,address,avatar,name,address_;
+    private String type, title, work, description, address, avatar, name, address_;
     private int price;
     private WorkHistory doc;
     private Pair<View, String> pairJobType;
+
     @Override
     public HistoryJobAdapter.RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_job, parent, false);
         return new RecyclerViewHolder(view);
     }
 
-    public HistoryJobAdapter(Context context,List<WorkHistory> listData) {
+    public HistoryJobAdapter(Context context, List<WorkHistory> listData) {
         this.context = context;
         this.listData = listData;
     }
 
     @Override
     public void onBindViewHolder(HistoryJobAdapter.RecyclerViewHolder holder, int position) {
-        holder.tvJob.setText(listData.get(position).getInfo().getTitle());
-        Glide.with(context).load(listData.get(position).getInfo().getWork().getImage())
+        workHistory = listData.get(position);
+        holder.tvJob.setText(workHistory.getInfo().getTitle());
+        Glide.with(context).load(workHistory.getInfo().getWork().getImage())
                 .thumbnail(0.5f)
                 .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
                 .centerCrop()
                 .dontAnimate()
                 .into(holder.imgType);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("H:mm a");
-        DateFormatSymbols symbols = new DateFormatSymbols();
-        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
-        symbols.setAmPmStrings(new String[] { "am", "pm" });
-        time.setDateFormatSymbols(symbols);
-        try {
-            Date endDate = simpleDateFormat.parse(listData.get(position).getInfo().getTime().getEndAt());
-            Date nowDate = new Date();
-            Date startDate = simpleDateFormat.parse(listData.get(position).getInfo().getTime().getStartAt());
-            date = dates.format(endDate);
-            startTime = time.format(startDate);
-            endTime = time.format(endDate);
-            printDifference(endDate, nowDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if (elapsedDays != 0) {
-            holder.tvTime.setText(String.valueOf(elapsedDays) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.day,(int)elapsedDays)));
-        } else if (elapsedHours != 0) {
-            holder.tvTime.setText(String.valueOf(elapsedHours) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.hour,(int)elapsedHours)));
-        } else if (elapsedMinutes != 0) {
-            holder.tvTime.setText(String.valueOf(elapsedMinutes) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.minute,(int)elapsedMinutes)));
-        } else if (elapsedSeconds != 0) {
-            holder.tvTime.setText(String.valueOf(elapsedSeconds) + " "+ context.getResources().getString(R.string.before,context.getResources().getQuantityString(R.plurals.second,(int)elapsedSeconds)));
-        }
-        holder.tvDate.setText(date);
-        holder.tvDeitalTime.setText(startTime.replace(":","h") + " - "+endTime.replace(":","h"));
+        WorkTimeValidate.setWorkTimeRegister(context, holder.tvTime, workHistory.getInfo().getTime().getEndAt());
+        holder.tvDate.setText(WorkTimeValidate.getDatePostHistory(workHistory.getInfo().getTime().getEndAt()));
+        holder.tvDeitalTime.setText(WorkTimeValidate.getTimeWork(workHistory.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(listData.get(position).getInfo().getTime().getEndAt()).replace(":", "h"));
     }
 
     @Override
@@ -111,7 +86,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(context, DetailWorkHistoryActivity.class);
-            intent.putExtra("work",listData.get(getAdapterPosition()));
+            intent.putExtra("work", listData.get(getAdapterPosition()));
 //            ActivityOptionsCompat historyOption =
 //                    ActivityOptionsCompat
 //                            .makeSceneTransitionAnimation((Activity)context, (View)v.findViewById(R.id.img_job_type), "icJobType");
@@ -120,7 +95,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
 //                context.startActivity(intent, historyOption.toBundle());
 //            }
 //            else {
-                context.startActivity(intent);
+            context.startActivity(intent);
 //            }
         }
 
