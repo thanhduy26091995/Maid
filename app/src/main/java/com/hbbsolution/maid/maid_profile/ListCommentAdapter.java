@@ -48,9 +48,17 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
 //        //  holder.ratingBar.setRating((int) comment.getRating());
 
         Doc comment = comments.get(position);
-        holder.txtCommentName.setText(comment.getFromId().getInfo().getName());
-        holder.txtCommentContent.setText(comment.getContent());
-        holder.txtCommentType.setText(comment.getTask().getInfoTask().getTitle());
+        try{
+            holder.txtCommentName.setText(comment.getFromId().getInfo().getName());
+            holder.txtCommentContent.setText(comment.getContent());
+            if(comment.getTask() == null) throw new IllegalArgumentException();
+            else {
+                holder.txtCommentType.setText(comment.getTask().getInfoTask().getTitle());
+            }
+        }catch (Exception e){
+
+        }
+
         holder.txtCommentTime.setText(getDatePostHistory(comment.getCreateAt()));
         holder.ratingBar.setRating(comment.getEvaluationPoint());
     }
@@ -71,7 +79,6 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
             imgAvatar = (ImageView) itemView.findViewById(R.id.img_comment_avatar);
             txtCommentName = (TextView) itemView.findViewById(R.id.txt_comment_name);
             txtCommentTime = (TextView) itemView.findViewById(R.id.txt_comment_time);
-            txtCommentType = (TextView) itemView.findViewById(R.id.txt_comment_type);
             txtCommentContent = (TextView) itemView.findViewById(R.id.txt_comment_content);
             ratingBar = (RatingBar) itemView.findViewById(R.id.rating_comment);
         }
