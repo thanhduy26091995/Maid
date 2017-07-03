@@ -123,5 +123,5 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("payment/cancelDirectConfirm")
-    Call<ChooseWorkResponse> cancelDirectConfirm(@Field("id") String billId);
+    Call<ChooseWorkResponse> cancelDirectConfirm(@Field("billId") String billId);
 }
