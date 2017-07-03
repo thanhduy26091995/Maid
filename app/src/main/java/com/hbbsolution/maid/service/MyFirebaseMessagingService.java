@@ -85,32 +85,48 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void pushNotification(RemoteMessage remoteMessage) {
         Map<String, String> data = remoteMessage.getData();
         PendingIntent pendingIntent = null;
-        if (data.get("status").equals("6")) {
-            Intent intent = new Intent(this, WorkManagerActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        } else if (data.get("status").equals("5")) {
-            Intent intent = new Intent(this, HistoryActivity.class);
-            intent.putExtra("tabMore", 0);
-            intent.putExtra("flag", 1);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        } else if (data.get("status").equals("9")) {
-            Intent intent = new Intent(this, HistoryActivity.class);
-            intent.putExtra("tabMore", 0);
-            intent.putExtra("flag", 2);
-            intent.putExtra("bill", data.get("bill"));
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        } else if (data.get("status").equals("1")) {
-            Intent intent = new Intent(this, WorkManagerActivity.class);
-            EventBus.getDefault().postSticky("1");
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        } else if (data.get("status").equals("8")) {
-            Intent intent = new Intent(this, WorkManagerActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        switch (data.get("status")) {
+            case "6": {
+                Intent intent = new Intent(this, WorkManagerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                break;
+            }
+            case "5": {
+
+                Intent intent = new Intent(this, HistoryActivity.class);
+                intent.putExtra("tabMore", 0);
+                intent.putExtra("flag", 1);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+                break;
+            }
+            case "9": {
+                Intent intent = new Intent(this, HistoryActivity.class);
+                intent.putExtra("tabMore", 0);
+                intent.putExtra("flag", 2);
+                intent.putExtra("bill", data.get("bill"));
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                break;
+            }
+            case "1": {
+                Intent intent = new Intent(this, WorkManagerActivity.class);
+                EventBus.getDefault().postSticky("1");
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                break;
+            }
+            case "8": {
+                Intent intent = new Intent(this, WorkManagerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                break;
+            }
+            default: {
+                break;
+            }
         }
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentTitle(data.get("title"))
