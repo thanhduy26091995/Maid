@@ -120,4 +120,8 @@ public interface ApiInterface {
 
     @POST("maid/offAnnouncement")
     Call<AnnouncementResponse> offAnnouncement();
+
+    @FormUrlEncoded
+    @POST("payment/cancelDirectConfirm")
+    Call<ChooseWorkResponse> cancelDirectConfirm(@Field("id") String billId);
 }

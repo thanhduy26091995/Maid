@@ -74,7 +74,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
                 alertDialogConfirm.setNegativeButton(getResources().getString(R.string.huy), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        alertDialogConfirm.show().dismiss();
+                        //alertDialogConfirm.show().dismiss();
+                        historyPresenter.cancelDirectConfirm(bill);
                     }
                 });
                 alertDialogConfirm.show();
@@ -121,6 +122,11 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
+    }
+
+    @Override
+    public void cancelDirectConfirm(ChooseWorkResponse chooseWorkResponse) {
+        alertDialogConfirm.create().dismiss();
     }
 
     @Override

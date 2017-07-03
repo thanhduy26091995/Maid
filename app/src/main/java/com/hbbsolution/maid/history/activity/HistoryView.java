@@ -9,5 +9,7 @@ import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 public interface HistoryView {
     void directConfirm(ChooseWorkResponse chooseWorkResponse);
 
+    void cancelDirectConfirm(ChooseWorkResponse chooseWorkResponse);
+
     void getError(String error);
 }

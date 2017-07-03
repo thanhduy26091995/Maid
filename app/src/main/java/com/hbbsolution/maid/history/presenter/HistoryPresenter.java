@@ -22,15 +22,33 @@ public class HistoryPresenter {
         apiService = ApiClient.getClient().create(ApiInterface.class);
     }
 
-    public void directConfirm(String billId){
+    public void directConfirm(String billId) {
         Call<ChooseWorkResponse> chooseWorkResponseCall = apiService.directConfirm(billId);
         chooseWorkResponseCall.enqueue(new Callback<ChooseWorkResponse>() {
             @Override
             public void onResponse(Call<ChooseWorkResponse> call, Response<ChooseWorkResponse> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     view.directConfirm(response.body());
+                } else {
+                    view.getError(response.message());
                 }
-                else{
+            }
+
+            @Override
+            public void onFailure(Call<ChooseWorkResponse> call, Throwable t) {
+                view.getError(t.getMessage());
+            }
+        });
+    }
+
+    public void cancelDirectConfirm(String billId) {
+        Call<ChooseWorkResponse> chooseWorkResponseCall = apiService.cancelDirectConfirm(billId);
+        chooseWorkResponseCall.enqueue(new Callback<ChooseWorkResponse>() {
+            @Override
+            public void onResponse(Call<ChooseWorkResponse> call, Response<ChooseWorkResponse> response) {
+                if (response.isSuccessful()) {
+                    view.cancelDirectConfirm(response.body());
+                } else {
                     view.getError(response.message());
                 }
             }
