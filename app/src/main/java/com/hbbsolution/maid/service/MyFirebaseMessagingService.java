@@ -102,14 +102,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent.putExtra("bill", data.get("bill"));
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        }
-        else if (data.get("status").equals("1")){
+        } else if (data.get("status").equals("1")) {
             Intent intent = new Intent(this, WorkManagerActivity.class);
             EventBus.getDefault().postSticky("1");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        } else if (data.get("status").equals("8")) {
+            Intent intent = new Intent(this, WorkManagerActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         }
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
                 .setContentTitle(data.get("title"))
                 .setContentText(data.get("body"))

@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isPause = false;
     private HomePresenter mHomePresenter;
     private SessionManagerForLanguage sessionManagerForLanguage;
+    private SessionManagerUser sessionManagerUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         DateTime dateTime = new DateTime();
 
-        Log.d("datetime",  dateTime.toString());
+        Log.d("datetime", dateTime.toString());
         // setup toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -68,13 +69,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         sessionManagerForLanguage = new SessionManagerForLanguage(this);
         String lang = sessionManagerForLanguage.getLanguage();
         if (lang.equals("Tiếng Việt")) {
-            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(),2),'\n',txt_nearbyJob.getText().toString()));
-            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(),2),'\n',txt_work_management.getText().toString()));
-            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(),2),'\n',txt_work_management_history.getText().toString()));
-        } else{
-            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(),1),'\n',txt_nearbyJob.getText().toString()));
-            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(),1),'\n',txt_work_management.getText().toString()));
-            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(),1),'\n',txt_work_management_history.getText().toString()));
+            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(), 2), '\n', txt_nearbyJob.getText().toString()));
+            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(), 2), '\n', txt_work_management.getText().toString()));
+            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(), 2), '\n', txt_work_management_history.getText().toString()));
+        } else {
+            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(), 1), '\n', txt_nearbyJob.getText().toString()));
+            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(), 1), '\n', txt_work_management.getText().toString()));
+            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(), 1), '\n', txt_work_management_history.getText().toString()));
         }
 
         // on click
@@ -86,6 +87,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         mHomePresenter.requestCheckToken();
         addInits();
         addEvents();
+        sessionManagerUser = new SessionManagerUser(HomeActivity.this);
     }
 
     public void addInits() {
@@ -165,14 +167,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                SessionManagerUser sessionManagerUser = new SessionManagerUser(HomeActivity.this);
                 sessionManagerUser.logoutUser();
                 Intent itBackSignIn = new Intent(HomeActivity.this, SignInActivity.class);
                 startActivity(itBackSignIn);
                 finish();
             }
         });
-
         alertDialog.show();
     }
 
@@ -181,19 +181,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private int setTitle(String title,int positionSpace)
-    {
-        int i = 0,spaceCount = 0;
-        while( i < title.length() && spaceCount <positionSpace ){
-            if( title.charAt(i) == ' ' ) {
+    private int setTitle(String title, int positionSpace) {
+        int i = 0, spaceCount = 0;
+        while (i < title.length() && spaceCount < positionSpace) {
+            if (title.charAt(i) == ' ') {
                 spaceCount++;
             }
             i++;
         }
-        return i-1;
+        return i - 1;
     }
 
-    public String changeCharInPosition(int position, char ch, String str){
+    public String changeCharInPosition(int position, char ch, String str) {
         char[] charArray = str.toCharArray();
         charArray[position] = ch;
         return new String(charArray);
