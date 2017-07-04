@@ -242,4 +242,6 @@
     <string name="work_capability">NĂNG LỰC LÀM VIỆC</string>
 
     <string name="reportempty">Vui lòng điền nội dung báo cáo</string>
+
+    <string name="congviecdahoanthanh">Công việc đã hoàn thành</string>
 </resources>

@@ -45,7 +45,9 @@
                     android:text="Lau dọn nhà"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_large"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="end"/>
 
                 <TextView
                     android:layout_width="wrap_content"
