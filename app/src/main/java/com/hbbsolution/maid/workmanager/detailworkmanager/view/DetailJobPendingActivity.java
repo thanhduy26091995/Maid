@@ -96,6 +96,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
         mDatum = (Datum) intent.getSerializableExtra("mDatum");
         if (!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())) {
             txtExpired_request_detail_post.setVisibility(View.VISIBLE);
+
         } else {
             txtExpired_request_detail_post.setVisibility(View.GONE);
 

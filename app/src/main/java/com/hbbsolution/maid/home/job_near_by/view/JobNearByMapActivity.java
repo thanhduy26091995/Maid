@@ -66,6 +66,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
     private Double latitude, longitude;
     private ProgressDialog progressDialog;
     private JobNearByMapPresenter presenter;
+    private String locationName = "";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -98,6 +99,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                locationName = query;
                 //hide keyboard
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
@@ -447,6 +449,7 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
         intent.putExtra(Constants.IS_SEARCH, true);
         intent.putExtra(Constants.LAT, lat);
         intent.putExtra(Constants.LNG, lng);
+        intent.putExtra(Constants.LOCATION_NAME, locationName);
         startActivity(intent);
     }
 

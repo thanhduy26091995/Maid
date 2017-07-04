@@ -84,7 +84,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     private Location location; // location
     private Double latitude, longitude;
     private boolean isSearch = false;
-    private String searchText = "";
+    private String searchText = "", locationName = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -149,7 +149,13 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         latitude = getIntent().getDoubleExtra(Constants.LAT, 0);
         longitude = getIntent().getDoubleExtra(Constants.LNG, 0);
         Log.d("CLICK2", "" + latitude + "/" + longitude);
-
+        if (isSearch) {
+            searchView.setIconified(false);
+            searchView.setQuery(getIntent().getStringExtra(Constants.LOCATION_NAME), false);
+            searchView.clearFocus();
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+        }
         //event click
         txtSearch.setOnClickListener(this);
 //check internet

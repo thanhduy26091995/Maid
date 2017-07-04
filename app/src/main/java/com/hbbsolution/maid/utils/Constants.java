@@ -11,4 +11,5 @@ public class Constants {
     public static final String WORK_ID = "workId";
     public static final String WORK_NAME = "workName";
     public static final String IS_SEARCH = "isSearch";
+    public static final String LOCATION_NAME = "locationName";
 }
