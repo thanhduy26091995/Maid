@@ -30,10 +30,8 @@
 
             <LinearLayout
                 android:id="@+id/ln1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/img_avatar"
-                android:layout_alignTop="@id/img_avatar"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/img_avatar"
                 android:gravity="center_vertical"
@@ -41,20 +39,54 @@
 
                 <TextView
                     android:id="@+id/txt_job_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lau dọn nhà"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="Lau dọndsd,mas d,ma s,d a, m,ad a, nhà"
                     android:textColor="@color/colorBlack"
                     android:textSize="@dimen/text_size_large"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txt_job_distance"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="100m"
-                    android:textSize="12sp" />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/txt_job_distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="100m"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="|" />
+
+                        <TextView
+                            android:id="@+id/txt_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="40 phút trước"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <com.hbbsolution.maid.base.IconTextView
@@ -95,45 +127,7 @@
                 android:text="9h00 am - 12h00 am"
                 android:textSize="12sp" />
 
-            <LinearLayout
-                android:id="@+id/ln2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/img_avatar"
-                android:layout_alignLeft="@id/txt_detail_time"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@id/img_avatar"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_large"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="|" />
-
-                    <TextView
-                        android:id="@+id/txt_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="4 phút trước"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
         </RelativeLayout>
 
         <View
