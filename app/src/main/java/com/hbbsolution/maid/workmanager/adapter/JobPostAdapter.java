@@ -89,8 +89,8 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         String mDatePostHistory = WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt());
         holder.txtDatePostHistory.setText(mDatePostHistory);
 
-        String mStartTime = WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt());
-        String mEndTime = WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt());
+        String mStartTime = WorkTimeValidate.getTimeWorkLanguage(context, mDatum.getInfo().getTime().getStartAt());
+        String mEndTime = WorkTimeValidate.getTimeWorkLanguage(context, mDatum.getInfo().getTime().getEndAt());
         holder.txtTimeDoingPost.setText( mStartTime + " - " + mEndTime);
 
         if (!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())) {

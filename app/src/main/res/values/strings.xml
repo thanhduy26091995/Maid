@@ -97,6 +97,8 @@
 
 
     <!--khác-->
+    <string name="am">AM</string>
+    <string name="pm">PM</string>
     <string name="default_language">Default</string>
     <string name="more">More</string>
 
@@ -110,7 +112,7 @@
     <!--history_screen start-->
     <string name="completedjob">Work history</string>
     <string name="completedowner">Former hosts</string>
-    <string name="before">%s before</string>
+    <string name="before">%s ago</string>
     <plurals name="day">
         <item quantity="one">day</item>
         <item quantity="other">days</item>
