@@ -2,19 +2,19 @@ package com.hbbsolution.maid.more.phuc_tran.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.more.phuc_tran.presenter.AboutPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AboutActivity extends AppCompatActivity implements AboutView {
+public class AboutActivity extends BaseActivity implements AboutView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -40,7 +40,7 @@ public class AboutActivity extends AppCompatActivity implements AboutView {
         txt_about_title.setText(getResources().getString(R.string.about));
 
         mAboutPresenter = new AboutPresenter(this);
-
+        showProgressDialog();
         mAboutPresenter.getAbout();
 
     }
@@ -56,8 +56,9 @@ public class AboutActivity extends AppCompatActivity implements AboutView {
 
     @Override
     public void getAbout(String content) {
-        if (content.equals("")){
-            content="Chưa có dữ liệu";
+        hideProgress();
+        if (content.equals("")) {
+            content = getResources().getString(R.string.content_null);
         }
         wvAbout.getSettings().setJavaScriptEnabled(true);
         wvAbout.loadDataWithBaseURL(null,

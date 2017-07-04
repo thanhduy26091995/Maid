@@ -1,19 +1,19 @@
 package com.hbbsolution.maid.more.phuc_tran.view;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.more.phuc_tran.presenter.AboutPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TermActivity extends AppCompatActivity implements AboutView{
+public class TermActivity extends BaseActivity implements AboutView {
 
     @BindView(R.id.term_toolbar)
     Toolbar toolbar;
@@ -37,7 +37,7 @@ public class TermActivity extends AppCompatActivity implements AboutView{
         txt_term_toolbar.setText(getResources().getString(R.string.term_title));
 
         mAboutPresenter = new AboutPresenter(this);
-
+        showProgressDialog();
         mAboutPresenter.getTerm();
 
 
@@ -53,8 +53,9 @@ public class TermActivity extends AppCompatActivity implements AboutView{
 
     @Override
     public void getAbout(String content) {
-        if (content.equals("")){
-            content="Chưa có dữ liệu";
+        hideProgress();
+        if (content.equals("")) {
+            content = getResources().getString(R.string.loading);
         }
         wbv_content_term.getSettings().setJavaScriptEnabled(true);
         wbv_content_term.loadDataWithBaseURL(null,

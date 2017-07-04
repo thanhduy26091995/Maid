@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -14,13 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.more.phuc_tran.model.DataContact;
 import com.hbbsolution.maid.more.phuc_tran.presenter.ContactPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ContactActivity extends AppCompatActivity implements ContactView{
+public class ContactActivity extends BaseActivity implements ContactView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -55,7 +55,7 @@ public class ContactActivity extends AppCompatActivity implements ContactView{
         txt_contact_title_toolbar.setText(getResources().getString(R.string.contact));
 
         mContactPresenter = new ContactPresenter(this);
-
+        showProgressDialog();
         mContactPresenter.getContact();
 
         addEvents();
@@ -117,6 +117,7 @@ public class ContactActivity extends AppCompatActivity implements ContactView{
 
     @Override
     public void getContactSuccess(DataContact dataContact) {
+        hideProgress();
         mail = dataContact.getEmail();
         phoneNo = dataContact.getPhone();
         txt_name.setText(dataContact.getName());
@@ -125,6 +126,6 @@ public class ContactActivity extends AppCompatActivity implements ContactView{
 
     @Override
     public void getContactFail() {
-
+        hideProgress();
     }
 }
