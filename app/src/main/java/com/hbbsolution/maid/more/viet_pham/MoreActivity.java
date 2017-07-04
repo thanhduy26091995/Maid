@@ -124,8 +124,6 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent iHome = new Intent(MoreActivity.this, HomeActivity.class);
-            startActivity(iHome);
             finish();
         }
         return super.onOptionsItemSelected(item);

@@ -41,35 +41,35 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
     Toolbar toolbar;
     @BindView(R.id.lo_infoOwner)
     RelativeLayout lo_infoOwner;
-    @BindView(R.id.img_avatarQwner)
+    @BindView(R.id.img_avatarOwner_pending)
     ImageView img_avatarQwner;
     @BindView(R.id.txtNameOwner)
     TextView txtNameOwner;
     @BindView(R.id.txtAddressOwner)
     TextView txtAddressOwner;
-    @BindView(R.id.txtTitle_job_detail_post)
+    @BindView(R.id.txtTitleJobPending)
     TextView txtTitle_job_detail_post;
-    @BindView(R.id.txtType_job_detail_post)
+    @BindView(R.id.txtTypeJobPending)
     TextView txtType_job_detail_post;
-    @BindView(R.id.txtContent_job_detail_psot)
+    @BindView(R.id.txtContentJobPending)
     TextView txtContent_job_detail_psot;
-    @BindView(R.id.txtPrice_job_detail_post)
+    @BindView(R.id.txtPriceJobPending)
     TextView txtPrice_job_detail_post;
-    @BindView(R.id.txtDate_job_detail_post)
+    @BindView(R.id.txtDateJobPending)
     TextView txtDate_job_detail_post;
-    @BindView(R.id.txtTime_work_doing_detail_post)
+    @BindView(R.id.txtTimeDoWrokJobPending)
     TextView txtTime_work_doing_detail_post;
-    @BindView(R.id.txtAddress_detail_post)
+    @BindView(R.id.txtAddressJobPending)
     TextView txtAddress_detail_post;
-    @BindView(R.id.imgType_job_detail_post)
+    @BindView(R.id.img_TypeJob_pending)
     ImageView imgType_job_detail_post;
     @BindView(R.id.lo_clear_job_pending)
     LinearLayout lo_clear_job;
     @BindView(R.id.progressDetailJobPending)
     ProgressBar progressBar;
-    @BindView(R.id.txtIsTools)
+    @BindView(R.id.txtIsToolsPending)
     TextView txtIsTools;
-    @BindView(R.id.txtExpired_request_detail_post)
+    @BindView(R.id.txtExpired_request_detail_post_pending)
     TextView txtExpired_request_detail_post;
     private DetailJobPendingPresenter mDetailJobPostPresenter;
 
@@ -113,9 +113,9 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
         txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
         txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());
         txtContent_job_detail_psot.setText(mDatum.getInfo().getDescription());
-        txtPrice_job_detail_post.setText(String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(mDatum.getInfo().getPrice())));
+        txtPrice_job_detail_post.setText(formatPrice(mDatum.getInfo().getPrice()));
         txtAddress_detail_post.setText(mDatum.getInfo().getAddress().getName());
-        txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getHistory().getUpdateAt()));
+        txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
         txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));
         Picasso.with(this).load(mDatum.getInfo().getWork().getImage())
                 .error(R.drawable.no_image)
@@ -146,7 +146,6 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lo_clear_job_pending:
-
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setCancelable(false);
                 alertDialog.setTitle(getResources().getString(R.string.notification));
@@ -168,7 +167,7 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
                 break;
             case R.id.lo_infoOwner:
                 Intent itInfoUser = new Intent(DetailJobPendingActivity.this, OwnerProfileActivity.class);
-                itInfoUser.putExtra("InfoOwner",mDatum.getStakeholders().getOwner());
+                itInfoUser.putExtra("InfoOwner", mDatum.getStakeholders().getOwner());
                 startActivity(itInfoUser);
                 break;
         }
@@ -178,9 +177,8 @@ public class DetailJobPendingActivity extends AppCompatActivity implements Detai
     private String formatPrice(Integer _Price) {
         String mOutputPrice = null;
         if (_Price != null && _Price != 0) {
-            DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
-            mOutputPrice = myFormatter.format(_Price);
-        } else if (_Price == 0) {
+            mOutputPrice =  String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(_Price));
+        } else if(_Price == 0){
             mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;

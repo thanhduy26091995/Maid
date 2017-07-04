@@ -28,6 +28,7 @@
         <activity android:name=".main.view.HomeActivity"/>
         <activity android:name=".workmanager.listworkmanager.view.WorkManagerActivity" />
         <activity android:name=".workmanager.detailworkmanager.view.DetailJobPostActivity" />
+        <activity android:name=".workmanager.detailworkmanager.view.DetailJobPendingActivity"/>
         <activity android:name=".history.activity.HistoryActivity" />
         <activity android:name=".history.activity.DetailWorkHistoryActivity" />
         <activity android:name=".history.activity.ListWorkActivity" />

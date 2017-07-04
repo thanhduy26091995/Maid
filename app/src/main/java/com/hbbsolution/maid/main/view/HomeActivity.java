@@ -59,9 +59,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        DateTime dateTime = new DateTime();
-
-        Log.d("datetime", dateTime.toString());
         // setup toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);

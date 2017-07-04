@@ -39,7 +39,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/6/2017.
  */
 
-public class DetailJobPostActivity extends AppCompatActivity implements DetailJobPostView, View.OnClickListener {
+public class DetailJobPostActivity extends AppCompatActivity implements DetailJobPostView,View.OnClickListener{
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.lo_infoOwner)
@@ -85,6 +85,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     private DetailJobPendingPresenter mDetailJobPostPresenter;
 
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,10 +108,9 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         final Intent intent = getIntent();
         mDatum = (Datum) intent.getSerializableExtra("mDatum");
 
-        if (!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())) {
+        if(!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())){
             txtExpired_request_detail_post.setVisibility(View.VISIBLE);
-            rela_confirm_maid.setVisibility(View.GONE);
-        } else {
+        }else {
             txtExpired_request_detail_post.setVisibility(View.GONE);
             if (mDatum.getProcess().getId().equals("000000000000000000000006")) {
                 txtClearJob.setText(getResources().getString(R.string.denied));
@@ -133,10 +133,10 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
         txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
         txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());
         txtContent_job_detail_psot.setText(mDatum.getInfo().getDescription());
-        txtPrice_job_detail_post.setText(String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(mDatum.getInfo().getPrice())));
+        txtPrice_job_detail_post.setText(formatPrice(mDatum.getInfo().getPrice()));
         txtAddress_detail_post.setText(mDatum.getInfo().getAddress().getName());
-        txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getHistory().getUpdateAt()));
-        txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));
+        txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
+        txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt())+ " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));
         Glide.with(this)
                 .load(mDatum.getStakeholders().getOwner().getInfo().getImage())
                 .error(R.drawable.avatar)
@@ -174,14 +174,14 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id) {
+        switch (id){
             case R.id.lo_infoOwner:
                 Intent itInfoOwner = new Intent(DetailJobPostActivity.this, OwnerProfileActivity.class);
-                itInfoOwner.putExtra("InfoOwner", mDatum.getStakeholders().getOwner());
+                itInfoOwner.putExtra("InfoOwner",mDatum.getStakeholders().getOwner());
                 startActivity(itInfoOwner);
                 break;
             case R.id.lo_clear_job:
-                if (mDatum.getProcess().getId().equals("000000000000000000000006")) {
+                if(mDatum.getProcess().getId().equals("000000000000000000000006")) {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setCancelable(false);
                     alertDialog.setTitle(getResources().getString(R.string.notification));
@@ -200,7 +200,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                         }
                     });
                     alertDialog.show();
-                } else {
+                }else {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setCancelable(false);
                     alertDialog.setTitle(getResources().getString(R.string.notification));
@@ -234,9 +234,10 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     private String formatPrice(Integer _Price) {
         String mOutputPrice = null;
         if (_Price != null && _Price != 0) {
-            DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
-            mOutputPrice = myFormatter.format(_Price);
-        } else if (_Price == 0) {
+//            DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
+//            mOutputPrice  = myFormatter.format(_Price);
+            mOutputPrice =  String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(_Price));
+        } else if(_Price == 0){
             mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;
@@ -244,7 +245,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
     @Override
     public void displayNotifyJobPost(JobPendingResponse isJobPost) {
-        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.notification__pass_del_job_post), isJobPost.getMessage());
+        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.notification__pass_del_job_post),isJobPost.getMessage());
     }
 
     @Override

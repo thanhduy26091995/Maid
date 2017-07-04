@@ -20,6 +20,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.workmanager.adapter.JobPostAdapter;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
+import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPendingActivity;
 import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
@@ -100,7 +101,7 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
             mJobPostAdapter.setCallback(new JobPostAdapter.Callback() {
                 @Override
                 public void onItemClick(Datum mDatum) {
-                    Intent itDetailJobPost = new Intent(getActivity(), DetailJobPostActivity.class);
+                    Intent itDetailJobPost = new Intent(getActivity(), DetailJobPendingActivity.class);
                     itDetailJobPost.putExtra("mDatum", mDatum);
                     startActivity(itDetailJobPost);
                 }

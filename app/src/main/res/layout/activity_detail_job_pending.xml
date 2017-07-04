@@ -57,7 +57,7 @@
                 android:paddingTop="5dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_avatarOwner"
+                    android:id="@+id/img_avatarOwner_pending"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_alignParentLeft="true"
@@ -70,7 +70,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/img_avatarOwner"
+                    android:layout_toRightOf="@+id/img_avatarOwner_pending"
                     android:orientation="vertical">
 
                     <TextView
@@ -149,7 +149,7 @@
                         android:paddingTop="5dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/img_TypeJob"
+                            android:id="@+id/img_TypeJob_pending"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_alignParentLeft="true"
@@ -162,17 +162,43 @@
                             android:layout_centerInParent="true"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:layout_toRightOf="@+id/img_TypeJob"
+                            android:layout_toRightOf="@+id/img_TypeJob_pending"
                             android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/txtTitleJobPending"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Lau dọn phòng khách"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:textColor="@color/colorBlack"
-                                android:textStyle="bold" />
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/txtTitleJobPending"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:maxLines="1"
+                                    android:ellipsize="end"
+                                    android:text="Lau dọn phòng khách"
+                                    android:textAppearance="?android:attr/textAppearanceMedium"
+                                    android:textColor="@color/colorBlack"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txtExpired_request_detail_post_pending"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_alignParentRight="true"
+                                    android:visibility="visible"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="5dp"
+                                    android:padding="2dp"
+                                    android:background="@drawable/background_text_expired"
+                                    android:text="@string/exceeded"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/icon_size_normal" />
+
+                            </LinearLayout>
 
                             <TextView
                                 android:id="@+id/txtTypeJobPending"
@@ -181,6 +207,7 @@
                                 android:layout_marginTop="5dp"
                                 android:text="Dọn dẹp nhà cửa"
                                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -197,6 +224,16 @@
                         android:paddingTop="10dp"
                         android:text="Cần một bạn nữ siêng năng dọn phòng ngày sáng thứ tư , sau 9h. Cần một bạn nữ siêng năng dọn phòng ngày sáng thứ tư , sau 9h."
                         android:textColor="@color/colorBlack" />
+
+                    <TextView
+                        android:id="@+id/txtIsToolsPending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/tool_work"
+                        android:textColor="@color/home_background_your_tasks"
+                        android:background="@color/colorWhite" />
 
                 </LinearLayout>
 
@@ -287,8 +324,8 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="right|center_vertical"
-                            android:paddingRight="20dp"
                             android:paddingBottom="5dp"
+                            android:paddingRight="20dp"
                             android:paddingTop="5dp"
                             android:text="9h00 am - 12h00 pm" />
 

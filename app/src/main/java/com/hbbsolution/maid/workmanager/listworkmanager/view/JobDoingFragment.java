@@ -131,24 +131,13 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
         progressPost.setVisibility(View.GONE);
     }
 
-    private String formatPrice(Integer _Price) {
-        String mOutputPrice = null;
-        if (_Price != null && _Price != 0) {
-            DecimalFormat myFormatter = new DecimalFormat("#,###,##0");
-            mOutputPrice = myFormatter.format(_Price);
-        } else if (_Price == 0) {
-            mOutputPrice = getResources().getString(R.string.hourly_pay);
-        }
-        return mOutputPrice;
-    }
-
     private void loadInfoWorkDoning(Datum mDatum) {
         txtNameJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getName());
         txtAddressJobDoingInfoMaid.setText(mDatum.getStakeholders().getOwner().getInfo().getAddress().getName());
         txtTitleJobDoing.setText(mDatum.getInfo().getTitle());
         txtTypeJobDoing.setText(mDatum.getInfo().getWork().getName());
         txtContentJobDoing.setText(mDatum.getInfo().getDescription());
-        txtPriceJobDoing.setText(String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(mDatum.getInfo().getPrice())));
+        txtPriceJobDoing.setText(formatPrice(mDatum.getInfo().getPrice()));
         txtDateJobDoing.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
         txtAddressJobDoing.setText(mDatum.getInfo().getAddress().getName());
         txtTimeDoWrokJobDoing.setText(WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getStartAt())+ " - " + WorkTimeValidate.getTimeWork(mDatum.getInfo().getTime().getEndAt()));
@@ -182,5 +171,15 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
                 startActivity(itInfoOwner);
                 break;
         }
+    }
+
+    private String formatPrice(Integer _Price) {
+        String mOutputPrice = null;
+        if (_Price != null && _Price != 0) {
+            mOutputPrice =  String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(_Price));
+        } else if(_Price == 0){
+            mOutputPrice = getResources().getString(R.string.hourly_pay);
+        }
+        return mOutputPrice;
     }
 }
