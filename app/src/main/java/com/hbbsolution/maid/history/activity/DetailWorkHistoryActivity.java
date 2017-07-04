@@ -1,8 +1,11 @@
 package com.hbbsolution.maid.history.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,8 +16,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.model.direct_bill.DirectBillResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
+import com.hbbsolution.maid.history.presenter.DetailWorkPresenter;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
+import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 
 import java.text.NumberFormat;
@@ -23,7 +29,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailWorkHistoryActivity extends AppCompatActivity implements View.OnClickListener {
+public class DetailWorkHistoryActivity extends AppCompatActivity implements View.OnClickListener, DetailWorkView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.detail_work_history_type)
@@ -56,6 +62,9 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
 
     private WorkHistory doc;
     public static Activity detailWorkHistory;
+    private DetailWorkPresenter mPresenter;
+    private ProgressDialog mProgressDialog;
+    private AlertDialog.Builder alertDialogConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +72,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_detail_work_history);
         ButterKnife.bind(this);
         detailWorkHistory = this;
+        mPresenter = new DetailWorkPresenter(this);
         setToolbar();
         getData();
         setEventClick();
@@ -93,7 +103,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             tvJob.setText(doc.getInfo().getTitle());
             tvWork.setText(doc.getInfo().getWork().getName());
             tvContent.setText(doc.getInfo().getDescription());
-            tvSalary.setText(NumberFormat.getNumberInstance(Locale.GERMANY).format(doc.getInfo().getPrice())+ " VND");
+            tvSalary.setText(NumberFormat.getNumberInstance(Locale.GERMANY).format(doc.getInfo().getPrice()) + " VND");
             tvAddress.setText(doc.getInfo().getAddress().getName());
             tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
             tvTime.setText(WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(doc.getInfo().getTime().getEndAt()).replace(":", "h"));
@@ -107,6 +117,9 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
                     .into(imgOwner);
             tvNameOwner.setText(doc.getStakeholders().getOwner().getInfo().getName());
             tvAddressOwner.setText(doc.getStakeholders().getOwner().getInfo().getAddress().getName());
+            //call api to check bill
+            showProgress();
+            mPresenter.getDirectBill(doc.getId());
         }
     }
 
@@ -132,7 +145,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 //                    startActivity(intent, historyOption.toBundle());
 //                } else {
-                    startActivity(intent);
+                startActivity(intent);
 //                }
                 break;
         }
@@ -148,5 +161,88 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
     protected void onResume() {
         super.onResume();
 
+    }
+
+    private void showProgress() {
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage(getResources().getString(R.string.loading));
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+    }
+
+    private void hideProgress() {
+        if (mProgressDialog.isShowing() && mProgressDialog != null) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void getDirectBill(final DirectBillResponse directBillResponse) {
+        hideProgress();
+        boolean status = directBillResponse.isStatus();
+        if (status) {
+            alertDialogConfirm = new AlertDialog.Builder(DetailWorkHistoryActivity.this);
+            alertDialogConfirm.setCancelable(false);
+            alertDialogConfirm.setTitle(getResources().getString(R.string.completed));
+            alertDialogConfirm.setMessage(getResources().getString(R.string.confirm_cast));
+            alertDialogConfirm.setPositiveButton(getResources().getString(R.string.terms_btn_ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    mPresenter.directConfirm(directBillResponse.getData().getId());
+                }
+            });
+            alertDialogConfirm.setNegativeButton(getResources().getString(R.string.huy), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //alertDialogConfirm.show().dismiss();
+                    mPresenter.cancelDirectConfirm(directBillResponse.getData().getId());
+                }
+            });
+            alertDialogConfirm.show();
+        }
+    }
+
+    @Override
+    public void directConfirm(ChooseWorkResponse chooseWorkResponse) {
+        alertDialogConfirm.create().dismiss();
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DetailWorkHistoryActivity.this);
+        alertDialogBuilder.setMessage(getResources().getString(R.string.confirm_ok));
+        alertDialogBuilder.setPositiveButton(getResources().getText(R.string.okAlert),
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        alertDialogBuilder.create().dismiss();
+                    }
+
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    @Override
+    public void cancelDirectConfirm(ChooseWorkResponse chooseWorkResponse) {
+        alertDialogConfirm.create().dismiss();
+    }
+
+    @Override
+    public void getError(String error) {
+        hideProgress();
+        alertDialogConfirm.create().dismiss();
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(DetailWorkHistoryActivity.this);
+        alertDialogBuilder.setMessage(getResources().getString(R.string.confirm_failed));
+        alertDialogBuilder.setPositiveButton(getResources().getText(R.string.okAlert),
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        alertDialogBuilder.create().dismiss();
+                    }
+
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

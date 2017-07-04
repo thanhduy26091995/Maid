@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.api;
 
 
+import com.hbbsolution.maid.history.model.direct_bill.DirectBillResponse;
 import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
 import com.hbbsolution.maid.maid_profile.model.abilities.AbilitiResponse;
@@ -124,4 +125,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("payment/cancelDirectConfirm")
     Call<ChooseWorkResponse> cancelDirectConfirm(@Field("billId") String billId);
+
+    @GET("payment/getDirectlyBill")
+    Call<DirectBillResponse> getDirectBill(@Query("id") String taskId);
 }
