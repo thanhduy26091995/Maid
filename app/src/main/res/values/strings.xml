@@ -242,4 +242,6 @@
 
     <string name="reportempty">Please fill in the report</string>
     <string name="congviecdahoanthanh">Work completed</string>
+
+    <string name="hour">/ 1 hour</string>
 </resources>
