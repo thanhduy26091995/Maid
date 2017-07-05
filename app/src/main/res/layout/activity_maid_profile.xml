@@ -153,13 +153,24 @@
                         android:layout_gravity="top|center"
                         android:orientation="vertical">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/img_avatarMaid"
-                            android:layout_width="96dp"
-                            android:layout_height="96dp"
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="20dp"
-                            android:src="@drawable/avatar" />
+                            android:layout_marginTop="20dp">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="96dp"
+                                android:layout_height="96dp"
+                                android:src="@color/colorWhite" />
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/img_avatarMaid"
+                                android:layout_width="93dp"
+                                android:layout_height="93dp"
+                                android:src="@drawable/avatar"
+                                android:layout_centerInParent="true"/>
+                        </RelativeLayout>
 
                         <TextView
                             android:id="@+id/txtNameInfoMaid"
@@ -301,6 +312,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
