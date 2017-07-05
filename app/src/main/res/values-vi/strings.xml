@@ -249,4 +249,6 @@
     <string name="congviecdahoanthanh">Công việc đã hoàn thành</string>
 
     <string name="hour">/ 1 giờ</string>
+
+    <string name="vuilongdangnhap">Vui lòng đăng nhập để xem thông tin công việc</string>
 </resources>

@@ -60,7 +60,7 @@ public class HistoryJobAdapter extends RecyclerView.Adapter<HistoryJobAdapter.Re
                 .into(holder.imgType);
         WorkTimeValidate.setWorkTimeRegister(context, holder.tvTime, workHistory.getInfo().getTime().getEndAt());
         holder.tvDate.setText(WorkTimeValidate.getDatePostHistory(workHistory.getInfo().getTime().getEndAt()));
-        holder.tvDeitalTime.setText(WorkTimeValidate.getTimeWork(workHistory.getInfo().getTime().getStartAt()).replace(":", "h") + " - " + WorkTimeValidate.getTimeWork(listData.get(position).getInfo().getTime().getEndAt()).replace(":", "h"));
+        holder.tvDeitalTime.setText(WorkTimeValidate.getTimeWorkLanguage(context,workHistory.getInfo().getTime().getStartAt())+ " - " + WorkTimeValidate.getTimeWorkLanguage(context,listData.get(position).getInfo().getTime().getEndAt()));
     }
 
     @Override

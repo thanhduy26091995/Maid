@@ -13,6 +13,8 @@ import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.home.list_job.view.ListJobActivity;
 import com.hbbsolution.maid.model.task_around.TaskData;
 import com.hbbsolution.maid.utils.Constants;
+import com.hbbsolution.maid.utils.SessionManagerUser;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class JobNearByAdapter extends RecyclerView.Adapter<JobNearByAdapter.JobN
     private List<TaskData> taskArounds;
     private Double lat, lng;
     private Integer maxDistance;
-
+    private SessionManagerUser sessionManagerUser;
     public JobNearByAdapter(Activity activity, List<TaskData> taskArounds) {
         this.activity = activity;
         this.taskArounds = taskArounds;
@@ -38,6 +40,7 @@ public class JobNearByAdapter extends RecyclerView.Adapter<JobNearByAdapter.JobN
         this.lat = lat;
         this.lng = lng;
         this.maxDistance = maxDistance;
+        sessionManagerUser = new SessionManagerUser(activity);
     }
 
     @Override
@@ -57,13 +60,19 @@ public class JobNearByAdapter extends RecyclerView.Adapter<JobNearByAdapter.JobN
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, ListJobActivity.class);
-                intent.putExtra(Constants.LAT, lat);
-                intent.putExtra(Constants.LNG, lng);
-                intent.putExtra(Constants.MAX_DISTANCE, maxDistance);
-                intent.putExtra(Constants.WORK_ID, taskAround.getJobTypeInfo().getId());
-                intent.putExtra(Constants.WORK_NAME, taskAround.getJobTypeInfo().getName());
-                activity.startActivity(intent);
+                if(sessionManagerUser.isLoggedIn()) {
+                    Intent intent = new Intent(activity, ListJobActivity.class);
+                    intent.putExtra(Constants.LAT, lat);
+                    intent.putExtra(Constants.LNG, lng);
+                    intent.putExtra(Constants.MAX_DISTANCE, maxDistance);
+                    intent.putExtra(Constants.WORK_ID, taskAround.getJobTypeInfo().getId());
+                    intent.putExtra(Constants.WORK_NAME, taskAround.getJobTypeInfo().getName());
+                    activity.startActivity(intent);
+                }
+                else
+                {
+                    ShowAlertDialog.showAlert(activity.getResources().getString(R.string.vuilongdangnhap),activity);
+                }
             }
         });
     }

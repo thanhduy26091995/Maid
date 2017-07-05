@@ -22,7 +22,6 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
-import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.model.announcement.AnnouncementResponse;
 import com.hbbsolution.maid.more.duy_nguyen.view.LanguageActivity;
 import com.hbbsolution.maid.more.duy_nguyen.view.StatisticActivity;
@@ -189,6 +188,7 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
                                 // TODO Auto-generated method stub
                                 sessionManagerUser.logoutUser();
                                 Intent intent = new Intent(MoreActivity.this, SignInActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
                             }
