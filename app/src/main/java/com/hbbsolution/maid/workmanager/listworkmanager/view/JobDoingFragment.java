@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -67,6 +68,8 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     LinearLayout lo_infoOwner;
     @BindView(R.id.progressPost)
     ProgressBar progressPost;
+    @BindView(R.id.lo_infoMaidDoing)
+    RelativeLayout lo_infoMaidDoing;
 //    @BindView(R.id.swip_refresh_job_doing)
     SwipeRefreshLayout swip_refresh_job_doing;
 
@@ -82,7 +85,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
             swip_refresh_job_doing = (SwipeRefreshLayout) rootView.findViewById(R.id.swip_refresh_job_doing);
             ButterKnife.bind(this, rootView);
 
-            lo_infoOwner.setOnClickListener(this);
+            lo_infoMaidDoing.setOnClickListener(this);
             progressPost.setVisibility(View.VISIBLE);
             mWorkManagerPresenter = new WorkManagerPresenter(this);
             mWorkManagerPresenter.getInfoWorkList(idProcess);
@@ -167,7 +170,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.lo_infoOwner:
+            case R.id.lo_infoMaidDoing:
                 Intent itInfoOwner = new Intent(getActivity(), OwnerProfileActivity.class);
                 itInfoOwner.putExtra("InfoOwner", mDatum.getStakeholders().getOwner());
                 startActivity(itInfoOwner);
