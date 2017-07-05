@@ -67,7 +67,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     LinearLayout lo_infoOwner;
     @BindView(R.id.progressPost)
     ProgressBar progressPost;
-    @BindView(R.id.swip_refresh_job_doing)
+//    @BindView(R.id.swip_refresh_job_doing)
     SwipeRefreshLayout swip_refresh_job_doing;
 
     private View rootView;
@@ -79,6 +79,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_job_doing, container, false);
+            swip_refresh_job_doing = (SwipeRefreshLayout) rootView.findViewById(R.id.swip_refresh_job_doing);
             ButterKnife.bind(this, rootView);
 
             lo_infoOwner.setOnClickListener(this);
@@ -94,6 +95,7 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
                         public void run() {
                             mWorkManagerPresenter.getInfoWorkList(idProcess);
                             swip_refresh_job_doing.setRefreshing(false);
+
                         }
                     }, 1500);
                 }

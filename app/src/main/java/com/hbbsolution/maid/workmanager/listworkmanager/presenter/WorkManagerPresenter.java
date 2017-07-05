@@ -36,7 +36,7 @@ public class WorkManagerPresenter {
                         WorkManagerResponse workManagerResponse = response.body();
                             mWorkManagerView.getInfoJob(workManagerResponse);
                     }catch (Exception e){
-                        mWorkManagerView.getError();
+//                        mWorkManagerView.getError();
                     }
                 }
             }
