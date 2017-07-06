@@ -46,6 +46,7 @@
         <activity android:name=".more.phuc_tran.view.ForgotPassActivity" />
         <activity android:name=".more.viet_pham.MoreActivity" />
         <activity android:name=".maid_profile.view.MaidProfileActivity"/>
+        <activity android:name=".more.viet_pham.view.signin.ShareCodeActivity"/>
         <activity android:name=".more.viet_pham.view.signin.SignInActivity" />
         <service android:name=".service.MyFirebaseInstanceIDService">
             <intent-filter>
