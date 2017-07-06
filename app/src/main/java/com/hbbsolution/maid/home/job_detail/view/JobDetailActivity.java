@@ -24,12 +24,7 @@ import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.task.TaskData;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
-
-import java.text.DateFormatSymbols;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import com.hbbsolution.maid.utils.WorkTimeValidate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -116,25 +111,8 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         txtJobPrice.setText(String.format("%d VND", taskData.getInfo().getPrice()));
         txtAddress.setText(taskData.getInfo().getAddress().getName());
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat dates = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat time = new SimpleDateFormat("H:mm a", Locale.US);
-        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
-        // OVERRIDE SOME symbols WHILE RETAINING OTHERS
-        symbols.setAmPmStrings(new String[]{"am", "pm"});
-        time.setDateFormatSymbols(symbols);
-        try {
-            Date endDate = simpleDateFormat.parse(taskData.getInfo().getTime().getEndAt());
-            Date nowDate = new Date();
-            Date startDate = simpleDateFormat.parse(taskData.getInfo().getTime().getStartAt());
-            date = dates.format(endDate);
-            startTime = time.format(startDate);
-            endTime = time.format(endDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         txtDate.setText(date);
-        txtDetailTime.setText(startTime.replace(":", "h") + " - " + endTime.replace(":", "h"));
+        txtDetailTime.setText(WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this,taskData.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this,taskData.getInfo().getTime().getEndAt()));
     }
 
     @Override
