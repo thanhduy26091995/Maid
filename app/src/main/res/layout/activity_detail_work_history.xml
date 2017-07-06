@@ -376,13 +376,21 @@
                     android:layout_height="0.1dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/color_line_view" />
+                <TextView
+                    android:id="@+id/tvContentComment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="gone"/>
+                <View
+                    android:id="@+id/v_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/color_line_view"
+                    android:visibility="gone"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/color_line_view" />
 
 </LinearLayout>

@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.history.inteface.CommentHistoryView;
 import com.hbbsolution.maid.history.model.direct_bill.DirectBillResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
+import com.hbbsolution.maid.history.presenter.CommentHistoryPresenter;
 import com.hbbsolution.maid.history.presenter.DetailWorkPresenter;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
@@ -29,7 +31,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailWorkHistoryActivity extends AppCompatActivity implements View.OnClickListener, DetailWorkView {
+public class DetailWorkHistoryActivity extends AppCompatActivity implements View.OnClickListener, DetailWorkView, CommentHistoryView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.detail_work_history_type)
@@ -58,13 +60,18 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
 
     @BindView(R.id.rela_info)
     RelativeLayout rlInfo;
+    @BindView(R.id.tvContentComment)
+    TextView tvContentComment;
 
+    @BindView(R.id.v_line)
+    View vLine;
 
     private WorkHistory doc;
     public static Activity detailWorkHistory;
     private DetailWorkPresenter mPresenter;
     private ProgressDialog mProgressDialog;
     private AlertDialog.Builder alertDialogConfirm;
+    private CommentHistoryPresenter commentHistoryPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +98,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
 
     public void getData() {
         Bundle extras = getIntent().getExtras();
+        commentHistoryPresenter = new CommentHistoryPresenter(this);
         if (extras != null) {
             doc = (WorkHistory) extras.getSerializable("work");
             Glide.with(this).load(doc.getInfo().getWork().getImage())
@@ -120,6 +128,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             //call api to check bill
             showProgress();
             mPresenter.getDirectBill(doc.getId());
+            commentHistoryPresenter.checkComment(doc.getId());
         }
     }
 
@@ -244,5 +253,16 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void checkCommentSuccess(String message) {
+        tvContentComment.setVisibility(View.VISIBLE);
+        vLine.setVisibility(View.VISIBLE);
+        tvContentComment.setText(message);
+    }
+
+    @Override
+    public void checkCommentFail() {
     }
 }

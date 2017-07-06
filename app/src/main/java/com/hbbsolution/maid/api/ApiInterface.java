@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.api;
 
 
+import com.hbbsolution.maid.history.model.commenthistory.CommentHistoryResponse;
 import com.hbbsolution.maid.history.model.direct_bill.DirectBillResponse;
 import com.hbbsolution.maid.history.model.owner.OwnerHistoryResponse;
 import com.hbbsolution.maid.history.model.work.WorkHistoryResponse;
@@ -128,4 +129,8 @@ public interface ApiInterface {
 
     @GET("payment/getDirectlyBill")
     Call<DirectBillResponse> getDirectBill(@Query("id") String taskId);
+
+    @GET("task/getComment")
+    Call<CommentHistoryResponse> checkComment(@Query("task") String idTask);
+
 }
