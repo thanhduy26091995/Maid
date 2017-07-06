@@ -6,9 +6,10 @@
     android:orientation="vertical">
 
     <ImageView
+        android:background="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_app_720" />
+        android:src="@drawable/logo" />
 
 </LinearLayout>

@@ -120,6 +120,7 @@ public class SignInActivity extends AppCompatActivity implements MoreView
             @Override
             public void onClick(View v) {
                 Intent intentMaidNearBy = new Intent(SignInActivity.this, JobNearByActivity.class);
+                intentMaidNearBy.putExtra("fromSignIn", true);
                 startActivity(intentMaidNearBy);
             }
         });

@@ -66,6 +66,8 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     TextView txtSearch;
     @BindView(R.id.search_view)
     SearchView searchView;
+    @BindView(R.id.view)
+    View view;
 
     private Integer maxDistance = 5;
     private JobNearByPresenter presenter;
@@ -83,7 +85,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     private static final long MIN_TIME_BW_UPDATES = 1; // 1 minute
     private Location location; // location
     private Double latitude, longitude;
-    private boolean isSearch = false;
+    private boolean isSearch = false, isFromSignIn = false;
     private String searchText = "", locationName = "";
 
     @Override
@@ -145,10 +147,11 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         //get intent
         isSearch = getIntent().getBooleanExtra(Constants.IS_SEARCH, false);
+        isFromSignIn = getIntent().getBooleanExtra("fromSignIn", false);
         // if (isSearch) {
         latitude = getIntent().getDoubleExtra(Constants.LAT, 0);
         longitude = getIntent().getDoubleExtra(Constants.LNG, 0);
-        Log.d("CLICK2", "" + latitude + "/" + longitude);
+       // Log.d("CLICK2", "" + latitude + "/" + longitude);
         if (isSearch) {
             searchView.setIconified(false);
             searchView.setQuery(getIntent().getStringExtra(Constants.LOCATION_NAME), false);
@@ -159,8 +162,12 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         //event click
         txtSearch.setOnClickListener(this);
 //check internet
-        initData();
-
+        if (isFromSignIn){
+            loadData();
+        }
+        else{
+            initData();
+        }
     }
 
     private void loadData() {
@@ -363,6 +370,12 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         taskArounds.clear();
         hideProgress();
         taskArounds = taskAroundResponse.getTaskDatas();
+        if (taskArounds.size() > 0){
+            view.setVisibility(View.VISIBLE);
+        }
+        else{
+            view.setVisibility(View.GONE);
+        }
         //set up recyclerview
         jobNearByAdapter = new JobNearByAdapter(JobNearByActivity.this, taskArounds, latitude, longitude, maxDistance);
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -372,6 +385,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
 
     @Override
     public void getError(String error) {
+        view.setVisibility(View.GONE);
         hideProgress();
         Log.d("ERROR_NEAR_BY", error);
     }
