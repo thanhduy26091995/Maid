@@ -130,7 +130,7 @@ public interface ApiInterface {
     @GET("payment/getDirectlyBill")
     Call<DirectBillResponse> getDirectBill(@Query("id") String taskId);
 
-    @GET("task/getComment")
+    @GET("maid/getTaskComment")
     Call<CommentHistoryResponse> checkComment(@Query("task") String idTask);
 
 }
