@@ -147,7 +147,9 @@ public class SignInActivity extends AppCompatActivity implements MoreView
             startActivity(intent);
             finish();
         } else {
-            ShowAlertDialog.showAlert(bodyResponse.getMessage().toString(), SignInActivity.this);
+            ShowAlertDialog.showAlert(getResources().getString(R.string.forgot_password_failed), SignInActivity.this);
+
+//            ShowAlertDialog.showAlert(bodyResponse.getMessage().toString(), SignInActivity.this);
         }
     }
 

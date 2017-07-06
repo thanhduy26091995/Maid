@@ -215,7 +215,7 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:paddingTop="10dp"
-                        android:src="@drawable/icon_logo_test" />
+                        android:src="@mipmap/icon_logo_test" />
                 </LinearLayout>
 
                 <TextView
