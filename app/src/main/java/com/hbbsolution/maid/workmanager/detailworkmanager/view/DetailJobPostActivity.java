@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
@@ -39,7 +40,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/6/2017.
  */
 
-public class DetailJobPostActivity extends AppCompatActivity implements DetailJobPostView,View.OnClickListener{
+public class DetailJobPostActivity extends BaseActivity implements DetailJobPostView,View.OnClickListener{
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.lo_infoOwner)
@@ -185,11 +186,12 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                     alertDialog.setCancelable(false);
                     alertDialog.setTitle(getResources().getString(R.string.notification));
-                    alertDialog.setMessage(getResources().getString(R.string.notification_del_job_post));
+                    alertDialog.setMessage(getResources().getString(R.string.notification_refuse_job_post));
                     alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            progressBar.setVisibility(View.VISIBLE);
+//                            progressBar.setVisibility(View.VISIBLE);
+                            showProgressDialog();
                             mDetailJobPostPresenter.refuseJobRequested(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                         }
                     });
@@ -208,8 +210,8 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                     alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            progressBar.setVisibility(View.VISIBLE);
-
+//                            progressBar.setVisibility(View.VISIBLE);
+showProgressDialog();
                             mDetailJobPostPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                         }
                     });
@@ -224,8 +226,8 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
                 break;
 
             case R.id.rela_confirm_maid:
-                progressBar.setVisibility(View.VISIBLE);
-
+//                progressBar.setVisibility(View.VISIBLE);
+showProgressDialog();
                 mDetailJobPostPresenter.accceptJobRequested(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                 break;
         }
@@ -245,7 +247,7 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
 
     @Override
     public void displayNotifyJobPost(JobPendingResponse isJobPost) {
-        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.notification__pass_del_job_post),isJobPost.getMessage());
+        displayNotifySuccess(isJobPost.getStatus(), getResources().getString(R.string.notification_pass_del_job_post),isJobPost.getMessage());
     }
 
     @Override
@@ -273,7 +275,8 @@ public class DetailJobPostActivity extends AppCompatActivity implements DetailJo
     }
 
     private void displayNotifySuccess(boolean isJobPost, String message, String error) {
-        progressBar.setVisibility(View.GONE);
+//        progressBar.setVisibility(View.GONE);
+        hideProgress();
         if (isJobPost) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setCancelable(false);

@@ -143,7 +143,7 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
             alertDialog.setCancelable(false);
             alertDialog.setTitle(getResources().getString(R.string.notification));
-            alertDialog.setMessage(getResources().getString(R.string.notification__pass_del_job_post));
+            alertDialog.setMessage(getResources().getString(R.string.notification_pass_del_job_post));
             alertDialog.setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
