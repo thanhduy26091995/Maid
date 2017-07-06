@@ -45,6 +45,7 @@ public class SessionManagerUser {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_PRICE = "price";
     public static final String KEY_EVALUATION = "evaluation";
+    public static final String KEY_AGE = "age";
 
     // Constructor
     public SessionManagerUser(Context context) {
@@ -74,6 +75,7 @@ public class SessionManagerUser {
         editor.putString(KEY_EMAIL, data.getUser().getInfo().getEmail());
         editor.putString(KEY_IMAGE, data.getUser().getInfo().getImage());
         editor.putString(KEY_PRICE, String.valueOf(data.getUser().getWork_info().getPrice()));
+        editor.putString(KEY_AGE, String.valueOf(data.getUser().getInfo().getAge()));
         editor.putString(KEY_EVALUATION, String.valueOf(data.getUser().getWork_info().getEvaluation_point()));
         // commit changes
         editor.commit();
@@ -93,6 +95,7 @@ public class SessionManagerUser {
         editor.remove(KEY_EMAIL);
         editor.remove(KEY_IMAGE);
         editor.remove(KEY_PRICE);
+        editor.remove(KEY_AGE);
         editor.commit();
     }
 
@@ -140,6 +143,7 @@ public class SessionManagerUser {
         data.put(KEY_IMAGE, pref.getString(KEY_IMAGE, null));
         data.put(KEY_PHONE, pref.getString(KEY_PHONE, null));
         data.put(KEY_PRICE, pref.getString(KEY_PRICE, null));
+        data.put(KEY_AGE, pref.getString(KEY_AGE, null));
         data.put(KEY_EVALUATION, pref.getString(KEY_EVALUATION, null));
 
         // return data

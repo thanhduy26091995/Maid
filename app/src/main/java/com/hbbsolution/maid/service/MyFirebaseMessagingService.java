@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.service;
 
 import android.app.ActivityManager;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -133,6 +134,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentText(data.get("body"))
                 .setAutoCancel(true)
                 .setLights(0xff00ff00, 300, 100)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(Notification.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
 
         builder.setSmallIcon(getNotificationIcon(builder));

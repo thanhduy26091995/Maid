@@ -80,6 +80,8 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
     NestedScrollView nestedScrollView;
     @BindView(R.id.txtPriceInfoMaid)
     TextView txtPrice;
+    @BindView(R.id.txtAgeInfoMaid)
+    TextView txtAge;
 
     @BindView(R.id.txtNoComment)
     TextView txtNoComment;
@@ -150,6 +152,7 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
         } else {
             txtGenderInfoMaid.setText(getResources().getString(R.string.pro_file_gender_female));
         }
+        txtAge.setText(String.format(dataHashMap.get(SessionManagerUser.KEY_AGE)));
         txtPrice.setText(String.format(NumberFormat.getNumberInstance(Locale.GERMANY).format(Integer.parseInt(dataHashMap.get(SessionManagerUser.KEY_PRICE))))+ " VND"+getResources().getString(R.string.hour));
         txtPhoneInfoMaid.setText(dataHashMap.get(SessionManagerUser.KEY_PHONE));
         ImageLoader.getInstance().loadImageAvatar(MaidProfileActivity.this, dataHashMap.get(SessionManagerUser.KEY_IMAGE),

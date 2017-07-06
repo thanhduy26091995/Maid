@@ -102,30 +102,34 @@
                 android:textColor="@color/home_background_history"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/txt_date"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/iconTextView"
                 android:layout_alignLeft="@id/ln1"
                 android:layout_alignStart="@id/ln1"
                 android:layout_alignTop="@id/iconTextView"
-                android:gravity="center_vertical"
-                android:text="10/10/2017"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/colorBlack" />
+                android:weightSum="2">
 
-            <TextView
-                android:id="@+id/txt_detail_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/iconTextView"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@id/iconTextView"
-                android:gravity="center_vertical"
-                android:text="9h00 am - 12h00 am"
-                android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="10/10/2017"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:id="@+id/txt_detail_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="9h00 am - 12h00 am"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
 
         </RelativeLayout>

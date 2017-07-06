@@ -30,6 +30,9 @@ public class Info {
     @Expose
     private String image;
 
+    @SerializedName("age")
+    private int age;
+
     public Info() {
 
     }
@@ -42,6 +45,14 @@ public class Info {
         this.email = email;
         this.username = username;
         this.image = image;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public int getGender() {
