@@ -111,7 +111,7 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         txtJobPrice.setText(String.format("%d VND", taskData.getInfo().getPrice()));
         txtAddress.setText(taskData.getInfo().getAddress().getName());
 
-        txtDate.setText(date);
+        txtDate.setText(WorkTimeValidate.getDatePostHistory(taskData.getInfo().getTime().getStartAt()));
         txtDetailTime.setText(WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this,taskData.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this,taskData.getInfo().getTime().getEndAt()));
     }
 
