@@ -248,4 +248,7 @@
     <string name="hour">/ 1 hour</string>
 
     <string name="vuilongdangnhap">Please sign in to see more details</string>
+    <string name="chiaseungdung">Share App</string>
+    <string name="share_with_friends">Share with Friends</string>
+    <string name="share">Share</string>
 </resources>

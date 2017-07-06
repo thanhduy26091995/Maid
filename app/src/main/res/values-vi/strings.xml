@@ -251,4 +251,8 @@
     <string name="hour">/ 1 giờ</string>
 
     <string name="vuilongdangnhap">Vui lòng đăng nhập để xem thông tin công việc</string>
+
+    <string name="chiaseungdung">Chia sẻ ứng dụng</string>
+    <string name="share_with_friends">Chia sẻ với bạn bè</string>
+    <string name="share">Chia sẻ</string>
 </resources>

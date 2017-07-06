@@ -29,6 +29,7 @@ import com.hbbsolution.maid.more.phuc_tran.view.AboutActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.ContactActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.TermActivity;
 import com.hbbsolution.maid.more.viet_pham.presenter.MorePresenter;
+import com.hbbsolution.maid.more.viet_pham.view.signin.ShareCodeActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
 import com.hbbsolution.maid.utils.SessionManagerForAnnouncement;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
@@ -75,7 +76,8 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
     CardView cvSignIn;
     @BindView(switch_announcement)
     SwitchCompat switchAnnouncement;
-
+    @BindView(R.id.lo_share_app)
+    LinearLayout lo_share_app;
     private SessionManagerForAnnouncement sessionManagerForAnnouncement;
     private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
@@ -154,6 +156,13 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
 //            }
 //        });
 
+        lo_share_app.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent itShareCode = new Intent(MoreActivity.this, ShareCodeActivity.class);
+                startActivity(itShareCode);
+            }
+        });
         cvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
