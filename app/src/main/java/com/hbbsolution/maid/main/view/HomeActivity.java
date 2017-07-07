@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.home.job_near_by.view.JobNearByMapActivity;
@@ -25,7 +26,7 @@ import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener, HomeView {
+public class HomeActivity extends BaseActivity implements View.OnClickListener, HomeView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -55,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-
+        checkConnectionInterner();
         // setup toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);

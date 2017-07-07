@@ -83,6 +83,7 @@ public class DetailJobPendingActivity extends BaseActivity implements DetailJobP
 //        mDetailJobPostActivity = this;
         ButterKnife.bind(this);
 
+        checkConnectionInterner();
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

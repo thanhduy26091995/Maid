@@ -219,7 +219,7 @@
     <string name="confirm">Xác nhận</string>
     <string name="confirm_ok">Xác nhận thành công</string>
     <string name="confirm_failed">Xác nhận thất bại</string>
-    <string name="confirm_cast">Vui lòng xác nhận tiền mặt bằng cách nhấn OK</string>
+    <string name="confirm_cast">Vui lòng xác nhận thanh toán tiền mặt bằng cách nhấn  Chấp nhận</string>
     <string name="choose_work_success">Chọn công việc thành công</string>
     <string name="choose_work_failed">Chọn công việc thất bại</string>
     <string name="address_not_found">Không tìm thấy vị trí</string>
@@ -256,4 +256,5 @@
     <string name="chiaseungdung">Chia sẻ ứng dụng</string>
     <string name="share_with_friends">Chia sẻ với bạn bè</string>
     <string name="share">Chia sẻ</string>
+    <string name="no_internet">Không có kết nối mạng</string>
 </resources>

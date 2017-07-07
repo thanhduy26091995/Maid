@@ -95,6 +95,7 @@ public class DetailJobPostActivity extends BaseActivity implements DetailJobPost
         mDetailJobPostActivity = this;
         ButterKnife.bind(this);
 
+        checkConnectionInterner();
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

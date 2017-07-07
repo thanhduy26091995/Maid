@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
 
@@ -21,7 +22,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/1/2017.
  */
 
-public class WorkManagerActivity extends AppCompatActivity {
+public class WorkManagerActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -41,6 +42,7 @@ public class WorkManagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_work_management);
         ButterKnife.bind(this);
 
+        checkConnectionInterner();
         //setupView
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
