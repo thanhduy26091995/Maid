@@ -3,7 +3,6 @@ package com.hbbsolution.maid.history.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,8 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.hbbsolution.maid.R;
-import com.hbbsolution.maid.history.inteface.ListWorkView;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.history.adapter.HistoryJobAdapter;
+import com.hbbsolution.maid.history.inteface.ListWorkView;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
 import com.hbbsolution.maid.history.presenter.ListWorkPresenter;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
@@ -25,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListWorkActivity extends AppCompatActivity implements ListWorkView {
+public class ListWorkActivity extends BaseActivity implements ListWorkView {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private View view;
@@ -46,6 +46,9 @@ public class ListWorkActivity extends AppCompatActivity implements ListWorkView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_work);
         ButterKnife.bind(this);
+
+        checkConnectionInterner();
+
         setToolbar();
         Bundle extras = getIntent().getExtras();
 

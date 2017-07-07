@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.api.ApiClient;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.home.job_near_by.view.JobNearByActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.ForgotPassActivity;
@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 5/9/2017.
  */
 
-public class SignInActivity extends AppCompatActivity implements MoreView
+public class SignInActivity extends BaseActivity implements MoreView
 //        , GoogleApiClient.OnConnectionFailedListener
 {
     @BindView(R.id.toobar)
@@ -64,6 +64,9 @@ public class SignInActivity extends AppCompatActivity implements MoreView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
+
+        checkConnectionInterner();
+
         sessionManagerUser = new SessionManagerUser(this);
         toolbar.setTitle("");
 

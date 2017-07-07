@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.history.fragment.HistoryViewPagerFragment;
 import com.hbbsolution.maid.history.presenter.HistoryPresenter;
 import com.hbbsolution.maid.main.view.HomeActivity;
@@ -19,7 +19,7 @@ import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HistoryActivity extends AppCompatActivity implements HistoryView {
+public class HistoryActivity extends BaseActivity implements HistoryView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -38,6 +38,9 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         ButterKnife.bind(this);
+
+        checkConnectionInterner();
+
         setToolbar();
         historyViewPagerFragment = new HistoryViewPagerFragment(getSupportFragmentManager(), this, 2);
         viewPagerHistory.setAdapter(historyViewPagerFragment);
