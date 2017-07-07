@@ -253,4 +253,6 @@
     <string name="share_with_friends">Share with Friends</string>
     <string name="share">Share</string>
     <string name="no_internet">No internet connection</string>
+
+    <string name="invalid">Invalid Username or Password</string>
 </resources>

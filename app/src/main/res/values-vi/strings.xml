@@ -257,4 +257,6 @@
     <string name="share_with_friends">Chia sẻ với bạn bè</string>
     <string name="share">Chia sẻ</string>
     <string name="no_internet">Không có kết nối mạng</string>
+
+    <string name="invalid">Tên đăng nhập hoặc Mật khẩu không đúng</string>
 </resources>
