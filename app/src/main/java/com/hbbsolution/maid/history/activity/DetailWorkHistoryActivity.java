@@ -111,7 +111,7 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             tvJob.setText(doc.getInfo().getTitle());
             tvWork.setText(doc.getInfo().getWork().getName());
             tvContent.setText(doc.getInfo().getDescription());
-            tvSalary.setText(NumberFormat.getNumberInstance(Locale.GERMANY).format(doc.getInfo().getPrice()) + " VND");
+            tvSalary.setText(formatPrice(doc.getInfo().getPrice()));
             tvAddress.setText(doc.getInfo().getAddress().getName());
             tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
             tvTime.setText(WorkTimeValidate.getTimeWorkLanguage(DetailWorkHistoryActivity.this,doc.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(DetailWorkHistoryActivity.this,doc.getInfo().getTime().getEndAt()));
@@ -264,5 +264,15 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
 
     @Override
     public void checkCommentFail() {
+    }
+
+    private String formatPrice(Integer _Price) {
+        String mOutputPrice = null;
+        if (_Price != null && _Price != 0) {
+            mOutputPrice = String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(_Price));
+        } else if (_Price == 0) {
+            mOutputPrice = getResources().getString(R.string.hourly_pay);
+        }
+        return mOutputPrice;
     }
 }

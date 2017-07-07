@@ -1,6 +1,7 @@
 package com.hbbsolution.maid.history.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.fragment.HistoryViewPagerFragment;
 import com.hbbsolution.maid.history.presenter.HistoryPresenter;
+import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 
 import butterknife.BindView;
@@ -93,6 +95,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            Intent intentHome = new Intent(HistoryActivity.this, HomeActivity.class);
+            startActivity(intentHome);
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -146,5 +150,13 @@ public class HistoryActivity extends AppCompatActivity implements HistoryView {
 
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intentHome = new Intent(HistoryActivity.this, HomeActivity.class);
+        startActivity(intentHome);
+        finish();
     }
 }

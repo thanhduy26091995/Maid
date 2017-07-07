@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,8 +21,6 @@ import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
-
-import org.joda.time.DateTime;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -113,12 +110,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.lo_maid_around:
                 transActivity(JobNearByMapActivity.class);
+                finish();
                 break;
             case R.id.lo_your_tasks:
                 transActivity(WorkManagerActivity.class);
+                finish();
                 break;
             case R.id.lo_history:
                 transActivity(HistoryActivity.class);
+                finish();
                 break;
         }
     }

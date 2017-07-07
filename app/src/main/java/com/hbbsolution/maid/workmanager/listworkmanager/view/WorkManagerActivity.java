@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
@@ -53,6 +54,8 @@ public class WorkManagerActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            Intent intentHome = new Intent(WorkManagerActivity.this, HomeActivity.class);
+            startActivity(intentHome);
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -130,4 +133,11 @@ public class WorkManagerActivity extends AppCompatActivity {
         mPositionTab = positionTab;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intentHome = new Intent(WorkManagerActivity.this, HomeActivity.class);
+        startActivity(intentHome);
+        finish();
+    }
 }

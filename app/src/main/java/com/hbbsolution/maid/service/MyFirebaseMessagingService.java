@@ -89,7 +89,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         switch (data.get("status")) {
             case "6": {
                 Intent intent = new Intent(this, WorkManagerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 break;
             }
@@ -98,7 +98,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 Intent intent = new Intent(this, HistoryActivity.class);
                 intent.putExtra("tabMore", 0);
                 intent.putExtra("flag", 1);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
                 break;
@@ -108,20 +108,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.putExtra("tabMore", 0);
                 intent.putExtra("flag", 2);
                 intent.putExtra("bill", data.get("bill"));
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 break;
             }
             case "1": {
                 Intent intent = new Intent(this, WorkManagerActivity.class);
                 EventBus.getDefault().postSticky("1");
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 break;
             }
             case "8": {
                 Intent intent = new Intent(this, WorkManagerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 break;
             }

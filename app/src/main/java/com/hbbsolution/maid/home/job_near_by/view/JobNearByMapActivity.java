@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.job_near_by.presenter.JobNearByMapPresenter;
+import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
 import com.hbbsolution.maid.utils.Constants;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
@@ -357,6 +358,8 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            Intent intentHome = new Intent(JobNearByMapActivity.this, HomeActivity.class);
+            startActivity(intentHome);
             finish();
         } else if (item.getItemId() == R.id.action_filter) {
             Intent intent = new Intent(JobNearByMapActivity.this, JobNearByActivity.class);
@@ -457,5 +460,13 @@ public class JobNearByMapActivity extends AppCompatActivity implements OnMapRead
     public void displayNotFoundLocation(String error) {
         hideProgress();
         ShowAlertDialog.showAlert(error, JobNearByMapActivity.this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intentHome = new Intent(JobNearByMapActivity.this, HomeActivity.class);
+        startActivity(intentHome);
+        finish();
     }
 }
