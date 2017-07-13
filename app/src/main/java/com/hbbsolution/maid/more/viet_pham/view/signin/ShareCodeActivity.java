@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -51,11 +53,16 @@ public class ShareCodeActivity extends AppCompatActivity implements View.OnClick
             case "English":
                 textContent = "Modern designs, unique features, extremely efficient performance are what you just experienced. Following the motto " +'"'+ "Quality builds Trust" +'"'+ ", we desire to bring our customers the best of the best. And now, let's share the NGV247 application to develop the greatest.";
                 break;
-
+            default:
+                String langDevice =  Locale.getDefault().getDisplayLanguage();
+                if(langDevice.equals("English")){
+                    textContent = "Modern designs, unique features, extremely efficient performance are what you just experienced. Following the motto " +'"'+ "Quality builds Trust" +'"'+ ", we desire to bring our customers the best of the best. And now, let's share the NGV247 application to develop the greatest.";
+                }else if(langDevice.equals("Tiếng Việt")){
+                    textContent = "Giao diện hiện đại, tính năng độc đáo, hoạt động cực kỳ hiệu quả là những gì bạn vừa trải nghiệm. Với phương châm “Chất lượng tạo niềm tin”, chúng tôi mong muốn mang đến cho khách hàng của mình những điều tốt nhất. Và giờ đây, hãy chia sẻ ứng dụng NGV247 với chúng tôi để cùng nhau phát triển những điều lợi ích nhất.";
+                }
+                break;
         }
-//        textContent = getResources().getString(R.string.share_app);
         txtContentVoucher.setText(textContent);
-
 
     }
 

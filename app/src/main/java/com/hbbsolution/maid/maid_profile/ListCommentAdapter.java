@@ -61,6 +61,8 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
 
         holder.txtCommentTime.setText(getDatePostHistory(comment.getCreateAt()));
         holder.ratingBar.setRating(comment.getEvaluationPoint());
+
+//        if (comment.getTask().getInfoTask().get)
     }
 
     @Override

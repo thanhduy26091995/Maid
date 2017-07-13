@@ -8,10 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
+import com.hbbsolution.maid.utils.ConnectivityReceiver;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
@@ -22,7 +25,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/1/2017.
  */
 
-public class WorkManagerActivity extends BaseActivity {
+public class WorkManagerActivity extends BaseActivity implements View.OnClickListener, ConnectivityReceiver.ConnectivityReceiverListener{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -30,6 +33,9 @@ public class WorkManagerActivity extends BaseActivity {
     TabLayout tabLayout;
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
+    @BindView(R.id.imgNo_internet)
+    ImageView imgNo_internet;
+
 
     private Integer tabMore;
     private boolean isPause = false, mTab = false;
@@ -42,7 +48,8 @@ public class WorkManagerActivity extends BaseActivity {
         setContentView(R.layout.activity_work_management);
         ButterKnife.bind(this);
 
-        checkConnectionInterner();
+//        checkConnectionInterner();
+        checkConnection();
         //setupView
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -50,6 +57,7 @@ public class WorkManagerActivity extends BaseActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        imgNo_internet.setOnClickListener(this);
         createFragment();
     }
 
@@ -141,5 +149,35 @@ public class WorkManagerActivity extends BaseActivity {
         Intent intentHome = new Intent(WorkManagerActivity.this, HomeActivity.class);
         startActivity(intentHome);
         finish();
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            imgNo_internet.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        if (!isConnected) {
+            imgNo_internet.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.imgNo_internet:
+                boolean isConnected = ConnectivityReceiver.isConnected();
+                if (isConnected) {
+                    finish();
+                    overridePendingTransition(0, 0);
+                    startActivity(getIntent());
+                    overridePendingTransition(0, 0);
+                    imgNo_internet.setVisibility(View.GONE);
+                }
+                break;
+        }
     }
 }

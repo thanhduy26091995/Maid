@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
@@ -119,13 +120,15 @@ public class DetailJobPendingActivity extends BaseActivity implements DetailJobP
         txtAddress_detail_post.setText(mDatum.getInfo().getAddress().getName());
         txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
         txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWorkLanguage(this, mDatum.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(this, mDatum.getInfo().getTime().getEndAt()));
-        Picasso.with(this).load(mDatum.getInfo().getWork().getImage())
+        Glide.with(this).load(mDatum.getInfo().getWork().getImage())
                 .error(R.drawable.no_image)
                 .placeholder(R.drawable.no_image)
+                .dontAnimate()
                 .into(imgType_job_detail_post);
-        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
+        Glide.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
                 .error(R.drawable.avatar)
                 .placeholder(R.drawable.avatar)
+                .dontAnimate()
                 .into(img_avatarQwner);
     }
 
