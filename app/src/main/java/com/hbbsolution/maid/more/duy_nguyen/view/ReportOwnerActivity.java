@@ -71,7 +71,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
         isInJobDetail = getIntent().getBooleanExtra("IsInJobDetail", false);
         if (isInJobDetail) {
             info = (com.hbbsolution.maid.model.task.Owner) getIntent().getSerializableExtra("InfoOwner");
-            mTextOwnerName.setText(info.getInfo().getUsername());
+            mTextOwnerName.setText(info.getInfo().getName());
             mTextOwnerAddress.setText(info.getInfo().getAddress().getName());
             idOnwer = info.getId();
             Glide.with(this).load(info.getInfo().getImage())
@@ -85,7 +85,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
             flat = getIntent().getIntExtra("flat", 0);
             if (flat == 1) {
                 mInfoOwnerHistory = (OwnerHistory) getIntent().getSerializableExtra("InfoOwner");
-                mTextOwnerName.setText(mInfoOwnerHistory.getId().getInfo().getUsername());
+                mTextOwnerName.setText(mInfoOwnerHistory.getId().getInfo().getName());
                 mTextOwnerAddress.setText(mInfoOwnerHistory.getId().getInfo().getAddress().getName());
                 idOnwer = mInfoOwnerHistory.getId().getId();
                 Glide.with(this).load(mInfoOwnerHistory.getId().getInfo().getImage())
@@ -97,7 +97,7 @@ public class ReportOwnerActivity extends AppCompatActivity implements View.OnCli
                         .into(imgAvatar);
             } else {
                 mInfoOwner = (Owner) getIntent().getSerializableExtra("InfoOwner");
-                mTextOwnerName.setText(mInfoOwner.getInfo().getUsername());
+                mTextOwnerName.setText(mInfoOwner.getInfo().getName());
                 mTextOwnerAddress.setText(mInfoOwner.getInfo().getAddress().getName());
                 idOnwer = mInfoOwner.getId();
                 Glide.with(this).load(mInfoOwner.getInfo().getImage())
