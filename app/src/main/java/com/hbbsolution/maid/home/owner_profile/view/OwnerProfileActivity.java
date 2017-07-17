@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.history.model.owner.OwnerHistory;
 import com.hbbsolution.maid.history.model.work.Owner;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by buivu on 05/06/2017.
  */
 
-public class OwnerProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class OwnerProfileActivity extends AuthenticationBaseActivity implements View.OnClickListener {
     @BindView(R.id.toolbar_header)
     Toolbar toolbar_header;
     @BindView(R.id.img_blur_image)

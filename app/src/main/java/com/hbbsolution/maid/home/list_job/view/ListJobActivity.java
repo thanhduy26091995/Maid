@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.list_job.ListJobAdapter;
 import com.hbbsolution.maid.home.list_job.presenter.ListJobPresenter;
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
  * Created by buivu on 05/06/2017.
  */
 
-public class ListJobActivity extends AppCompatActivity implements ListJobView {
+public class ListJobActivity extends AuthenticationBaseActivity implements ListJobView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -100,18 +100,6 @@ public class ListJobActivity extends AppCompatActivity implements ListJobView {
         super.onResume();
     }
 
-    private void showProgress() {
-        progressDialog = new ProgressDialog(ListJobActivity.this);
-        progressDialog.setMessage(getResources().getString(R.string.loading));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    private void hideProgress() {
-        if (progressDialog.isShowing() && progressDialog != null) {
-            progressDialog.dismiss();
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.base.InternetConnection;
 import com.hbbsolution.maid.home.job_detail.presenter.JobDetailPresenter;
@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
  * Created by buivu on 05/06/2017.
  */
 
-public class JobDetailActivity extends AppCompatActivity implements View.OnClickListener, JobDetailView {
+public class JobDetailActivity extends AuthenticationBaseActivity implements View.OnClickListener, JobDetailView {
 
 
     private TaskData taskData;
@@ -170,16 +170,4 @@ public class JobDetailActivity extends AppCompatActivity implements View.OnClick
         hideProgress();
     }
 
-    private void showProgress() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(getResources().getString(R.string.loading));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    private void hideProgress() {
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-        }
-    }
 }
