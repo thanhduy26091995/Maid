@@ -29,6 +29,19 @@ public class InfoOwner {
     @Expose
     private Address address;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @SerializedName("image")
+    @Expose
+    private String image;
+
+
     public String getUsername() {
         return username;
     }

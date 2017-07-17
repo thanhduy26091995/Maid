@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.utils.ConnectivityReceiver;
@@ -25,7 +26,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/1/2017.
  */
 
-public class WorkManagerActivity extends BaseActivity implements View.OnClickListener, ConnectivityReceiver.ConnectivityReceiverListener{
+public class WorkManagerActivity extends AuthenticationBaseActivity implements View.OnClickListener, ConnectivityReceiver.ConnectivityReceiverListener{
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -179,5 +180,10 @@ public class WorkManagerActivity extends BaseActivity implements View.OnClickLis
                 }
                 break;
         }
+    }
+
+    @Override
+    public void responseCheckToken() {
+        super.responseCheckToken();
     }
 }

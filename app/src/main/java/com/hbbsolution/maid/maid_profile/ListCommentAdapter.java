@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.ImageLoader;
+import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.maid_profile.model.comment_maid.Doc;
 
 import org.joda.time.DateTime;
@@ -51,6 +53,13 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
         try{
             holder.txtCommentName.setText(comment.getFromId().getInfo().getName());
             holder.txtCommentContent.setText(comment.getContent());
+            holder.txtCommentTime.setText(getDatePostHistory(comment.getCreateAt()));
+            holder.ratingBar.setRating(comment.getEvaluationPoint());
+
+            if (!comment.getFromId().getInfo().getImage().isEmpty() || comment.getFromId().getInfo().getImage() != null) {
+                ImageLoader.getInstance().loadImageAvatar(activity,comment.getFromId().getInfo().getImage(),
+                        holder.imgAvatar);
+            }
             if(comment.getTask() == null) throw new IllegalArgumentException();
             else {
                 holder.txtCommentType.setText(comment.getTask().getInfoTask().getTitle());
@@ -58,11 +67,6 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
         }catch (Exception e){
 
         }
-
-        holder.txtCommentTime.setText(getDatePostHistory(comment.getCreateAt()));
-        holder.ratingBar.setRating(comment.getEvaluationPoint());
-
-//        if (comment.getTask().getInfoTask().get)
     }
 
     @Override
@@ -81,6 +85,7 @@ public class ListCommentAdapter extends RecyclerView.Adapter<ListCommentAdapter.
             imgAvatar = (ImageView) itemView.findViewById(R.id.img_comment_avatar);
             txtCommentName = (TextView) itemView.findViewById(R.id.txt_comment_name);
             txtCommentTime = (TextView) itemView.findViewById(R.id.txt_comment_time);
+            txtCommentType = (TextView) itemView.findViewById(R.id.txt_comment_type);
             txtCommentContent = (TextView) itemView.findViewById(R.id.txt_comment_content);
             ratingBar = (RatingBar) itemView.findViewById(R.id.rating_comment);
         }

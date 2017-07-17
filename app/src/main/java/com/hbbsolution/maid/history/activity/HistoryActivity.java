@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.history.fragment.HistoryViewPagerFragment;
 import com.hbbsolution.maid.history.presenter.HistoryPresenter;
@@ -19,7 +20,7 @@ import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HistoryActivity extends BaseActivity implements HistoryView {
+public class HistoryActivity extends AuthenticationBaseActivity implements HistoryView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -161,5 +162,10 @@ public class HistoryActivity extends BaseActivity implements HistoryView {
         Intent intentHome = new Intent(HistoryActivity.this, HomeActivity.class);
         startActivity(intentHome);
         finish();
+    }
+
+    @Override
+    public void responseCheckToken() {
+        super.responseCheckToken();
     }
 }

@@ -15,13 +15,6 @@ public class FromId {
     @Expose
     private InfoOwner info;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public InfoOwner getInfo() {
         return info;
