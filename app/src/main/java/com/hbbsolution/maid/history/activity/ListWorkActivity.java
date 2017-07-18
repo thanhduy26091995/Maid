@@ -18,6 +18,7 @@ import com.hbbsolution.maid.history.inteface.ListWorkView;
 import com.hbbsolution.maid.history.model.work.WorkHistory;
 import com.hbbsolution.maid.history.presenter.ListWorkPresenter;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,5 +152,10 @@ public class ListWorkActivity extends BaseActivity implements ListWorkView {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
+    }
+
+    @Override
+    public void connectServerFail() {
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 }

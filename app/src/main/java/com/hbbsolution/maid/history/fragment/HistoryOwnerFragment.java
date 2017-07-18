@@ -239,4 +239,11 @@ public class HistoryOwnerFragment extends Fragment implements OwnerHistoryView {
         lnNoData.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
+
+    @Override
+    public void connectServerFail() {
+        lnNoData.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
+    }
 }

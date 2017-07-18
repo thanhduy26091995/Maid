@@ -170,4 +170,9 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
         hideProgress();
     }
 
+    @Override
+    public void connectServerFail() {
+        hideProgress();
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
+    }
 }

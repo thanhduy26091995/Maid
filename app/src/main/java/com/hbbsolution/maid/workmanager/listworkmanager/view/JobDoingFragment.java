@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
@@ -26,7 +27,6 @@ import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkMa
 import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPresenter;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -186,5 +186,11 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
             mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;
+    }
+
+    @Override
+    public void connectServerFail() {
+        progressPost.setVisibility(View.GONE);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
     }
 }

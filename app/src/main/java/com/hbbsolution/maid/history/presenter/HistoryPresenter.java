@@ -36,7 +36,7 @@ public class HistoryPresenter {
 
             @Override
             public void onFailure(Call<ChooseWorkResponse> call, Throwable t) {
-                view.getError(t.getMessage());
+                view.connectServerFail();
             }
         });
     }
@@ -55,7 +55,7 @@ public class HistoryPresenter {
 
             @Override
             public void onFailure(Call<ChooseWorkResponse> call, Throwable t) {
-                view.getError(t.getMessage());
+                view.connectServerFail();
             }
         });
     }

@@ -151,7 +151,7 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         // if (isSearch) {
         latitude = getIntent().getDoubleExtra(Constants.LAT, 0);
         longitude = getIntent().getDoubleExtra(Constants.LNG, 0);
-       // Log.d("CLICK2", "" + latitude + "/" + longitude);
+        // Log.d("CLICK2", "" + latitude + "/" + longitude);
         if (isSearch) {
             searchView.setIconified(false);
             searchView.setQuery(getIntent().getStringExtra(Constants.LOCATION_NAME), false);
@@ -162,10 +162,9 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         //event click
         txtSearch.setOnClickListener(this);
 //check internet
-        if (isFromSignIn){
+        if (isFromSignIn) {
             loadData();
-        }
-        else{
+        } else {
             initData();
         }
     }
@@ -370,10 +369,9 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
         taskArounds.clear();
         hideProgress();
         taskArounds = taskAroundResponse.getTaskDatas();
-        if (taskArounds.size() > 0){
+        if (taskArounds.size() > 0) {
             view.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             view.setVisibility(View.GONE);
         }
         //set up recyclerview
@@ -499,5 +497,12 @@ public class JobNearByActivity extends AppCompatActivity implements JobNearByVie
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    public void connectServerFail() {
+        view.setVisibility(View.GONE);
+        hideProgress();
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 }

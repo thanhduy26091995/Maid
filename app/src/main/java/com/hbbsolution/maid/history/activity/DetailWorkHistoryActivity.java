@@ -23,6 +23,7 @@ import com.hbbsolution.maid.history.presenter.CommentHistoryPresenter;
 import com.hbbsolution.maid.history.presenter.DetailWorkPresenter;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 
 import java.text.NumberFormat;
@@ -274,5 +275,10 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             mOutputPrice = getResources().getString(R.string.hourly_pay);
         }
         return mOutputPrice;
+    }
+
+    @Override
+    public void connectServerFail() {
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 }

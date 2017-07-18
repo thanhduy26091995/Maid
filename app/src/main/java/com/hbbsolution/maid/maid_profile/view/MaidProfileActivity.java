@@ -32,6 +32,7 @@ import com.hbbsolution.maid.maid_profile.model.comment_maid.Doc;
 import com.hbbsolution.maid.maid_profile.presenter.MaidProfilePresenter;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
 import com.hbbsolution.maid.utils.SessionManagerUser;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -259,5 +260,11 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
             recy_listTypeJob.setAdapter(typeJobAdapter);
             typeJobAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void connectServerFail() {
+        hideProgress();
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 }

@@ -42,7 +42,7 @@ public class OwnerHistoryPresenter {
 
             @Override
             public void onFailure(Call<OwnerHistoryResponse> call, Throwable t) {
-                mOwnerHistoryView.getInfoOwnerHistoryFail();
+                mOwnerHistoryView.connectServerFail();
                 Log.e("error", t.toString());
             }
         });
@@ -67,7 +67,7 @@ public class OwnerHistoryPresenter {
             @Override
             public void onFailure(Call<OwnerHistoryResponse> call, Throwable t) {
                 Log.e("error", t.toString());
-                mOwnerHistoryView.getInfoOwnerHistoryFail();
+                mOwnerHistoryView.connectServerFail();
             }
         });
     }

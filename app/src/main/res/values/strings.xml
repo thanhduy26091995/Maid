@@ -255,4 +255,5 @@
     <string name="no_internet">No internet connection</string>
 
     <string name="invalid">Invalid Username or Password</string>
+    <string name="connection_error">Failed to connect to the Internet!</string>
 </resources>

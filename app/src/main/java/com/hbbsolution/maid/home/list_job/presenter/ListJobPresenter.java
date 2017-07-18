@@ -36,7 +36,7 @@ public class ListJobPresenter {
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
-                view.getError(t.getMessage());
+                view.connectServerFail();
             }
         });
     }
@@ -55,7 +55,7 @@ public class ListJobPresenter {
 
             @Override
             public void onFailure(Call<TaskResponse> call, Throwable t) {
-                view.getError(t.getMessage());
+                view.connectServerFail();
             }
         });
     }

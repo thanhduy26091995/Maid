@@ -22,22 +22,21 @@ public class JobDetailPresenter {
         mApiService = ApiClient.getClient().create(ApiInterface.class);
     }
 
-    public void chooseWork(String taskId){
+    public void chooseWork(String taskId) {
         Call<ChooseWorkResponse> chooseWorkResponseCall = mApiService.chooseWork(taskId);
         chooseWorkResponseCall.enqueue(new Callback<ChooseWorkResponse>() {
             @Override
             public void onResponse(Call<ChooseWorkResponse> call, Response<ChooseWorkResponse> response) {
                 if (response.isSuccessful()) {
                     mView.chooseWork(response.body());
-                }
-                else {
+                } else {
                     mView.getError(response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<ChooseWorkResponse> call, Throwable t) {
-                mView.getError(t.getMessage());
+                mView.connectServerFail();
             }
         });
     }

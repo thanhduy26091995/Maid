@@ -44,7 +44,7 @@ public class MaidProfilePresenter {
             @Override
             public void onFailure(Call<CommentMaidResponse> call, Throwable t) {
                 Log.e("errors", t.toString());
-                mView.getMessager(t.getMessage());
+                mView.connectServerFail();
             }
         });
     }
@@ -68,7 +68,7 @@ public class MaidProfilePresenter {
             @Override
             public void onFailure(Call<CommentMaidResponse> call, Throwable t) {
                 Log.e("errors", t.toString());
-                mView.getMessager(t.getMessage());
+                mView.connectServerFail();
             }
         });
     }

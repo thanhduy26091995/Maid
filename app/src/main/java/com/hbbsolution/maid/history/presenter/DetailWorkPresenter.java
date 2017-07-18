@@ -10,8 +10,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.hbbsolution.maid.R.id.view;
-
 /**
  * Created by buivu on 04/07/2017.
  */
@@ -39,7 +37,7 @@ public class DetailWorkPresenter {
 
             @Override
             public void onFailure(Call<DirectBillResponse> call, Throwable t) {
-                mView.getError(t.getMessage());
+                mView.connectServerFail();
             }
         });
     }
@@ -58,7 +56,7 @@ public class DetailWorkPresenter {
 
             @Override
             public void onFailure(Call<ChooseWorkResponse> call, Throwable t) {
-                mView.getError(t.getMessage());
+                mView.connectServerFail();
             }
         });
     }
@@ -77,7 +75,7 @@ public class DetailWorkPresenter {
 
             @Override
             public void onFailure(Call<ChooseWorkResponse> call, Throwable t) {
-                mView.getError(t.getMessage());
+                mView.connectServerFail();
             }
         });
     }

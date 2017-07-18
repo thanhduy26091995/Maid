@@ -37,7 +37,7 @@ public class JobNearByPresenter {
 
             @Override
             public void onFailure(Call<TaskAroundResponse> call, Throwable t) {
-                view.getError(t.getMessage());
+                view.connectServerFail();
             }
         });
     }

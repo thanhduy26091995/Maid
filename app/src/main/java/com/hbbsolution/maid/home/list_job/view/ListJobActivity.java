@@ -21,6 +21,7 @@ import com.hbbsolution.maid.model.task.TaskData;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.utils.Constants;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +119,7 @@ public class ListJobActivity extends AuthenticationBaseActivity implements ListJ
     @Override
     public void getTaskByWork(final TaskResponse taskResponse) {
         hideProgress();
-        if (taskResponse.getStatus()){
+        if (taskResponse.getStatus()) {
             mTaskDatas = taskResponse.getData().getTaskDatas();
             listJobAdapter = new ListJobAdapter(ListJobActivity.this, mTaskDatas);
             mRecycler.setLayoutManager(linearLayoutManager);
@@ -153,5 +154,10 @@ public class ListJobActivity extends AuthenticationBaseActivity implements ListJ
     @Override
     public void getError(String error) {
         Log.d("ERROR", error);
+    }
+
+    @Override
+    public void connectServerFail() {
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 }

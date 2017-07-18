@@ -11,11 +11,11 @@ import android.view.MenuItem;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.AuthenticationBaseActivity;
-import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.history.fragment.HistoryViewPagerFragment;
 import com.hbbsolution.maid.history.presenter.HistoryPresenter;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
+import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -167,5 +167,10 @@ public class HistoryActivity extends AuthenticationBaseActivity implements Histo
     @Override
     public void responseCheckToken() {
         super.responseCheckToken();
+    }
+
+    @Override
+    public void connectServerFail() {
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 }

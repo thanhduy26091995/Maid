@@ -10,13 +10,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
@@ -165,5 +163,10 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
     @Override
     public void getError() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void connectServerFail() {
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
     }
 }

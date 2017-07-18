@@ -46,7 +46,7 @@ public class ListWorkPresenter {
             @Override
             public void onFailure(Call<WorkHistoryResponse> call, Throwable t) {
                 Log.e("dsaerror", t.toString());
-                listWorkView.getError();
+                listWorkView.connectServerFail();
             }
         });
     }
@@ -69,6 +69,7 @@ public class ListWorkPresenter {
             @Override
             public void onFailure(Call<WorkHistoryResponse> call, Throwable t) {
                 Log.e("error", t.toString());
+                listWorkView.connectServerFail();
             }
         });
     }

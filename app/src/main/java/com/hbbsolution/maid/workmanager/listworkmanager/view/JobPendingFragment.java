@@ -21,7 +21,6 @@ import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.workmanager.adapter.JobPostAdapter;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPendingActivity;
-import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.presenter.WorkManagerPresenter;
@@ -30,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+
+import static com.hbbsolution.maid.R.id.progressPost;
 
 /**
  * Created by tantr on 6/1/2017.
@@ -54,7 +55,7 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
             rootView = inflater.inflate(R.layout.fragment_job_pending, container, false);
 
             mRecycler = (RecyclerView) rootView.findViewById(R.id.recycler_post);
-            progressBar = (ProgressBar) rootView.findViewById(R.id.progressPost);
+            progressBar = (ProgressBar) rootView.findViewById(progressPost);
             lnNoData = (LinearLayout) rootView.findViewById(R.id.lnNoData);
 
             mSwipeRefreshLayoutSale = (SwipeRefreshLayout) rootView.findViewById(R.id.swip_refresh_job_post);
@@ -162,5 +163,11 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
     @Override
     public void getError() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void connectServerFail() {
+        progressBar.setVisibility(View.GONE);
+        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
     }
 }
