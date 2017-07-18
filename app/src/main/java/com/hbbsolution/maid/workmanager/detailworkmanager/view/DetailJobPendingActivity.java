@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
@@ -38,7 +39,7 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/6/2017.
  */
 
-public class DetailJobPendingActivity extends BaseActivity implements DetailJobPostView, View.OnClickListener {
+public class DetailJobPendingActivity extends AuthenticationBaseActivity implements DetailJobPostView, View.OnClickListener {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.lo_infoOwner)
@@ -159,7 +160,7 @@ public class DetailJobPendingActivity extends BaseActivity implements DetailJobP
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        progressBar.setVisibility(View.VISIBLE);
-                        showProgressDialog();
+                        showProgress();
                         mDetailJobPostPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                     }
                 });
@@ -216,7 +217,7 @@ public class DetailJobPendingActivity extends BaseActivity implements DetailJobP
 
     @Override
     public void displayError(String error) {
-
+        hideProgress();
     }
 
     @Override
@@ -226,7 +227,7 @@ public class DetailJobPendingActivity extends BaseActivity implements DetailJobP
 
     @Override
     public void displayErrorAccceptJobRequested(String error) {
-
+        hideProgress();
     }
 
     @Override
@@ -236,7 +237,7 @@ public class DetailJobPendingActivity extends BaseActivity implements DetailJobP
 
     @Override
     public void displayErrorRefuseJobRequested(String error) {
-
+        hideProgress();
     }
 
 }

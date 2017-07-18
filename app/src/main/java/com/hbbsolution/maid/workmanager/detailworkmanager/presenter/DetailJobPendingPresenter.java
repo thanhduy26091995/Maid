@@ -38,12 +38,14 @@ public class DetailJobPendingPresenter {
                     }
                     Log.d("ERROR", response.message());
                 } catch (Exception e) {
+                    mDetailJobPostView.displayErrorAccceptJobRequested(e.toString());
                 }
 
             }
 
             @Override
             public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+                mDetailJobPostView.displayErrorAccceptJobRequested(t.toString());
                 Log.d("ERROR", t.getMessage());
             }
         });
@@ -60,12 +62,14 @@ public class DetailJobPendingPresenter {
                         mDetailJobPostView.displayNotifyRefuseJobRequested(response.body());
                     }
                 } catch (Exception e) {
+                    mDetailJobPostView.displayErrorRefuseJobRequested(e.toString());
                 }
 
             }
 
             @Override
             public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+                mDetailJobPostView.displayErrorRefuseJobRequested(t.toString());
             }
         });
     }
@@ -83,12 +87,15 @@ public class DetailJobPendingPresenter {
                         mDetailJobPostView.displayNotifyJobPost(response.body());
                     }
                 } catch (Exception e) {
+                    mDetailJobPostView.displayError(e.toString());
                 }
 
             }
 
             @Override
             public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+                mDetailJobPostView.displayError(t.toString());
+
             }
         });
     }

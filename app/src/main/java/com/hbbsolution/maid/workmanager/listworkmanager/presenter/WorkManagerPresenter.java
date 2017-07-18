@@ -36,13 +36,14 @@ public class WorkManagerPresenter {
                         WorkManagerResponse workManagerResponse = response.body();
                             mWorkManagerView.getInfoJob(workManagerResponse);
                     }catch (Exception e){
-//                        mWorkManagerView.getError();
+                        mWorkManagerView.getError();
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<WorkManagerResponse> call, Throwable t) {
+                mWorkManagerView.getError();
                 Log.d("onFailure", t.toString());
             }
         });
@@ -85,12 +86,13 @@ public class WorkManagerPresenter {
                         mWorkManagerView.displayNotifyJobPost(response.body());
                     }
                 }catch (Exception e){
-
+                    mWorkManagerView.getError();
                 }
             }
 
             @Override
             public void onFailure(Call<JobPendingResponse> call, Throwable t) {
+                mWorkManagerView.getError();
                 Log.d("onFailure", t.toString());
             }
         });

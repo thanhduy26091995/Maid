@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'MaidKey'
             keyPassword 'hbbsolutions'
-            storeFile file('D:/KeyStore/Maid.jks')
+            storeFile file('E:/KeyStore/Maid.jks')
             storePassword 'hbbsolutions'
         }
     }
