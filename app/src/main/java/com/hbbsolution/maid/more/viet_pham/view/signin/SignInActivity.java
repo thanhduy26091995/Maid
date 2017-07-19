@@ -24,6 +24,7 @@ import com.hbbsolution.maid.more.viet_pham.MoreView;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.DataUpdateResponse;
 import com.hbbsolution.maid.more.viet_pham.presenter.SignInPresenter;
+import com.hbbsolution.maid.sign_up.view.RegisterActivity;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 
@@ -51,6 +52,9 @@ public class SignInActivity extends BaseActivity implements MoreView
     EditText editUserName;
     @BindView(R.id.edit_password)
     EditText editPassword;
+    @BindView(R.id.bt_sign_up_now)
+    Button btnSignUp;
+
     private SignInPresenter mSignInPresenter;
     private SessionManagerUser sessionManagerUser;
     private HashMap<String, String> hashDataUser = new HashMap<>();
@@ -127,7 +131,13 @@ public class SignInActivity extends BaseActivity implements MoreView
                 startActivity(intentMaidNearBy);
             }
         });
-
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

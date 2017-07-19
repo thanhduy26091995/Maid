@@ -74,6 +74,7 @@
     <string name="sign_up_age">Tuổi</string>
     <string name="sign_up_phone_number">Số điện thoại</string>
     <string name="sign_up_address">Địa chỉ</string>
+    <string name="sign_up">Đăng ký</string>
     <!--signup_screen end-->
 
     <!--profile  start-->
@@ -260,4 +261,5 @@
 
     <string name="invalid">Tên đăng nhập hoặc Mật khẩu không đúng</string>
     <string name="connection_error">Lỗi kết nối mạng</string>
+
 </resources>
