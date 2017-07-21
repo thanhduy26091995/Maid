@@ -75,6 +75,14 @@
     <string name="sign_up_phone_number">Số điện thoại</string>
     <string name="sign_up_address">Địa chỉ</string>
     <string name="sign_up">Đăng ký</string>
+    <string name="sign_up_note">Ghi chú</string>
+    <string name="sign_up_notification">Yêu cầu đã được gửi thành công. Chúng tôi sẽ sớm hồi âm. Xin cảm ơn!</string>
+    <string name="sign_up_fill_name">Vui lòng điền tên</string>
+    <string name="sign_up_fill_email">Vui lòng điền email</string>
+    <string name="sign_up_fill_phone">Vui lòng điền số điện thoại</string>
+    <string name="sign_up_length_phone">Số điện thoại phải có 10 hoặc 11 ký tự</string>
+    <string name="sign_up_email_wrong">Sai định dạng email</string>
+
     <!--signup_screen end-->
 
     <!--profile  start-->
@@ -261,5 +269,10 @@
 
     <string name="invalid">Tên đăng nhập hoặc Mật khẩu không đúng</string>
     <string name="connection_error">Lỗi kết nối mạng</string>
+
+    <string name="confirm_yes">Có</string>
+    <string name="confirm_no">Không</string>
+
+    <string name="confirm_message">Bạn có muốn đăng ký trước khi thoát không?</string>
 
 </resources>

@@ -24,7 +24,7 @@ import com.hbbsolution.maid.more.viet_pham.MoreView;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.DataUpdateResponse;
 import com.hbbsolution.maid.more.viet_pham.presenter.SignInPresenter;
-import com.hbbsolution.maid.sign_up.view.RegisterActivity;
+import com.hbbsolution.maid.sign_up.view.SignUpActivity;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 
@@ -134,7 +134,7 @@ public class SignInActivity extends BaseActivity implements MoreView
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });

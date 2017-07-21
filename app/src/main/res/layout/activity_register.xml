@@ -59,6 +59,8 @@
                 android:fontFamily="@string/font_family_thin"
                 android:hint="@string/sign_up_full_name"
                 android:includeFontPadding="false"
+                android:inputType="text"
+                android:maxLines="1"
                 android:textColor="@android:color/black" />
         </RelativeLayout>
 
@@ -86,7 +88,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/edit_password"
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -122,7 +124,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/edit_confirm_password"
+                android:id="@+id/edt_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -130,7 +132,7 @@
                 android:fontFamily="@string/font_family_thin"
                 android:hint="@string/sign_up_phone_number"
                 android:includeFontPadding="false"
-                android:inputType="numberDecimal"
+                android:inputType="phone"
                 android:textColor="@android:color/black" />
         </RelativeLayout>
 
@@ -154,19 +156,20 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
-                android:text="@string/ic_phone_portr"
+                android:text="@string/ic_document"
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/edt_note"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginLeft="20dp"
                 android:backgroundTint="@android:color/transparent"
                 android:fontFamily="@string/font_family_thin"
-                android:hint="@string/sign_up_phone_number"
+                android:gravity="top"
+                android:hint="@string/sign_up_note"
                 android:includeFontPadding="false"
                 android:maxLines="5"
-                android:text="dmaskldmaslkdmaskldmaslkddasdasdasdasdasdsadasdsadasdasdasdamalk"
                 android:textColor="@android:color/black" />
         </RelativeLayout>
 
@@ -178,14 +181,14 @@
             android:background="@android:color/darker_gray" />
 
         <Button
-            android:id="@+id/button_next"
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             android:background="@color/home_background_history"
-            android:text="@string/sign_up_next"
+            android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="20sp"

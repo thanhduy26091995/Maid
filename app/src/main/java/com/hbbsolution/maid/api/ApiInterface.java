@@ -19,6 +19,7 @@ import com.hbbsolution.maid.more.phuc_tran.model.AboutResponse;
 import com.hbbsolution.maid.more.phuc_tran.model.ContactResponse;
 import com.hbbsolution.maid.more.phuc_tran.model.ForgotPassResponse;
 import com.hbbsolution.maid.more.viet_pham.model.signin_signup.BodyResponse;
+import com.hbbsolution.maid.sign_up.model.SignUpResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.WorkManagerResponse;
 
@@ -133,4 +134,7 @@ public interface ApiInterface {
     @GET("maid/getTaskComment")
     Call<CommentHistoryResponse> checkComment(@Query("task") String idTask);
 
+    @FormUrlEncoded
+    @POST("more/maidRegister")
+    Call<SignUpResponse> maidRegister(@Field("name") String name, @Field("email") String email, @Field("phone") String phone, @Field("note") String note);
 }

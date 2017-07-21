@@ -72,7 +72,14 @@
     <string name="sign_up_age">Age</string>
     <string name="sign_up_phone_number">Phone number</string>
     <string name="sign_up_address">Address</string>
-    <string name="sign_up">Đăng ký</string>
+    <string name="sign_up">Register</string>
+    <string name="sign_up_note">Note</string>
+    <string name="sign_up_notification">Request sent successfully! NGV247 will contact you soon. Thank you!</string>
+    <string name="sign_up_fill_name">Please enter your name</string>
+    <string name="sign_up_fill_email">Please enter your email address</string>
+    <string name="sign_up_fill_phone">Please enter your phone number</string>
+    <string name="sign_up_length_phone">Phone numbers must be 10 or 11 characters long</string>
+    <string name="sign_up_email_wrong">Email format is incorrect</string>
     <!--signup_screen end-->
 
     <!--profile  start-->
@@ -258,4 +265,8 @@
     <string name="invalid">Invalid Username or Password</string>
     <string name="connection_error">Failed to connect to the Internet!</string>
 
+    <string name="confirm_yes">Yes</string>
+    <string name="confirm_no">No</string>
+
+    <string name="confirm_message">Do you want to sign up before leaving?</string>
 </resources>
