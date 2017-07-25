@@ -64,11 +64,11 @@ public class ForgotPassActivity extends AppCompatActivity implements ForgotPassV
                     forgotPasswordPresenter.forgotPassword(edt_email.getText().toString(), edt_username.getText().toString());
                     showProgress();
                 } else if (edt_username.getText().toString().equals("")) {
-                    edt_username.setError(getResources().getString(R.string.usename_empty));
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.usename_empty), ForgotPassActivity.this);
                 } else if (edt_email.getText().toString().equals("")) {
-                    edt_email.setError(getResources().getString(R.string.emai_empty));
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.emai_empty), ForgotPassActivity.this);
                 } else {
-                    edt_email.setError(getResources().getString(R.string.email_wrong));
+                    ShowAlertDialog.showAlert(getResources().getString(R.string.email_wrong), ForgotPassActivity.this);
                 }
             }
         });

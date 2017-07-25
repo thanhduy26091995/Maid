@@ -59,7 +59,7 @@
     <string name="sign_in_user_name">Tên đăng nhập</string>
     <string name="sign_in_password">Mật khẩu</string>
     <string name="sign_in_sign_in">Đăng nhập</string>
-    <string name="sign_in_forget_password">Quên mật khẩu</string>
+    <string name="sign_in_forget_password">Quên mật khẩu?</string>
     <string name="sign_in_sign_now">Đăng ký ngay</string>
     <string name="sign_in_by">Đăng nhập bằng</string>
     <!--signin_screen end-->
