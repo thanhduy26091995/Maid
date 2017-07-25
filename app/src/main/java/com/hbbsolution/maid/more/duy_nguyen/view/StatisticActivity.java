@@ -286,26 +286,28 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void getStatisticSuccess(List<Task> listTask, long total) {
         int i = 0;
-        while (i < listTask.size()) {
-            if (listTask.get(i).getId().equals("000000000000000000000001")) {
-                onCreate = listTask.get(i).getCount();
+        if (listTask != null) {
+            while (i < listTask.size()) {
+                if (listTask.get(i).getId().equals("000000000000000000000001")) {
+                    onCreate = listTask.get(i).getCount();
+                }
+                if (listTask.get(i).getId().equals("000000000000000000000002")) {
+                    pending = listTask.get(i).getCount();
+                }
+                if (listTask.get(i).getId().equals("000000000000000000000003")) {
+                    reserved = listTask.get(i).getCount();
+                }
+                if (listTask.get(i).getId().equals("000000000000000000000004")) {
+                    onDoing = listTask.get(i).getCount();
+                }
+                if (listTask.get(i).getId().equals("000000000000000000000005")) {
+                    done = listTask.get(i).getCount();
+                }
+                if (listTask.get(i).getId().equals("000000000000000000000006")) {
+                    immediate = listTask.get(i).getCount();
+                }
+                i++;
             }
-            if (listTask.get(i).getId().equals("000000000000000000000002")) {
-                pending = listTask.get(i).getCount();
-            }
-            if (listTask.get(i).getId().equals("000000000000000000000003")) {
-                reserved = listTask.get(i).getCount();
-            }
-            if (listTask.get(i).getId().equals("000000000000000000000004")) {
-                onDoing = listTask.get(i).getCount();
-            }
-            if (listTask.get(i).getId().equals("000000000000000000000005")) {
-                done = listTask.get(i).getCount();
-            }
-            if (listTask.get(i).getId().equals("000000000000000000000006")) {
-                immediate = listTask.get(i).getCount();
-            }
-            i++;
         }
         numberPostedTask.setText(String.valueOf(onCreate));
         numberDoingTask.setText(String.valueOf(reserved + onDoing + immediate));
@@ -329,19 +331,18 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         ButterKnife.bind(this).unbind();
     }
 
-    private int setTitle(String title,int positionSpace)
-    {
-        int i = 0,spaceCount = 0;
-        while( i < title.length() && spaceCount <positionSpace ){
-            if( title.charAt(i) == ' ' ) {
+    private int setTitle(String title, int positionSpace) {
+        int i = 0, spaceCount = 0;
+        while (i < title.length() && spaceCount < positionSpace) {
+            if (title.charAt(i) == ' ') {
                 spaceCount++;
             }
             i++;
         }
-        return i-1;
+        return i - 1;
     }
 
-    public String changeCharInPosition(int position, char ch, String str){
+    public String changeCharInPosition(int position, char ch, String str) {
         char[] charArray = str.toCharArray();
         charArray[position] = ch;
         return new String(charArray);
