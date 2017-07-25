@@ -43,7 +43,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
     private WorkHistoryPresenter workHistoryPresenter;
     private TextView tvStartDate, tvEndDate;
     private Calendar cal;
-    private Date startDate, endDate,startDateTemp,endDateTemp;
+    private Date startDate, endDate, startDateTemp, endDateTemp;
     private String strStartDate, strEndDate;
     private int currentPage, currentPageTime;
     private EndlessRecyclerViewScrollListener scrollListener;
@@ -53,6 +53,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
     private ProgressBar progressBar;
     private LinearLayout lnNoData;
     private String tempStartDate, tempEndDate;
+    private boolean getJobTime;
 
     public HistoryJobFragment() {
     }
@@ -88,7 +89,8 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
         getTime();
 
         currentPage = 1;
-        currentPageTime=1;
+        currentPageTime = 1;
+        getJobTime = false;
 
         workHistoryPresenter = new WorkHistoryPresenter(this);
         workHistoryPresenter.getInfoWorkHistory(currentPage, simpleDateFormat.format(endDate));
@@ -134,6 +136,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
 
     @Override
     public void getInfoWorkHistory(List<WorkHistory> listWorkHistory, final int pages) {
+        getJobTime = false;
         mDocList.clear();
         mDocList = listWorkHistory;
         historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
@@ -156,7 +159,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 // presenter.getAllResort(response.getCurrentPage() + 1);
                 //get variables for load more
-                if (currentPage < pages) {
+                if (currentPage < pages && !getJobTime) {
                     workHistoryPresenter.getMoreInfoWorkHistory(currentPage + 1, simpleDateFormat.format(endDate));
                     currentPage++;
                 }
@@ -179,6 +182,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
 
     @Override
     public void getInfoWorkHistoryTime(List<WorkHistory> listWorkHistory, final String startAt, final String endAt, final int pages) {
+        getJobTime = true;
         mDocList.clear();
         mDocList = listWorkHistory;
         historyJobAdapter = new HistoryJobAdapter(getActivity(), mDocList);
@@ -201,7 +205,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                 // presenter.getAllResort(response.getCurrentPage() + 1);
                 //get variables for load more
-                if (currentPageTime < pages) {
+                if (currentPageTime < pages && getJobTime) {
                     workHistoryPresenter.getMoreInfoWorkHistoryTime(startAt, endAt, currentPageTime + 1);
                     currentPageTime++;
                 }
