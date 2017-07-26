@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
-import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
@@ -191,6 +190,6 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     @Override
     public void connectServerFail() {
         progressPost.setVisibility(View.GONE);
-        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
+        //ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
     }
 }
