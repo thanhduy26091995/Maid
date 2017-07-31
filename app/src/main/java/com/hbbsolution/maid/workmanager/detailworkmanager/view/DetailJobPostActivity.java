@@ -19,14 +19,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.AuthenticationBaseActivity;
-import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.presenter.DetailJobPendingPresenter;
 import com.hbbsolution.maid.workmanager.listworkmanager.model.workmanager.Datum;
-import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -108,52 +106,56 @@ public class DetailJobPostActivity extends AuthenticationBaseActivity implements
         final Intent intent = getIntent();
         mDatum = (Datum) intent.getSerializableExtra("mDatum");
 
-        if (!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())) {
-            txtExpired_request_detail_post.setVisibility(View.VISIBLE);
-        } else {
-            txtExpired_request_detail_post.setVisibility(View.GONE);
-            if (mDatum.getProcess().getId().equals("000000000000000000000006")) {
-                txtClearJob.setText(getResources().getString(R.string.denied));
-                rela_confirm_maid.setVisibility(View.VISIBLE);
+        try {
+            if (!WorkTimeValidate.compareDays(mDatum.getInfo().getTime().getEndAt())) {
+                txtExpired_request_detail_post.setVisibility(View.VISIBLE);
             } else {
-                txtClearJob.setText(getResources().getString(R.string.cancel_work));
-                rela_confirm_maid.setVisibility(View.GONE);
+                txtExpired_request_detail_post.setVisibility(View.GONE);
+                if (mDatum.getProcess().getId().equals("000000000000000000000006")) {
+                    txtClearJob.setText(getResources().getString(R.string.denied));
+                    rela_confirm_maid.setVisibility(View.VISIBLE);
+                } else {
+                    txtClearJob.setText(getResources().getString(R.string.cancel_work));
+                    rela_confirm_maid.setVisibility(View.GONE);
+                }
             }
+
+            if (mDatum.getInfo().getTools()) {
+                txtIsTools.setVisibility(View.VISIBLE);
+            } else {
+                txtIsTools.setVisibility(View.GONE);
+            }
+
+
+            txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getName());
+            txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfo().getAddress().getName()));
+            txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
+            txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());
+            txtContent_job_detail_psot.setText(mDatum.getInfo().getDescription());
+            txtPrice_job_detail_post.setText(formatPrice(mDatum.getInfo().getPrice()));
+            txtAddress_detail_post.setText(mDatum.getInfo().getAddress().getName());
+            txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
+            txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWorkLanguage(this, mDatum.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(this, mDatum.getInfo().getTime().getEndAt()));
+            Glide.with(this)
+                    .load(mDatum.getStakeholders().getOwner().getInfo().getImage())
+                    .error(R.drawable.avatar)
+                    .thumbnail(0.5f)
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    .placeholder(R.drawable.avatar)
+                    .dontAnimate()
+                    .into(img_avatarQwner);
+
+            if (mDatum != null && mDatum.getInfo() != null && mDatum.getInfo().getWork() != null && mDatum.getInfo().getWork().getImage() != null) {
+                Glide.with(this).load(mDatum.getInfo().getWork().getImage())
+                        .error(R.drawable.no_image)
+                        .thumbnail(0.5f)
+                        .dontAnimate()
+                        .placeholder(R.drawable.no_image)
+                        .into(imgType_job_detail_post);
+            }
+        } catch (Exception e) {
+
         }
-
-        if (mDatum.getInfo().getTools()) {
-            txtIsTools.setVisibility(View.VISIBLE);
-        } else {
-            txtIsTools.setVisibility(View.GONE);
-        }
-
-
-        txtNameOwner.setText(mDatum.getStakeholders().getOwner().getInfo().getName());
-        txtAddressOwner.setText((mDatum.getStakeholders().getOwner().getInfo().getAddress().getName()));
-        txtTitle_job_detail_post.setText(mDatum.getInfo().getTitle());
-        txtType_job_detail_post.setText(mDatum.getInfo().getWork().getName());
-        txtContent_job_detail_psot.setText(mDatum.getInfo().getDescription());
-        txtPrice_job_detail_post.setText(formatPrice(mDatum.getInfo().getPrice()));
-        txtAddress_detail_post.setText(mDatum.getInfo().getAddress().getName());
-        txtDate_job_detail_post.setText(WorkTimeValidate.getDatePostHistory(mDatum.getInfo().getTime().getEndAt()));
-        txtTime_work_doing_detail_post.setText(WorkTimeValidate.getTimeWorkLanguage(this, mDatum.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(this, mDatum.getInfo().getTime().getEndAt()));
-        Glide.with(this)
-                .load(mDatum.getStakeholders().getOwner().getInfo().getImage())
-                .error(R.drawable.avatar)
-                .thumbnail(0.5f)
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .placeholder(R.drawable.avatar)
-                .dontAnimate()
-                .into(img_avatarQwner);
-
-        Picasso.with(this).load(mDatum.getInfo().getWork().getImage())
-                .error(R.drawable.no_image)
-                .placeholder(R.drawable.no_image)
-                .into(imgType_job_detail_post);
-//        Picasso.with(this).load(mDatum.getStakeholders().getOwner().getInfo().getImage())
-//                .error(R.drawable.avatar)
-//                .placeholder(R.drawable.avatar)
-//                .into(img_avatarQwner);
     }
 
     @Override

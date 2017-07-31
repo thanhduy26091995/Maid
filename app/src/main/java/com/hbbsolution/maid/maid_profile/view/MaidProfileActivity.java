@@ -129,6 +129,7 @@ public class MaidProfileActivity extends AppCompatActivity implements MaidProfil
         mSessionManagerUser = new SessionManagerUser(this);
         maidProfilePresenter = new MaidProfilePresenter(this);
         loadData();
+        mRecycler.setNestedScrollingEnabled(false);
     }
 
     private void showProgress() {

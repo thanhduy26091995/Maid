@@ -248,6 +248,15 @@
                     android:text="Cần một bạn nữ siêng năng dọn phòng ngày sáng thứ tư , sau 9h. Cần một bạn nữ siêng năng dọn phòng ngày sáng thứ tư , sau 9h."
                     android:textColor="@color/colorBlack" />
 
+                <TextView
+                    android:id="@+id/txtIsToolsPending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="@string/tool_work"
+                    android:textColor="@color/home_background_your_tasks" />
             </LinearLayout>
 
             <View
@@ -352,8 +361,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"
-                        android:paddingTop="10dp"
                         android:gravity="top"
+                        android:paddingTop="10dp"
                         android:text="@string/manager_ic_home"
                         android:textColor="@color/home_background_history"
                         android:textSize="@dimen/icon_size" />

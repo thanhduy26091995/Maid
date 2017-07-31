@@ -26,6 +26,9 @@ import com.hbbsolution.maid.model.task.TaskData;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -67,6 +70,8 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
     RelativeLayout relaOwnerProfile;
     @BindView(R.id.rela_choose_work)
     RelativeLayout relaChooseWork;
+    @BindView(R.id.txtIsToolsPending)
+    TextView txtTool;
 
     private String date;
     private String startTime, endTime;
@@ -98,6 +103,13 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
     }
 
     private void loadData() {
+        //check tools
+        if (taskData.getInfo().getTools()) {
+            txtTool.setVisibility(View.VISIBLE);
+        } else {
+            txtTool.setVisibility(View.GONE);
+        }
+
         txtTitle.setText(taskData.getInfo().getWork().getName());
         txtOwnerName.setText(taskData.getStakeholders().getOwner().getInfo().getName());
         txtOwnerAddress.setText(taskData.getStakeholders().getOwner().getInfo().getAddress().getName());
@@ -108,7 +120,7 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
         txtJobName.setText(taskData.getInfo().getTitle());
         txtJobType.setText(taskData.getInfo().getWork().getName());
         txtJobDescription.setText(taskData.getInfo().getDescription());
-        txtJobPrice.setText(String.format("%d VND", taskData.getInfo().getPrice()));
+        txtJobPrice.setText(formatPrice(taskData.getInfo().getPrice()));
         txtAddress.setText(taskData.getInfo().getAddress().getName());
 
         txtDate.setText(WorkTimeValidate.getDatePostHistory(taskData.getInfo().getTime().getStartAt()));
@@ -174,5 +186,15 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
     public void connectServerFail() {
         hideProgress();
         ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
+    }
+
+    private String formatPrice(Integer _Price) {
+        String mOutputPrice = null;
+        if (_Price != null && _Price != 0) {
+            mOutputPrice = String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(_Price));
+        } else if (_Price == 0) {
+            mOutputPrice = getResources().getString(R.string.hourly_pay);
+        }
+        return mOutputPrice;
     }
 }
