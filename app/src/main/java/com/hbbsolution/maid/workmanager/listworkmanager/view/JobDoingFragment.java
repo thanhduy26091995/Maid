@@ -71,6 +71,8 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
     RelativeLayout lo_infoMaidDoing;
 //    @BindView(R.id.swip_refresh_job_doing)
     SwipeRefreshLayout swip_refresh_job_doing;
+    @BindView(R.id.txtIsTools)
+    TextView txtIsTools;
 
     private View rootView;
     private Datum mDatum;
@@ -158,6 +160,12 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
                 .placeholder(R.drawable.no_image)
                 .error(R.drawable.no_image)
                 .into(img_job_type);
+        //check tools
+        if (mDatum.getInfo().getTools()) {
+            txtIsTools.setVisibility(View.VISIBLE);
+        } else {
+            txtIsTools.setVisibility(View.GONE);
+        }
     }
 
     @Override
