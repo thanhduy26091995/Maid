@@ -124,7 +124,7 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
         txtAddress.setText(taskData.getInfo().getAddress().getName());
 
         txtDate.setText(WorkTimeValidate.getDatePostHistory(taskData.getInfo().getTime().getStartAt()));
-        txtDetailTime.setText(WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this,taskData.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this,taskData.getInfo().getTime().getEndAt()));
+        txtDetailTime.setText(WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this, taskData.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(JobDetailActivity.this, taskData.getInfo().getTime().getEndAt()));
     }
 
     @Override
@@ -173,7 +173,11 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
         } else {
-            ShowAlertDialog.showAlert(getResources().getString(R.string.choose_work_failed), JobDetailActivity.this);
+            if (chooseWorkResponse.getMessage().trim().equals("SCHEDULE_DUPLICATED")) {
+                ShowAlertDialog.showAlert(getResources().getString(R.string.schedule_duplicated_choose_maid), JobDetailActivity.this);
+            } else {
+                ShowAlertDialog.showAlert(getResources().getString(R.string.choose_work_failed), JobDetailActivity.this);
+            }
         }
     }
 
