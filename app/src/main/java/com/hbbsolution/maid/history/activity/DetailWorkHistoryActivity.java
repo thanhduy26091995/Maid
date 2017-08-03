@@ -63,6 +63,8 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
     RelativeLayout rlInfo;
     @BindView(R.id.tvContentComment)
     TextView tvContentComment;
+    @BindView(R.id.txtIsTools)
+    TextView txtIsTools;
 
     @BindView(R.id.v_line)
     View vLine;
@@ -116,7 +118,12 @@ public class DetailWorkHistoryActivity extends AppCompatActivity implements View
             tvAddress.setText(doc.getInfo().getAddress().getName());
             tvDate.setText(WorkTimeValidate.getDatePostHistory(doc.getInfo().getTime().getEndAt()));
             tvTime.setText(WorkTimeValidate.getTimeWorkLanguage(DetailWorkHistoryActivity.this,doc.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(DetailWorkHistoryActivity.this,doc.getInfo().getTime().getEndAt()));
-
+            //check tools
+            if (doc.getInfo().getTools()) {
+                txtIsTools.setVisibility(View.VISIBLE);
+            } else {
+                txtIsTools.setVisibility(View.GONE);
+            }
             Glide.with(this).load(doc.getStakeholders().getOwner().getInfo().getImage())
                     .thumbnail(0.5f)
                     .placeholder(R.drawable.avatar)

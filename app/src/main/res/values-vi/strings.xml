@@ -274,5 +274,5 @@
     <string name="confirm_no">Không</string>
 
     <string name="confirm_message">Bạn có muốn đăng ký trước khi thoát không?</string>
-
+    <string name="schedule_duplicated_choose_maid">Ứng viên đã nhận công việc khác trùng khung giờ. Vui lòng chọn lại!</string>
 </resources>
