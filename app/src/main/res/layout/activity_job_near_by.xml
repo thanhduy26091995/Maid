@@ -30,7 +30,7 @@
                 android:layout_gravity="center"
                 android:text="@string/nearby_work"
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp"
+                android:textSize="@dimen/TEXT_SIZE_NORMAL"
                 android:textStyle="bold" />
 
             <TextView
@@ -41,7 +41,7 @@
                 android:layout_marginRight="10dp"
                 android:text="@string/search"
                 android:textColor="@color/home_background_history"
-                android:textSize="@dimen/icon_size_normal" />
+                android:textSize="@dimen/text_size_small" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
