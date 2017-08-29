@@ -270,4 +270,23 @@
 
     <string name="confirm_message">Do you want to sign up before leaving?</string>
     <string name="schedule_duplicated_choose_maid">This applicant has applied for another task at the same time of working. Please choose another!</string>
+
+    <string name="near_by_job_list">List</string>
+    <string name="near_by_job_map">Map</string>
+    <string name="near_by_job_filter">Tìm kiếm nâng cao</string>
+    <string name="near_by_filter_location">Vị trí</string>
+    <string name="near_by_filter_distance">Khoảng cách</string>
+    <string name="near_by_filter_type_job">Loại công việc</string>
+    <string name="near_by_filter_update">Cập nhật</string>
+    <string name="near_by_filter_type_job_all">Tất cả</string>
+
+    <!-- Dialog message start-->
+    <string name="dialog_title">Message</string>
+    <string name="signin_loading">Loading...</string>
+    <string name="dialog_button_confirm_no">No</string>
+    <string name="dialog_button_confirm_yes">Yes</string>
+    <string name="dialog_button_close">Close</string>
+    <!-- Dialog message end-->
+
+    <string name="no_result_found">No results found!</string>
 </resources>

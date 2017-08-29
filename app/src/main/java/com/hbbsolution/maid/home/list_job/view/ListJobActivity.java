@@ -82,7 +82,7 @@ public class ListJobActivity extends AuthenticationBaseActivity implements ListJ
     private void showData() {
         if (InternetConnection.getInstance().isOnline(ListJobActivity.this)) {
             showProgress();
-            presenter.getTaskByWork(lat, lng, maxDistance, workId, 1);
+            presenter.getTaskByWork(lat, lng, maxDistance, workId, 1, 10);
         } else {
             Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_INDEFINITE)
                     .setAction(getResources().getString(R.string.retry), new View.OnClickListener() {
@@ -130,7 +130,7 @@ public class ListJobActivity extends AuthenticationBaseActivity implements ListJ
                 @Override
                 public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                     if (currentPage < taskResponse.getData().getPages()) {
-                        presenter.getMoreTaskByWork(lat, lng, maxDistance, workId, currentPage + 1);
+                        presenter.getMoreTaskByWork(lat, lng, maxDistance, workId, currentPage + 1, 10);
                     }
                 }
             };

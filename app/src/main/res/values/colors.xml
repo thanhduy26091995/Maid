@@ -22,4 +22,24 @@
     <color name="gray">#efeff4</color>
 
     <color name="ratingbarnotactived">#ffde9d</color>
+
+    <color name="grey_400">#BDBDBD</color>
+
+    <color name="transparent_black_70">#4D000000</color>
+
+    <color name="blue_500">#2196F3</color>
+
+    <color name="black">#000000</color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="grey_800">#424242</color>
+
+    <color name="colorGeneral">#f47321</color>
+
+    <color name="grey_200">#EEEEEE</color>
+
+    <color name="yellow_500">#FFEB3B</color>
+
+    <color name="red_500">#F44336</color>
 </resources>

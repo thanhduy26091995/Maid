@@ -60,5 +60,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //notification
     compile 'com.google.firebase:firebase-messaging:10.0.1'
+    compile 'com.daniribalbert:custom-font-lib:0.9.9'
+    //google places api
+    //place
+    compile 'com.google.android.gms:play-services-places:10.0.1'
 }
 apply plugin: 'com.google.gms.google-services'

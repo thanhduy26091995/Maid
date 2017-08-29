@@ -14,7 +14,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
-import com.hbbsolution.maid.home.job_near_by.view.JobNearByMapActivity;
+import com.hbbsolution.maid.home.job_near_by_new_version.view.JobNearByNewActivity;
 import com.hbbsolution.maid.main.presenter.HomePresenter;
 import com.hbbsolution.maid.more.viet_pham.MoreActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
@@ -109,7 +109,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         int id = view.getId();
         switch (id) {
             case R.id.lo_maid_around:
-                transActivity(JobNearByMapActivity.class);
+                transActivity(JobNearByNewActivity.class);
                 finish();
                 break;
             case R.id.lo_your_tasks:

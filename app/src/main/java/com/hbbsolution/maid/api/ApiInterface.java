@@ -11,6 +11,7 @@ import com.hbbsolution.maid.main.model.ResponseRequest;
 import com.hbbsolution.maid.model.announcement.AnnouncementResponse;
 import com.hbbsolution.maid.model.choose_work.ChooseWorkResponse;
 import com.hbbsolution.maid.model.geocodemap.GeoCodeMapResponse;
+import com.hbbsolution.maid.model.job.TypeJobResponse;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.model.task_around.TaskAroundResponse;
 import com.hbbsolution.maid.more.duy_nguyen.model.ReportResponse;
@@ -45,7 +46,7 @@ public interface ApiInterface {
 
     @GET("more/getTaskByWork")
     Call<TaskResponse> getTaskByWork(@Query("lat") Double lat, @Query("lng") Double lng, @Query("maxDistance") Integer maxDistance,
-                                     @Query("work") String workId, @Query("page") int page);
+                                     @Query("work") String workId, @Query("page") int page, @Query("limit") int limit);
 
     @GET("maid/getAllTasks")
     Call<WorkManagerResponse> getInfo(@Query("process") String idProcess, @Query("sortByTaskTime") boolean isSortByTaskTime);
@@ -137,4 +138,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("more/maidRegister")
     Call<SignUpResponse> maidRegister(@Field("name") String name, @Field("email") String email, @Field("phone") String phone, @Field("note") String note);
+
+    @GET("work/getAll")
+    Call<TypeJobResponse> getAllTypeJob();
 }
