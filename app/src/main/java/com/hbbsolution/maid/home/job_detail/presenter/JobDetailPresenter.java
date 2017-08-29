@@ -22,8 +22,8 @@ public class JobDetailPresenter {
         mApiService = ApiClient.getClient().create(ApiInterface.class);
     }
 
-    public void chooseWork(String taskId) {
-        Call<ChooseWorkResponse> chooseWorkResponseCall = mApiService.chooseWork(taskId);
+    public void chooseWork(String taskId,String ownerId) {
+        Call<ChooseWorkResponse> chooseWorkResponseCall = mApiService.chooseWork(taskId,ownerId);
         chooseWorkResponseCall.enqueue(new Callback<ChooseWorkResponse>() {
             @Override
             public void onResponse(Call<ChooseWorkResponse> call, Response<ChooseWorkResponse> response) {

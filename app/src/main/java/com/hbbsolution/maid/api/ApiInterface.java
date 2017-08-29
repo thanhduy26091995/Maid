@@ -76,7 +76,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("task/reserve")
-    Call<ChooseWorkResponse> chooseWork(@Field("id") String taskId);
+    Call<ChooseWorkResponse> chooseWork(@Field("id") String taskId,@Field("ownerId") String ownerId);
 
     @FormUrlEncoded
     @POST("task/acceptRequest")

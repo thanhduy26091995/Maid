@@ -14,6 +14,7 @@ import android.widget.EditText;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.base.BaseActivity;
@@ -156,6 +157,7 @@ public class SignInActivity extends BaseActivity implements MoreView
             hashDataUser = sessionManagerUser.getUserDetails();
             ApiClient.setToken(hashDataUser.get(SessionManagerUser.KEY_TOKEN));
             Log.d("TOKEN", hashDataUser.get(SessionManagerUser.KEY_TOKEN));
+            FirebaseMessaging.getInstance().subscribeToTopic("create-task");
             Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

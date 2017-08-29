@@ -145,7 +145,7 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
         } else if (v == relaChooseWork) {
             if (InternetConnection.getInstance().isOnline(JobDetailActivity.this)) {
                 showProgress();
-                presenter.chooseWork(taskData.getId());
+                presenter.chooseWork(taskData.getId(),taskData.getStakeholders().getOwner().getId());
             } else {
                 Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.noInternet), Snackbar.LENGTH_LONG);
                 snackbar.show();

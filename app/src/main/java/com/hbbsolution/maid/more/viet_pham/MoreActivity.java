@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.maid_profile.view.MaidProfileActivity;
@@ -196,6 +197,7 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
                             public void onClick(DialogInterface dialog, int which) {
                                 // TODO Auto-generated method stub
                                 sessionManagerUser.logoutUser();
+                                FirebaseMessaging.getInstance().unsubscribeFromTopic("create-task");
                                 Intent intent = new Intent(MoreActivity.this, SignInActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
