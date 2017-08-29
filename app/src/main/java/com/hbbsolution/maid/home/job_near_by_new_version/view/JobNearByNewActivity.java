@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.ConfigSingleton;
+import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
 import com.hbbsolution.maid.home.job_near_by_new_version.presenter.JobNearByPresenter;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.model.job.TypeJobResponse;
@@ -47,6 +47,7 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
 
     private JobNearByPresenter mJobNearByPresenter;
     public static final int REQUEST_CODE_INTENT = 5;
+    private FilterModel mFilterModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,6 +105,8 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         if (v == relativeFilter) {
             Intent intent = new Intent(JobNearByNewActivity.this, JobNearByFilterActivity.class);
+            mFilterModel = ListJobFragment.getInstance().getFilterModel();
+            intent.putExtra("FilterModel", mFilterModel);
             startActivityForResult(intent, REQUEST_CODE_INTENT);
         }
     }
@@ -114,19 +117,17 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
 
         if (requestCode == REQUEST_CODE_INTENT && resultCode == RESULT_OK) {
             List<TaskData> taskDatas = (List<TaskData>) data.getSerializableExtra("TaskList");
-            //get intent
-            String mAddress = data.getStringExtra("Location");
-            Integer mDistance = data.getIntExtra("Distance", 1);
+            FilterModel filterModel = (FilterModel) data.getSerializableExtra("FilterModelResult");
             String mTypeJobName = "";
-            if (data.getStringExtra("TypeJob") != null) {
-                mTypeJobName = data.getStringExtra("TypeJob");
+            if (filterModel.getWorkName() != null) {
+                mTypeJobName = filterModel.getWorkName();
             } else {
                 mTypeJobName = getResources().getString(R.string.near_by_filter_type_job_all);
             }
+            ListJobFragment.getInstance().saveFiterData(filterModel);
             //set text
-            Log.d("RESULT", mAddress + "/ " + mDistance + "/ " + mTypeJobName);
             textViewFilter.setText(String.format("%s: %s, %s: %s, %s: %s", getResources().getString(R.string.near_by_filter_location),
-                    mAddress, getResources().getString(R.string.near_by_filter_distance), String.format("%d km", mDistance), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
+                    filterModel.getAddressName(), getResources().getString(R.string.near_by_filter_distance), String.format("%d km", filterModel.getDistance()), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
             if (taskDatas.size() > 0) {
                 ListJobFragment listJobFragment = ListJobFragment.getInstance();
                 listJobFragment.updateList(taskDatas);
@@ -164,7 +165,6 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     public void getAllTypeJob(TypeJobResponse typeJobResponse) {
         ConfigSingleton.getInstance().saveData(typeJobResponse);
     }
-
 
 
     @Override

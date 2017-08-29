@@ -279,6 +279,7 @@
     <string name="near_by_filter_type_job">Loại công việc</string>
     <string name="near_by_filter_update">Cập nhật</string>
     <string name="near_by_filter_type_job_all">Tất cả</string>
+    <string name="near_by_filter_current_location">Hiện tại</string>
 
     <!-- Dialog message start-->
     <string name="dialog_title">Message</string>

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hbbsolution.maid.R;
+import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
 import com.hbbsolution.maid.home.job_near_by_new_version.presenter.ListJobPresenter;
 import com.hbbsolution.maid.home.list_job.ListJobAdapter;
 import com.hbbsolution.maid.model.task.TaskData;
@@ -63,6 +64,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
     private ProgressDialog progressDialog;
 
     public static ListJobFragment listJobFragment = null;
+    private FilterModel filterModel = new FilterModel();
 
     @Nullable
     @Override
@@ -74,6 +76,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
         listJobAdapter = new ListJobAdapter(getActivity(), mTaskDatas);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         loadData();
+        initList();
         return rootView;
     }
 
@@ -310,6 +313,29 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
         mTaskDatas.clear();
         mTaskDatas.addAll(taskDatas);
         listJobAdapter.notifyDataSetChanged();
+    }
+
+
+    private void initList() {
+        filterModel.setLat(latitude);
+        filterModel.setLng(longitude);
+        filterModel.setWorkId(workId);
+        filterModel.setWorkName(getResources().getString(R.string.near_by_filter_type_job_all));
+        filterModel.setDistance(maxDistance);
+        filterModel.setAddressName(getResources().getString(R.string.near_by_filter_current_location));
+    }
+
+    public FilterModel getFilterModel() {
+        return filterModel;
+    }
+
+    public void saveFiterData(FilterModel mFilterModel) {
+        filterModel.setLat(mFilterModel.getLat());
+        filterModel.setLng(mFilterModel.getLng());
+        filterModel.setAddressName(mFilterModel.getAddressName());
+        filterModel.setDistance(mFilterModel.getDistance());
+        filterModel.setWorkName(mFilterModel.getWorkName());
+        filterModel.setWorkId(mFilterModel.getWorkId());
     }
 
     public List<TaskData> getCurrentTaskData() {

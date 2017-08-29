@@ -17,12 +17,12 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.ConfigSingleton;
+import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
 import com.hbbsolution.maid.home.job_near_by_new_version.presenter.ListJobPresenter;
 import com.hbbsolution.maid.model.Item;
 import com.hbbsolution.maid.model.job.TypeJob;
 import com.hbbsolution.maid.model.task.TaskData;
 import com.hbbsolution.maid.model.task.TaskResponse;
-import com.hbbsolution.maid.utils.Constants;
 import com.hbbsolution.maid.utils.messagedialog.DialogResulltItem;
 import com.hbbsolution.maid.utils.messagedialog.MessageDialogHelper;
 import com.hbbsolution.maid.utils.messagedialog.MessageDialogManger;
@@ -66,6 +66,7 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
     private Double mLat = 0.0, mLng = 0.0;
     private String mAddress = null, mTypeJobId, mTypeJobName;
     private ListJobPresenter mListJobPresenter;
+    private FilterModel mFilterModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,11 +88,27 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
         mListJobPresenter = new ListJobPresenter(this);
         //init data
         initDataList();
+        initData();
         //evemt click
         mRelativeDistance.setOnClickListener(this);
         mRelativeLocation.setOnClickListener(this);
         mRelativeTypeJob.setOnClickListener(this);
         mButtonUpdate.setOnClickListener(this);
+    }
+
+    private void initData() {
+        mFilterModel = (FilterModel) getIntent().getSerializableExtra("FilterModel");
+        mTextViewLocation.setText(mFilterModel.getAddressName());
+        mTextViewTypeJob.setText(mFilterModel.getWorkName());
+        mTextViewDistance.setText(String.format("%d km", mFilterModel.getDistance()));
+
+        //get data
+        mLat = mFilterModel.getLat();
+        mLng = mFilterModel.getLng();
+        mDistance = mFilterModel.getDistance();
+        mTypeJobId = mFilterModel.getWorkId();
+        mTypeJobName = mFilterModel.getWorkName();
+        mAddress = mFilterModel.getAddressName();
     }
 
     private void initDataList() {
@@ -199,16 +216,10 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
     public void getTaskByWork(TaskResponse taskResponse) {
         if (taskResponse.getStatus()) {
             //save data
-            Constants.LAT_FILTER = mLat;
-            Constants.LNG_FILTER = mLng;
-            Constants.WORK_ID_FILTER = mTypeJobId;
-            Constants.DISTANCE_FILTER = mDistance;
-
             Intent resultIntent = new Intent();
             resultIntent.putExtra("TaskList", (Serializable) taskResponse.getData().getTaskDatas());
-            resultIntent.putExtra("Location", mAddress);
-            resultIntent.putExtra("Distance", mDistance);
-            resultIntent.putExtra("TypeJob", mTypeJobName);
+            FilterModel filterModel = new FilterModel(mLat, mLng, mAddress, mTypeJobId, mTypeJobName, mDistance);
+            resultIntent.putExtra("FilterModelResult", filterModel);
             setResult(RESULT_OK, resultIntent);
         }
         finish();
