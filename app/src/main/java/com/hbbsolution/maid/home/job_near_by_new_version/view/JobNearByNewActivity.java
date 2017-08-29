@@ -165,6 +165,8 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         ConfigSingleton.getInstance().saveData(typeJobResponse);
     }
 
+
+
     @Override
     public void getError(String error) {
 

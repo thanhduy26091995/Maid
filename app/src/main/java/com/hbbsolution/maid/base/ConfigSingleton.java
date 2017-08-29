@@ -4,6 +4,8 @@ import com.hbbsolution.maid.model.job.TypeJob;
 import com.hbbsolution.maid.model.job.TypeJobResponse;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -36,7 +38,16 @@ public class ConfigSingleton {
         //sort data
 
         //add new data
-        mTypeJobList.addAll(configResponse.getData());
+        mTypeJobList.addAll(compareValueInModel(configResponse.getData()));
+    }
+
+    private List<TypeJob> compareValueInModel(List<TypeJob> list) {
+        Collections.sort(list, new Comparator<TypeJob>() {
+            public int compare(TypeJob obj1, TypeJob obj2) {
+                return Integer.valueOf((int) obj1.getWeight()).compareTo((int) obj2.getWeight()); // To compare integer values
+            }
+        });
+        return list;
     }
 
     public List<TypeJob> getTypeJob() {

@@ -18,7 +18,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.api.ApiClient;
 import com.hbbsolution.maid.base.BaseActivity;
-import com.hbbsolution.maid.home.job_near_by.view.JobNearByActivity;
+import com.hbbsolution.maid.home.job_near_by_new_version.view.JobNearByNewActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.more.phuc_tran.view.ForgotPassActivity;
 import com.hbbsolution.maid.more.viet_pham.MoreView;
@@ -127,7 +127,7 @@ public class SignInActivity extends BaseActivity implements MoreView
         btnWorkAroundHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentMaidNearBy = new Intent(SignInActivity.this, JobNearByActivity.class);
+                Intent intentMaidNearBy = new Intent(SignInActivity.this, JobNearByNewActivity.class);
                 intentMaidNearBy.putExtra("fromSignIn", true);
                 startActivity(intentMaidNearBy);
             }
