@@ -18,7 +18,6 @@ import com.hbbsolution.maid.home.job_near_by_new_version.view.JobNearByNewActivi
 import com.hbbsolution.maid.main.presenter.HomePresenter;
 import com.hbbsolution.maid.more.viet_pham.MoreActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
-import com.hbbsolution.maid.service.BadgeIntentService;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.SessionShortcutBadger;
@@ -63,7 +62,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         sessionShortcutBadger = new SessionShortcutBadger(this);
         sessionShortcutBadger.removeCount();
         ShortcutBadger.removeCount(this); //for 1.1.4+
-        stopService(new Intent(HomeActivity.this,BadgeIntentService.class));
+
         // setup toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -110,7 +109,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
-        stopService(new Intent(HomeActivity.this,BadgeIntentService.class));
     }
 
     @Override

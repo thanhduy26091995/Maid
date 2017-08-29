@@ -28,7 +28,7 @@ import me.leolin.shortcutbadger.ShortcutBadger;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     private NotificationUtils notificationUtils;
-    private int countNotification = 0;
+    private int countNotification;
     private SessionShortcutBadger sessionShortcutBadger;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
