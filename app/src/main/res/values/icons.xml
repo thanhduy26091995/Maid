@@ -50,4 +50,6 @@
     <!--More activity-->
     <string name="ic_share">&#xf3ac;</string>
     <!--More activity-->
+
+    <string name="job_near_by_setting">&#xf2f7;</string>
 </resources>

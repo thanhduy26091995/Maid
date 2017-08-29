@@ -12,4 +12,9 @@ public class Constants {
     public static final String WORK_NAME = "workName";
     public static final String IS_SEARCH = "isSearch";
     public static final String LOCATION_NAME = "locationName";
+
+    public static Double LAT_FILTER = 0.0;
+    public static Double LNG_FILTER = 0.0;
+    public static String WORK_ID_FILTER = "";
+    public static Integer DISTANCE_FILTER = null;
 }

@@ -49,6 +49,8 @@
         <activity android:name=".more.viet_pham.view.signin.ShareCodeActivity" />
         <activity android:name=".more.viet_pham.view.signin.SignInActivity" />
         <activity android:name=".sign_up.view.SignUpActivity" />
+        <activity android:name=".home.job_near_by_new_version.view.JobNearByNewActivity" />
+        <activity android:name=".home.job_near_by_new_version.view.JobNearByFilterActivity" />
 
         <service android:name=".service.MyFirebaseInstanceIDService">
             <intent-filter>
