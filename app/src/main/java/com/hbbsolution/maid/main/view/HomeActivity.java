@@ -18,12 +18,15 @@ import com.hbbsolution.maid.home.job_near_by.view.JobNearByMapActivity;
 import com.hbbsolution.maid.main.presenter.HomePresenter;
 import com.hbbsolution.maid.more.viet_pham.MoreActivity;
 import com.hbbsolution.maid.more.viet_pham.view.signin.SignInActivity;
+import com.hbbsolution.maid.service.BadgeIntentService;
 import com.hbbsolution.maid.utils.SessionManagerForLanguage;
 import com.hbbsolution.maid.utils.SessionManagerUser;
+import com.hbbsolution.maid.utils.SessionShortcutBadger;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, HomeView {
 
@@ -49,13 +52,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private HomePresenter mHomePresenter;
     private SessionManagerForLanguage sessionManagerForLanguage;
     private SessionManagerUser sessionManagerUser;
-
+    private SessionShortcutBadger sessionShortcutBadger;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         checkConnectionInterner();
+        //Clear shortcutBadger
+        sessionShortcutBadger = new SessionShortcutBadger(this);
+        sessionShortcutBadger.removeCount();
+        ShortcutBadger.removeCount(this); //for 1.1.4+
+        stopService(new Intent(HomeActivity.this,BadgeIntentService.class));
         // setup toolbar
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -102,6 +110,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
+        stopService(new Intent(HomeActivity.this,BadgeIntentService.class));
     }
 
     @Override

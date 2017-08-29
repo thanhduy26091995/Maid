@@ -13,12 +13,14 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
+import com.hbbsolution.maid.utils.SessionShortcutBadger;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
 import java.util.List;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 /**
  * Created by buivu on 28/10/2016.
@@ -26,7 +28,8 @@ import de.greenrobot.event.EventBus;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     private NotificationUtils notificationUtils;
-
+    private int countNotification = 0;
+    private SessionShortcutBadger sessionShortcutBadger;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 //        // [START_EXCLUDE]
@@ -42,7 +45,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //        // TODO(developer): Handle FCM messages here.
 //        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
 //        Log.d(TAG, "From: " + remoteMessage.getFrom());
-//
 //        // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             handleNotification(remoteMessage);
@@ -75,6 +77,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     status  = 6: gửi yêu cầu trực tiếp
      */
     private void handleNotification(RemoteMessage remoteMessage) {
+        sessionShortcutBadger = new SessionShortcutBadger(getApplicationContext());
         String status = "";
         status = remoteMessage.getData().get("status");
         if (NotificationUtils.isAppIsInBackground(getApplicationContext())) {
@@ -152,10 +155,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // play notification sound
         NotificationUtils notificationUtils = new NotificationUtils(getApplicationContext());
         notificationUtils.playNotificationSound();
+        if(!sessionShortcutBadger.isCounted()) {
+            sessionShortcutBadger.createCountSession(0);
+        }
+        countNotification = sessionShortcutBadger.getCount();
+        countNotification++;
+        ShortcutBadger.applyCount(getApplicationContext(), countNotification);
+        sessionShortcutBadger.setCount(countNotification);
     }
 
     private int getNotificationIcon(NotificationCompat.Builder notificationBuilder) {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int color = 0x008000;
             notificationBuilder.setColor(color);
