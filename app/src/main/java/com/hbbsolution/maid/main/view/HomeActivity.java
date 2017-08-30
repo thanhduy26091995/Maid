@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.IconTextView;
@@ -172,6 +173,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 sessionManagerUser.logoutUser();
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("create-task");
                 Intent itBackSignIn = new Intent(HomeActivity.this, SignInActivity.class);
                 startActivity(itBackSignIn);
                 finish();
