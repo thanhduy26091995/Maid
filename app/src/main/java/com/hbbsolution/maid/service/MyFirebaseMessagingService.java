@@ -80,11 +80,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         sessionShortcutBadger = new SessionShortcutBadger(getApplicationContext());
         String status = "";
         status = remoteMessage.getData().get("status");
-        if (NotificationUtils.isAppIsInBackground(getApplicationContext())) {
-            pushNotification(remoteMessage);
-        } else {
-            pushNotification(remoteMessage);
-        }
+        pushNotification(remoteMessage);
     }
 
     private void pushNotification(RemoteMessage remoteMessage) {
