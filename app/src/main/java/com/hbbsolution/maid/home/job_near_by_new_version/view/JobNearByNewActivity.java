@@ -142,26 +142,28 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_INTENT && resultCode == RESULT_OK) {
-            List<TaskData> taskDatas = (List<TaskData>) data.getSerializableExtra("TaskList");
-            FilterModel filterModel = (FilterModel) data.getSerializableExtra("FilterModelResult");
-            String mTypeJobName = "";
-            if (filterModel.getWorkName() != null) {
-                mTypeJobName = filterModel.getWorkName();
-            } else {
-                mTypeJobName = getResources().getString(R.string.near_by_filter_type_job_all);
+            try {
+                List<TaskData> taskDatas = (List<TaskData>) data.getSerializableExtra("TaskList");
+                FilterModel filterModel = (FilterModel) data.getSerializableExtra("FilterModelResult");
+                String mTypeJobName = "";
+                if (filterModel.getWorkName() != null) {
+                    mTypeJobName = filterModel.getWorkName();
+                } else {
+                    mTypeJobName = getResources().getString(R.string.near_by_filter_type_job_all);
+                }
+                ListJobFragment.getInstance().saveFiterData(filterModel);
+                //set text
+                textViewFilterAddress.setText(String.format("%s: %s", getResources().getString(R.string.near_by_filter_location),
+                        filterModel.getAddressName()));
+                textViewFilter.setText(String.format("%s: %s" + "\r\n" + "%s: %s", getResources().getString(R.string.near_by_filter_distance), String.format("%d km", filterModel.getDistance()), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
+                ListJobFragment listJobFragment = ListJobFragment.getInstance();
+                listJobFragment.updateList(filterModel);
+                //check nếu đang ở tab 1
+                //if (tabLayout.getSelectedTabPosition() == 1) {
+                ListJobMapFragment.getInstance().updateMap(taskDatas);
+                //}
             }
-            ListJobFragment.getInstance().saveFiterData(filterModel);
-            //set text
-            textViewFilterAddress.setText(String.format("%s: %s", getResources().getString(R.string.near_by_filter_location),
-                    filterModel.getAddressName()));
-            textViewFilter.setText(String.format("%s: %s" + "\r\n" + "%s: %s", getResources().getString(R.string.near_by_filter_distance), String.format("%d km", filterModel.getDistance()), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
-            ListJobFragment listJobFragment = ListJobFragment.getInstance();
-            listJobFragment.updateList(filterModel);
-            //check nếu đang ở tab 1
-            //if (tabLayout.getSelectedTabPosition() == 1) {
-            ListJobMapFragment.getInstance().updateMap(taskDatas);
-            //}
-
+            catch (Exception e){}
         }
     }
 

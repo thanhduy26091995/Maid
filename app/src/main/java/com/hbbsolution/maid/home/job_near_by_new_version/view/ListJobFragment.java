@@ -99,9 +99,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
 
     public void onEvent(Integer sortType) {
         this.sortType = sortType;
-        showProgressDialog();
         currentPage = 1;
-        listJobAdapter = new ListJobAdapter(getActivity(), mTaskDatas);
         listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, currentPage, 10, sortType);
     }
 

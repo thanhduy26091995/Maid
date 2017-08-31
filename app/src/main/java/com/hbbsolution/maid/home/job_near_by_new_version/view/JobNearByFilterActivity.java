@@ -127,6 +127,7 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
             mItemDistance.add(new Item(String.valueOf(i), String.valueOf(i)));
         }
         //save data type job
+        mItemTypeJob.add(new Item(null, getResources().getString(R.string.near_by_filter_type_job_all)));
         for (TypeJob typeJob : ConfigSingleton.getInstance().getTypeJob()) {
             mItemTypeJob.add(new Item(typeJob.getId(), typeJob.getName()));
         }
