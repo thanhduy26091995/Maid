@@ -22,7 +22,7 @@ public class Info_ implements Serializable{
     private String description;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private Long price;
     @SerializedName("address")
     @Expose
     private Address_ address;
@@ -65,11 +65,11 @@ public class Info_ implements Serializable{
         this.description = description;
     }
 
-    public Integer getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

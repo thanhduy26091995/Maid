@@ -192,7 +192,7 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
         ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), this);
     }
 
-    private String formatPrice(Integer _Price) {
+    private String formatPrice(Long _Price) {
         String mOutputPrice = null;
         if (_Price != null && _Price != 0) {
             mOutputPrice = String.format("%s VND", NumberFormat.getNumberInstance(Locale.GERMANY).format(_Price));

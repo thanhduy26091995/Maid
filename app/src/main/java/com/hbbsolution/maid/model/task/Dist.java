@@ -20,4 +20,7 @@ public class Dist implements Serializable{
         this.calculated = calculated;
     }
 
+    public Dist(Double calculated) {
+        this.calculated = calculated;
+    }
 }

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class TaskData implements Serializable{
+public class TaskData implements Serializable {
 
     @SerializedName("_id")
     @Expose
@@ -68,6 +68,9 @@ public class TaskData implements Serializable{
     }
 
     public Dist getDist() {
+        if (this.dist == null) {
+            dist = new Dist(0.0);
+        }
         return dist;
     }
 

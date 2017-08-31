@@ -177,6 +177,8 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
                 mTextViewLocation.setText(mAddress);
                 mLat = place.getLatLng().latitude;
                 mLng = place.getLatLng().longitude;
+
+
             }
             //un-block linear address
             mRelativeLocation.setEnabled(true);
