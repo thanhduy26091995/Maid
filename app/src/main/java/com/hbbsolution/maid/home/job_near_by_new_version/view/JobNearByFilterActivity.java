@@ -35,6 +35,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by buivu on 25/08/2017.
@@ -67,15 +68,25 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
     private String mAddress = null, mTypeJobId, mTypeJobName;
     private ListJobPresenter mListJobPresenter;
     private FilterModel mFilterModel;
+    private int sortType = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_job);
         ButterKnife.bind(this);
+        EventBus.getDefault().registerSticky(this);
         setupComponents();
     }
 
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+    public void onEvent(Integer sortType) {
+        this.sortType = sortType;
+    }
     private void setupComponents() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -139,7 +150,7 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
         } else if (v == mRelativeTypeJob) {
             showDialogChooseItem(dialogTypeJob, getResources().getString(R.string.near_by_filter_type_job), mItemTypeJob);
         } else if (v == mButtonUpdate) {
-            mListJobPresenter.getTaskByWork(mLat, mLng, mDistance, mTypeJobId, 1, 10);
+            mListJobPresenter.getTaskByWork(mLat, mLng, mDistance, mTypeJobId, 1, 10,sortType);
         }
     }
 
@@ -177,8 +188,6 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
                 mTextViewLocation.setText(mAddress);
                 mLat = place.getLatLng().latitude;
                 mLng = place.getLatLng().longitude;
-
-
             }
             //un-block linear address
             mRelativeLocation.setEnabled(true);
@@ -237,6 +246,8 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
         List<TaskData> taskDatas = new ArrayList<>();
         Intent resultIntent = new Intent();
         resultIntent.putExtra("TaskList", (Serializable) taskDatas);
+        FilterModel filterModel = new FilterModel(mLat, mLng, mAddress, mTypeJobId, mTypeJobName, mDistance);
+        resultIntent.putExtra("FilterModelResult", filterModel);
         setResult(RESULT_OK, resultIntent);
         finish();
     }
@@ -246,6 +257,8 @@ public class JobNearByFilterActivity extends BaseActivity implements View.OnClic
         List<TaskData> taskDatas = new ArrayList<>();
         Intent resultIntent = new Intent();
         resultIntent.putExtra("TaskList", (Serializable) taskDatas);
+        FilterModel filterModel = new FilterModel(mLat, mLng, mAddress, mTypeJobId, mTypeJobName, mDistance);
+        resultIntent.putExtra("FilterModelResult", filterModel);
         setResult(RESULT_OK, resultIntent);
         finish();
     }

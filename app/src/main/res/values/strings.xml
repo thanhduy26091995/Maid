@@ -280,7 +280,8 @@
     <string name="near_by_filter_update">Cập nhật</string>
     <string name="near_by_filter_type_job_all">Tất cả</string>
     <string name="near_by_filter_current_location">Hiện tại</string>
-
+    <string name="near_by_filter_current_location_new_posts">New posts</string>
+    <string name="near_by_filter_current_location_start_date">Start date</string>
     <!-- Dialog message start-->
     <string name="dialog_title">Message</string>
     <string name="signin_loading">Loading...</string>

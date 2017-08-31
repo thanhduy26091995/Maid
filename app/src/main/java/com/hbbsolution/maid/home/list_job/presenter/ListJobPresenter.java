@@ -23,7 +23,7 @@ public class ListJobPresenter {
     }
 
     public void getTaskByWork(Double lat, Double lng, Integer maxDistance, String workId, Integer page, Integer limit) {
-        Call<TaskResponse> responseCall = apiInterface.getTaskByWork(lat, lng, maxDistance, workId, page, limit);
+        Call<TaskResponse> responseCall = apiInterface.getTaskByWork(lat, lng, maxDistance, workId, page, limit,1);
         responseCall.enqueue(new Callback<TaskResponse>() {
             @Override
             public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
@@ -42,7 +42,7 @@ public class ListJobPresenter {
     }
 
     public void getMoreTaskByWork(Double lat, Double lng, Integer maxDistance, String workId, Integer page, Integer limit) {
-        Call<TaskResponse> responseCall = apiInterface.getTaskByWork(lat, lng, maxDistance, workId, page, limit);
+        Call<TaskResponse> responseCall = apiInterface.getTaskByWork(lat, lng, maxDistance, workId, page, limit,1);
         responseCall.enqueue(new Callback<TaskResponse>() {
             @Override
             public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {

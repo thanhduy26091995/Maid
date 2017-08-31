@@ -3,12 +3,13 @@ package com.hbbsolution.maid.home.job_near_by_new_version.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,6 +27,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
+
 
 /**
  * Created by buivu on 25/08/2017.
@@ -43,7 +46,12 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     RelativeLayout relativeFilter;
     @BindView(R.id.textView_filter_result)
     TextView textViewFilter;
-
+    @BindView(R.id.textView_filter_result_address)
+    TextView textViewFilterAddress;
+    @BindView(R.id.rdbCreate)
+    RadioButton rdbCreate;
+    @BindView(R.id.rdbStart)
+    RadioButton rdbStart;
 
     private JobNearByPresenter mJobNearByPresenter;
     public static final int REQUEST_CODE_INTENT = 5;
@@ -57,6 +65,20 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         //event click
         setupComponents();
         relativeFilter.setOnClickListener(this);
+        getSortType();
+    }
+
+    private void getSortType() {
+        rdbCreate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    EventBus.getDefault().postSticky(1);
+                } else {
+                    EventBus.getDefault().postSticky(2);
+                }
+            }
+        });
     }
 
     private void setupComponents() {
@@ -64,12 +86,15 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
+        //set title
+        textViewFilterAddress.setText(String.format("%s: %s", getResources().getString(R.string.near_by_filter_location),
+                getResources().getString(R.string.near_by_filter_current_location)));
+        textViewFilter.setText(String.format("%s: %s" + "\r\n" + "%s: %s", getResources().getString(R.string.near_by_filter_distance), String.format("%d km", 5), getResources().getString(R.string.near_by_filter_type_job), getResources().getString(R.string.near_by_filter_type_job_all)));
         //init presenter
         mJobNearByPresenter = new JobNearByPresenter(this);
         mJobNearByPresenter.getAllTypeJob();
         //setup tab layout and view pager
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+
         setupViewPagerUser(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setOffscreenPageLimit(1);
@@ -92,6 +117,7 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
 
             }
         });
+
     }
 
     private void setupViewPagerUser(ViewPager viewPager) {
@@ -119,29 +145,23 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
             List<TaskData> taskDatas = (List<TaskData>) data.getSerializableExtra("TaskList");
             FilterModel filterModel = (FilterModel) data.getSerializableExtra("FilterModelResult");
             String mTypeJobName = "";
-            try {
-                if (filterModel.getWorkName() != null) {
-                    mTypeJobName = filterModel.getWorkName();
-                } else {
-                    mTypeJobName = getResources().getString(R.string.near_by_filter_type_job_all);
-                }
-                ListJobFragment.getInstance().saveFiterData(filterModel);
-                //set text
-                textViewFilter.setText(String.format("%s: %s, %s: %s, %s: %s", getResources().getString(R.string.near_by_filter_location),
-                        filterModel.getAddressName(), getResources().getString(R.string.near_by_filter_distance), String.format("%d km", filterModel.getDistance()), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
-                if (taskDatas.size() > 0) {
-                    ListJobFragment listJobFragment = ListJobFragment.getInstance();
-                    listJobFragment.updateList(taskDatas);
-                    //check nếu đang ở tab 1
-                    //if (tabLayout.getSelectedTabPosition() == 1) {
-                    ListJobMapFragment.getInstance().updateMap(taskDatas);
-                    //}
-                } else {
-                    Snackbar snackbar = Snackbar.make(findViewById(R.id.activity), getResources().getString(R.string.no_result_found), Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                }
+            if (filterModel.getWorkName() != null) {
+                mTypeJobName = filterModel.getWorkName();
+            } else {
+                mTypeJobName = getResources().getString(R.string.near_by_filter_type_job_all);
             }
-            catch (Exception e){}
+            ListJobFragment.getInstance().saveFiterData(filterModel);
+            //set text
+            textViewFilterAddress.setText(String.format("%s: %s", getResources().getString(R.string.near_by_filter_location),
+                    filterModel.getAddressName()));
+            textViewFilter.setText(String.format("%s: %s" + "\r\n" + "%s: %s", getResources().getString(R.string.near_by_filter_distance), String.format("%d km", filterModel.getDistance()), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
+            ListJobFragment listJobFragment = ListJobFragment.getInstance();
+            listJobFragment.updateList(filterModel);
+            //check nếu đang ở tab 1
+            //if (tabLayout.getSelectedTabPosition() == 1) {
+            ListJobMapFragment.getInstance().updateMap(taskDatas);
+            //}
+
         }
     }
 
@@ -173,6 +193,5 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     public void getError(String error) {
 
     }
-
 
 }

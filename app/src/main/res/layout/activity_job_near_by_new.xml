@@ -39,7 +39,9 @@
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:background="@color/color_line_view" />
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
@@ -48,37 +50,85 @@
         app:tabIndicatorColor="@color/home_background_history"
         app:tabSelectedTextColor="@color/home_background_history"
         app:tabTextAppearance="@style/MyCustomTextAppearance"
-        app:tabTextColor="@color/home_background_history" />
+        android:fitsSystemWindows="true"/>
 
-    <RelativeLayout
-        android:id="@+id/relative_filter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/textView_filter_result"
+        <RelativeLayout
+            android:id="@+id/relative_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/ic_setting"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:text="Vị trí: Hiện tại, Khoảng cách: 5km, Loại công việc: Tất cả"
-            android:textSize="@dimen/TEXT_SIZE_NORMAL" />
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_below="@+id/tab_layout">
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:weightSum="2"
+                android:layout_toLeftOf="@+id/ic_setting"
+                android:checkedButton="@+id/rdbCreate">
+                <RadioButton
+                    android:id="@+id/rdbCreate"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/near_by_filter_current_location_new_posts"
+                    android:textColor="@color/home_background_history"
+                    android:clickable="true"/>
+                <RadioButton
+                    android:id="@+id/rdbStart"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/near_by_filter_current_location_start_date"
+                    android:textColor="@color/home_background_history"/>
+            </RadioGroup>
 
-        <com.hbbsolution.maid.base.IconTextView
-            android:id="@+id/ic_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:text="@string/job_near_by_setting"
-            android:textSize="@dimen/icon_size" />
-    </RelativeLayout>
+            <com.hbbsolution.maid.base.IconTextView
+                android:id="@+id/ic_setting"
+                android:layout_width="@dimen/margin_padding_60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center|end"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:paddingRight="@dimen/margin_padding_10dp"
+                android:text="@string/job_near_by_setting"
+                android:textSize="@dimen/icon_size" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:paddingRight="@dimen/margin_padding_10dp"
+            android:layout_below="@+id/relative_filter"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView_filter_result_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Vị trí: Hiện tại"
+                android:textSize="@dimen/TEXT_SIZE_NORMAL" />
+            <TextView
+                android:id="@+id/textView_filter_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Khoảng cách: 5km, Loại công việc: Tất cả"
+                android:textSize="@dimen/TEXT_SIZE_NORMAL"
+                android:layout_marginTop="-4dp"
+               />
 
+        </LinearLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relative_filter"/>
+    </RelativeLayout>
 </LinearLayout>

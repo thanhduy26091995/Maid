@@ -46,7 +46,7 @@ public interface ApiInterface {
 
     @GET("more/getTaskByWork")
     Call<TaskResponse> getTaskByWork(@Query("lat") Double lat, @Query("lng") Double lng, @Query("maxDistance") Integer maxDistance,
-                                     @Query("work") String workId, @Query("page") int page, @Query("limit") int limit);
+                                     @Query("work") String workId, @Query("page") int page, @Query("limit") int limit,@Query("sortType") int sortType);
 
     @GET("maid/getAllTasks")
     Call<WorkManagerResponse> getInfo(@Query("process") String idProcess, @Query("sortByTaskTime") boolean isSortByTaskTime);

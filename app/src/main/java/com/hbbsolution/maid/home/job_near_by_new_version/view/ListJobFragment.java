@@ -2,6 +2,7 @@ package com.hbbsolution.maid.home.job_near_by_new_version.view;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -10,15 +11,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
@@ -27,12 +27,14 @@ import com.hbbsolution.maid.home.list_job.ListJobAdapter;
 import com.hbbsolution.maid.model.task.TaskData;
 import com.hbbsolution.maid.model.task.TaskResponse;
 import com.hbbsolution.maid.utils.EndlessRecyclerViewScrollListener;
-import com.hbbsolution.maid.utils.ShowAlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
+
 import static android.content.Context.LOCATION_SERVICE;
+import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
 /**
  * Created by buivu on 25/08/2017.
@@ -65,19 +67,42 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
 
     public static ListJobFragment listJobFragment = null;
     private FilterModel filterModel = new FilterModel();
-
+    private int sortType = 1;
+    private LinearLayout lnNoData;
     @Nullable
     @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_list_job, container, false);
         listJobFragment = this;
         mRecycler = (RecyclerView) rootView.findViewById(R.id.recycler_list_job);
+        lnNoData = (LinearLayout)rootView.findViewById(R.id.lnNoData) ;
         listJobPresenter = new ListJobPresenter(this);
         listJobAdapter = new ListJobAdapter(getActivity(), mTaskDatas);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         loadData();
         initList();
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        EventBus.getDefault().registerSticky(this);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEvent(Integer sortType) {
+        this.sortType = sortType;
+        showProgressDialog();
+        currentPage = 1;
+        listJobAdapter = new ListJobAdapter(getActivity(), mTaskDatas);
+        listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, currentPage, 10, sortType);
     }
 
     private void showProgressDialog() {
@@ -132,7 +157,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
                 canGetLocation = true;
                 // First get location from Network Provider
                 if (isNetworkEnabled) {
-                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
                         // here to request the missing permissions, and then overriding
@@ -180,7 +205,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
                 if (location != null) {
                     showProgressDialog();
                     Log.d("LATLNG", "" + location.getLatitude() + "/" + location.getLongitude());
-                    listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, 1, 10);
+                    listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, 1, 10, sortType);
                 } else {
                     Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.activity), getResources().getString(R.string.location_not_found), Snackbar.LENGTH_LONG);
                     snackbar.show();
@@ -195,36 +220,12 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
     }
 
     private boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                //TODO:
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-                //Prompt the user once explanation has been shown
-                //(just doing it here for now, note that with this code, no explanation is shown)
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        REQUEST_ID_ACCESS_COARSE_FINE_LOCATION);
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        REQUEST_ID_ACCESS_COARSE_FINE_LOCATION);
-            }
+        int location = checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+        if (location != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ID_ACCESS_COARSE_FINE_LOCATION);
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
     @Override
@@ -233,6 +234,8 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
             case REQUEST_ID_ACCESS_COARSE_FINE_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     loadData();
+                } else {
+
                 }
                 break;
         }
@@ -261,7 +264,8 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
     @Override
     public void connectServerFail() {
         hideProgessDialog();
-        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
+        lnNoData.setVisibility(View.VISIBLE);
+//        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
     }
 
     @Override
@@ -271,7 +275,12 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
             mTaskDatas.clear();
             //update google map
             //  ListJobMapFragment.getInstance().updateMap(taskResponse.getData().getTaskDatas());
-            mTaskDatas.addAll(taskResponse.getData().getTaskDatas());
+            if (taskResponse.getData().getTaskDatas().size() == 0) {
+                lnNoData.setVisibility(View.VISIBLE);
+            } else {
+                mTaskDatas.addAll(taskResponse.getData().getTaskDatas());
+                lnNoData.setVisibility(View.GONE);
+            }
             mRecycler.setLayoutManager(linearLayoutManager);
             mRecycler.setAdapter(listJobAdapter);
             listJobAdapter.notifyDataSetChanged();
@@ -280,7 +289,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
                 @Override
                 public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
                     if (currentPage < taskResponse.getData().getPages()) {
-                        listJobPresenter.getMoreTaskByWork(latitude, longitude, maxDistance, workId, currentPage + 1, 10);
+                        listJobPresenter.getMoreTaskByWork(latitude, longitude, maxDistance, workId, currentPage + 1, 10, sortType);
                     }
                 }
             };
@@ -309,10 +318,13 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
         Log.d("ERROR", error);
     }
 
-    public void updateList(List<TaskData> taskDatas) {
-        mTaskDatas.clear();
-        mTaskDatas.addAll(taskDatas);
-        listJobAdapter.notifyDataSetChanged();
+    public void updateList(FilterModel filterModel) {
+        currentPage = 1;
+        latitude = filterModel.getLat();
+        longitude = filterModel.getLng();
+        workId = filterModel.getWorkId();
+        maxDistance = filterModel.getDistance();
+        listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, currentPage, 10, sortType);
     }
 
 
