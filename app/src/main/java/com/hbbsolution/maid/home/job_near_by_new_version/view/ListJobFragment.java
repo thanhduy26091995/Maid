@@ -9,13 +9,16 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -69,19 +72,44 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
     private FilterModel filterModel = new FilterModel();
     private int sortType = 1;
     private LinearLayout lnNoData;
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Nullable
     @Override
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_list_job, container, false);
         listJobFragment = this;
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefreshLayout);
         mRecycler = (RecyclerView) rootView.findViewById(R.id.recycler_list_job);
-        lnNoData = (LinearLayout)rootView.findViewById(R.id.lnNoData) ;
+        lnNoData = (LinearLayout) rootView.findViewById(R.id.lnNoData);
+
         listJobPresenter = new ListJobPresenter(this);
         listJobAdapter = new ListJobAdapter(getActivity(), mTaskDatas);
         linearLayoutManager = new LinearLayoutManager(getActivity());
         loadData();
         initList();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                currentPage = 1;
+                mRecycler.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        return true;
+                    }
+                });
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, 1, 10, sortType);
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 1500);
+            }
+        });
         return rootView;
     }
 
@@ -263,12 +291,24 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
     public void connectServerFail() {
         hideProgessDialog();
         lnNoData.setVisibility(View.VISIBLE);
+        mRecycler.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
 //        ShowAlertDialog.showAlert(getResources().getString(R.string.connection_error), getActivity());
     }
 
     @Override
     public void getTaskByWork(final TaskResponse taskResponse) {
         hideProgessDialog();
+        mRecycler.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
         if (taskResponse.getStatus()) {
             mTaskDatas.clear();
             //update google map
@@ -313,6 +353,13 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
     @Override
     public void getError(String error) {
         hideProgessDialog();
+        lnNoData.setVisibility(View.VISIBLE);
+        mRecycler.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
         Log.d("ERROR", error);
     }
 

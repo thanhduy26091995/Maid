@@ -1,66 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/activity"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_list_job"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_list_job"
-        android:paddingTop="?attr/actionBarSize"
-        android:clipToPadding="false"/>
-    <LinearLayout
-        android:id="@+id/lnNoData"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="4"
-        android:visibility="gone"
-        android:background="@color/gray"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="5">
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_list_job"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="?attr/actionBarSize"
+                tools:listitem="@layout/item_list_job" />
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/lnNoData"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:layout_weight="1"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/gray"
                 android:orientation="vertical"
-                android:weightSum="2">
+                android:visibility="gone"
+                android:weightSum="4">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:weightSum="5">
 
-                <ImageView
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/icon_nodata" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/icon_nodata" />
+                    android:gravity="center_horizontal"
+                    android:padding="15dp"
+                    android:text="@string/soonupdated" />
             </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:padding="15dp"
-            android:text="@string/soonupdated" />
-    </LinearLayout>
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>
