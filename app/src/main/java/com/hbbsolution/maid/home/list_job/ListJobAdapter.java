@@ -42,6 +42,7 @@ public class ListJobAdapter extends RecyclerView.Adapter<ListJobAdapter.ListJobV
 
     @Override
     public void onBindViewHolder(ListJobViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         final TaskData taskData = mTaskDatas.get(position);
         holder.txtJobName.setText(taskData.getInfo().getTitle());
 
