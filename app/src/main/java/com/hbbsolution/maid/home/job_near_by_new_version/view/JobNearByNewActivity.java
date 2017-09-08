@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
@@ -44,10 +43,6 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     ViewPager viewPager;
     @BindView(R.id.relative_filter)
     RelativeLayout relativeFilter;
-    @BindView(R.id.textView_filter_result)
-    TextView textViewFilter;
-    @BindView(R.id.textView_filter_result_address)
-    TextView textViewFilterAddress;
     @BindView(R.id.rdbCreate)
     RadioButton rdbCreate;
     @BindView(R.id.rdbStart)
@@ -86,11 +81,7 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        //set title
-        textViewFilterAddress.setText(String.format("%s: %s", getResources().getString(R.string.near_by_filter_location),
-                getResources().getString(R.string.near_by_filter_current_location)));
-        textViewFilter.setText(String.format("%s: %s" + "\r\n" + "%s: %s", getResources().getString(R.string.near_by_filter_distance), String.format("%d km", 5), getResources().getString(R.string.near_by_filter_type_job), getResources().getString(R.string.near_by_filter_type_job_all)));
-        //init presenter
+       //init presenter
         mJobNearByPresenter = new JobNearByPresenter(this);
         mJobNearByPresenter.getAllTypeJob();
         //setup tab layout and view pager
@@ -153,9 +144,6 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
                 }
                 ListJobFragment.getInstance().saveFiterData(filterModel);
                 //set text
-                textViewFilterAddress.setText(String.format("%s: %s", getResources().getString(R.string.near_by_filter_location),
-                        filterModel.getAddressName()));
-                textViewFilter.setText(String.format("%s: %s" + "\r\n" + "%s: %s", getResources().getString(R.string.near_by_filter_distance), String.format("%d km", filterModel.getDistance()), getResources().getString(R.string.near_by_filter_type_job), mTypeJobName));
                 ListJobFragment listJobFragment = ListJobFragment.getInstance();
                 listJobFragment.updateList(filterModel);
                 //check nếu đang ở tab 1

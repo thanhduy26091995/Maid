@@ -170,6 +170,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
 
     @Override
     public void getMoreInfoWorkHistory(List<WorkHistory> listWorkHistory) {
+        recyclerView.removeOnScrollListener(scrollListener);
         mDocList.addAll(listWorkHistory);
         historyJobAdapter.notifyDataSetChanged();
         recyclerView.post(new Runnable() {
@@ -178,6 +179,7 @@ public class HistoryJobFragment extends Fragment implements WorkHistoryView {
                 historyJobAdapter.notifyItemRangeInserted(historyJobAdapter.getItemCount(), mDocList.size() - 1);
             }
         });
+        recyclerView.addOnScrollListener(scrollListener);
     }
 
     @Override

@@ -337,6 +337,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
 
     @Override
     public void getMoreTaskByWork(TaskResponse taskResponse) {
+        mRecycler.removeOnScrollListener(endlessRecyclerViewScrollListener);
         currentPage++;
         mTaskDatas.addAll(taskResponse.getData().getTaskDatas());
         //update google map
@@ -348,6 +349,7 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
                 listJobAdapter.notifyItemRangeInserted(listJobAdapter.getItemCount(), mTaskDatas.size() - 1);
             }
         });
+        mRecycler.addOnScrollListener(endlessRecyclerViewScrollListener);
     }
 
     @Override

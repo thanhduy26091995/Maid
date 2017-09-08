@@ -12,10 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -54,7 +54,7 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
     @BindView(R.id.more_title_toothbar)
     TextView txtMore_title_toothbar;
     @BindView(R.id.cardview_statistic)
-    CardView cvStatistic;
+    Button cvStatistic;
     @BindView(R.id.txt_name)
     TextView txtName;
     @BindView(R.id.txt_address)
@@ -66,13 +66,13 @@ public class MoreActivity extends AppCompatActivity implements MoreForAnnounceme
     @BindView(R.id.linearlayout_follow_facebook)
     LinearLayout lnlFollowFacebook;
     @BindView(R.id.lnLogOut)
-    LinearLayout lnLogOut;
+    Button lnLogOut;
     @BindView(R.id.lo_about)
-    RelativeLayout lo_about;
+    LinearLayout lo_about;
     @BindView(R.id.lo_terms1)
-    RelativeLayout lo_terms1;
+    LinearLayout lo_terms1;
     @BindView(R.id.lo_terms)
-    RelativeLayout lo_terms;
+    LinearLayout lo_terms;
     @BindView(R.id.cv_sign_in)
     CardView cvSignIn;
     @BindView(switch_announcement)

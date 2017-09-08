@@ -56,11 +56,14 @@ public class ListJobMapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mMapView = (MapView) rootView.findViewById(R.id.map);
-        if (mMapView != null) {
-            mMapView.onCreate(null);
-            mMapView.onResume();
-            mMapView.getMapAsync(this);
+        try {
+            if (mMapView != null) {
+                mMapView.onCreate(null);
+                mMapView.onResume();
+                mMapView.getMapAsync(this);
+            }
         }
+        catch (Exception e){}
         super.onViewCreated(view, savedInstanceState);
     }
 

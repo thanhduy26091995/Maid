@@ -8,8 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.AuthenticationBaseActivity;
-import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.home.owner_profile.view.OwnerProfileActivity;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
@@ -64,7 +63,7 @@ public class DetailJobPendingActivity extends AuthenticationBaseActivity impleme
     @BindView(R.id.img_TypeJob_pending)
     ImageView imgType_job_detail_post;
     @BindView(R.id.lo_clear_job_pending)
-    LinearLayout lo_clear_job;
+    Button lo_clear_job;
     @BindView(R.id.progressDetailJobPending)
     ProgressBar progressBar;
     @BindView(R.id.txtIsToolsPending)

@@ -9,8 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -65,7 +65,7 @@ public class DetailJobPostActivity extends AuthenticationBaseActivity implements
     @BindView(R.id.imgType_job_detail_post)
     ImageView imgType_job_detail_post;
     @BindView(R.id.lo_clear_job)
-    LinearLayout lo_clear_job;
+    Button lo_clear_job;
     @BindView(R.id.progressPostJob)
     ProgressBar progressBar;
     @BindView(R.id.txtIsTools)
@@ -74,8 +74,6 @@ public class DetailJobPostActivity extends AuthenticationBaseActivity implements
     TextView txtExpired_request_detail_post;
     @BindView(R.id.rela_confirm_maid)
     RelativeLayout rela_confirm_maid;
-    @BindView(R.id.txtClearJob)
-    TextView txtClearJob;
 
     public static Activity mDetailJobPostActivity = null;
 
@@ -112,10 +110,10 @@ public class DetailJobPostActivity extends AuthenticationBaseActivity implements
             } else {
                 txtExpired_request_detail_post.setVisibility(View.GONE);
                 if (mDatum.getProcess().getId().equals("000000000000000000000006")) {
-                    txtClearJob.setText(getResources().getString(R.string.denied));
+                    lo_clear_job.setText(getResources().getString(R.string.denied));
                     rela_confirm_maid.setVisibility(View.VISIBLE);
                 } else {
-                    txtClearJob.setText(getResources().getString(R.string.cancel_work));
+                    lo_clear_job.setText(getResources().getString(R.string.cancel_work));
                     rela_confirm_maid.setVisibility(View.GONE);
                 }
             }

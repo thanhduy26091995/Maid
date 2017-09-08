@@ -4,16 +4,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Button;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
-import com.hbbsolution.maid.base.IconTextView;
+import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
 import com.hbbsolution.maid.home.job_near_by_new_version.view.JobNearByNewActivity;
 import com.hbbsolution.maid.main.presenter.HomePresenter;
@@ -26,28 +23,19 @@ import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, HomeView {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.home_title_toothbar)
-    TextView txtHome_title_toothbar;
     @BindView(R.id.lo_maid_around)
-    RelativeLayout mLayout_MaidAround;
+    Button mLayout_MaidAround;
     @BindView(R.id.lo_your_tasks)
-    RelativeLayout mLayout_YourTasks;
+    Button mLayout_YourTasks;
     @BindView(R.id.lo_history)
-    RelativeLayout mLayout_History;
-    @BindView(R.id.ic_text_view_more)
-    IconTextView iconTextViewMore;
-    @BindView(R.id.txt_work_management)
-    TextView txt_work_management;
-    @BindView(R.id.txt_work_management_history)
-    TextView txt_work_management_history;
-    @BindView(R.id.nearbyJob)
-    TextView txt_nearbyJob;
+    Button mLayout_History;
+    @BindView(R.id.imgAvatar)
+    CircleImageView imgAvatar;
     private boolean isPause = false;
     private HomePresenter mHomePresenter;
     private SessionManagerForLanguage sessionManagerForLanguage;
@@ -64,22 +52,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         sessionShortcutBadger.removeCount();
         ShortcutBadger.removeCount(this); //for 1.1.4+
 
-        // setup toolbar
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
-        txtHome_title_toothbar.setText(getResources().getString(R.string.home_home));
-        sessionManagerForLanguage = new SessionManagerForLanguage(this);
-        String lang = sessionManagerForLanguage.getLanguage();
-        if (lang.equals("Tiếng Việt")) {
-            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(), 2), '\n', txt_nearbyJob.getText().toString()));
-            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(), 2), '\n', txt_work_management.getText().toString()));
-            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(), 2), '\n', txt_work_management_history.getText().toString()));
-        } else {
-            txt_nearbyJob.setText(changeCharInPosition(setTitle(txt_nearbyJob.getText().toString(), 1), '\n', txt_nearbyJob.getText().toString()));
-            txt_work_management.setText(changeCharInPosition(setTitle(txt_work_management.getText().toString(), 1), '\n', txt_work_management.getText().toString()));
-            txt_work_management_history.setText(changeCharInPosition(setTitle(txt_work_management_history.getText().toString(), 1), '\n', txt_work_management_history.getText().toString()));
-        }
-
         // on click
         mLayout_MaidAround.setOnClickListener(this);
         mLayout_YourTasks.setOnClickListener(this);
@@ -87,18 +59,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
         mHomePresenter = new HomePresenter(this);
         mHomePresenter.requestCheckToken();
-        addInits();
         addEvents();
         sessionManagerUser = new SessionManagerUser(HomeActivity.this);
+
+        //Set Avatar
+        ImageLoader.getInstance().loadImageAvatar(HomeActivity.this,sessionManagerUser.getUserDetails().get(SessionManagerUser.KEY_IMAGE),imgAvatar);
     }
 
-    public void addInits() {
-        iconTextViewMore = (IconTextView) findViewById(R.id.ic_text_view_more);
-    }
 
     public void addEvents() {
 
-        iconTextViewMore.setOnClickListener(new View.OnClickListener() {
+        imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 transActivity(MoreActivity.class);
@@ -135,10 +106,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     private void transActivity(Class activity) {
         Intent itTransActivity = new Intent(HomeActivity.this, activity);
         startActivity(itTransActivity);
-    }
-
-    private void ShowToast(String msg) {
-        Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -185,22 +152,5 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void errorConnectService() {
 
-    }
-
-    private int setTitle(String title, int positionSpace) {
-        int i = 0, spaceCount = 0;
-        while (i < title.length() && spaceCount < positionSpace) {
-            if (title.charAt(i) == ' ') {
-                spaceCount++;
-            }
-            i++;
-        }
-        return i - 1;
-    }
-
-    public String changeCharInPosition(int position, char ch, String str) {
-        char[] charArray = str.toCharArray();
-        charArray[position] = ch;
-        return new String(charArray);
     }
 }

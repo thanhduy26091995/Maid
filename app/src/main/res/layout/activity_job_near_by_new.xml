@@ -34,14 +34,10 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/color_line_view" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
@@ -98,33 +94,6 @@
                 android:text="@string/job_near_by_setting"
                 android:textSize="@dimen/icon_size" />
         </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:paddingLeft="@dimen/margin_padding_10dp"
-            android:paddingRight="@dimen/margin_padding_10dp"
-            android:layout_below="@+id/relative_filter"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/textView_filter_result_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Vị trí: Hiện tại"
-                android:textSize="@dimen/TEXT_SIZE_NORMAL" />
-            <TextView
-                android:id="@+id/textView_filter_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="Khoảng cách: 5km, Loại công việc: Tất cả"
-                android:textSize="@dimen/TEXT_SIZE_NORMAL"
-                android:layout_marginTop="-4dp"
-               />
-
-        </LinearLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"

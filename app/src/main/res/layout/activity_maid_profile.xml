@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -17,16 +19,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@android:color/darker_gray" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray"
-                android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:paddingTop="15dp">
@@ -34,13 +29,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/comment" />
+                    android:textStyle="bold"
+                    android:text="@string/comment"
+                    android:textColor="@color/grey_800"/>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@android:color/darker_gray" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_comment"
@@ -102,7 +94,8 @@
         android:id="@+id/info_user_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -140,13 +133,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/img_blur_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="190dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/blur_bg_profile" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -176,7 +162,7 @@
                             android:id="@+id/txtNameInfoMaid"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/margin_padding_05dp"
                             android:gravity="center"
                             android:text="Nguyển Văn A"
                             android:textColor="@android:color/black"
@@ -190,7 +176,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerInParent="true"
                             android:layout_gravity="center"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/margin_padding_05dp"
                             android:numStars="5"
                             android:rating="4"
                             android:stepSize="1"
@@ -201,7 +187,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:weightSum="4">
@@ -355,22 +340,21 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
+                    android:layout_marginLeft="@dimen/margin_padding_20dp"
                     android:background="@android:color/darker_gray" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/more_background"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="@dimen/margin_padding_15dp"
                     android:paddingTop="20dp"
                     android:text="@string/work_capability"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/grey_800"
+                    android:textStyle="bold"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:weightSum="4">

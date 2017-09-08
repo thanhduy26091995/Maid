@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -41,8 +40,6 @@ import butterknife.ButterKnife;
 public class SignInActivity extends BaseActivity implements MoreView
 //        , GoogleApiClient.OnConnectionFailedListener
 {
-    @BindView(R.id.toobar)
-    Toolbar toolbar;
     @BindView(R.id.bt_work_around_here)
     Button btnWorkAroundHere;
     @BindView(R.id.bt_sign_in)
@@ -73,9 +70,6 @@ public class SignInActivity extends BaseActivity implements MoreView
         checkConnectionInterner();
 
         sessionManagerUser = new SessionManagerUser(this);
-        toolbar.setTitle("");
-
-        setSupportActionBar(toolbar);
 
 //        getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);

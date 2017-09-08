@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -69,7 +70,7 @@ public class JobDetailActivity extends AuthenticationBaseActivity implements Vie
     @BindView(R.id.rela_owner_profile)
     RelativeLayout relaOwnerProfile;
     @BindView(R.id.rela_choose_work)
-    RelativeLayout relaChooseWork;
+    Button relaChooseWork;
     @BindView(R.id.txtIsToolsPending)
     TextView txtTool;
 
