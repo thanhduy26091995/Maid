@@ -10,11 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.ConfigSingleton;
+import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
 import com.hbbsolution.maid.home.job_near_by_new_version.presenter.JobNearByPresenter;
 import com.hbbsolution.maid.main.view.HomeActivity;
@@ -41,13 +41,12 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     TabLayout tabLayout;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
-    @BindView(R.id.relative_filter)
-    RelativeLayout relativeFilter;
     @BindView(R.id.rdbCreate)
     RadioButton rdbCreate;
     @BindView(R.id.rdbStart)
     RadioButton rdbStart;
-
+    @BindView(R.id.ic_setting)
+    IconTextView ic_setting;
     private JobNearByPresenter mJobNearByPresenter;
     public static final int REQUEST_CODE_INTENT = 5;
     private FilterModel mFilterModel;
@@ -59,7 +58,7 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         ButterKnife.bind(this);
         //event click
         setupComponents();
-        relativeFilter.setOnClickListener(this);
+        ic_setting.setOnClickListener(this);
         getSortType();
     }
 
@@ -120,7 +119,7 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if (v == relativeFilter) {
+        if (v == ic_setting) {
             Intent intent = new Intent(JobNearByNewActivity.this, JobNearByFilterActivity.class);
             mFilterModel = ListJobFragment.getInstance().getFilterModel();
             intent.putExtra("FilterModel", mFilterModel);

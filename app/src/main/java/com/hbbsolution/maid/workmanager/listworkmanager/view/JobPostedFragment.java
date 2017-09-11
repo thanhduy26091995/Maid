@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.utils.ShowAlertDialog;
+import com.hbbsolution.maid.utils.WorkTimeValidate;
 import com.hbbsolution.maid.workmanager.adapter.JobPostAdapter;
 import com.hbbsolution.maid.workmanager.detailworkmanager.model.JobPendingResponse;
 import com.hbbsolution.maid.workmanager.detailworkmanager.view.DetailJobPostActivity;
@@ -42,6 +43,9 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
     private LinearLayout lnNoData;
     private WorkManagerPresenter mWorkManagerPresenter;
     private List<Datum> mJobList = new ArrayList<>();
+    private List<Datum> mJobListExpire = new ArrayList<>();
+    private List<Datum> mJobListPost = new ArrayList<>();
+    private Datum job;
     private JobPostAdapter mJobPostAdapter;
     private RecyclerView mRecycler;
     private ProgressBar progressBar;
@@ -94,6 +98,19 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
             mRecycler.setVisibility(View.VISIBLE);
             mRecycler.setHasFixedSize(true);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+            for (Datum job : mJobList){
+                if (!WorkTimeValidate.compareDays(job.getInfo().getTime().getEndAt()))
+                {
+                    mJobListExpire.add(job);
+                }
+                else
+                {
+                    mJobListPost.add(job);
+                }
+            }
+            mJobListPost.addAll(mJobListExpire);
+            mJobList.clear();
+            mJobList.addAll(mJobListPost);
             mJobPostAdapter = new JobPostAdapter(getActivity(), mJobList, 1);
             mRecycler.setLayoutManager(linearLayoutManager);
             mRecycler.setAdapter(mJobPostAdapter);
