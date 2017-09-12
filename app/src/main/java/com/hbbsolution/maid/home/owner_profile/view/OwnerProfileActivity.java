@@ -29,8 +29,7 @@ import butterknife.ButterKnife;
 public class OwnerProfileActivity extends AuthenticationBaseActivity implements View.OnClickListener {
     @BindView(R.id.toolbar_header)
     Toolbar toolbar_header;
-    @BindView(R.id.img_blur_image)
-    ImageView imgBlurImage;
+
     @BindView(R.id.txt_profile_name)
     TextView txtNameInfoMaid;
     @BindView(R.id.txt_profile_gender)

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -48,13 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/img_blur_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -65,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp">
+                        android:layout_marginTop="@dimen/margin_padding_20dp">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="96dp"
@@ -86,7 +78,7 @@
                         android:id="@+id/txt_profile_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="@dimen/margin_padding_05dp"
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/text_size_large" />
@@ -99,7 +91,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/margin_padding_05dp"
                         android:numStars="5"
                         android:rating="5"
                         android:stepSize="1"
@@ -110,7 +102,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/margin_padding_10dp"
                 android:paddingBottom="10dp"
                 android:paddingTop="5dp"
                 android:weightSum="4">
@@ -221,7 +213,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="@dimen/margin_padding_20dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
@@ -231,7 +223,7 @@
                 android:paddingBottom="5dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="5dp">
+                android:paddingTop="@dimen/margin_padding_10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -251,12 +243,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/more_background"
                 android:paddingBottom="10dp"
                 android:paddingLeft="20dp"
                 android:paddingTop="20dp"
                 android:text="@string/comment"
-                android:textColor="@color/colorBlack" />
+                android:textColor="@color/grey_800"
+                android:textStyle="bold"/>
 
             <View
                 android:layout_width="match_parent"
@@ -273,7 +265,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
-                android:layout_marginTop="5dp"
                 android:background="@android:color/darker_gray" />
         </LinearLayout>
 

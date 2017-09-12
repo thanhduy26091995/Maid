@@ -7,25 +7,29 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_app_720"
     tools:context="com.hbbsolution.maid.main.view.HomeActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBlack_transparent"/>
+        android:background="@color/colorBlack_transparent" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/space_256"
         android:layout_height="@dimen/space_256"
-        android:src="@color/colorWhite"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/margin_padding_20dp"
         android:layout_marginTop="@dimen/margin_padding_20dp"
-        android:layout_alignParentRight="true"/>
+        android:src="@color/colorWhite" />
+
     <RelativeLayout
         android:id="@+id/rlAvatar"
         android:layout_width="@dimen/space_256"
         android:layout_height="@dimen/space_256"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/margin_padding_20dp"
         android:layout_marginTop="@dimen/margin_padding_20dp"
-        android:layout_alignParentRight="true"
         android:padding="2dp">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAvatar"
             android:layout_width="match_parent"
@@ -35,12 +39,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/margin_padding_30dp"
-        android:layout_marginRight="@dimen/margin_padding_30dp"
+        android:layout_below="@id/rlAvatar"
+        android:layout_marginLeft="@dimen/margin_padding_40dp"
+        android:layout_marginRight="@dimen/margin_padding_40dp"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/margin_padding_40dp"
-        android:layout_below="@id/rlAvatar">
+        android:paddingBottom="@dimen/margin_padding_40dp">
 
 
         <Button

@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_app_720"
+    android:gravity="center_vertical"
     android:orientation="vertical"
-    android:padding="@dimen/margin_padding_30dp"
-    android:gravity="center_vertical">
+    android:padding="@dimen/margin_padding_30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,8 +15,7 @@
         android:orientation="vertical"
         android:paddingLeft="@dimen/margin_padding_20dp"
         android:paddingRight="@dimen/margin_padding_20dp"
-        android:layout_marginBottom="@dimen/margin_padding_20dp"
-        android:paddingTop="@dimen/margin_padding_40dp">
+        android:paddingTop="@dimen/margin_padding_30dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,7 +30,6 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
-
                     android:src="@mipmap/icon_logo_test" />
 
                 <Button
@@ -42,8 +40,7 @@
                     android:background="@drawable/background_button_yellow"
                     android:text="@string/home_maid_around"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorWhite"
-                    />
+                    android:textColor="@color/colorWhite" />
             </LinearLayout>
         </FrameLayout>
 
@@ -63,10 +60,10 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/sign_in_user_name"
-                    android:textColorHint="@color/colorAccent"
                     android:layout_marginLeft="@dimen/margin_padding_20dp"
-                    android:layout_marginRight="@dimen/margin_padding_20dp">
+                    android:layout_marginRight="@dimen/margin_padding_20dp"
+                    android:hint="@string/sign_in_user_name"
+                    android:textColorHint="@color/colorAccent">
 
                     <EditText
                         android:id="@+id/edit_username"
@@ -89,10 +86,10 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColorHint="@color/colorAccent"
-                    android:theme="@style/EditTextHint"
                     android:layout_marginLeft="@dimen/margin_padding_20dp"
-                    android:layout_marginRight="@dimen/margin_padding_20dp">
+                    android:layout_marginRight="@dimen/margin_padding_20dp"
+                    android:textColorHint="@color/colorAccent"
+                    android:theme="@style/EditTextHint">
 
                     <EditText
                         android:id="@+id/edit_password"
