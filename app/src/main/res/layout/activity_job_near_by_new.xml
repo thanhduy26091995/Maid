@@ -33,70 +33,109 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/color_line_view" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        app:tabIndicatorColor="@color/home_background_history"
-        app:tabSelectedTextColor="@color/home_background_history"
-        app:tabTextAppearance="@style/MyCustomTextAppearance"
-        android:fitsSystemWindows="true"/>
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:fitsSystemWindows="true"
+            app:tabIndicatorColor="@color/home_background_history"
+            app:tabSelectedTextColor="@color/home_background_history"
+            app:tabTextAppearance="@style/MyCustomTextAppearance" />
 
         <RelativeLayout
             android:id="@+id/relative_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:orientation="horizontal"
+            android:layout_below="@+id/tab_layout"
             android:gravity="center_vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_below="@+id/tab_layout">
+            android:orientation="horizontal"
+            android:padding="5dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_gravity="center_vertical"
-                android:weightSum="2"
                 android:layout_toLeftOf="@+id/ic_setting"
-                android:checkedButton="@+id/rdbCreate">
+                android:checkedButton="@+id/rdbCreate"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <RadioButton
                     android:id="@+id/rdbCreate"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
                     android:text="@string/near_by_filter_current_location_new_posts"
-                    android:textColor="@color/home_background_history"
-                    android:clickable="true"/>
+                    android:textColor="@color/home_background_history" />
+
                 <RadioButton
                     android:id="@+id/rdbStart"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="@string/near_by_filter_current_location_start_date"
-                    android:textColor="@color/home_background_history"/>
+                    android:textColor="@color/home_background_history" />
             </RadioGroup>
 
             <com.hbbsolution.maid.base.IconTextView
                 android:id="@+id/ic_setting"
                 android:layout_width="@dimen/margin_padding_60dp"
                 android:layout_height="wrap_content"
-                android:gravity="center|end"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
+                android:gravity="center|end"
                 android:paddingRight="@dimen/margin_padding_10dp"
                 android:text="@string/job_near_by_setting"
                 android:textSize="@dimen/icon_size" />
         </RelativeLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/relative_filter"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/relative_filter"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/margin_padding_10dp"
+            android:paddingRight="@dimen/margin_padding_10dp">
+
+            <TextView
+                android:id="@+id/textView_filter_result_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Vị trí: Hiện tại"
+                android:textSize="@dimen/TEXT_SIZE_NORMAL" />
+
+            <TextView
+                android:id="@+id/textView_filter_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-4dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Khoảng cách: 5km, Loại công việc: Tất cả"
+                android:textSize="@dimen/TEXT_SIZE_NORMAL" />
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relative_filter" />
     </RelativeLayout>
 </LinearLayout>

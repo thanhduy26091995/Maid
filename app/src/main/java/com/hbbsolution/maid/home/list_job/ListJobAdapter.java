@@ -54,7 +54,7 @@ public class ListJobAdapter extends RecyclerView.Adapter<ListJobAdapter.ListJobV
             holder.txtJobDistance.setText(String.format("%d km", (Math.round(taskData.getDist().getCalculated() / 1000) * 100) / 100));
         }
         holder.txtDate.setText(WorkTimeValidate.getDatePostHistory(taskData.getInfo().getTime().getStartAt()));
-        holder.txtDetailTime.setText(WorkTimeValidate.getTimeWorkLanguage(mActivity,taskData.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(mActivity,taskData.getInfo().getTime().getEndAt()));
+        holder.txtDetailTime.setText(WorkTimeValidate.getTimeWorkLanguage(mActivity, taskData.getInfo().getTime().getStartAt()) + " - " + WorkTimeValidate.getTimeWorkLanguage(mActivity, taskData.getInfo().getTime().getEndAt()));
         //load image
         if (taskData.getInfo().getWork().getImage() != "") {
             ImageLoader.getInstance().loadImageOther(mActivity, taskData.getInfo().getWork().getImage(),
