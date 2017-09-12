@@ -77,7 +77,6 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
 
     @Nullable
     @Override
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_list_job, container, false);
         listJobFragment = this;

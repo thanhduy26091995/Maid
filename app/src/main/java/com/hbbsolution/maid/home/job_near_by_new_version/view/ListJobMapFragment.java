@@ -85,23 +85,26 @@ public class ListJobMapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void updateMap(GoogleMap googleMap, List<TaskData> mTaskData) {
-        googleMap.clear();
-        int countLengthMaid = 0;
-        for (TaskData taskData : mTaskData) {
-            if (countLengthMaid == 0) {
+        try {
+            googleMap.clear();
+            int countLengthMaid = 0;
+            for (TaskData taskData : mTaskData) {
+                if (countLengthMaid == 0) {
+                    double lat = taskData.getInfo().getAddress().getCoordinates().getLat();
+                    Double lng = taskData.getInfo().getAddress().getCoordinates().getLng();
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 15));
+                }
+                countLengthMaid++;
                 double lat = taskData.getInfo().getAddress().getCoordinates().getLat();
                 Double lng = taskData.getInfo().getAddress().getCoordinates().getLng();
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 15));
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).position(new LatLng(lat, lng));
+                Marker currentMarker = googleMap.addMarker(markerOptions);
+                myMarkerHashMap.put(currentMarker, taskData);
+                markerLoadImage.put(currentMarker.getId(), false);
+                googleMap.setInfoWindowAdapter(new MarkerInfoWindowAdapter(getActivity(), myMarkerHashMap, markerLoadImage, googleMap));
             }
-            countLengthMaid++;
-            double lat = taskData.getInfo().getAddress().getCoordinates().getLat();
-            Double lng = taskData.getInfo().getAddress().getCoordinates().getLng();
-            MarkerOptions markerOptions = new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).position(new LatLng(lat, lng));
-            Marker currentMarker = googleMap.addMarker(markerOptions);
-            myMarkerHashMap.put(currentMarker, taskData);
-            markerLoadImage.put(currentMarker.getId(), false);
-            googleMap.setInfoWindowAdapter(new MarkerInfoWindowAdapter(getActivity(), myMarkerHashMap, markerLoadImage, googleMap));
         }
+        catch (Exception e){}
     }
 }

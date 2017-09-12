@@ -58,4 +58,6 @@
     <string name="ic_list_outline">&#xf391;</string>
     <string name="ic_person">&#xf47e;</string>
     <string name="ic_mail_outline">&#xf422;</string>
+
+    <string name="ic_follow">&#xf39e;</string>
 </resources>
