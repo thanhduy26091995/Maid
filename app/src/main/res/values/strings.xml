@@ -291,4 +291,6 @@
     <!-- Dialog message end-->
 
     <string name="no_result_found">No results found!</string>
+
+    <string name="delete">Xóa</string>
 </resources>

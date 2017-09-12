@@ -296,4 +296,6 @@
     <!-- Dialog message end-->
 
     <string name="no_result_found">Không tìm thấy kết quả</string>
+
+    <string name="delete">Xóa</string>
 </resources>

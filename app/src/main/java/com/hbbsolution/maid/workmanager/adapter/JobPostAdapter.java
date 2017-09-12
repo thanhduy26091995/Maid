@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.swipe.SwipeLayout;
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
@@ -117,22 +118,40 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
 
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (callback != null) {
+//                    callback.onItemClickDetail(mDatum);
+//                }
+//            }
+//        });
+//
+//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                if (callback != null) {
+//                    callback.onItemLongClick(mDatum);
+//                }
+//                return true;
+//            }
+//        });
+
+        holder.linearData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (callback != null) {
-                    callback.onItemClick(mDatum);
+                    callback.onItemClickDetail(mDatum);
                 }
             }
         });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.linearDelete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
+            public void onClick(View v) {
                 if (callback != null) {
-                    callback.onItemLongClick(mDatum);
+                    callback.onItemClickDelete(mDatum);
                 }
-                return true;
             }
         });
     }
@@ -146,7 +165,10 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
         private TextView txtTimePostHistory, txtDatePostHistory, txtTimeDoingPost,
                 txtTitleJobPost, txtExpired, txtType, txtRequestDirect;
         private ImageView imgTypeJobPost;
-        private LinearLayout lo_background;
+        private LinearLayout lo_background ;
+
+        private SwipeLayout swipeLayout;
+        private LinearLayout linearData, linearDelete;
 
         public JobPostViewHolder(View itemView) {
             super(itemView);
@@ -159,6 +181,16 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
             lo_background = (LinearLayout) itemView.findViewById(R.id.lo_background);
             txtType = (TextView) itemView.findViewById(R.id.txtType);
             txtRequestDirect = (TextView) itemView.findViewById(R.id.txtExpired_request_direct_detail);
+
+            swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe_post);
+            linearData = (LinearLayout) itemView.findViewById(R.id.linear_data);
+            linearDelete = (LinearLayout) itemView.findViewById(R.id.bottom_delete);
+
+            //config swipe
+            swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
+            swipeLayout.addDrag(SwipeLayout.DragEdge.Left, itemView.findViewById(R.id.bottom_delete));
+            swipeLayout.setRightSwipeEnabled(true);
+            swipeLayout.setLeftSwipeEnabled(false);
         }
     }
 
@@ -174,7 +206,9 @@ public class JobPostAdapter extends RecyclerView.Adapter<JobPostAdapter.JobPostV
     }
 
     public interface Callback {
-        void onItemClick(Datum mDatum);
+        void onItemClickDetail(Datum mDatum);
+
+        void onItemClickDelete(Datum mDatum);
 
         void onItemLongClick(Datum mDatum);
     }

@@ -119,10 +119,16 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
 
             mJobPostAdapter.setCallback(new JobPostAdapter.Callback() {
                 @Override
-                public void onItemClick(Datum mDatum) {
+                public void onItemClickDetail(Datum mDatum) {
                     Intent itDetailJobPost = new Intent(getActivity(), DetailJobPostActivity.class);
                     itDetailJobPost.putExtra("mDatum", mDatum);
                     startActivity(itDetailJobPost);
+                }
+
+                @Override
+                public void onItemClickDelete(Datum mDatum) {
+                    progressBar.setVisibility(View.GONE);
+                    mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                 }
 
                 @Override

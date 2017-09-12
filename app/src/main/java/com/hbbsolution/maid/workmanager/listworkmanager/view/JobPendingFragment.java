@@ -90,7 +90,7 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
         progressBar.setVisibility(View.GONE);
 //        EventBus.getDefault().postSticky(mExample.getData().size());
         mJobList = mExample.getData();
-        if (mJobList.size() > 0){
+        if (mJobList.size() > 0) {
             lnNoData.setVisibility(View.GONE);
             mRecycler.setVisibility(View.VISIBLE);
             mRecycler.setHasFixedSize(true);
@@ -101,10 +101,16 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
 
             mJobPostAdapter.setCallback(new JobPostAdapter.Callback() {
                 @Override
-                public void onItemClick(Datum mDatum) {
+                public void onItemClickDetail(Datum mDatum) {
                     Intent itDetailJobPost = new Intent(getActivity(), DetailJobPendingActivity.class);
                     itDetailJobPost.putExtra("mDatum", mDatum);
                     startActivity(itDetailJobPost);
+                }
+
+                @Override
+                public void onItemClickDelete(Datum mDatum) {
+                    progressBar.setVisibility(View.GONE);
+                    mWorkManagerPresenter.deleteJob(mDatum.getId(), mDatum.getStakeholders().getOwner().getId());
                 }
 
                 @Override
@@ -129,7 +135,7 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
 //                    alertDialog.show();
                 }
             });
-        }else {
+        } else {
             lnNoData.setVisibility(View.VISIBLE);
             mRecycler.setVisibility(View.GONE);
         }
@@ -147,6 +153,8 @@ public class JobPendingFragment extends Fragment implements WorkManagerView {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     EventBus.getDefault().postSticky(true);
+                    EventBus.getDefault().postSticky("1");
+
                     getActivity().finish();
                     getActivity().overridePendingTransition(0, 0);
                     getActivity().startActivity(getActivity().getIntent());

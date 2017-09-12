@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +12,9 @@ import android.widget.ImageView;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.AuthenticationBaseActivity;
-import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.utils.ConnectivityReceiver;
+import com.hbbsolution.maid.utils.NonSwipeableViewPager;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
@@ -26,14 +25,14 @@ import de.greenrobot.event.EventBus;
  * Created by tantr on 6/1/2017.
  */
 
-public class WorkManagerActivity extends AuthenticationBaseActivity implements View.OnClickListener, ConnectivityReceiver.ConnectivityReceiverListener{
+public class WorkManagerActivity extends AuthenticationBaseActivity implements View.OnClickListener, ConnectivityReceiver.ConnectivityReceiverListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabs)
     TabLayout tabLayout;
     @BindView(R.id.viewpager)
-    ViewPager mViewPager;
+    NonSwipeableViewPager mViewPager;
     @BindView(R.id.imgNo_internet)
     ImageView imgNo_internet;
 
@@ -74,7 +73,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
 
 
     private void createFragment() {
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = (NonSwipeableViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         setupViewPagerUser(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
@@ -120,11 +119,18 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
             if (mTab) {
                 Intent refresh = new Intent(this, WorkManagerActivity.class);
                 startActivity(refresh);
-                mViewPager.setCurrentItem(mPositionTab);
-                this.finish();
-                mPositionTab = 0;
+               // mViewPager.setCurrentItem(mPositionTab);
+               // this.finish();
+                mPositionTab = -1;
                 isPause = false;
                 mTab = false;
+            }
+        } else {
+            if (mPositionTab == -1) {
+                mViewPager.setCurrentItem(0);
+            } else {
+                mViewPager.setCurrentItem(mPositionTab);
+                mPositionTab = -1;
             }
         }
 
@@ -142,6 +148,10 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
 
     public void onEventMainThread(Integer positionTab) {
         mPositionTab = positionTab;
+    }
+
+    public void onEventMainThread(String positionTab) {
+        mPositionTab = Integer.parseInt(positionTab);
     }
 
     @Override
