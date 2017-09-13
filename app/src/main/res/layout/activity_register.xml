@@ -188,7 +188,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
-            android:background="@color/home_background_history"
+            android:background="@drawable/background_button_blue"
             android:text="@string/sign_in_sign_now"
             android:textAllCaps="false"
             android:textColor="@android:color/white"

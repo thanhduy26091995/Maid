@@ -110,6 +110,7 @@ public class SignInActivity extends BaseActivity implements MoreView
                 }
             }
         });
+
         btnForgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

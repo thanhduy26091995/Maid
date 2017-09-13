@@ -85,7 +85,6 @@ public class JobDoingFragment extends Fragment implements WorkManagerView, View.
             rootView = inflater.inflate(R.layout.fragment_job_doing, container, false);
             swip_refresh_job_doing = (SwipeRefreshLayout) rootView.findViewById(R.id.swip_refresh_job_doing);
             ButterKnife.bind(this, rootView);
-            progressPost = new ProgressBar(getActivity());
             lo_infoMaidDoing.setOnClickListener(this);
             progressPost.setVisibility(View.VISIBLE);
             mWorkManagerPresenter = new WorkManagerPresenter(this);

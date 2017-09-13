@@ -37,7 +37,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
     ImageView imgNo_internet;
 
 
-    private Integer tabMore;
+    private Integer tabMore=-1;
     private boolean isPause = false, mTab = false;
     private int mPositionTab;
     private Integer flag;
@@ -61,9 +61,8 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
         createFragment();
 
         tabMore = getIntent().getIntExtra("tabMore", -1);
-        if(tabMore!=-1){
+        if (tabMore != -1) {
             mViewPager.setCurrentItem(tabMore);
-            tabMore=-1;
         }
     }
 
@@ -121,23 +120,28 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
 
     @Override
     protected void onResume() {
-        if (isPause) {
-            if (mTab) {
-                Intent refresh = new Intent(this, WorkManagerActivity.class);
-                startActivity(refresh);
-               // mViewPager.setCurrentItem(mPositionTab);
-               // this.finish();
-                mPositionTab = -1;
-                isPause = false;
-                mTab = false;
-            }
-        } else {
-            if (mPositionTab == -1) {
-                mViewPager.setCurrentItem(0);
+        if (tabMore == -1) {
+            if (isPause) {
+                if (mTab) {
+                    Intent refresh = new Intent(this, WorkManagerActivity.class);
+                    startActivity(refresh);
+                    // mViewPager.setCurrentItem(mPositionTab);
+                    // this.finish();
+                    mPositionTab = -1;
+                    isPause = false;
+                    mTab = false;
+                }
             } else {
-                mViewPager.setCurrentItem(mPositionTab);
-                mPositionTab = -1;
+                if (mPositionTab == -1) {
+                    mViewPager.setCurrentItem(0);
+                } else {
+                    mViewPager.setCurrentItem(mPositionTab);
+                    mPositionTab = -1;
+                }
             }
+        }
+        else{
+            tabMore = -1;
         }
 
 //        if (Constants.isLoadTabDoing) {
