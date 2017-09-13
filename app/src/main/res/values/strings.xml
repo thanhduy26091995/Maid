@@ -293,4 +293,12 @@
     <string name="no_result_found">No results found!</string>
 
     <string name="delete">Xóa</string>
+
+    <string name="status_8">Your are chosen for this work</string>
+    <string name="status_89">You can start your work now!</string>
+    <string name="status_99">New work just posted!</string>
+    <string name="status_5">Work done!</string>
+    <string name="status_6">A direct request just sent to you!</string>
+    <string name="status_1">Work you just applied to is canceled</string>
+    <string name="status_9">Payment will be made in cash</string>
 </resources>

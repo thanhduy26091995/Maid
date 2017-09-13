@@ -96,7 +96,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 title = getResources().getString(R.string.notification);
-                body = "Bạn vừa nhận được một yêu cầu trực tiếp";
+                body = getResources().getString(R.string.status_6);
                 break;
             }
             case "5": {
@@ -106,7 +106,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 title = getResources().getString(R.string.notification);
-                body = "Công việc đã hoàn thành";
+                body = getResources().getString(R.string.status_5);
                 break;
             }
             case "9": {
@@ -117,7 +117,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 title = getResources().getString(R.string.notification);
-                body = "Thanh toán";
+                body = getResources().getString(R.string.status_9);
                 break;
             }
             case "1": {
@@ -126,7 +126,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 title = getResources().getString(R.string.notification);
-                body = "Công việc bạn ứng tuyển đã bị xóa";
+                body = getResources().getString(R.string.status_1);
                 break;
             }
             case "8": {
@@ -135,7 +135,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 title = getResources().getString(R.string.notification);
-                body = "Bạn đã được chọn làm việc";
+                body = getResources().getString(R.string.status_8);
                 break;
             }
             case "99": {
@@ -143,7 +143,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 title = getResources().getString(R.string.notification);
-                body = "Có một công việc vừa được đăng";
+                body = getResources().getString(R.string.status_99);
+                break;
+            }
+            case "89": {
+                Intent intent = new Intent(this, WorkManagerActivity.class);
+                intent.putExtra("tabMore", 2);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                title = getResources().getString(R.string.notification);
+                body = getResources().getString(R.string.status_89);
                 break;
             }
             default: {

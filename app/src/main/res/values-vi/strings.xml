@@ -298,4 +298,12 @@
     <string name="no_result_found">Không tìm thấy kết quả</string>
 
     <string name="delete">Xóa</string>
+
+    <string name="status_8">Bạn đã được chọn làm việc</string>
+    <string name="status_89">Bạn có thể bắt đầu công việc ngay bây giờ!</string>
+    <string name="status_99">Có một công việc vừa được đăng!</string>
+    <string name="status_5">Công việc đã hoàn thành!</string>
+    <string name="status_6">Bạn vừa nhận được một yêu cầu trực tiếp!</string>
+    <string name="status_1">Công việc bạn ứng tuyển đã bị xóa</string>
+    <string name="status_9">Chủ nhà sẽ thanh toán bằng tiền mặt</string>
 </resources>
