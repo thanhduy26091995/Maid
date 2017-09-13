@@ -91,8 +91,10 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
     @Override
     public void getInfoJob(WorkManagerResponse mExample) {
         progressBar.setVisibility(View.GONE);
+
         mJobListPost.clear();
         mJobListExpire.clear();
+
 //        EventBus.getDefault().postSticky(mExample.getData().size());
         mJobList = mExample.getData();
         if (mJobList.size() > 0) {

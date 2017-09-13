@@ -11,8 +11,9 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.history.activity.HistoryActivity;
-import com.hbbsolution.maid.main.view.HomeActivity;
+import com.hbbsolution.maid.home.job_near_by_new_version.view.JobNearByNewActivity;
 import com.hbbsolution.maid.utils.SessionShortcutBadger;
 import com.hbbsolution.maid.workmanager.listworkmanager.view.WorkManagerActivity;
 
@@ -30,6 +31,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private NotificationUtils notificationUtils;
     private int countNotification;
     private SessionShortcutBadger sessionShortcutBadger;
+    private String title,body;
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 //        // [START_EXCLUDE]
@@ -85,22 +87,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void pushNotification(RemoteMessage remoteMessage) {
         Map<String, String> data = remoteMessage.getData();
+        title = data.get("title");
+        body = data.get("body");
         PendingIntent pendingIntent = null;
         switch (data.get("status")) {
             case "6": {
                 Intent intent = new Intent(this, WorkManagerActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                title = getResources().getString(R.string.notification);
+                body = "Bạn vừa nhận được một yêu cầu trực tiếp";
                 break;
             }
             case "5": {
-
                 Intent intent = new Intent(this, HistoryActivity.class);
                 intent.putExtra("tabMore", 0);
                 intent.putExtra("flag", 1);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
+                title = getResources().getString(R.string.notification);
+                body = "Công việc đã hoàn thành";
                 break;
             }
             case "9": {
@@ -110,6 +116,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.putExtra("bill", data.get("bill"));
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                title = getResources().getString(R.string.notification);
+                body = "Thanh toán";
                 break;
             }
             case "1": {
@@ -117,6 +125,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 EventBus.getDefault().postSticky("1");
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                title = getResources().getString(R.string.notification);
+                body = "Công việc bạn ứng tuyển đã bị xóa";
                 break;
             }
             case "8": {
@@ -124,12 +134,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 intent.putExtra("tabMore", 1);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                title = getResources().getString(R.string.notification);
+                body = "Bạn đã được chọn làm việc";
                 break;
             }
             case "99": {
-                Intent intent = new Intent(this, HomeActivity.class);
+                Intent intent = new Intent(this, JobNearByNewActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+                title = getResources().getString(R.string.notification);
+                body = "Có một công việc vừa được đăng";
                 break;
             }
             default: {
@@ -137,8 +151,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
         }
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setContentTitle(data.get("title"))
-                .setContentText(data.get("body"))
+                .setContentTitle(title)
+                .setContentText(body)
                 .setAutoCancel(true)
                 .setLights(0xff00ff00, 300, 100)
                 .setDefaults(Notification.DEFAULT_ALL)
