@@ -100,6 +100,7 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
             mRecycler.setVisibility(View.VISIBLE);
             mRecycler.setHasFixedSize(true);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+
             for (Datum job : mJobList){
                 if (!WorkTimeValidate.compareDays(job.getInfo().getTime().getEndAt()))
                 {
@@ -113,6 +114,7 @@ public class JobPostedFragment extends Fragment implements WorkManagerView {
             mJobListPost.addAll(mJobListExpire);
             mJobList.clear();
             mJobList.addAll(mJobListPost);
+
             mJobPostAdapter = new JobPostAdapter(getActivity(), mJobList, 1);
             mRecycler.setLayoutManager(linearLayoutManager);
             mRecycler.setAdapter(mJobPostAdapter);
