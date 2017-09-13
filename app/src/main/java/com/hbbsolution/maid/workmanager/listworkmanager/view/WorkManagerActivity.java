@@ -59,6 +59,12 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
 
         imgNo_internet.setOnClickListener(this);
         createFragment();
+
+        tabMore = getIntent().getIntExtra("tabMore", -1);
+        if(tabMore!=-1){
+            mViewPager.setCurrentItem(tabMore);
+            tabMore=-1;
+        }
     }
 
     @Override

@@ -73,7 +73,7 @@ public class DetailJobPostActivity extends AuthenticationBaseActivity implements
     @BindView(R.id.txtExpired_request_detail_post)
     TextView txtExpired_request_detail_post;
     @BindView(R.id.rela_confirm_maid)
-    RelativeLayout rela_confirm_maid;
+    Button rela_confirm_maid;
 
     public static Activity mDetailJobPostActivity = null;
 

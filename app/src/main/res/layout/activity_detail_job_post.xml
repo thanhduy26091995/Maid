@@ -68,7 +68,6 @@
                     android:id="@+id/lo_infoOwner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
                     android:background="@color/colorWhite"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
@@ -125,36 +124,17 @@
 
                 </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginLeft="@dimen/margin_padding_20dp"
-                    android:layout_marginTop="@dimen/margin_padding_10dp"
-                    android:background="@android:color/darker_gray" />
-
-                <RelativeLayout
+                <Button
                     android:id="@+id/rela_confirm_maid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorWhite"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:id="@+id/job_doing_txtDone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_gravity="center"
-                        android:gravity="center_vertical"
-                        android:paddingBottom="10dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="10dp"
-                        android:text="@string/choose_this_work"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/home_background_history"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
+                    android:layout_marginTop="@dimen/margin_padding_10dp"
+                    android:layout_marginLeft="@dimen/margin_padding_20dp"
+                    android:layout_marginRight="@dimen/margin_padding_20dp"
+                    android:background="@drawable/background_button_blue"
+                    android:text="@string/choose_this_work"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -173,6 +153,7 @@
                             android:layout_marginTop="20dp"
                             android:paddingBottom="10dp"
                             android:text="@string/description"
+                            android:textColor="@color/grey_800"
                             android:textStyle="bold" />
                     </RelativeLayout>
 
@@ -403,7 +384,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:layout_above="@+id/linear_button"
-                        android:layout_marginLeft="@dimen/margin_padding_20dp"
                         android:background="@android:color/darker_gray" />
                 </LinearLayout>
 

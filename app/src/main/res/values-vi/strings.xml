@@ -125,7 +125,7 @@
 
     <!--history_screen start-->
     <string name="completedjob">Công việc hoàn thành</string>
-    <string name="completedowner">Giúp việc đã làm</string>
+    <string name="completedowner">Chủ nhà đã làm</string>
     <string name="before">%s trước</string>
     <plurals name="day">
         <item quantity="one">ngày</item>

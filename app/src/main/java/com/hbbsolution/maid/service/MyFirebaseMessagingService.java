@@ -121,6 +121,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
             case "8": {
                 Intent intent = new Intent(this, WorkManagerActivity.class);
+                intent.putExtra("tabMore", 1);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
                 break;

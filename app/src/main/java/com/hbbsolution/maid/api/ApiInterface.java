@@ -111,7 +111,6 @@ public interface ApiInterface {
     @GET("owner/checkToken")
     Call<ResponseRequest> checkToken();
 
-
     @GET("maid/getComment")
     Call<CommentMaidResponse> getListCommentMaid(@Query("id") String idTask, @Query("page") int page);
 
