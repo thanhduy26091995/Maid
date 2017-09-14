@@ -50,12 +50,14 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     private JobNearByPresenter mJobNearByPresenter;
     public static final int REQUEST_CODE_INTENT = 5;
     private FilterModel mFilterModel;
+    private boolean isFromSignIn = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_near_by_new);
         ButterKnife.bind(this);
+        isFromSignIn = getIntent().getBooleanExtra("fromSignIn", false);
         //event click
         setupComponents();
         ic_setting.setOnClickListener(this);
@@ -80,7 +82,7 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-       //init presenter
+        //init presenter
         mJobNearByPresenter = new JobNearByPresenter(this);
         mJobNearByPresenter.getAllTypeJob();
         //setup tab layout and view pager
@@ -149,16 +151,20 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
                 //if (tabLayout.getSelectedTabPosition() == 1) {
                 ListJobMapFragment.getInstance().updateMap(taskDatas);
                 //}
+            } catch (Exception e) {
             }
-            catch (Exception e){}
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intentHome = new Intent(JobNearByNewActivity.this, HomeActivity.class);
-            startActivity(intentHome);
+            if (isFromSignIn) {
+                finish();
+            } else {
+                Intent intentHome = new Intent(JobNearByNewActivity.this, HomeActivity.class);
+                startActivity(intentHome);
+            }
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -167,9 +173,14 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intentHome = new Intent(JobNearByNewActivity.this, HomeActivity.class);
-        startActivity(intentHome);
-        finish();
+        if (isFromSignIn) {
+            finish();
+        } else {
+            Intent intentHome = new Intent(JobNearByNewActivity.this, HomeActivity.class);
+            startActivity(intentHome);
+            finish();
+        }
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.hbbsolution.maid.home.list_job;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.ImageLoader;
 import com.hbbsolution.maid.home.job_detail.view.JobDetailActivity;
 import com.hbbsolution.maid.model.task.TaskData;
+import com.hbbsolution.maid.utils.SessionManagerUser;
 import com.hbbsolution.maid.utils.WorkTimeValidate;
 
 import java.util.List;
@@ -27,11 +29,13 @@ public class ListJobAdapter extends RecyclerView.Adapter<ListJobAdapter.ListJobV
     private long elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds;
     private String date;
     private String startTime, endTime;
+    private SessionManagerUser sessionManagerUser;
 
 
     public ListJobAdapter(Activity mActivity, List<TaskData> mTaskDatas) {
         this.mActivity = mActivity;
         this.mTaskDatas = mTaskDatas;
+        sessionManagerUser = new SessionManagerUser(mActivity);
     }
 
     @Override
@@ -64,9 +68,15 @@ public class ListJobAdapter extends RecyclerView.Adapter<ListJobAdapter.ListJobV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, JobDetailActivity.class);
-                intent.putExtra("TaskData", taskData);
-                mActivity.startActivity(intent);
+                if (sessionManagerUser.isLoggedIn()) {
+                    Intent intent = new Intent(mActivity, JobDetailActivity.class);
+                    intent.putExtra("TaskData", taskData);
+                    mActivity.startActivity(intent);
+                } else {
+                    Snackbar snackbar = Snackbar.make(mActivity.findViewById(R.id.activity), mActivity.getResources().getString(R.string.vuilongdangnhap), Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+
             }
         });
     }

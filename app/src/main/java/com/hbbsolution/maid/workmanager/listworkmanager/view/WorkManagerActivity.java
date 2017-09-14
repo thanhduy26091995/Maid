@@ -14,7 +14,6 @@ import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.base.AuthenticationBaseActivity;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.utils.ConnectivityReceiver;
-import com.hbbsolution.maid.utils.NonSwipeableViewPager;
 import com.hbbsolution.maid.workmanager.adapter.ViewPagerAdapter;
 
 import butterknife.BindView;
@@ -32,7 +31,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
     @BindView(R.id.tabs)
     TabLayout tabLayout;
     @BindView(R.id.viewpager)
-    NonSwipeableViewPager mViewPager;
+    ViewPager mViewPager;
     @BindView(R.id.imgNo_internet)
     ImageView imgNo_internet;
 
@@ -80,7 +79,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
 
 
     private void createFragment() {
-        mViewPager = (NonSwipeableViewPager) findViewById(R.id.viewpager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         setupViewPagerUser(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
