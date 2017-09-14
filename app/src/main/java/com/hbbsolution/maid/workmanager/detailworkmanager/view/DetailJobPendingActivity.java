@@ -201,6 +201,7 @@ public class DetailJobPendingActivity extends AuthenticationBaseActivity impleme
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     EventBus.getDefault().postSticky(true);
+                    EventBus.getDefault().postSticky(1);
                     finish();
                 }
             });

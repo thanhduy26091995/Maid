@@ -37,10 +37,11 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
     ImageView imgNo_internet;
 
 
-    private Integer tabMore=-1;
+    private Integer tabMore = -1;
     private boolean isPause = false, mTab = false;
     private int mPositionTab;
     private Integer flag;
+    private boolean start = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
         setContentView(R.layout.activity_work_management);
         ButterKnife.bind(this);
 
+        start = getIntent().getBooleanExtra("start", true);
 //        checkConnectionInterner();
         checkConnection();
         //setupView
@@ -102,6 +104,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
     @Override
     protected void onPause() {
         isPause = true;
+        start = false;
         super.onPause();
     }
 
@@ -124,6 +127,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
             if (isPause) {
                 if (mTab) {
                     Intent refresh = new Intent(this, WorkManagerActivity.class);
+                    refresh.putExtra("start", false);
                     startActivity(refresh);
                     // mViewPager.setCurrentItem(mPositionTab);
                     // this.finish();
@@ -135,12 +139,15 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
                 if (mPositionTab == -1) {
                     mViewPager.setCurrentItem(0);
                 } else {
-                    mViewPager.setCurrentItem(mPositionTab);
-                    mPositionTab = -1;
+                    if (!start) {
+                        mViewPager.setCurrentItem(mPositionTab);
+                        mPositionTab = -1;
+                    } else {
+                        mViewPager.setCurrentItem(0);
+                    }
                 }
             }
-        }
-        else{
+        } else {
             tabMore = -1;
         }
 
