@@ -54,18 +54,17 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_padding_20dp"
-                android:theme="@style/EditTextHint">
+                android:layout_marginTop="@dimen/margin_padding_20dp">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_padding_20dp"
                     android:layout_marginRight="@dimen/margin_padding_20dp"
-                    android:hint="@string/sign_in_user_name"
                     android:textColorHint="@color/colorAccent">
 
                     <EditText
+                        android:hint="@string/sign_in_user_name"
                         android:id="@+id/edit_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -88,8 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_padding_20dp"
                     android:layout_marginRight="@dimen/margin_padding_20dp"
-                    android:textColorHint="@color/colorAccent"
-                    android:theme="@style/EditTextHint">
+                    android:textColorHint="@color/colorAccent">
 
                     <EditText
                         android:id="@+id/edit_password"
