@@ -92,7 +92,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="9h00 am - 12h00 am"
+                android:text="9h00 - 12h00"
+                android:layout_marginRight="@dimen/margin_padding_30dp"
                 android:textSize="12sp" />
 
             <LinearLayout

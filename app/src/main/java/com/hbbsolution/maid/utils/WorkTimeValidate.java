@@ -72,8 +72,8 @@ public class WorkTimeValidate {
     public static String getTimeWork(String _TimeWork) {
         String mTimeWork = null;
         Date date = new DateTime(_TimeWork).toDate();
-        SimpleDateFormat time = new SimpleDateFormat("hh:mm a", Locale.US);
-        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
         // OVERRIDE SOME symbols WHILE RETAINING OTHERS
         symbols.setAmPmStrings(new String[] { "am", "pm" });
         time.setDateFormatSymbols(symbols);
@@ -88,8 +88,8 @@ public class WorkTimeValidate {
     public static String getTimeWorkLanguage(Context context, String _TimeWork) {
         String mTimeWork = null;
         Date date = new DateTime(_TimeWork).toDate();
-        SimpleDateFormat time = new SimpleDateFormat("hh:mm a", Locale.US);
-        DateFormatSymbols symbols = new DateFormatSymbols(Locale.US);
+        SimpleDateFormat time = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        DateFormatSymbols symbols = new DateFormatSymbols(Locale.getDefault());
         // OVERRIDE SOME symbols WHILE RETAINING OTHERS
         symbols.setAmPmStrings(new String[] { context.getResources().getString(R.string.am), context.getResources().getString(R.string.pm) });
         time.setDateFormatSymbols(symbols);

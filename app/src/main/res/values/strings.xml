@@ -14,7 +14,7 @@
     <string name="home_your_tasks">Work management</string>
     <string name="home_history">Work history</string>
     <string name="home_copy_right"> Any Time - Any Where</string>
-    <string name="more_sign_in">Sign In</string>
+    <string name="more_sign_in">Sign in</string>
     <string name="auth">You account has been logged into from a new device</string>
     <!--home screen end-->
 
@@ -98,7 +98,7 @@
     <string name="more_contact">Contact</string>
     <string name="gender_men">Male</string>
     <string name="gender_women">Female</string>
-    <string name="signout">Sign Out</string>
+    <string name="signout">Sign out</string>
     <string name="signoutContent">Are you sure to sign out?</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>

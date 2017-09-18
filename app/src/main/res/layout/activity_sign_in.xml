@@ -68,7 +68,6 @@
                         android:id="@+id/edit_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@string/font_family_thin"
                         android:inputType="textEmailAddress"
                         android:textColor="@android:color/black"
                         android:textColorLink="@android:color/transparent" />
@@ -93,7 +92,6 @@
                         android:id="@+id/edit_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@string/font_family_thin"
                         android:hint="@string/sign_in_password"
                         android:inputType="textPassword"
                         android:textColor="@android:color/black"
