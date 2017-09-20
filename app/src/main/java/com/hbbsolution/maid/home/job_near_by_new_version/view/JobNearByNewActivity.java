@@ -2,8 +2,10 @@ package com.hbbsolution.maid.home.job_near_by_new_version.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import com.hbbsolution.maid.base.BaseActivity;
 import com.hbbsolution.maid.base.ConfigSingleton;
 import com.hbbsolution.maid.base.IconTextView;
 import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
+import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModelSingleton;
 import com.hbbsolution.maid.home.job_near_by_new_version.presenter.JobNearByPresenter;
 import com.hbbsolution.maid.main.view.HomeActivity;
 import com.hbbsolution.maid.model.job.TypeJobResponse;
@@ -130,13 +133,25 @@ public class JobNearByNewActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null) {
+            for (Fragment fragment : fragments) {
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_INTENT && resultCode == RESULT_OK) {
             try {
                 List<TaskData> taskDatas = (List<TaskData>) data.getSerializableExtra("TaskList");
-                FilterModel filterModel = (FilterModel) data.getSerializableExtra("FilterModelResult");
+                //FilterModel filterModel = (FilterModel) data.getSerializableExtra("FilterModelResult");
+                FilterModel filterModel = FilterModelSingleton.getInstance().getFilterModel();
                 String mTypeJobName = "";
                 if (filterModel.getWorkName() != null) {
                     mTypeJobName = filterModel.getWorkName();

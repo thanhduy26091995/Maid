@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 
 import com.hbbsolution.maid.R;
 import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModel;
+import com.hbbsolution.maid.home.job_near_by_new_version.model.FilterModelSingleton;
 import com.hbbsolution.maid.home.job_near_by_new_version.presenter.ListJobPresenter;
 import com.hbbsolution.maid.home.list_job.ListJobAdapter;
 import com.hbbsolution.maid.model.task.TaskData;
@@ -229,7 +230,8 @@ public class ListJobFragment extends Fragment implements LocationListener, ListJ
                 }
                 if (location != null) {
                     showProgressDialog();
-                    Log.d("LATLNG", "" + location.getLatitude() + "/" + location.getLongitude());
+                    //save into singleton
+                    FilterModelSingleton.getInstance().saveLocation(latitude, longitude);
                     listJobPresenter.getTaskByWork(latitude, longitude, maxDistance, workId, 1, 10, sortType);
                 } else {
                     Snackbar snackbar = Snackbar.make(getActivity().findViewById(R.id.activity), getResources().getString(R.string.location_not_found), Snackbar.LENGTH_LONG);

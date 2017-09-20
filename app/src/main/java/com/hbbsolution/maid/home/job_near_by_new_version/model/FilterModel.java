@@ -12,12 +12,12 @@ public class FilterModel implements Serializable {
     private String addressName;
     private String workId;
     private String workName;
-    private int distance;
+    private Integer distance;
 
     public FilterModel() {
     }
 
-    public FilterModel(Double lat, Double lng, String addressName, String workId, String workName, int distance) {
+    public FilterModel(Double lat, Double lng, String addressName, String workId, String workName, Integer distance) {
         this.lat = lat;
         this.lng = lng;
         this.addressName = addressName;
@@ -66,11 +66,11 @@ public class FilterModel implements Serializable {
         this.workName = workName;
     }
 
-    public int getDistance() {
+    public Integer getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(Integer distance) {
         this.distance = distance;
     }
 }
