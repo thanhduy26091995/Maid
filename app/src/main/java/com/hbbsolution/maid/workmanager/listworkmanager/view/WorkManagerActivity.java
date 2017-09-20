@@ -47,8 +47,7 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_management);
         ButterKnife.bind(this);
-
-        start = getIntent().getBooleanExtra("start", true);
+        EventBus.getDefault().registerSticky(this);
 //        checkConnectionInterner();
         checkConnection();
         //setupView
@@ -97,26 +96,24 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().registerSticky(this);
     }
 
     @Override
     protected void onPause() {
         isPause = true;
-        start = false;
         super.onPause();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.bind(this).unbind();
+        EventBus.getDefault().unregister(this);
     }
 
 
@@ -126,7 +123,6 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
             if (isPause) {
                 if (mTab) {
                     Intent refresh = new Intent(this, WorkManagerActivity.class);
-                    refresh.putExtra("start", false);
                     startActivity(refresh);
                     // mViewPager.setCurrentItem(mPositionTab);
                     // this.finish();
@@ -138,12 +134,8 @@ public class WorkManagerActivity extends AuthenticationBaseActivity implements V
                 if (mPositionTab == -1) {
                     mViewPager.setCurrentItem(0);
                 } else {
-                    if (!start) {
-                        mViewPager.setCurrentItem(mPositionTab);
-                        mPositionTab = -1;
-                    } else {
-                        mViewPager.setCurrentItem(0);
-                    }
+                    mViewPager.setCurrentItem(mPositionTab);
+                    mPositionTab = -1;
                 }
             }
         } else {
